@@ -1,13 +1,11 @@
 <x-app-layout>
 
     <body>
-        <div x-data="sample()">
-            <span x-text="count"></span>
-
-            <button @click="add">+</button>
+        <div>
+            hello world
         </div>
-    </body>
 
-    <script src="{{ asset('js/sample.js') }}"></script>
+        <a href="{{route('login')}}">Login</a>
+    </body>
 
 </x-app-layout>
