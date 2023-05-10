@@ -1,11 +1,7 @@
 <x-app-layout>
+    <div class="pt-20">
+        <x-hero/>
 
-    <body>
-        <div>
-            hello world
-        </div>
-
-        <a href="{{route('login')}}">Login</a>
-    </body>
-
+        <x-footer/>
+    </div>
 </x-app-layout>
