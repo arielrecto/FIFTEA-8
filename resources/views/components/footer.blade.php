@@ -1,6 +1,6 @@
-<footer class="text-gray-600 body-font">
+<footer class="text-gray-600 body-font border-t border-gray-200">
     <div class="container py-5 mx-auto px-5 md:px-22 lg:px-28">
-        <div class="border-t border-gray-200">
+        <div class="">
             <div class="container px-5 py-8 flex flex-wrap mx-auto items-center">
                 <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
                     <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
