@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -61,5 +62,14 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function filter(string $name = 'milktea' ) {
+
+        if ($name == 'siomai') {
+            $siomai = Product::where('type', $name)->get();
+            return $siomai;
+        }
+        $products = Product::get();
+
     }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,17 @@ Route::get('/dashboard', function () {
 Route::get('/products', function() {
     return view('products.products');
 })->name('products');
+
+Route::get('/product/data', function (){
+
+
+    $products = Product::with('categories')->get();
+    $categories = Category::get();
+    return response([
+        'products' => $products,
+        'categories' => $categories
+    ]);
+});
 
 Route::get('/user/cart', function () {
     return view('cart.cart');

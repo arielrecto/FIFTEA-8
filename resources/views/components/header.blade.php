@@ -10,7 +10,7 @@
                     <a class="font-sans text-base" href="/">Home</a>
                 </div>
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">Products</a>
+                    <a class="font-sans text-base" href="{{route('products')}}">Products</a>
                 </div>
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">About Us</a>
@@ -55,7 +55,7 @@
                     </ul>
                 </div>
             </div>
-        @else 
+        @else
             <div class="hidden md:flex">
                 <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded" href="{{route('login')}}">LOGIN</a>
             </div>
