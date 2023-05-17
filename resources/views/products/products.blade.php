@@ -2,7 +2,11 @@
     <section class="pt-20 bg-white">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
+<<<<<<< HEAD
             <div class="flex flex-col space-y-2" x-data="useProduct" x-init="actions.fetchProduct">
+=======
+            <div class="w-full flex flex-col space-y-2">
+>>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
 
                 <div class="w-full flex border-b border-gray-200">
                     <ul class="w-full flex space-x-4 py-3">
@@ -15,9 +19,15 @@
                     </ul>
                 </div>
 
+<<<<<<< HEAD
                 <section id="products-container" class="flex w-full flex-wrap">
 
                     <template x-for="product in state.products" :key="product.id">
+=======
+                    <x-products-milktea/>
+
+                    <x-products-siomai/>
+>>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
 
                         <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out">
                             <div
@@ -56,6 +66,10 @@
 
                     </template>
 
+<<<<<<< HEAD
+=======
+                    <x-products-chicken/>
+>>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
 
                 </section>
 
