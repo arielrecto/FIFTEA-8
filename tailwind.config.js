@@ -17,9 +17,11 @@ module.exports = {
                 'sbblack': '#27251F',
                 'sbgreen': '#00704A',
                 'greey': '#edf6f9',
+                'sblight': '#3D8B5F',
+                'sbdlight': '#A0D9BE',
             },
             backgroundImage: {
-                'pattern': "url('images/wave.png')",
+                'blob': "url('/images/blob.png')",
             }
         },
     },

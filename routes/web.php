@@ -32,6 +32,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// temporary routes
+Route::get('/products', function() {
+    return view('products.products');
+})->name('products');
+
+Route::get('/user/cart', function () {
+    return view('cart.cart');
+})->name('cart');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
