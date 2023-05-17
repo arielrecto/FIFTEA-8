@@ -1,4 +1,4 @@
-<div id="chicken" class="hidden flex flex-col space-y-4 p-4">
+<div id="chicken" class=" flex flex-col space-y-4 p-4">
     <div class="flex items-center py-2">
         <h1 class="text-2xl font-sans font-semibold">CHICKEN WINGS</h1>
     </div>
@@ -20,7 +20,7 @@
                             <input type="checkbox" id="my-modal" class="modal-toggle" />
                             <div class="modal">
                             <div class="modal-box">
-
+                                
                                 <div>
                                     dito yung mg add ons
                                 </div>

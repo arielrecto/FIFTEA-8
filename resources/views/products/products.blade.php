@@ -2,19 +2,19 @@
     <section class="pt-20 bg-white">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
-            <div class="flex flex-col space-y-2">
+            <div class="w-full flex flex-col space-y-2">
 
                 <x-products-nav/>
 
                 <section id="products-container">
 
-                    {{-- <x-products-milktea/> --}}
+                    <x-products-milktea/>
 
-                    {{-- <x-products-siomai/>
+                    <x-products-siomai/>
 
                     <x-products-waffle/>
 
-                    <x-products-chicken/> --}}
+                    <x-products-chicken/>
 
                 </section>
                 

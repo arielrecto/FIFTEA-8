@@ -1,4 +1,4 @@
-<div id="waffle" class="hidden flex flex-col space-y-4 p-4">
+<div id="waffle" class="flex flex-col space-y-4 p-4">
     <div class="flex items-center py-2">
         <h1 class="text-2xl font-sans font-semibold">WAFFLE</h1>
     </div>
