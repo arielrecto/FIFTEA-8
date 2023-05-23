@@ -2,34 +2,29 @@
     <section class="pt-20 bg-white">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
-<<<<<<< HEAD
             <div class="flex flex-col space-y-2" x-data="useProduct" x-init="actions.fetchProduct">
-=======
-            <div class="w-full flex flex-col space-y-2">
->>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
 
                 <div class="w-full flex border-b border-gray-200">
                     <ul class="w-full flex space-x-4 py-3">
 
                         <template x-for="category in state.categories" :key="category.id">
-                            <button @click="getters.getData(state.products, category.id)" id="milktea" class="nav py-1 px-4 rounded hover:bg-gray-200">
+                            <button @click="filterDataProduct(category.name)" id="milktea" class="nav py-1 px-4 rounded hover:bg-gray-200">
                                 <p x-text="category.name"></p>
                             </button>
                         </template>
                     </ul>
                 </div>
 
-<<<<<<< HEAD
                 <section id="products-container" class="flex w-full flex-wrap">
 
-                    <template x-for="product in state.products" :key="product.id">
-=======
-                    <x-products-milktea/>
 
-                    <x-products-siomai/>
->>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
+                    <div x-show="state.isLoading">
+                        <img src="{{asset('images/loading-buffering.gif')}}" alt="" srcset="">
+                    </div>
 
-                        <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out">
+                    <template x-for="product in getters.getProductData" :key="product.id">
+
+                        <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out" x-show="!state.isLoading">
                             <div
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center"
@@ -66,10 +61,6 @@
 
                     </template>
 
-<<<<<<< HEAD
-=======
-                    <x-products-chicken/>
->>>>>>> 3d52564dcbffc70e7021e1bee02880fa9d493b27
 
                 </section>
 
