@@ -8,7 +8,7 @@
                     <ul class="w-full flex space-x-4 py-3">
 
                         <template x-for="category in state.categories" :key="category.id">
-                            <button @click="getters.getData(state.products, category.id)" id="milktea" class="nav py-1 px-4 rounded hover:bg-gray-200">
+                            <button @click="filterDataProduct(category.name)" id="milktea" class="nav py-1 px-4 rounded hover:bg-gray-200">
                                 <p x-text="category.name"></p>
                             </button>
                         </template>
@@ -19,7 +19,9 @@
 
                     <template x-for="product in state.products" :key="product.id">
 
-                        <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out">
+                    <template x-for="product in getters.getProductData" :key="product.id">
+
+                        <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out" x-show="!state.isLoading">
                             <div
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center"

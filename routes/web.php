@@ -50,6 +50,18 @@ Route::get('/product/data', function (){
     ]);
 });
 
+Route::get('product/filter/{name}', function ($name){
+
+
+    $products  = Category::where('name', $name)->products()->get();
+
+
+
+    return $products;
+
+});
+
+
 Route::get('/user/cart', function () {
     return view('cart.cart');
 })->name('cart');
