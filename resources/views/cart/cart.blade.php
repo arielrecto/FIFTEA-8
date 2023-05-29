@@ -5,7 +5,7 @@
                 <div class="w-full py-4 border-b border-gray-200">
                     <h1 class="text-2xl font-sans font-medium">YOUR CART</h1>
                 </div>
-                <div class="w-full flex flex-col space-y-6 md:flex-row md:space-x-4">
+                <div class="w-full flex flex-col space-y-6 md:flex-row md:space-x-8">
                     
                     <div class="flex flex-col w-full md:w-2/3">
 

@@ -56,8 +56,9 @@
                 </div>
             </div>
         @else
-            <div class="hidden md:flex">
+            <div class="hidden md:flex space-x-3">
                 <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded" href="{{route('login')}}">LOGIN</a>
+                <a class="font-sans text-sm text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded" href="{{route('register')}}">REGISTER</a>
             </div>
         @endauth
         <div class="flex md:hidden">
