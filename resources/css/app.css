@@ -6,3 +6,9 @@
     background-color: #00704A;
     color: white;
 }
+
+#address,
+#account,
+#back-button {
+    display: none;
+}

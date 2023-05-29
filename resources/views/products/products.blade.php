@@ -13,14 +13,11 @@
                             </button>
                         </template>
                     </ul>
-                </div>
+                </div>  
 
                 <section id="products-container" class="flex w-full flex-wrap">
 
-
-                    <div x-show="state.isLoading">
-                        <img src="{{asset('images/loading-buffering.gif')}}" alt="" srcset="">
-                    </div>
+                    <template x-for="product in state.products" :key="product.id">
 
                     <template x-for="product in getters.getProductData" :key="product.id">
 
@@ -58,12 +55,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </template>
-
-
                 </section>
-
             </div>
         </div>
     </section>
