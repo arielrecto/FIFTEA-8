@@ -14,6 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
+    
     <body class="w-full font-sans text-gray-900 antialiased">
         <x-header/>
         <div class="w-full">

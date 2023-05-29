@@ -20,7 +20,7 @@
                 <h1 class="text-2xl font-bold">Sign up to FifTea-8</h1>
                 <div class="flex space-x-2">
                     <p class="text-base text-gray-500">Alreay have an account?</p>
-                    <a href="" class="text-base text-blue-500 hover:underline cursor-pointer">Login</a>
+                    <a href="{{route('login')}}" class="text-base text-blue-500 hover:underline cursor-pointer">Login</a>
                 </div>
             </div>
 
