@@ -20,7 +20,8 @@ class Profile extends Model
         'lot',
         'hone_no',
         'municipality',
-        'village',
+        'barangay',
+        'subdivision',
         'region',
         'zip_code',
         'user_id'

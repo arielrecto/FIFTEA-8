@@ -67,11 +67,13 @@ Route::get('/user/cart', function () {
 })->name('cart');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function () {
+        Route::prefix('dashboard')->as('dashboard.')->group(function (){
+            Route::get('/', function () {
+                return view('users.admin.dashboard');
+            })->name('index');
+        });
         Route::resource('order', OrderController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('category', CategoryController::class);
@@ -92,6 +94,16 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:client')->prefix('client')->as('client.')->group(function (){
+
+        Route::prefix('dashboard')->as('dashboard.')->group(function (){
+            Route::get('/', function () {
+                return view('users.client.dashboard');
+            })->name('index');
+        });
+
+        // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::resource('order', ClientOrderController::class)->only([
             'index', 'create',  'store'
         ]);

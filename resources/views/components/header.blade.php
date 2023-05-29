@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li> <form action="{{ route('logout')}}" method="POST"> @csrf<button>Logout</button></form></li>
                     </ul>
                 </div>
             </div>

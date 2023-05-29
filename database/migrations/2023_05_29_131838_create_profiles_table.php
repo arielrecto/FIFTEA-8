@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('lot');
             $table->string('home_no')->nullable();
             $table->string('municipality');
-            $table->string('village');
+            $table->string('barangay');
+            $table->string('subdivision');
             $table->string('region');
             $table->string('zip_code');
             $table->foreignIdFor(User::class);
