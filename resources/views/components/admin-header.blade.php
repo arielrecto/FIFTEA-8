@@ -19,24 +19,7 @@
         </div>
 
         @auth
-            <div class="flex space-x-2">
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost btn-circle">
-                        <div class="indicator">
-                            <i class='bx bx-cart-alt text-2xl text-gray-600 hover:text-gray-700'></i>
-                            <span class="badge badge-sm indicator-item">8</span>
-                        </div>
-                    </label>
-                    <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-                        <div class="card-body">
-                            <span class="font-bold text-lg">8 Items</span>
-                            <span class="text-info">Subtotal: $999</span>
-                            <div class="card-actions">
-                                <button class="btn btn-primary btn-block">View cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hidden md:flex space-x-2">
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
@@ -45,9 +28,9 @@
                     </label>
                     <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-2">
 
-                        <a class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
+                        <a class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a>
 
-                        <a class="rounded-md hover:bg-gray-200 py-1 px-2">Settings</a>
+                        <a class="rounded-md hover:bg-gray-100 py-1 px-2">Settings</a>
                          
                         <form action="{{ route('logout')}}" method="POST" > 
                             @csrf
@@ -71,8 +54,10 @@
                 <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-1">
                     <li><a class="font-sans">Home</a></li>
                     <li><a class="font-sans">Products</a></li>
-                    <li><a class="font-sans">About Us</a></li>
-                    <li><a class="font-sans">Login</a></li>
+                    <form action="{{ route('logout')}}" method="POST" > 
+                        @csrf
+                        <button class="w-full rounded-md bg-sbgreen hover:bg-sblight py-1 px-2 cursor-pointer text-white">Logout</button>
+                    </form>
                 </ul>
             </div>
 

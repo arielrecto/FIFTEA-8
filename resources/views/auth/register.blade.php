@@ -148,7 +148,7 @@
 
 </x-guest-layout>
 
-<script>
+{{-- <script>
     const nextButton = document.getElementById("next-button");
     const backButton = document.getElementById("back-button");
     const submitButton = document.getElementById("submit-button");
@@ -230,7 +230,7 @@
       input.addEventListener("input", updateButtonVisibility);
     });
   </script>
-  
+   --}}
   
 
 

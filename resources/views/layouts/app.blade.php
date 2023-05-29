@@ -18,12 +18,15 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
 
-            <x-header/>
+            @if (Auth::check() && Auth::user()->hasRole('admin'))
+                <x-admin-header/>
+            @else
+                <x-header/>
+            @endif
 
             <main>
                 {{ $slot }}
             </main>
-
             
         </div>
     </body>
