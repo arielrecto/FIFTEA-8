@@ -7,8 +7,8 @@
     color: white;
 }
 
-#address,
-#account,
+/* #address,
+#account, */
 #back-button {
     display: none;
 }

@@ -36,7 +36,7 @@ Route::get('/dashboard', function () {
 
 // temporary routes
 Route::get('/products', function() {
-    return view('products.products');
+    return view('products.index');
 })->name('products');
 
 Route::get('/product/data', function (){

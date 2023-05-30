@@ -28,12 +28,8 @@
             <main>
                 {{ $slot }}
             </main>
-<<<<<<< HEAD
-            
-=======
 
 
->>>>>>> origin/main
         </div>
     </body>
 
