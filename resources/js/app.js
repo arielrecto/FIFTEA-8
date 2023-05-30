@@ -1,4 +1,4 @@
- import './bootstrap';
+import './bootstrap';
 import axios from 'axios';
 import Alpine from 'alpinejs';
 

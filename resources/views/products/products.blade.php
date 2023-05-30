@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="pt-20 bg-white">
+    <section class="pt-20 bg-red-200">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
             {{-- x-init="actions.fetchProduct" --}}
@@ -63,6 +63,7 @@
     </section>
 
     <script>
+
         function sample() {
 
             const baseUrl = "http://127.0.0.1:8000";
