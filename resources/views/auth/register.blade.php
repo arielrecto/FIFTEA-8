@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="w-1/2 flex flex-col space-y-8 px-8">
+            <div class="w-1/2 flex flex-col space-y-8 px-8" x-data="register">
                 <div class="flex flex-col space-y-3">
                     <p class="text-sm text-gray-500">START HERE</p>
                     <h1 class="text-2xl font-bold">Sign up to FifTea-8</h1>
@@ -27,135 +27,150 @@
                 </div>
 
                 <div class="w-full">
-                    <div id="profile" class="flex flex-col space-y-10">
-                        <div class="flex flex-col space-y-3">
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="last_name" class="text-sm ">Last Name</label>
-                                <input id="last_name" name="last_name" type="text"
-                                    class="text-xm rounded-md border-gray-300" placeholder="last name">
-                            </div>
 
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="first_name" class="text-sm ">First Name</label>
-                                <input id="first_name" name="first_name" type="text"
-                                    class="text-xm rounded-md border-gray-300" placeholder="first name">
-                            </div>
-
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="middle_name" class="text-sm ">Middle Name</label>
-                                <input id="middle_name" name="middle_name" type="text"
-                                    class="text-xm rounded-md border-gray-300" placeholder="middle name">
-                            </div>
-
-                            <div class="w-full flex items-center justify-start space-x-6">
-                                <div class="flex flex-col space-y-1">
-                                    <label for="age" class="text-sm ">Age</label>
-                                    <input id="age" name="age" type="number"
-                                        class="text-xm rounded-md border-gray-300" placeholder="age">
-                                </div>
-
-                                <div class="flex flex-col space-y-1">
-                                    <label for="sex" class="text-sm ">Sex</label>
-                                    <select name="sex" id="sex" class="text-xm rounded-md border-gray-300">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="phone" class="text-sm ">Phone</label>
-                                <input id="phone" name="phone" type="number"
-                                    class="text-xm rounded-md border-gray-300" placeholder="ex. 09123456789">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="address">
-                        <div class="flex flex-col space-y-3">
-                            <div class="w-full flex items-center space-x-6">
+                    <template x-if="address === null">
+                        <div id="_profile" class="flex flex-col space-y-10">
+                            <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="lot" class="text-sm ">Lot</label>
-                                    <input id="lot" name="lot" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="lot number">
+                                    <label for="last_name" class="text-sm ">Last Name</label>
+                                    <input id="last_name" name="last_name" type="text"
+                                        class="text-xm rounded-md border-gray-300" placeholder="last name">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="block" class="text-sm ">Block</label>
-                                    <input id="block" name="block" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="block number">
-                                </div>
-
-                            </div>
-
-                            <div class="w-full flex items-center space-x-6">
-                                <div class="w-full flex flex-col space-y-1">
-                                    <label for="street" class="text-sm ">Street</label>
-                                    <input id="street" name="street" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="street name">
+                                    <label for="first_name" class="text-sm ">First Name</label>
+                                    <input id="first_name" name="first_name" type="text"
+                                        class="text-xm rounded-md border-gray-300" placeholder="first name">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="subdivision" class="text-sm ">Subdivision</label>
-                                    <input id="subdivision" name="subdivision" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="subdivision">
+                                    <label for="middle_name" class="text-sm ">Middle Name</label>
+                                    <input id="middle_name" name="middle_name" type="text"
+                                        class="text-xm rounded-md border-gray-300" placeholder="middle name">
                                 </div>
-                            </div>
 
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="barangay" class="text-sm ">Barangay</label>
-                                <input id="barangay" name="barangay" type="text"
-                                    class="text-xm rounded-md border-gray-300" placeholder="barangay">
-                            </div>
+                                <div class="w-full flex items-center justify-start space-x-6">
+                                    <div class="flex flex-col space-y-1">
+                                        <label for="age" class="text-sm ">Age</label>
+                                        <input id="age" name="age" type="number"
+                                            class="text-xm rounded-md border-gray-300" placeholder="age">
+                                    </div>
 
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="municipality" class="text-sm ">Municipality</label>
-                                <input id="municipality" name="municipality" type="text"
-                                    class="text-xm rounded-md border-gray-300" placeholder="municipality">
-                            </div>
+                                    <div class="flex flex-col space-y-1">
+                                        <label for="sex" class="text-sm ">Sex</label>
+                                        <select name="sex" id="sex"
+                                            class="text-xm rounded-md border-gray-300">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <div class="flex items-center space-x-6">
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="region" class="text-sm ">Region</label>
-                                    <input id="region" name="region" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="region">
-                                </div>
-
-                                <div class="flex flex-col space-y-1">
-                                    <label for="zip_code" class="text-sm ">Zip Code</label>
-                                    <input id="zip_code" name="zip_code" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="zip code">
+                                    <label for="phone" class="text-sm ">Phone</label>
+                                    <input id="phone" name="phone" type="number"
+                                        class="text-xm rounded-md border-gray-300" placeholder="ex. 09123456789">
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
 
-                    <div id="account">
-                        <div class="flex flex-col space-y-3">
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="email" class="text-sm ">Email</label>
-                                <input id="email" name="email" type="email"
-                                    class="text-xm rounded-md border-gray-300" placeholder="sample@email.com">
-                            </div>
 
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="password" class="text-sm ">Password</label>
-                                <input id="password" name="password" type="password"
-                                    class="text-xm rounded-md border-gray-300" placeholder="password">
-                            </div>
+                    <template x-if="profile !== null">
+                        <div id="_address">
+                            <div class="flex flex-col space-y-3">
+                                <div class="w-full flex items-center space-x-6">
+                                    <div class="w-full flex flex-col space-y-1">
+                                        <label for="lot" class="text-sm ">Lot</label>
+                                        <input id="lot" name="lot" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="lot number">
+                                    </div>
 
-                            <div class="w-full flex flex-col space-y-1">
-                                <label for="confirm_password" class="text-sm ">Confirm Password</label>
-                                <input id="confirm_password" name="confirm_password" type="password"
-                                    class="text-xm rounded-md border-gray-300" placeholder="confirm password">
+                                    <div class="w-full flex flex-col space-y-1">
+                                        <label for="block" class="text-sm ">Block</label>
+                                        <input id="block" name="block" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="block number">
+                                    </div>
+
+                                </div>
+
+                                <div class="w-full flex items-center space-x-6">
+                                    <div class="w-full flex flex-col space-y-1">
+                                        <label for="street" class="text-sm ">Street</label>
+                                        <input id="street" name="street" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="street name">
+                                    </div>
+
+                                    <div class="w-full flex flex-col space-y-1">
+                                        <label for="subdivision" class="text-sm ">Subdivision</label>
+                                        <input id="subdivision" name="subdivision" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="subdivision">
+                                    </div>
+                                </div>
+
+                                <div class="w-full flex flex-col space-y-1">
+                                    <label for="barangay" class="text-sm ">Barangay</label>
+                                    <input id="barangay" name="barangay" type="text"
+                                        class="text-xm rounded-md border-gray-300" placeholder="barangay">
+                                </div>
+
+                                <div class="w-full flex flex-col space-y-1">
+                                    <label for="municipality" class="text-sm ">Municipality</label>
+                                    <input id="municipality" name="municipality" type="text"
+                                        class="text-xm rounded-md border-gray-300" placeholder="municipality">
+                                </div>
+
+                                <div class="flex items-center space-x-6">
+                                    <div class="w-full flex flex-col space-y-1">
+                                        <label for="region" class="text-sm ">Region</label>
+                                        <input id="region" name="region" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="region">
+                                    </div>
+
+                                    <div class="flex flex-col space-y-1">
+                                        <label for="zip_code" class="text-sm ">Zip Code</label>
+                                        <input id="zip_code" name="zip_code" type="text"
+                                            class="text-xm rounded-md border-gray-300" placeholder="zip code">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
+
+
+
+                    <template x-if="address !== null">
+                        <div id="_account">
+                            <div class="flex flex-col space-y-3">
+                                <div class="w-full flex flex-col space-y-1">
+                                    <label for="email" class="text-sm ">Email</label>
+                                    <input id="email" name="email" type="email"
+                                        class="text-xm rounded-md border-gray-300" placeholder="sample@email.com">
+                                </div>
+
+                                <div class="w-full flex flex-col space-y-1">
+                                    <label for="password" class="text-sm ">Password</label>
+                                    <input id="password" name="password" type="password"
+                                        class="text-xm rounded-md border-gray-300" placeholder="password">
+                                </div>
+
+                                <div class="w-full flex flex-col space-y-1">
+                                    <label for="confirm_password" class="text-sm ">Confirm Password</label>
+                                    <input id="confirm_password" name="confirm_password" type="password"
+                                        class="text-xm rounded-md border-gray-300" placeholder="confirm password">
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
 
                     <div class="w-full flex items-center justify-between pt-10">
                         <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
                         <button id="next-button" class="px-4 py-2 rounded-md bg-sbgreen text-white">Next</button>
-                        <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white">Submit</button>
+                        <template x-if="address !== null">
+                            <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white">Submit</button>
+                        </template>
+
                     </div>
                 </div>
             </div>
@@ -164,11 +179,45 @@
     </div>
 
 
-        <script>
+    <script>
+        function register() {
+            return {
+                profileData: {
+                    lastName: null,
+                    middleName: null,
+                    firstName: null,
+                    age: null,
+                    sex: null,
+                    phone: null
+                },
+                profile: null,
+                addressData: {
+                    lot: null,
+                    block: null,
+                    street: null,
+                    subdivision: null,
+                    barangay: null,
+                    municipality: null,
+                    region: null,
+                    zipCode: null,
+                },
+                address: null,
+                acountData: {
+                    email: null,
+                    password: null
+                },
+                account: null
+            }
+        }
+    </script>
+
+    {{-- <script>
             const nextButton = document.getElementById("next-button");
             const backButton = document.getElementById("back-button");
             const submitButton = document.getElementById("submit-button");
-            const sections = [document.getElementById("profile"), document.getElementById("address"), document.getElementById(
+            const sections = [document.getElementById("profile"),
+            document.getElementById("address"),
+            document.getElementById(
                 "account")];
             let currentSectionIndex = 0;
 
@@ -246,6 +295,6 @@
             inputFields.forEach((input) => {
                 input.addEventListener("input", updateButtonVisibility);
             });
-        </script>
+        </script> --}}
 
 </x-guest-layout>
