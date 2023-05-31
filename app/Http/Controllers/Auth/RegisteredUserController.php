@@ -30,44 +30,50 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)  : RedirectResponse
     {
 
 
 
+
         $user = User::create([
-            'name' => $request->account['name'],
-            'email' => $request->acount['email'],
-            'password' => Hash::make($request->account['password']),
+            'name' => $request->firstName . $request->lastName,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
 
         $profile = Profile::create([
-            'last_name' => $request->profile['lastName'],
-            'first_name' => $request->profile['first_name'],
-            'middle_name' => $request->profile['middle_name'],
-            'age' => $request->profile['age'],
-            'gender' => $request->profile['gender'],
-            'phone' => $request->profile['phone'],
-            'block' => $request->profile['block'],
-            'lot' => $request->profile['lot'],
-            'municipality' => $request->profile['municipality'],
-            'barangay' => $request->profile['barangay'],
-            'subdivision' => $request->profile['subdivision'],
-            'home_no' => $request->profile['homeNo'],
-            'region' => $request->profile['region'],
-            'zip_code' => $request->profile['zipCode'],
+            'last_name' => $request->lastName,
+            'first_name' => $request->firstName,
+            'middle_name' => $request->middleName,
+            'age' => $request->age,
+            'sex' => $request->sex,
+            'phone' => $request->phone,
+            'block' => $request->block,
+            'lot' => $request->lot,
+            'municipality' => $request->municipality,
+            'barangay' => $request->barangay,
+            'subdivision' => $request->subdivision,
+            'home_no' => $request->homeNo,
+            'region' => $request->region,
+            'zip_code' => $request->zipCode,
             'user_id' => $user->id
         ]);
 
 
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::where('name', 'customer')->first();
+
+
+        // event(new Registered($user));
+
+        Auth::login($user);
 
         $user->assignRole($adminRole->id);
 
-        event(new Registered($user));
-
-        Auth::login($user);
+        // return response()->json([
+        //     'message' => 'register success'
+        // ], 200);
 
         return redirect(RouteServiceProvider::HOME);
     }

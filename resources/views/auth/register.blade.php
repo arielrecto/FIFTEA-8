@@ -28,38 +28,43 @@
 
                 <div class="w-full">
 
-                    <template x-if="address === null">
+                    <template x-if="address === null && profile === null">
                         <div id="_profile" class="flex flex-col space-y-10">
+
+
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="last_name" class="text-sm ">Last Name</label>
-                                    <input id="last_name" name="last_name" type="text"
+                                    <input id="last_name" name="last_name" type="text" x-model="profileData.lastName"
                                         class="text-xm rounded-md border-gray-300" placeholder="last name">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="first_name" class="text-sm ">First Name</label>
                                     <input id="first_name" name="first_name" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="first name">
+                                        x-model="profileData.firstName" class="text-xm rounded-md border-gray-300"
+                                        placeholder="first name">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="middle_name" class="text-sm ">Middle Name</label>
                                     <input id="middle_name" name="middle_name" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="middle name">
+                                        x-model="profileData.middleName" class="text-xm rounded-md border-gray-300"
+                                        placeholder="middle name">
                                 </div>
 
                                 <div class="w-full flex items-center justify-start space-x-6">
                                     <div class="flex flex-col space-y-1">
                                         <label for="age" class="text-sm ">Age</label>
-                                        <input id="age" name="age" type="number"
+                                        <input id="age" name="age" type="number" x-model="profileData.age"
                                             class="text-xm rounded-md border-gray-300" placeholder="age">
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
                                         <label for="sex" class="text-sm ">Sex</label>
-                                        <select name="sex" id="sex"
+                                        <select name="sex" id="sex" x-model="profileData.sex"
                                             class="text-xm rounded-md border-gray-300">
+                                            <option selected>Select Sex</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
@@ -68,28 +73,33 @@
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="phone" class="text-sm ">Phone</label>
-                                    <input id="phone" name="phone" type="number"
+                                    <input id="phone" name="phone" type="number" x-model="profileData.phone"
                                         class="text-xm rounded-md border-gray-300" placeholder="ex. 09123456789">
                                 </div>
+                            </div>
+                            <div class="w-full flex items-center justify-between pt-10">
+                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="addProfile()">Next</button>
                             </div>
                         </div>
                     </template>
 
 
-                    <template x-if="profile !== null">
+                    <template x-if="profile !== null && address === null">
                         <div id="_address">
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex items-center space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="lot" class="text-sm ">Lot</label>
-                                        <input id="lot" name="lot" type="text"
+                                        <input id="lot" name="lot" type="text" x-model="addressData.lot"
                                             class="text-xm rounded-md border-gray-300" placeholder="lot number">
                                     </div>
 
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="block" class="text-sm ">Block</label>
                                         <input id="block" name="block" type="text"
-                                            class="text-xm rounded-md border-gray-300" placeholder="block number">
+                                            x-model="addressData.block" class="text-xm rounded-md border-gray-300"
+                                            placeholder="block number">
                                     </div>
 
                                 </div>
@@ -98,12 +108,14 @@
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="street" class="text-sm ">Street</label>
                                         <input id="street" name="street" type="text"
-                                            class="text-xm rounded-md border-gray-300" placeholder="street name">
+                                            x-model="addressData.street" class="text-xm rounded-md border-gray-300"
+                                            placeholder="street name">
                                     </div>
 
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="subdivision" class="text-sm ">Subdivision</label>
                                         <input id="subdivision" name="subdivision" type="text"
+                                            x-model="addressData.subdivision"
                                             class="text-xm rounded-md border-gray-300" placeholder="subdivision">
                                     </div>
                                 </div>
@@ -111,12 +123,14 @@
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="barangay" class="text-sm ">Barangay</label>
                                     <input id="barangay" name="barangay" type="text"
-                                        class="text-xm rounded-md border-gray-300" placeholder="barangay">
+                                        x-model="addressData.barangay" class="text-xm rounded-md border-gray-300"
+                                        placeholder="barangay">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="municipality" class="text-sm ">Municipality</label>
                                     <input id="municipality" name="municipality" type="text"
+                                        x-model="addressData.municipality" x-mode="addressData.municipality"
                                         class="text-xm rounded-md border-gray-300" placeholder="municipality">
                                 </div>
 
@@ -124,15 +138,22 @@
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="region" class="text-sm ">Region</label>
                                         <input id="region" name="region" type="text"
-                                            class="text-xm rounded-md border-gray-300" placeholder="region">
+                                            x-model="addressData.region" class="text-xm rounded-md border-gray-300"
+                                            placeholder="region">
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
                                         <label for="zip_code" class="text-sm ">Zip Code</label>
                                         <input id="zip_code" name="zip_code" type="text"
-                                            class="text-xm rounded-md border-gray-300" placeholder="zip code">
+                                            x-model="addressData.zipCode" class="text-xm rounded-md border-gray-300"
+                                            placeholder="zip code">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="w-full flex items-center justify-between pt-10">
+                                <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
+                                <button id="next-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="addAddress()">Next</button>
                             </div>
                         </div>
                     </template>
@@ -144,14 +165,15 @@
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="email" class="text-sm ">Email</label>
-                                    <input id="email" name="email" type="email"
+                                    <input id="email" name="email" type="email" x-model="accountData.email"
                                         class="text-xm rounded-md border-gray-300" placeholder="sample@email.com">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="password" class="text-sm ">Password</label>
                                     <input id="password" name="password" type="password"
-                                        class="text-xm rounded-md border-gray-300" placeholder="password">
+                                        x-model="accountData.password" class="text-xm rounded-md border-gray-300"
+                                        placeholder="password">
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
@@ -160,18 +182,19 @@
                                         class="text-xm rounded-md border-gray-300" placeholder="confirm password">
                                 </div>
                             </div>
+                            <div class="w-full flex items-center justify-between pt-10">
+                                <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
+                                <template x-if="address !== null">
+                                    <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                        @click="submitData()">Submit</button>
+                                </template>
+
+                            </div>
                         </div>
+
+
                     </template>
 
-
-                    <div class="w-full flex items-center justify-between pt-10">
-                        <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
-                        <button id="next-button" class="px-4 py-2 rounded-md bg-sbgreen text-white">Next</button>
-                        <template x-if="address !== null">
-                            <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white">Submit</button>
-                        </template>
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -181,6 +204,7 @@
 
     <script>
         function register() {
+            const baseUrl = "http://127.0.0.1:8000";
             return {
                 profileData: {
                     lastName: null,
@@ -202,11 +226,53 @@
                     zipCode: null,
                 },
                 address: null,
-                acountData: {
+                accountData: {
                     email: null,
                     password: null
                 },
-                account: null
+                formData: null,
+                valitdateData: null,
+                account: null,
+                errors: null,
+                addProfile() {
+                    this.profile = this.profileData
+                },
+                addAddress() {
+                    this.address = this.addressData
+                },
+                async submitData() {
+                    try {
+                        const data = {
+                            ...this.accountData,
+                            ...this.profile,
+                            ...this.address
+                        }
+                        const config = {
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        }
+                        const response = await axios.post('http://127.0.0.1:8000/register', data, config)
+
+                        console.log(response.data)
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'yehey Success',
+                            text: response.data.message,
+                        })
+
+                        window.location.reload()
+                    } catch (error) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: error.response.status,
+                            text: errer.response.data.message,
+                        })
+                    }
+
+                }
             }
         }
     </script>

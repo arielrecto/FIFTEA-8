@@ -14,7 +14,7 @@ class Profile extends Model
         'middle_name',
         'first_name',
         'age',
-        'gender',
+        'sex',
         'phone',
         'block',
         'lot',
