@@ -29,7 +29,7 @@
                                     src="{{ asset('images/tea.jpg') }}" alt="blog">
                                 <div class="p-6">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                        CATEGORY</h2>
+                                        CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
                                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3" x-text="product.name">
                                     </h1>
                                     <div class="flex items-center justify-between flex-wrap ">
@@ -102,14 +102,22 @@
                 async filterDataProduct(name) {
 
                     try {
-
+                        console.log(name)
 
                         this.isLoading = true;
 
                         const response = await axios.get(baseUrl + `/product/filter/${name}`);
 
                         this.isLoading = false;
-                        this.products = response.data.products
+
+
+                        this.products = response.data.products.map(item => {
+                            return {...item, categories : [{
+                                name : response.data.name
+                            }]}
+                        })
+
+                        console.log(response.data)
 
                     } catch (error) {
                         console.log(error);
