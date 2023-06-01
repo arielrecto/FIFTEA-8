@@ -1,5 +1,5 @@
 import './bootstrap';
-import axios from 'axios';
+// import axios from 'axios';
 import Alpine from 'alpinejs';
 
 import 'boxicons';
