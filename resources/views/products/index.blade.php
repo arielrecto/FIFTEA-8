@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="pt-20 bg-white">
+    <section class="pt-20 ">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
             {{-- x-init="actions.fetchProduct" --}}
@@ -48,7 +48,9 @@
                                                 </div>
 
                                                 <div class="modal-action">
-                                                    <label for="my-modal" class="btn">Yay!</label>
+                                                    <label for="my-modal" class="py-2 px-4 bg-sbgreen text-white rounded">
+                                                        Add to Cart
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,9 +65,10 @@
     </section>
 
     <script>
+
         function sample() {
 
-            const baseUrl = "http://127.0.0.1:8000";
+            const baseUrl = "http://localhost:8000";
             return {
 
                 products: [],
@@ -102,6 +105,7 @@
                         console.log(name)
 
                         this.isLoading = true;
+
                         const response = await axios.get(baseUrl + `/product/filter/${name}`);
 
                         this.isLoading = false;

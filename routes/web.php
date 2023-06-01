@@ -36,6 +36,7 @@ Route::get('/dashboard', function () {
 
 // temporary routes
 Route::get('/products', function() {
+
     return view('products.index');
 })->name('products');
 
@@ -53,8 +54,8 @@ Route::get('/product/data', function (){
 Route::get('product/filter/{name}', function ($name){
 
 
-    $products = Category::with('products')->where('name', $name)->first();
-
+    $products  = Category::where('name', $name)->products()->get();
+    
     return $products;
 
 });
