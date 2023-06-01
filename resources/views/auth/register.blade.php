@@ -151,11 +151,16 @@
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
-                                <button id="next-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
-                                    @click="addAddress()">Next</button>
+                                <button class="px-4 py-2 rounded-md bg-gray-200"
+                                    @click="removeData('profile')">Back</button>
+
+                                <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="addAddress()">next</button>
+
+
                             </div>
                         </div>
+
                     </template>
 
 
@@ -183,7 +188,8 @@
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
+                                <button class="px-4 py-2 rounded-md bg-gray-200"
+                                    @click="removeData('address')">Back</button>
                                 <template x-if="address !== null">
                                     <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
                                         @click="submitData()">Submit</button>
@@ -240,6 +246,17 @@
                 addAddress() {
                     this.address = this.addressData
                 },
+                removeData(itemData) {
+                    console.log('hello world')
+                    switch (itemData) {
+                        case 'profile':
+                            this.profile = null
+                            break;
+                        case 'address':
+                            this.address = null
+                            break;
+                    }
+                },
                 async submitData() {
                     try {
                         const data = {
@@ -252,7 +269,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             }
                         }
-                        const response = await axios.post('http://127.0.0.1:8000/register', data, config)
+                        const response = await axios.post(baseUrl + '/register', data, config)
 
                         console.log(response.data)
 
@@ -268,10 +285,9 @@
                         Swal.fire({
                             icon: 'error',
                             title: error.response.status,
-                            text: errer.response.data.message,
+                            text: error.response.data.message,
                         })
                     }
-
                 }
             }
         }
