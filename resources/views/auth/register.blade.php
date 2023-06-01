@@ -252,7 +252,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             }
                         }
-                        const response = await axios.post('http://127.0.0.1:8000/register', data, config)
+                        const response = await axios.post('http://localhost:8000/register', data, config)
 
                         console.log(response.data)
 
