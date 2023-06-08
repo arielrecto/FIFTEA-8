@@ -161,7 +161,6 @@
                                     @click="addAddress()">next</button>
                             </div>
                         </div>
-
                     </template>
 
 
@@ -189,8 +188,7 @@
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button class="px-4 py-2 rounded-md bg-gray-200"
-                                    @click="removeData('address')">Back</button>
+                                <button id="back-button" class="px-4 py-2 rounded-md bg-gray-200">Back</button>
                                 <template x-if="address !== null">
                                     <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
                                         @click="submitData()">Submit</button>
@@ -211,7 +209,7 @@
 
     <script>
         function register() {
-            const baseUrl = "http://localhost:8000";
+            const baseUrl = "http://127.0.0.1:8000";
             return {
                 profileData: {
                     lastName: null,
@@ -261,17 +259,6 @@
                 addAddress() {
                     this.address = this.addressData
                 },
-                removeData(itemData) {
-                    console.log('hello world')
-                    switch (itemData) {
-                        case 'profile':
-                            this.profile = null
-                            break;
-                        case 'address':
-                            this.address = null
-                            break;
-                    }
-                },
                 async submitData() {
                     try {
                         const data = {
@@ -284,7 +271,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             }
                         }
-                        const response = await axios.post(baseUrl + '/register', data, config)
+                        const response = await axios.post(baeseUrl + '/register', data, config)
 
                         console.log(response.data)
 
@@ -300,9 +287,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: error.response.status,
-                            text: error.response.data.message,
+                            text: errer.response.data.message,
                         })
                     }
+
                 }
             }
         }
