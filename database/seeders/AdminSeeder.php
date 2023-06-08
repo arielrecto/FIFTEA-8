@@ -27,6 +27,16 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('admin123')
         ]);
 
+        $user = User::create([
+            'name' => 'user',
+            'email' => 'user@user.com',
+            'password' => hash::make('user123')
+        ]);
+
+        $customer = Role::where('name', 'customer')->first();
+
+        $user->assignRole($customer);
+
         $admin->assignRole($adminRole);
     }
 }

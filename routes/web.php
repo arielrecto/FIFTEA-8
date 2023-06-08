@@ -55,7 +55,7 @@ Route::get('product/filter/{name}', function ($name){
 
 
     $products  = Category::where('name', $name)->products()->get();
-    
+
     return $products;
 
 });
@@ -92,11 +92,12 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::middleware('role:client')->prefix('client')->as('client.')->group(function (){
+    Route::middleware('role:customer')->prefix('client')->as('client.')->group(function (){
 
         Route::prefix('dashboard')->as('dashboard.')->group(function (){
             Route::get('/', function () {
-                return view('users.client.dashboard');
+                $products = Product::with('categories')->geT();
+                return view('users.client.dashboard', compact(['products']));
             })->name('index');
         });
 

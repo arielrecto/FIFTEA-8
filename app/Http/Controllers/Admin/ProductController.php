@@ -22,15 +22,18 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.admin.product.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request, StoreProductAction $storeProductAction)
+    public function store(Request $request, StoreProductAction $storeProductAction)
     {
         $product = $storeProductAction->handle($request);
+
+
+        return back()->with(['message' => 'product Added Success']);
     }
 
     /**

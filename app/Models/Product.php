@@ -26,4 +26,7 @@ class Product extends Model
     public function field(){
         return $this->hasOne(ProductField::class);
     }
+    public function image() {
+        return $this->hasOne(ProductImage::class);
+    }
 }

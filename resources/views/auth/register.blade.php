@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="w-full h-full flex ">
+    <div class="w-full h-full flex bg-white">
 
         <div class="w-full flex container mx-auto p-32 pb-0 space-x-6">
 
@@ -30,13 +30,12 @@
 
                     <template x-if="address === null && profile === null">
                         <div id="_profile" class="flex flex-col space-y-10">
-
-
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="last_name" class="text-sm ">Last Name</label>
                                     <input id="last_name" name="last_name" type="text" x-model="profileData.lastName"
                                         class="text-xm rounded-md border-gray-300" placeholder="last name">
+                                          <span x-text="errors.lastName" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
@@ -44,6 +43,7 @@
                                     <input id="first_name" name="first_name" type="text"
                                         x-model="profileData.firstName" class="text-xm rounded-md border-gray-300"
                                         placeholder="first name">
+                                    <span x-text="errors.firstName" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
@@ -58,6 +58,7 @@
                                         <label for="age" class="text-sm ">Age</label>
                                         <input id="age" name="age" type="number" x-model="profileData.age"
                                             class="text-xm rounded-md border-gray-300" placeholder="age">
+                                            <span x-text="errors.age" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
@@ -68,6 +69,7 @@
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
+                                        <span x-text="errors.sex" class="text-red-500 text-xs capitalize"></span>
                                     </div>
                                 </div>
 
@@ -75,6 +77,7 @@
                                     <label for="phone" class="text-sm ">Phone</label>
                                     <input id="phone" name="phone" type="number" x-model="profileData.phone"
                                         class="text-xm rounded-md border-gray-300" placeholder="ex. 09123456789">
+                                        <span x-text="errors.phone" class="text-red-500 text-xs capitalize"></span>
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
@@ -156,8 +159,6 @@
 
                                 <button id="submit-button" class="px-4 py-2 rounded-md bg-sbgreen text-white"
                                     @click="addAddress()">next</button>
-
-
                             </div>
                         </div>
 
@@ -239,9 +240,23 @@
                 formData: null,
                 valitdateData: null,
                 account: null,
-                errors: null,
+                errors: {},
                 addProfile() {
+                    if(this.profileValidate()){
+                        return
+                    }
                     this.profile = this.profileData
+                },
+                profileValidate(){
+                    for(key in this.profileData) {
+                        if(this.profileData[key] === null) {
+                            this.errors[key] = `${key} Required`
+                        }
+                    }
+                    if(Object.keys(this.errors).length !== 0){
+                        return true
+                    }
+                    return false
                 },
                 addAddress() {
                     this.address = this.addressData
