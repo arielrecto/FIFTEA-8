@@ -30,6 +30,8 @@
 
                         <a class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a>
 
+                        <a href="{{ route('admin.dashboard.index')}}" class="rounded-md hover:bg-gray-100 py-1 px-2">Dashboard</a>
+
                         <a class="rounded-md hover:bg-gray-100 py-1 px-2">Settings</a>
                          
                         <form action="{{ route('logout')}}" method="POST" > 

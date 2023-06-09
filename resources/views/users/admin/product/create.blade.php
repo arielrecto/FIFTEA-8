@@ -1,24 +1,23 @@
 <x-panel>
-    <div class="w-full pt-20 flex justify-center" x-data="data">
+    <div class="w-full flex flex-col pt-8 p-4" x-data="data">
+        <div class="w-full flex justify-start px-4">
+            <h1 class="text-lg font-bold">ADD NEW PRODUCTS</h1>
+        </div>
+        
         <form method="post" action="{{ route('admin.products.store') }}"enctype="multipart/form-data"
-            class="w-5/6 bg-white drop-shadow-lg rounded-lg flex flex-col gap-2 p-2">
-            <h1 class="capitalize text-lg text-center font-bold">
-                products
-            </h1>
+            class=" w-full h-full flex flex-col space-y-6">
             @csrf
-            <div class="w-full flex gap-2">
-
-                <div class="w-1/3 h-full flex">
+            <div class="w-full flex items-start ">
+                <div class="w-1/3 h-full flex p-4 ">
                     <div class="">
                         <template x-if="image !== null">
-                            <img :src="image" class="h-96" />
+                            <img :src="image" class="h-96 rounded-md" />
                         </template>
-
                     </div>
 
                     <div class="flex items-center justify-center w-full h-full" x-show="image === null">
                         <label for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
+                            class="flex flex-col items-center justify-center w-full h-96 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -27,61 +26,60 @@
                                     </path>
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                        class="font-semibold">Click
-                                        to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.
-                                    800x400px)
-                                </p>
+                                        class="font-semibold">Clickto upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX.800x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden" name="image"
-                                @change="preview($event)" />
+                            <input id="dropzone-file" type="file" class="hidden" name="image"@change="preview($event)" />
                         </label>
                     </div>
-                    </template>
                 </div>
 
-                <div class="grow p-2">
-                    <div class="mb-6">
+                <div class="w-2/3 flex flex-col space-y-6 p-4">
+                    <div class="">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
                         <input type="text" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
 
-                    <div class="mb-6">
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-                        <input type="text" name="price"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <div class="flex space-x-4 items-center">
+                        <div class="w-full ">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                            <input type="text" name="price"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
+                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+                        <div class="w-full ">
+                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select
+                                Category</label>
+                            <select id="countries" name="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                              ">
+                                <option selected>Select Category</option>
+    
+                                @forelse ($categories as $category)
+                                    <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                @empty
+                                    <option>Empty</option>
+                                @endforelse
+                            </select>
+    
+                        </div>
                     </div>
                     <div>
-                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select
-                            Category</label>
-                        <select id="countries" name="category"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                          ">
-                            <option selected>Select Category</option>
+                        <input type="hidden" id="" name="description" :value="content">
+                        <div id="editor" class="h-auto min-h-[100px]">
 
-                            @forelse ($categories as $category)
-                                <option value="{{ $category->name }}">{{ $category->name }}</option>
-                            @empty
-                                <option>Empty</option>
-                            @endforelse
-                        </select>
-
+                        </div>
                     </div>
-                    <input type="hidden" id="" name="description" :value="content">
 
-                    <div id="editor" class="h-40">
-
+                    <div class="w-full flex justify-start">
+                        <button @click="submitData()" class="px-4 py-2 rounded bg-sbgreen text-white">Submit</button>
                     </div>
                 </div>
             </div>
-            <div class="w-full flex flex-row-reverse">
-                <button @click="submitData()">Submit</button>
-            </div>
-    </div>
+        </div>
     </div>
     @push('js')
         <script>

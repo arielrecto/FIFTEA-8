@@ -240,9 +240,9 @@
                 account: null,
                 errors: {},
                 addProfile() {
-                    if(this.profileValidate()){
-                        return
-                    }
+                    // if(this.profileValidate()){
+                    //     return
+                    // }
                     this.profile = this.profileData
                 },
                 profileValidate(){
