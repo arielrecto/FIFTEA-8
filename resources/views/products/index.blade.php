@@ -3,7 +3,7 @@
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
 
             {{-- x-init="actions.fetchProduct" --}}
-            <div class="flex flex-col space-y-2" x-data="sample" x-init="fetchProduct">
+            <div class="flex w-full flex-col space-y-2" x-data="sample" x-init="fetchProduct">
 
 
 
@@ -68,7 +68,7 @@
 
         function sample() {
 
-            const baseUrl = "http://localhost:8000/";
+            const baseUrl = "http://localhost:8000";
             return {
 
                 products: [],
