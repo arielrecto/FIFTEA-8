@@ -1,10 +1,7 @@
-<x-app-layout>
-
+<x-panel>
     <div class="w-full pt-20 min-h-screen">
 
         <div class="flex gap-2">
-            <x-admin-sidebar>
-            </x-admin-sidebar>
             <div class="grow">
                 <div class="w-1/2 bg-white rounded-lg h-96">
                     <div id="bar">
@@ -14,7 +11,6 @@
             </div>
         </div>
     </div>
-
 
 
     @push('js')
@@ -56,4 +52,4 @@
         </script>
     @endpush
 
-</x-app-layout>
+</x-panel>

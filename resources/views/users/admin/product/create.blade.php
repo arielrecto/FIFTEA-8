@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-panel>
     <div class="w-full pt-20 flex justify-center" x-data="data">
         <form method="post" action="{{ route('admin.products.store') }}"enctype="multipart/form-data"
             class="w-5/6 bg-white drop-shadow-lg rounded-lg flex flex-col gap-2 p-2">
@@ -16,7 +16,7 @@
 
                     </div>
 
-                    <div class="flex items-center justify-center w-full h-full" x-show="image === null">>
+                    <div class="flex items-center justify-center w-full h-full" x-show="image === null">
                         <label for="dropzone-file"
                             class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -100,4 +100,4 @@
             });
         </script>
     @endpush
-</x-app-layout>
+</x-panel>
