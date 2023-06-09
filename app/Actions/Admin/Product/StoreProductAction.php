@@ -31,7 +31,7 @@ class StoreProductAction
         $productImage = ProductImage::create([
             'name' => $filename,
             'url' => asset(
-                '/product/image/' . $filename,
+                'storage/product/image/' . $filename,
             ),
             'product_id' => $product->id
         ]);

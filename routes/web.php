@@ -43,7 +43,7 @@ Route::get('/products', function() {
 Route::get('/product/data', function (){
 
 
-    $products = Product::with('categories')->get();
+    $products = Product::with('categories', 'image')->get();
     $categories = Category::get();
     return response([
         'products' => $products,
