@@ -8,25 +8,28 @@
 
 
                 <div class="w-full flex border-b border-gray-200">
-                    <ul class="w-full flex space-x-4 py-3">
+
+
+                        <button @click="getFilterProducts('all')" class="nav py-1 px-4 rounded hover:bg-gray-200">
+                            <p>All</p>
+                        </button>
 
                         <template x-for="category in categories" :key="category.id">
-                            <button @click="filterDataProduct(category.name)"
+                            <button @click="getFilterProducts(category.name)"
                                 class="nav py-1 px-4 rounded hover:bg-gray-200">
                                 <p x-text="category.name"></p>
                             </button>
                         </template>
-                    </ul>
                 </div>
 
                 <section id="products-container" class="flex w-full flex-wrap">
-                    <template x-for="product in getProductData()" :key="product.id">
+                    <template x-for="product in productsFilter" :key="product.id">
 
                         <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out" x-show="!isLoading">
                             <div
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
-                                <img class="lg:h-80 md:h-60 w-full object-cover object-center"
-                                    :src="product.image.url" alt="blog">
+                                <img class="lg:h-80 md:h-60 w-full object-cover object-center" :src="product.image.url"
+                                    alt="blog">
                                 <div class="p-6">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
@@ -48,7 +51,8 @@
                                                 </div>
 
                                                 <div class="modal-action">
-                                                    <label for="my-modal" class="py-2 px-4 bg-sbgreen text-white rounded">
+                                                    <label for="my-modal"
+                                                        class="py-2 px-4 bg-sbgreen text-white rounded">
                                                         Add to Cart
                                                     </label>
                                                 </div>
@@ -65,7 +69,6 @@
     </section>
 
     <script>
-
         function sample() {
 
             const baseUrl = "http://127.0.0.1:8000";
@@ -74,8 +77,21 @@
                 products: [],
                 categories: [],
                 isLoading: false,
-                getProductData() {
-                    return this.products;
+                productsFilter: [],
+                getFilterProducts(data) {
+                    if (data === 'all') {
+                       return this.productsFilter = this.products;
+                    }
+
+
+
+                    this.productsFilter = this.productsFilter.filter((item)=>{
+                        if(item.categories.length !== 0){
+                           return item.categories[0].name === data
+                        }
+                    });
+
+
                 },
 
                 async fetchProduct() {
@@ -91,6 +107,7 @@
                         this.isLoading = false;
                         this.products = response.data.products;
                         this.categories = response.data.categories;
+                        this.productsFilter = response.data.products;
 
                         console.log(this.products)
 
@@ -99,35 +116,33 @@
                         console.log(error);
                     }
                 },
-                async filterDataProduct(name) {
+                // async filterDataProduct(name) {
 
-                    try {
-                        console.log(name)
+                //     try {
+                //         console.log(name)
 
-                        this.isLoading = true;
+                //         this.isLoading = true;
 
-                        const response = await axios.get(baseUrl + `/product/filter/${name}`);
+                //         const response = await axios.get(baseUrl + `/product/filter/${name}`);
 
-                        this.isLoading = false;
+                //         this.isLoading = false;
 
 
-                        this.products = response.data.products.map(item => {
-                            return {...item, categories : [{
-                                name : response.data.name
-                            }]}
-                        })
+                //         this.products = response.data.products.map(item => {
+                //             return {...item, categories : [{
+                //                 name : response.data.name
+                //             }]}
+                //         })
 
-                        console.log(response.data)
+                //         console.log(response.data)
 
-                    } catch (error) {
-                        console.log(error);
-                    }
+                //     } catch (error) {
+                //         console.log(error);
+                //     }
 
-                }
+                // }
             }
         }
-
-
     </script>
 
 

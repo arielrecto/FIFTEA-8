@@ -54,6 +54,23 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
+                    <div>
+                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select
+                            Category</label>
+                        <select id="countries" name="category"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                          ">
+                            <option selected>Select Category</option>
+
+                            @forelse ($categories as $category)
+                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                            @empty
+                                <option>Empty</option>
+                            @endforelse
+                        </select>
+
+                    </div>
                     <input type="hidden" id="" name="description" :value="content">
 
                     <div id="editor" class="h-40">
@@ -70,14 +87,14 @@
         <script>
             function data() {
                 return {
-                    content : null,
+                    content: null,
                     image: null,
                     preview(e) {
                         file = e.target.files[0]
 
                         this.image = URL.createObjectURL(file);
                     },
-                    submitData (){
+                    submitData() {
                         this.content = document.getElementById('editor').querySelector('.ql-editor').innerHTML
                     }
                 }

@@ -54,7 +54,7 @@ Route::get('/product/data', function (){
 Route::get('product/filter/{name}', function ($name){
 
 
-    $products  = Category::where('name', $name)->products()->get();
+    $products  = Category::where('name', $name)->first()->products()->get();
 
     return $products;
 
