@@ -2,6 +2,7 @@
 
 namespace App\Actions\Admin\Product;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Carbon\Carbon;
@@ -15,6 +16,7 @@ class StoreProductAction
     public function handle(Request $request)
     {
 
+        $category = Category::where('name' , $request->category)->first();
 
 
 
@@ -24,6 +26,8 @@ class StoreProductAction
             'price' => $request->price
         ]);
 
+
+        $product->categories()->attach($category->id);
 
         $filename = 'product' . uniqid() . '.' . $request->image->extension();
 
