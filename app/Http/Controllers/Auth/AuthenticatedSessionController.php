@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         switch($user->getRoleNames()->first()){
             case 'admin': return redirect()->route('admin.dashboard.index');
             break;
-            case 'customer' : return redirect()->route('client.dashboard.index');
+            case 'customer' : return redirect()->route('cart');
             break;
             default : return abort(403);
         }

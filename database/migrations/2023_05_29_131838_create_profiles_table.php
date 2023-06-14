@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('block');
             $table->string('lot');
-            $table->string('home_no')->nullable();
+            $table->string('street');
             $table->string('municipality');
             $table->string('barangay');
             $table->string('subdivision');

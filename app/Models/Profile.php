@@ -18,7 +18,7 @@ class Profile extends Model
         'phone',
         'block',
         'lot',
-        'hone_no',
+        'street',
         'municipality',
         'barangay',
         'subdivision',

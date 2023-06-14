@@ -100,7 +100,7 @@
                     curve: 'straight'
                 },
                 title: {
-                    text: 'Product Trends by Month',
+                    text: 'Sales Trend',
                     align: 'left'
                 },
                 grid: {
