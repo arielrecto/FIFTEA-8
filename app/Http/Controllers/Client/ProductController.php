@@ -70,6 +70,5 @@ class ProductController extends Controller
             return $siomai;
         }
         $products = Product::get();
-
     }
 }
