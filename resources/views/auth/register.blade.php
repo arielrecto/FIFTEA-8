@@ -151,7 +151,7 @@
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
                                 <button class="px-4 py-2 rounded-md bg-gray-200" @click="setCurrentPhase('profile')">Back</button>
-                                <button class="px-4 py-2 rounded-md bg-red-500 text-white"  @click="addAddress()">Next</button>
+                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"  @click="addAddress()">Next</button>
                             </div>
                         </div>
                     </template>
