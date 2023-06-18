@@ -19,11 +19,5 @@ class CategoriesSeeder extends Seeder
         Category::create([
             'name' => 'Siomai'
         ]);
-        Category::create([
-            'name' => 'Chicken Wings'
-        ]);
-        Category::create([
-            'name' => 'Rice Meals'
-        ]);
     }
 }

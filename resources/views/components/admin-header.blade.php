@@ -6,15 +6,15 @@
                 <a class="text-xl font-sans font-semibold">Fiftea-8 Bucks</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">Home</a>
-                </div>
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="{{route('products')}}">Products</a>
-                </div>
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">About Us</a>
-                </div>
+                <a  href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
+                    <p class="font-sans text-base">Home</p>
+                </a>
+                <a href="{{route('products')}}" class="py-2 px-4 hover:bg-gray-200 rounded">
+                    <p class="font-sans text-base">Products</p>
+                </a>
+                <a href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
+                    <p class="font-sans text-base">About Us</p>
+                </a>
             </div>
         </div>
 
