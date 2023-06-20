@@ -6,28 +6,28 @@
                     <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <i class='bx bx-user-pin text-sbgreen text-5xl'></i>
-                            <h2 class="title-font font-medium text-3xl text-gray-900">2.7K</h2>
+                            <h2 class="title-font font-medium text-3xl text-gray-900">0</h2>
                             <p class="leading-relaxed">Registered Customers</p>
                         </div>
                     </div>
                     <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <i class='bx bx-notepad text-sbgreen text-5xl'></i>
-                            <h2 class="title-font font-medium text-3xl text-gray-900">1.3K</h2>
+                            <h2 class="title-font font-medium text-3xl text-gray-900">0</h2>
                             <p class="leading-relaxed">Inventory Item</p>
                         </div>
                     </div>
                     <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <i class='bx bx-cart-alt text-sbgreen text-5xl'></i>
-                            <h2 class="title-font font-medium text-3xl text-gray-900">74</h2>
+                            <h2 class="title-font font-medium text-3xl text-gray-900">0</h2>
                             <p class="leading-relaxed">Online Orders</p>
                         </div>
                     </div>
                     <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                         <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <i class='bx bx-store text-sbgreen text-5xl'></i>
-                            <h2 class="title-font font-medium text-3xl text-gray-900">46</h2>
+                            <h2 class="title-font font-medium text-3xl text-gray-900">0</h2>
                             <p class="leading-relaxed">Walk-in Orders</p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="flex-grow">
                                     <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Total Sales</h2>
-                                    <p class="leading-relaxed text-xl font-semibold">500,000</p>
+                                    <p class="leading-relaxed text-xl font-semibold">0</p>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="flex-grow">
                                     <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Transactions</h2>
-                                    <p class="leading-relaxed text-xl font-semibold">400</p>
+                                    <p class="leading-relaxed text-xl font-semibold">0</p>
                                 </div>
                             </div>
                         </div>

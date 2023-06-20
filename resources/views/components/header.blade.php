@@ -2,7 +2,7 @@
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-22 lg:px-28 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
-                <img class="w-14 h-14" src="{{asset('logo/sb.png')}}" alt="">
+                <img class="w-14 h-14" src="{{asset('images/logo.png')}}" alt=""> 
                 <a class="text-xl font-sans font-semibold">Fiftea-8 Bucks</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
@@ -32,7 +32,7 @@
                             <span class="font-bold text-lg">8 Items</span>
                             <span class="text-info">Subtotal: $999</span>
                             <div class="card-actions">
-                                <button class="btn btn-primary btn-block">View cart</button>
+                                <a href="/user/cart" class="btn btn-primary btn-block">View cart</a>
                             </div>
                         </div>
                     </div>
@@ -40,16 +40,16 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{asset('logo/sb.png')}}" />
+                            <img src="{{asset('images/logo.png')}}" />
                         </div>
                     </label>
                     <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-2">
 
-                        <a class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
+                        <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
 
-                        <a class="rounded-md hover:bg-gray-200 py-1 px-2">Settings</a>
+                        {{-- <a class="rounded-md hover:bg-gray-200 py-1 px-2">Settings</a> --}}
                          
-                        <form action="{{ route('logout')}}" method="POST" > 
+                        <form action="{{ route('logout') }}" method="POST" > 
                             @csrf
                             <button class="w-full rounded-md bg-sbgreen hover:bg-sblight py-1 px-2 cursor-pointer text-white">Logout</button>
                         </form>

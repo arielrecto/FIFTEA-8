@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Fif'tea-8</title>
+
+    <link rel="icon" href="{{asset('images/logo.png')}}"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -31,12 +33,12 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-50">
+    <div class="h-auto min-h-screen bg-gray-50">
 
         <x-admin-header />
 
-        <div class="w-full flex container mx-auto px-5 md:px-10 lg:px-10 pt-16">
-            <div class="w-1/6">
+        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 pt-16">
+            <div class="w-1/6 h-full sticky top-0">
                 <x-admin-sidebar/>
             </div>
 

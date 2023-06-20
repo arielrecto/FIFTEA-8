@@ -2,8 +2,8 @@
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-10 lg:px-10 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
-                <img class="w-14 h-14" src="{{asset('logo/sb.png')}}" alt="">
-                <a class="text-xl font-sans font-semibold">Fiftea-8 Bucks</a>
+                <img class="w-14 h-14" src="{{asset('images/logo.png')}}" alt="">
+                <a class="text-xl font-sans font-semibold">Fif'tea-8</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <a  href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
@@ -23,12 +23,12 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{asset('logo/sb.png')}}" />
+                            <img src="{{asset('images/logo.png')}}" />
                         </div>
                     </label>
                     <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-2">
 
-                        <a class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a>
+                        <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a>
 
                         <a href="{{ route('admin.dashboard.index')}}" class="rounded-md hover:bg-gray-100 py-1 px-2">Dashboard</a>
 

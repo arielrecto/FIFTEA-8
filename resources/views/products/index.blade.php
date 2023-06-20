@@ -24,8 +24,7 @@
                             <div
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center" 
-                                    alt="blog">
-                                    {{-- :src="product.image.url" --}}
+                                    alt="blog" :src="product.image.url" >
                                 <div class="p-6">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
@@ -38,20 +37,55 @@
                                         <label for="my-modal" class="text-sm text-white bg-sbgreen rounded py-1 px-4">ORDER</label>
                                         <input type="checkbox" id="my-modal" class="modal-toggle" />
                                         <div class="modal">
-                                            <div class="modal-box">
-                                                <div>
-                                                    <div >
-                                                        <div>
-                                                            modal content for siomai
-                                                        </div>
+                                            <div class="modal-box w-auto">
+                                                <div class="flex space-x-4 items-center">
+                                                    <div class="w-64 h-64 h-full">
+                                                        <img src="{{asset('images/hero.png')}}"  alt="" class="h-full w-full">
                                                     </div>
-                                        
-                                                    <div >
+
+                                                    <div class="flex flex-col space-y-2">
                                                         <div>
-                                                            odal content for milktea
+                                                            <h1 class="text-xl text-sbgreen font-medium">Complete Your Order Here.</h1>
                                                         </div>
-                                                    </div>            
+    
+                                                        <div class="w-full flex items-center space-x-4">
+                                                            <div class="w-1/3">
+                                                                <label for="size" class="text-xs">SIZE:</label>
+                                                                <select name="size" id="size" class="w-full rounded">
+                                                                    <option value="small">Small</option>
+                                                                    <option value="medium">Medium</option>
+                                                                    <option value="large">Large</option>
+                                                                </select>
+                                                            </div>   
+                                                            <div class="w-1/3">
+                                                                <label for="sugar-level" class="text-xs">SUGAR LEVEL:</label>
+                                                                <select name="sugar-level" id="sugar-level" class="w-full rounded">
+                                                                    <option value="0">0%</option>
+                                                                    <option value="25">25%</option>
+                                                                    <option value="50">50%</option>
+                                                                    <option value="75">75%</option>
+                                                                    <option value="100">100%</option>
+                                                                </select>
+                                                            </div> 
+                                                            <div class="w-1/3">
+                                                                <label for="quantity" class="text-xs">Quantity</label>
+                                                                <input type="number" id="quantity" class="w-full rounded" placeholder="0">
+                                                            </div>
+                                                        </div>
+                                                           
+                                                        <div>
+                                                            <label for="sugar-level" class="text-xs">EXTRAs:</label>
+                                                            <select name="sugar-level" id="sugar-level" class="w-full rounded">
+                                                                <option value="Pearl">Pearl</option>
+                                                                <option value="ata De Coco">Nata De Coco</option>
+                                                                <option value="Crushed Cookies">Crushed Cookies</option>
+                                                                <option value="Cheesecake">Cheesecake</option>
+                                                                <option value="Cream Puff">Cream Puff</option>
+                                                            </select>
+                                                        </div>     
+                                                    </div>
                                                 </div>
+
                                                 <div class="modal-action">
                                                     <label for="my-modal" class="py-2 px-4 bg-sbgreen text-white rounded">Add to Cart</label>
                                                 </div>

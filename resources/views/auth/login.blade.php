@@ -5,7 +5,7 @@
     <div class="w-full flex flex-col space-y-6 items-center justify-center pt-32">
         <div class="flex flex-col items-center space-y-4 w-96">
             <div class="w-32 rounded-full">
-                <img src="{{asset('logo/sb.png')}}" />
+                <img src="{{asset('images/logo.png')}}" />
             </div>
             <div class="flex flex-col items-center justify-center">
                 <h1 class="text-xl font-semibold">Welome to FifTea-8</h1>
