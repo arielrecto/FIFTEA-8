@@ -8,7 +8,7 @@
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
                 <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
-                <a class="text-xl font-sans font-semibold">Fiftea-8 Bucks</a>
+                <a class="text-xl font-sans font-semibold">Fiftea-8</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
@@ -41,7 +41,7 @@
                             @if ($cart !== null)
                                 <span class="font-bold text-lg">{{ $cart->products()->count() }} Items</span>
                             @else
-                                <span class="font-bold text-lg">0 Items</span>
+                                <span class="font-bold text-lg text-red-500">0 Items</span>
                             @endif
                             <span class="text-info">Subtotal: {{ $subtotal }} </span>
 

@@ -57,7 +57,16 @@
                         
                         <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 p-1 border border-gray-400 rounded w-fit">MILKTEA</h2>
-                            <h1 class="title-font text-xl font-medium text-sbgreen font-semibold mb-3">Kiwi</h1>
+                            <div class="flex flex-col items-start space-y-1 mb-2">
+                                <h1 class="title-font text-xl font-medium text-sbgreen font-semibold">Kiwi</h1>
+                                <div class="flex items-center space-x-2">
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                </div>
+                            </div>
                             <p class="leading-relaxed mb-3">This Kiwi flavored milktea offers 
                                 a smooth and satisfying experience with every sip.</p>
                             <div class="w-full flex justify-between items-center ">
@@ -80,7 +89,16 @@
 
                         <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 p-1 border border-gray-400 rounded w-fit">MILKTEA</h2>
-                            <h1 class="title-font text-xl font-medium text-sbgreen font-semibold mb-3">Hokkaido</h1>
+                            <div class="flex flex-col items-start space-y-1 mb-2">
+                                <h1 class="title-font text-xl font-medium text-sbgreen font-semibold">Hokkaido</h1>
+                                <div class="flex items-center space-x-2">
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                </div>
+                            </div>
                             <p class="leading-relaxed mb-3">Hokkaido milktea definitely gives  
                                 a smooth and satisfying experience with each sip.</p>
                             <div class="w-full flex justify-between items-center ">
@@ -103,7 +121,16 @@
 
                         <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 p-1 border border-gray-400 rounded w-fit">MILKTEA</h2>
-                            <h1 class="title-font text-xl font-medium text-sbgreen font-semibold mb-3">Blueberry</h1>
+                            <div class="flex flex-col items-start space-y-1 mb-2">
+                                <h1 class="title-font text-xl font-medium text-sbgreen font-semibold">Blueberry</h1>
+                                <div class="flex items-center space-x-2">
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                    <i class='bx bxs-star text-lg text-yellow-500'></i>
+                                </div>
+                            </div>
                             <p class="leading-relaxed mb-3">Quench your thirst with our refreshing Blueberry milk tea. 
                                </p>
                             <div class="w-full flex justify-between items-center ">
