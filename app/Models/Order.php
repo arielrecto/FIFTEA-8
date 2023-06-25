@@ -12,6 +12,9 @@ class Order extends Model
     protected $fillable = [
         'num_ref',
         'user_id',
+        'cart_id',
+        'type',
+        'status',
         'total'
     ];
 
@@ -25,5 +28,8 @@ class Order extends Model
     }
     public function transaction(){
         return $this->hasOne(transaction::class);
+    }
+    public function cart(){
+        return $this->belongsTo(Cart::class);
     }
 }

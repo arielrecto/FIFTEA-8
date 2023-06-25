@@ -12,7 +12,7 @@ class Transaction extends Model
     protected $fillable = [
         'order_id',
         'user_id',
-        'transaction_id'
+        'transaction_ref'
     ];
 
     public function order (){

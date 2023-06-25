@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -12,7 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('type', 'online')->where('status', 'pending')->with('cart.products')->get();
+
+        return view('users.employee.Orders.index', compact(['orders']));
     }
 
     /**
@@ -28,7 +33,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -61,5 +66,19 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function approved($id) {
+        $order = Order::find($id);
+        $randomNumber = random_int(100000, 999999);
+        $num_transaction = 'TRSCTN' . $randomNumber;
+        $user = Auth::user();
+        $transaction = Transaction::create([
+            'user_id' => $user->id,
+            'transaction_ref' => $num_transaction,
+            'order_id' => $order->id,
+        ]);
+
+        $order->update(['status' => 'processed']);
+        return back()->with(['message' => 'Order Success']);
     }
 }

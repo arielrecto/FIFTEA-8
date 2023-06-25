@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\Cart;
-use App\Models\Order;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class OrderController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +16,8 @@ class OrderController extends Controller
     public function index()
     {
 
+        $employees = User::role('employee')->get();
+        return view('users.admin.Employee.index', compact(['employees']));
     }
 
     /**
@@ -24,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.admin.Employee.create');
     }
 
     /**
@@ -32,25 +33,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $randomNumber = random_int(100000, 999999);
-        $num_ref = 'ORDR' .  $randomNumber;
-
-        $user = Auth::user();
-
-        $oder = Order::create([
-            'num_ref' => $num_ref,
-            'user_id' => $user->id,
-            'cart_id' => $request->cart_id,
-            'total' => $request->total,
-            'type' => 'online',
+        $employee = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
 
-        $cart = Cart::find($request->cart_id);
+        $employeeRole = Role::where('name', 'employee')->first();
 
-        $cart->update(['is_check_out' => true]);
+        $employee->assignRole($employeeRole->id);
 
-
-        return redirect(route('products'))->with(['message' => 'Order Success']);
+        return back()->with(['message' => 'Employee Account Created Successfully']);
     }
 
     /**

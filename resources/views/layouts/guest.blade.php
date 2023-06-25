@@ -21,7 +21,7 @@
     </head>
 
     <body class="w-full font-sans text-gray-900 antialiased">
-        <x-header/>
+        <x-guess-header />
         <div class="w-full">
             {{ $slot }}
         </div>

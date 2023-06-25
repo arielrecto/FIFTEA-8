@@ -2,6 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+
     <div class="w-full flex flex-col space-y-6 items-center justify-center pt-32">
         <div class="flex flex-col items-center space-y-4 w-96">
             <div class="w-32 rounded-full">

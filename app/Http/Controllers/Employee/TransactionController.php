@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Employee;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -28,7 +32,44 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $randomNumber = random_int(100000, 999999);
+        $num_order = 'ORDER' . $randomNumber;
+        $num_transaction = 'TRSCTN' . $randomNumber;
+        $user = Auth::user();
+
+
+        $cart = Cart::create(['user_id' => $user->id]);
+
+        $products = $request->products;
+
+        foreach($products as $product){
+            $cart->products()->attach($product['id'],  [
+                'size' => 'medium',
+                'sugar_level' => '80%',
+                'quantity' => 1,
+                'extras' => 'extras'
+            ]);
+        }
+        $order = Order::create([
+            'num_ref' => $num_order,
+            'user_id' => $user->id,
+            'cart_id' => $cart->id,
+            'type' => 'walk_in',
+            'status' => 'processed',
+            'total' => $request->total
+        ]);
+
+        $transaction = Transaction::create([
+            'transaction_ref' => $num_transaction,
+            'user_id' => $user->id,
+            'order_id' => $order->id
+         ]);
+
+
+        return response([
+            'message' => 'Order Success'
+        ], 200);
+
     }
 
     /**

@@ -1,7 +1,7 @@
 <x-panel>
     <section class="w-full flex flex-col items-start p-4 pt-6 space-y-2">
         <div class="w-full items-center justify-start py-2 px-4  bg-sblight">
-            <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>    
+            <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>
         </div>
 
         <div class="w-full flex flex-col">
@@ -22,7 +22,7 @@
                             <tr>
                                 <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">{{$product->name}}</td>
                                 <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">
-                                    {{$product->description}}
+                                    {!!$product->description!!}
                                   </td>
                                   <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                     {{$product->price}}
@@ -32,7 +32,7 @@
                                 <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
                                     <div class="flex space-x-2">
                                         <i class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2' ></i>
-                                    
+
                                         <div>
                                             <label for="my-modal" class="p-0 m-0">
                                                 <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
@@ -40,11 +40,11 @@
                                             <input type="checkbox" id="my-modal" class="modal-toggle" />
                                             <div class="modal">
                                                 <div class="modal-box">
-    
+
                                                     <div>
                                                         dito yung mg add ons
                                                     </div>
-                                                    
+
                                                     <div class="modal-action">
                                                         <label for="my-modal" class="btn">Yay!</label>
                                                     </div>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>  
+                            </tr>
                             @endforeach
                         @endif
                     </tbody>
@@ -61,7 +61,7 @@
                 <div class="py-4">
                     {{ $products->links() }}
                 </div>
-            </div>                
+            </div>
         </div>
     </section>
 </x-panel>

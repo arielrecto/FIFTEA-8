@@ -1,6 +1,11 @@
 <x-app-layout>
     <div class="pt-24">
         hello world
+
+        <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button>Logout</button>
+        </form>
         <div class="w-full flex flex-wrap">
             @forelse ($products  as $product)
                 <a href="#"

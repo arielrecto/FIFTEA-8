@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Cart;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->string('num_ref');
-            $table->foreignIdFor(User::class);
+        Schema::create('cart_product', function (Blueprint $table) {
             $table->foreignIdFor(Cart::class);
-            $table->string('type');
-            $table->string('status')->default('pending');
-            $table->string('total');
-            $table->timestamps();
+            $table->foreignIdFor(Product::class);
+            $table->string('size');
+            $table->string('sugar_level');
+            $table->string('quantity');
+            $table->string('extras');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('cart_product');
     }
 };
