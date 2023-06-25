@@ -4,15 +4,9 @@
             <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>
         </div>
         @if (Session::has('message'))
-            <div class="alert alert-success shadow-lg">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{{Session::get('message')}}</span>
-                </div>
+            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
+                <i class='bx bx-check-circle text-white text-xl'></i>
+                <p class="text-white text-sm text-center" >{{Session::get('message')}}</p>
             </div>
         @endif
         <div class="w-full flex flex-col">

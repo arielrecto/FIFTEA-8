@@ -113,7 +113,7 @@
                         ['image', 'code-block']
                     ]
                 },
-                placeholder: 'Compose an epic...',
+                placeholder: 'Write the description here...',
                 theme: 'snow' // or 'bubble'
             });
         </script>
