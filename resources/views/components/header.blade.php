@@ -25,35 +25,38 @@
 
         @auth
             <div class="flex space-x-2">
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost btn-circle">
-                        <div class="indicator">
-                            <i class='bx bx-cart-alt text-2xl text-gray-600 hover:text-gray-700'></i>
-                            @if ($cart !== null)
-                                <span class="badge badge-sm indicator-item">{{ $cart->products()->count() }}</span>
-                            @else
-                                <span class="badge badge-sm indicator-item">0</span>
-                            @endif
-                        </div>
-                    </label>
-                    <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-                        <div class="card-body">
-                            @if ($cart !== null)
-                                <span class="font-bold text-lg">{{ $cart->products()->count() }} Items</span>
-                            @else
-                                <span class="font-bold text-lg text-red-500">0 Items</span>
-                            @endif
-                            <span class="text-info">Subtotal: {{ $subtotal }} </span>
+                @if (Auth::user()->roles->first()->name === 'customer')
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                            <div class="indicator">
+                                <i class='bx bx-cart-alt text-2xl text-gray-600 hover:text-gray-700'></i>
+                                @if ($cart !== null)
+                                    <span class="badge badge-sm indicator-item">{{ $cart->products()->count() }}</span>
+                                @else
+                                    <span class="badge badge-sm indicator-item">0</span>
+                                @endif
+                            </div>
+                        </label>
+                        <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
+                            <div class="card-body">
+                                @if ($cart !== null)
+                                    <span class="font-bold text-lg">{{ $cart->products()->count() }} Items</span>
+                                @else
+                                    <span class="font-bold text-lg text-red-500">0 Items</span>
+                                @endif
+                                <span class="text-info">Subtotal: {{ $subtotal }} </span>
 
-                            @if ($cart !== null)
-                                <div class="card-actions">
-                                    <a href="{{ route('client.cart.index', ['id' => $cart->id]) }}"
-                                        class="btn btn-primary btn-block">View cart</a>
-                                </div>
-                            @endif
+                                @if ($cart !== null)
+                                    <div class="card-actions">
+                                        <a href="{{ route('client.cart.index', ['id' => $cart->id]) }}"
+                                            class="btn btn-primary btn-block">View cart</a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+                
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
