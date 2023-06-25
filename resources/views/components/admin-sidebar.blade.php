@@ -31,7 +31,7 @@
         </a>
         <a href="#" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
             <i class='bx bx-food-menu text-xl'></i>
-            <p class="text-lg ">Transactiosn</p>
+            <p class="text-lg ">Transaction</p>
         </a>
     </ul>
 </div>

@@ -6,8 +6,7 @@
             <div class="w-1/2 h-full ">
                 <div class="flex flex-col space-y-2">
                     <h1 class="text-xl font-semibold text-sbgreen">Welcome to FifTea-8</h1>
-                    <p class="text-gray-500">temporibus saepe assumenda, magnam rem perspiciatis distinctio eos
-                        repudiandae cupiditate eius aspernatur alias?</p>
+                    <p class="text-gray-500">Create your account in order to place orders.</p>
                 </div>
                 <div class="w-full p-8">
                     <img class="w-full h-full " src="{{ asset('images/signup.png') }}" alt="">
