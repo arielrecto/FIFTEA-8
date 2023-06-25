@@ -23,6 +23,10 @@
     <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <!-- Theme included stylesheets -->
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
@@ -33,11 +37,19 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="h-auto min-h-screen bg-gray-50">
 
-        <main>
-            {{ $slot }}
-        </main>
+        <x-employee-header />
+
+        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 pt-16">
+            <div class="w-1/6 h-full sticky top-0">
+                <x-employee-siderbar/>
+            </div>
+
+            <main class="w-5/6">
+                {{ $slot }}
+            </main>
+        </div>
 
     </div>
 

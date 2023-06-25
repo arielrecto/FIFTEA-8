@@ -33,6 +33,7 @@ class AdminSeeder extends Seeder
             'password' => hash::make('user123')
         ]);
 
+
         $customer = Role::where('name', 'customer')->first();
 
         $user->assignRole($customer);

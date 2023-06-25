@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pt-16 bg-white">
+    <div class="bg-white">
         <x-hero/>
         <x-preview/>
         <x-footer/>

@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Actions\Admin\Product\StoreProductAction;
-use App\Http\Requests\Admin\Product\StoreProductRequest;
+use Illuminate\Support\Facades\Hash;
 
-class ProductController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10);
-        return view('users.admin.product.list', compact(['products']));
+
+        $employees = User::role('employee')->get();
+        return view('users.admin.Employee.index', compact(['employees']));
     }
 
     /**
@@ -25,20 +25,25 @@ class ProductController extends Controller
      */
     public function create()
     {
-
-        $categories = Category::get();
-        return view('users.admin.product.create', compact(['categories']));
+        return view('users.admin.Employee.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, StoreProductAction $storeProductAction)
+    public function store(Request $request)
     {
-        $product = $storeProductAction->handle($request);
+        $employee = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
+        $employeeRole = Role::where('name', 'employee')->first();
 
-        return back()->with(['message' => 'product Added Success']);
+        $employee->assignRole($employeeRole->id);
+
+        return back()->with(['message' => 'Employee Account Created Successfully']);
     }
 
     /**
@@ -70,12 +75,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Product::find($id);
-
-
-        $product->delete();
-
-
-        return back()->with(['message' => 'Product Deleted!']);
+        //
     }
 }

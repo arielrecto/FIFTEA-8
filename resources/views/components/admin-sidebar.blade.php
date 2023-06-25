@@ -21,11 +21,11 @@
                 <p class="text-base ">List</p>
             </a>
         </div>
-        <a href="#" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
+        <a href="{{route('admin.supply.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
             <i class='bx bx-notepad text-xl'></i>
             <p class="text-lg ">Inventory</p>
         </a>
-        <a href="#" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
+        <a href="{{route('admin.employee.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
             <i class='bx bxs-user-detail text-xl'></i>
             <p class="text-lg ">Employee</p>
         </a>

@@ -17,6 +17,8 @@ class SupplyController extends Controller
     public function index(GetSupplyAction $getSupplyAction)
     {
          $supplies = $getSupplyAction->handle();
+
+         return view('users.admin.Inventory.index', compact(['supplies']));
     }
 
     /**
@@ -24,7 +26,7 @@ class SupplyController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.admin.Inventory.create');
     }
 
     /**
@@ -32,8 +34,17 @@ class SupplyController extends Controller
      */
     public function store(StoreSupplyRequest $request, StoreSupplyAction $storeSupplyAction)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'unit_value' => 'required',
+            'unit' => 'required',
+            'quantity' => 'required'
+        ]);
         $supply = $storeSupplyAction->handle($request);
 
+
+        return back()->with(['message' => 'supply added successfully']);
     }
 
     /**
