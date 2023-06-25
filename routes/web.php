@@ -159,7 +159,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('order', ClientOrderController::class)->only([
-            'index', 'create'
+            'index', 'create', 'store'
         ]);
         Route::resource('products', ClientProductController::class)->only([
             'index'
