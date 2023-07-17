@@ -23,9 +23,6 @@
                 <a href="{{ route('products') }}" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"
                     class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded cursor-pointer">Order
                     Now</a>
-                <a href="/user/cart" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"
-                    class="font-sans text-sm ml-4 text-gray-700 bg-gray-100  py-2 px-4 hover:bg-gray-200 rounded cursor-pointer hover:text-sbgreen">Your
-                    Cart</a>
             </div>
 
             <div class="flex items-center space-x-4 " data-aos="fade-left" data-aos-duration="2000"

@@ -21,6 +21,7 @@ use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +97,7 @@ Route::middleware('auth')->group(function () {
                 $orders = Order::where('status', 'processed')->get();
                 $sales = 0;
 
-                foreach($orders as $order) {
+                foreach ($orders as $order) {
                     $sales = $sales + $order->total;
                 }
 
@@ -115,20 +116,20 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:employee')->prefix('employee')->as('employee.')->group(function () {
 
-        Route::prefix('dashboard')->as('dashboard.')->group(function(){
-            Route::get('/', function(){
+        Route::prefix('dashboard')->as('dashboard.')->group(function () {
+            Route::get('/', function () {
                 return view('users.employee.dashboard');
             })->name('index');
         });
 
-        Route::prefix('pos')->as('pos.')->group(function(){
-            Route::get('/', function(){
+        Route::prefix('pos')->as('pos.')->group(function () {
+            Route::get('/', function () {
                 $products = Product::get();
                 return view('users.employee.PointOfSale.index', compact(['products']));
             })->name('index');
         });
 
-        Route::prefix('order')->as('order.')->group(function(){
+        Route::prefix('order')->as('order.')->group(function () {
             Route::post('/approve/{id}', [EmployeeOrderController::class, 'approved'])->name('approved');
         });
 
