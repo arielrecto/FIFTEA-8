@@ -1,105 +1,115 @@
 <x-employee-panel>
-    <div class="w-full relative p-5" x-data="pos" x-init="getAllProducts({{ $products }})">
-        <div class="w-full flex gap-5">
-            <div class="flex flex-grow">
-                <div class="w-full flex flex-col gap-2">
-                    <div class="p-4">
-                        <h1 class="w-full flex justify-center text-xl font-bold">Point of Sale</h1>
-                    </div>
-                    <div class="flex flex-wrap space-x-5 rounded-l-lg border-2 p-2 h-[38rem]">
-                        <template x-for="product in products" :key="product.id">
-                            <button @click="select(product)">
-                                <div class="w-24 h-24 rounded-lg border-2">
-                                    <h1><span x-text="product.name"></span></h1>
+    <div class="w-full relative p-5 flex flex-col space-y-2" x-data="pos" x-init="getAllProducts({{ $products }})">
+
+        <div class="p-4 bg-sblight py-2 w-full">
+            <h1 class="w-full flex justify-center text-white text-xl font-bold">Point of Sale</h1>
+        </div>
+
+        <div class="w-full flex space-x-4">
+
+            <div class="w-3/4 flex flex-grow">
+                <div class="w-full flex items-start justify-start flex-col space-y-1">
+                    <template x-for="product in products" :key="product.id">
+                        <button @click="select(product)" class="w-full border border-gray-300 p-2 hover:bg-gray-300 rounded">
+                            <div class="flex justify-between">
+                                <h1 x-text="product.name" class="text-left"></h1>
+                                <i class='bx bx-plus text-xl text-gray-600'></i>
+                            </div>
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <div class="w-1/4 border border-gray-300 flex flex-col">
+                <div class="border-b border-gray-300 p-2">
+                    <h1 class="w-full text-base text-sbgreen text-center font-bold">SELECTED PRODUCTS</h1>
+                </div>
+
+                <div class="p-2">
+                    <div class="flex flex-col space-y-1 p-1 h-96 overflow auto">
+
+                        <template x-for="item in selectedProducts" :key="item.id">
+                            <button @click="remove(item)">
+                                <div class="border border-gray-300 py-1 px-2 rounded flex justify-between items-center hover:bg-gray-200">
+                                    <span x-text="item.name" class="text-left"></span>
+                                    <i class='bx bx-x'></i>
                                 </div>
                             </button>
                         </template>
+    
                     </div>
                 </div>
-            </div>
-            <div class="w-1/5 border-2 rounded-l-lg p-2 flex flex-col space-y-2">
-                <h1 class="w-full text-xl p-2 border-b-2 text-center font-bold">Selected Product</h1>
-                <div class="flex flex-col gap-2 p-2 bg-gray-100 h-96 overflow auto rounded-lg">
-                    <template x-for="item in selectedProducts" :key="item.id">
-                        <button @click="remove(item)">
-                            <div class="rounded-lg border-2 bg-white">
-                                <span x-text="item.name"></span>
-                            </div>
-                        </button>
 
-                    </template>
-                </div>
-                <div class="w-full">
-                    <div>
-                        total : <span x-text="subtotal()"></span>
-                    </div>
-                </div>
                 <div class="w-full p-2">
-                    <button class="btn w-full" @click="openModal()">Proceed</button>
+                    <div class="flex items-center justify-between px-1 py-3">
+                        <span class="text-base">TOTAL:</span>
+                        <span x-text="subtotal()" class="text-base"></span>
+                    </div>
+                    <button class="py-2 px-4 rounded bg-sbgreen text-white w-full" @click="openModal()">Proceed</button>
                 </div>
+
             </div>
+
         </div>
-        <div class="w-1/2 bg-gray-300 rounded-lg h-[30rem] flex flex-col gap-2 absolute z-10
-        top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-2"
+
+        <div class="w-1/2 bg-gradient-to-br from-sbdlight to-white shadow-2xl border border-gray-300 rounded-lg  flex flex-col gap-2 absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
             x-show="modal" x-transition.duration.700>
-            <div class="w-full">
-                <h1 class="text-center text-xl font-bold">Payment</h1>
+
+            <div class="w-full flex justify-start items-center space-x-2">
+                <i class='bx bx-credit-card text-xl' ></i>
+                <h1 class="text-center text-base font-bold">PAYMENT</h1>
             </div>
+
             <div class="relative overflow-x-auto flex flex-col gap-2 h-[12rem]">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 sticky top-0">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
-                                item name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                price
-                            </th>
-                            {{-- <th scope="col" class="px-6 py-3">
-                                Category
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Price
-                            </th> --}}
-                        </tr>
+                            <th scope="col" class=" text-sm border border-white px-4 py-2 text-left">ITEM NAME</th>
+                            <th scope="col" class=" text-sm border border-white px-4 py-2 text-left">PRICE</th>
                     </thead>
+
                     <tbody>
                         <template x-for="item in selectedProducts" :key="item.id">
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <tr class="border-b">
+                                <td scope="row"
+                                    class="px-2 py-2 text-base text-gray-800">
                                     <span x-text="item.name"></span>
-                                </th>
-                                <td class="px-6 py-4">
+                                </td>
+                                <td class="px-2 py-2 text-base text-gray-800">
                                     <span x-text="item.price"></span>
                                 </td>
-                                {{-- <td class="px-6 py-4">
-                                    Laptop
-                                </td>
-                                <td class="px-6 py-4">
-                                    $2999
-                                </td> --}}
                             </tr>
                         </template>
                     </tbody>
                 </table>
             </div>
-            <div>
-                total : <span x-text="subtotal()"></span>
-            </div>
-            <div>
-                change : <span x-text="totalChange()"></span>
-            </div>
-            <div>
-                <label for="">Amount</label>
-                <input type="text" class="input w-full" placeholder="amount" x-model="amount">
-            </div>
-            <div class="flex flex-row-reverse">
-                <div class="felx gap-2">
-                    <button class="btn" @click="sendTransaction()">Pay</button>
-                    <button class="btn" @click="openModal()">Close</button>
+
+            
+            <div class="flex flex-col space-y-1">
+                <div class="flex items-center justify-between px-1">
+                    <span class="text-base">TOTAL:</span>
+                    <span x-text="subtotal()" class="text-base"></span>
+                </div>
+
+                <div class="flex items-center justify-between px-1">
+                    <span class="text-base">CHANGE:</span>
+                    <span x-text="totalChange()" class="text-base"></span>
+                </div>
+
+                <div class="flex flex-col items-start justify-between p-2 border border-gray-300 rounded bg-white bg-opacity-70">
+                    <span class="text-sm">AMOUNT:</span>
+                    <input type="text" class="border border-gray-200 rounded w-full text-sm" placeholder="amount" x-model="amount">
+                </div>
+    
+    
+                <div class="flex flex-row-reverse">
+                    <div class="flex items-center space-x-2 py-2">
+                        <button class="py-2 px-8 rounded text-white bg-sbgreen" @click="sendTransaction()">Pay</button>
+                        <button class="py-2 px-6 rounded bg-gray-200 " @click="openModal()">Close</button>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 

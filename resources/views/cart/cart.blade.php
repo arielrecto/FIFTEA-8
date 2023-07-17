@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-header :cart="$cart" :subtotal="$total" />
     <section class="pt-16 bg-white">
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28">
             <div class="w-full flex-col p-4 space-y-4">

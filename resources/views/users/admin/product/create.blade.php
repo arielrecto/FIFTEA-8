@@ -1,7 +1,10 @@
 <x-panel>
     <div class="w-full flex flex-col pt-8 p-4" x-data="data">
-        <div class="w-full flex justify-start px-4">
-            <h1 class="text-lg font-bold">ADD NEW PRODUCTS</h1>
+        <div class="px-4">
+            <div class="flex flex-col border-b border-gray-400 pb-2">
+                <h1 class="text-2xl font-semibold text-sbgreen">New Products</h1>
+                <p class="text-sm">You are about to add a new product</p>
+            </div>
         </div>
         
         <form method="post" action="{{ route('admin.products.store') }}"enctype="multipart/form-data"
@@ -110,7 +113,7 @@
                         ['image', 'code-block']
                     ]
                 },
-                placeholder: 'Compose an epic...',
+                placeholder: 'Write the description here...',
                 theme: 'snow' // or 'bubble'
             });
         </script>

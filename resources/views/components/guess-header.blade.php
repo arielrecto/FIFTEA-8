@@ -1,9 +1,9 @@
 <div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-22 lg:px-28 ">
-        <div class="flex items-center">
+        <div class="flex items-center py-1">
             <div class="flex items-center space-x-2">
                 <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
-                <a class="text-xl font-sans font-semibold">Fiftea-8 Bucks</a>
+                <a class="text-xl font-sans font-semibold">Fiftea-8</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">

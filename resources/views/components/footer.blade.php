@@ -39,12 +39,12 @@
             </div>
         </div>
     </div> --}}
-    <div class="bg-gray-200">
+    <div class="bg-gradient-to-tr from-sbdlight to-white">
         <div class="container mx-auto py-4 px-5 md:px-22 lg:px-28 flex flex-wrap flex-col sm:flex-row">
-            <p class="text-gray-500 text-sm text-center sm:text-left">© 2020 Fif'tea-8 —
-                <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" target="_blank" rel="noopener noreferrer">@fif'tea-8</a>
+            <p class="text-gray-700 text-sm text-center sm:text-left">© 2020 Fif'tea-8 —
+                <a href="https://twitter.com/knyttneve" class="text-gray-800 ml-1" target="_blank" rel="noopener noreferrer">@fif'tea-8</a>
             </p>
-          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">This is the official website of Fif'tea-8</span>
+          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-700 text-sm">This is the official website of Fif'tea-8</span>
         </div>
     </div>
 </footer>

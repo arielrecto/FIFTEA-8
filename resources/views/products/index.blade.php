@@ -21,13 +21,9 @@
                     </template>
                 </div>
                 @if (Session::has('message'))
-                    <div class="alert alert-success">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ Session::get('message') }}</span>
+                <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
+                        <i class='bx bx-check-circle text-white text-xl'></i>
+                        <p class="text-white text-sm text-center" >{{Session::get('message')}}</p>
                     </div>
                 @endif
                 <section id="products-container" class="flex w-full flex-wrap relative">
@@ -38,7 +34,7 @@
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center" alt="blog"
                                     :src="product.image.url">
-                                <div class="p-6">
+                                <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
                                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3" x-text="product.name">
@@ -59,10 +55,9 @@
                                                         </div>
 
                                                         <div class="flex flex-col space-y-2">
-                                                            <div>
-                                                                <h1 class="text-xl text-sbgreen font-medium">Complete
-                                                                    Your
-                                                                    Order Here.</h1>
+                                                            <div class="flex items-center space-x-2">
+                                                                <i class='bx bx-info-circle text-sbgreen text-xl'></i>
+                                                                <h1 class="text-xl text-sbgreen font-medium">More Details</h1>
                                                             </div>
 
                                                             <div class="w-full flex items-center space-x-4">
@@ -75,6 +70,7 @@
                                                                         <option value="large">Large</option>
                                                                     </select>
                                                                 </div>
+                                                                
                                                                 <div class="w-1/3">
                                                                     <label for="sugar-level" class="text-xs">SUGAR
                                                                         LEVEL:</label>
@@ -87,6 +83,7 @@
                                                                         <option value="1">100%</option>
                                                                     </select>
                                                                 </div>
+
                                                                 <div class="w-1/3">
                                                                     <label for="quantity"
                                                                         class="text-xs">Quantity</label>
@@ -95,33 +92,29 @@
                                                                 </div>
                                                             </div>
 
-                                                                <div>
-                                                                    <label for="sugar-level" class="text-xs">EXTRAs:</label>
-                                                                    <select name="extras" id="sugar-level"
-                                                                        class="w-full rounded">
-                                                                        <option value="Pearl">Pearl</option>
-                                                                        <option value="ata De Coco">Nata De Coco</option>
-                                                                        <option value="Crushed Cookies">Crushed Cookies
-                                                                        </option>
-                                                                        <option value="Cheesecake">Cheesecake</option>
-                                                                        <option value="Cream Puff">Cream Puff</option>
-                                                                    </select>
+                                                            <div>
+                                                                <label for="sugar-level" class="text-xs">EXTRAs:</label>
+                                                                <select name="extras" id="sugar-level"
+                                                                    class="w-full rounded">
+                                                                    <option value="Pearl">Pearl</option>
+                                                                    <option value="ata De Coco">Nata De Coco</option>
+                                                                    <option value="Crushed Cookies">Crushed Cookies
+                                                                    </option>
+                                                                    <option value="Cheesecake">Cheesecake</option>
+                                                                    <option value="Cream Puff">Cream Puff</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div >
-
-
+                                                    <div class="flex items-center space-x-2 pt-3">
                                                         @csrf
                                                         <input type="hidden" name="product_id" :value="product.id">
-                                                        <button class="py-2 px-4 bg-sbgreen text-white rounded">Add
-                                                            To
-                                                            Cart</button>
-
-
-                                                        <a @click="modal = null"
-                                                            class="py-2 px-4 bg-sbgreen text-white rounded">Close</a>
+                                                        <button class="py-1 px-4 bg-sbgreen text-white rounded flex items-center">
+                                                            <i class='bx bx-cart-add text-lg text-white mr-2'></i>
+                                                            add
+                                                        </button>
+                                                        <a @click="modal = null" class="py-1 px-4 text-lg rounded bg-gray-100 hover:bg-gray-200 cursor-pointer">Cancel</a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -138,7 +131,7 @@
 
     <script>
         function sample() {
-            const baseUrl = "http://127.0.0.1:8000";
+            const baseUrl = "http://localhost:8000";
             return {
 
                 products: [],

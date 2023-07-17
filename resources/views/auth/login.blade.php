@@ -10,7 +10,7 @@
             </div>
             <div class="flex flex-col items-center justify-center">
                 <h1 class="text-xl font-semibold">Welome to FifTea-8</h1>
-                <p class="text-gray-500 text-sm text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, quod.</p>
+                <p class="text-gray-500 text-sm text-center">Please log in to your account.</p>
             </div>
         </div>
         <form method="POST" action="{{ route('login') }}" class="w-96">

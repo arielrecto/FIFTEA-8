@@ -29,7 +29,7 @@ class CartController extends Controller
                 'extras' => $request->extras
             ]
         );
-        return back()->with(['message' => 'Product Added to Cart Success']);
+        return back()->with(['message' => 'Product added to your Cart']);
     }
     public function index($id) {
         $cart = Cart::where('id', $id)->with('products.image')->first();
