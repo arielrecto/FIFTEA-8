@@ -12,17 +12,14 @@
             <h1 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="300"
                 class=" font-sans text-7xl font-semibold text-black">Fif'tea-8
             </h1>
-
-            <p data-aos="fade-right" data-aos-duration="2000" data-aos-delay="400"
-                class="font-sans  leading-relaxed text-xl">Offers a tantalizing selection of premium teas, carefully sourced
-                ingredients, and customizable options to suit your unique preferences.
-            </p>
-
-            <div class="flex items-center pt-3">
-                <a href="{{ route('products') }}" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="500"
-                    class="font-sans text-lg text-white font-medium bg-sbgreen hover:bg-green-800 py-2 px-4 cursor-pointer">
-                    Order Now
-                </a>
+            <p data-aos="fade-left" data-aos-duration="2000" data-aos-delay="400"
+                class="font-sans  leading-relaxed text-lg">From classic favorites to
+                innovative creations, our menu offers a tantalizing selection of premium teas, carefully sourced
+                ingredients, and customizable options to suit your unique preferences.</p>
+            <div class="flex items-center">
+                <a href="{{ route('products') }}" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"
+                    class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded cursor-pointer">Order
+                    Now</a>
             </div>
 
             <div class="flex items-center space-x-4 " data-aos="fade-right" data-aos-duration="2000"
