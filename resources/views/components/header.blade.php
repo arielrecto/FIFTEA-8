@@ -3,7 +3,7 @@
     'subtotal' => $subtotal,
 ])
 
-<div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-22 lg:px-28 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
@@ -81,9 +81,9 @@
             </div>
         @else
             <div class="hidden md:flex space-x-3">
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans  text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
                     href="{{ route('login') }}">LOGIN</a>
-                <a class="font-sans text-sm text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
+                <a class="font-sans text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth

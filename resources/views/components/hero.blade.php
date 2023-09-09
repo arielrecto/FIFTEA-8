@@ -1,50 +1,69 @@
 <x-guess-header />
 
-<section class="text-gray-600 body-font bg-gradient-to-tr from-sbdlight to-white">
-    <div class="container mx-auto flex  md:flex-row flex-col items-center px-5 md:px-22 lg:px-28 py-24 pb-52 pb-5">
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img data-aos="fade-right" data-aos-duration="2000" data-aos-delay="300"
-                class="object-cover object-center rounded" alt="hero" src="{{ asset('images/hero.png') }}">
-        </div>
-        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center space-y-8">
-            <h1 data-aos="fade-left" data-aos-duration="2000" data-aos-delay="400"
-                class="title-font font-sans text-5xl font-semibold text-gray-900">Unlock the
-                extraordinary here at Fif'tea-8
+<section class="text-gray-600 body-font ">  {{--bg-gradient-to-tr from-sbdlight to-white--}}
+    <div class="h-[700px] max-w-[1300px] mx-auto flex items-center px-4 pt-[90px]">
+       
+        <div class="w-2/5 flex flex-col space-y-4 justify-start">
+            <h2 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="200"
+                class="font-sans text-3xl font-semibold text-sbgreen">
+                Experience
+            </h2>
 
+            <h1 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="300"
+                class=" font-sans text-7xl font-semibold text-black">Fif'tea-8
             </h1>
-            <p data-aos="fade-left" data-aos-duration="2000" data-aos-delay="400"
-                class="font-sans  leading-relaxed text-lg">From classic favorites to
-                innovative creations, our menu offers a tantalizing selection of premium teas, carefully sourced
-                ingredients, and customizable options to suit your unique preferences.</p>
-            <div class="flex items-center">
-                <a href="{{ route('products') }}" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"
-                    class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded cursor-pointer">Order
-                    Now</a>
-                <a href="/user/cart" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"
-                    class="font-sans text-sm ml-4 text-gray-700 bg-gray-100  py-2 px-4 hover:bg-gray-200 rounded cursor-pointer hover:text-sbgreen">Your
-                    Cart</a>
+
+            <p data-aos="fade-right" data-aos-duration="2000" data-aos-delay="400"
+                class="font-sans  leading-relaxed text-xl">Offers a tantalizing selection of premium teas, carefully sourced
+                ingredients, and customizable options to suit your unique preferences.
+            </p>
+
+            <div class="flex items-center pt-3">
+                <a href="{{ route('products') }}" data-aos="fade-right" data-aos-duration="2000" data-aos-delay="500"
+                    class="font-sans text-lg text-white font-medium bg-sbgreen hover:bg-green-800 py-2 px-4 cursor-pointer">
+                    Order Now
+                </a>
             </div>
 
-            <div class="flex items-center space-x-4 " data-aos="fade-left" data-aos-duration="2000"
+            <div class="flex items-center space-x-4 " data-aos="fade-right" data-aos-duration="2000"
                 data-aos-delay="600">
-                <a href="">
-                    <i
-                        class='bx bxl-facebook-circle text-2xl text-sbgreen hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black">
+                    <i class='bx bxl-facebook-circle text-2xl text-blue-700 hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
-                <a href="">
-                    <i
-                        class='bx bxl-instagram-alt text-2xl text-sbgreen hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                <a href=""  class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black">
+                    <i class='bx bxl-instagram-alt text-2xl text-red-500 hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
-                <a href="">
-                    <i
-                        class='bx bxl-tiktok text-2xl text-sbgreen hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                <a href=""  class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black">
+                    <i class='bx bxl-tiktok text-2xl text-black hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
+            </div>
+        </div>
+
+        <div class="w-3/5 h-full ">
+            <div class="w-full h-full flex items-center justify-center space-x-2">
+                <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300"
+                    class="w-[180px] h-[380px] object-cover object-center shadow-md bg-white rounded" 
+                    alt="hero" src="{{ asset('images/girl.jpg') }}">
+                </div>
+
+                <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img data-aos="fade-down" data-aos-duration="2000" data-aos-delay="400"
+                    class="w-[250px] h-[450px] object-cover object-center shadow-md bg-white rounded" 
+                    alt="hero" src="{{ asset('images/single.jpg') }}">
+                </div>
+
+                <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
+                    <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
+                    class="w-[180px] h-[380px] object-cover object-center shadow-md bg-white rounded" 
+                    alt="hero" src="{{ asset('images/with-hand.jpg') }}">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="text-gray-600 body-font -mt-48 mb-10">
+{{-- <section class="text-gray-600 body-font -mt-48 mb-10">
     <div class="container px-5 md:px-22 lg:px-28 py-10 mx-auto">
         <div class="flex items-center justify-center -m-4">
             <div class=" flex space-x-2">
@@ -147,4 +166,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
