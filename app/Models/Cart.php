@@ -14,10 +14,12 @@ class Cart extends Model
         'is_check_out'
     ];
 
-    public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('size', 'sugar_level', 'quantity', 'extras');
+    public function products()
+    {
+        return $this->hasMany(CartProduct::class);
     }
-    public function order(){
+    public function order()
+    {
         return $this->hasOne(Order::class);
     }
 }

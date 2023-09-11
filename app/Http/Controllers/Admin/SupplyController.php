@@ -7,6 +7,7 @@ use App\Actions\Admin\Supply\StoreSupplyAction;
 use App\Actions\Admin\Supply\UpdateSupplyAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Supply\StoreSupplyRequest;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class SupplyController extends Controller
@@ -26,7 +27,8 @@ class SupplyController extends Controller
      */
     public function create()
     {
-        return view('users.admin.Inventory.create');
+        $types = Type::get();
+        return view('users.admin.Inventory.create', compact(['types']));
     }
 
     /**
@@ -39,7 +41,8 @@ class SupplyController extends Controller
             'name' => 'required',
             'unit_value' => 'required',
             'unit' => 'required',
-            'quantity' => 'required'
+            'quantity' => 'required',
+            'type' => 'required'
         ]);
         $supply = $storeSupplyAction->handle($request);
 

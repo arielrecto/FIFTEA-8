@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Supply;
+use App\Models\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->json('sizes');
-            $table->timestamps();
+        Schema::create('supply_type', function (Blueprint $table) {
+           $table->foreignIdFor(Supply::class);
+           $table->foreignIdFor(Type::class);
+           $table->string('price')->nullable();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('supply_type');
     }
 };
