@@ -13,8 +13,7 @@
                 class="dancing-script text-7xl text-sbgreen">Fif'tea-8
             </h1>
             <p data-aos="fade-left" data-aos-duration="2000" data-aos-delay="400"
-                class="font-sans  leading-relaxed text-lg">From classic favorites to
-                innovative creations, our menu offers a tantalizing selection of premium teas, carefully sourced
+                class="font-sans  leading-relaxed text-lg">Our menu offers a tantalizing selection of premium teas, carefully sourced
                 ingredients, and customizable options to suit your unique preferences.</p>
             <div class="flex items-center">
                 <a href="{{ route('products') }}" data-aos="fade-left" data-aos-duration="2000" data-aos-delay="500"

@@ -33,7 +33,7 @@
 </head>
 
 <body class="font-sans">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen">
 
         <main>
             {{ $slot }}
