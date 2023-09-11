@@ -60,7 +60,6 @@ Route::get('/products', function () {
 
 Route::get('/product/data', function () {
 
-
     $products = Product::with('categories', 'image')->get();
     $categories = Category::get();
     $supplies = Supply::with('types')->get();
@@ -121,7 +120,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
     });
 
-    Route::middleware('role:employee')->prefix('employee')->as('employee.')->group(function () {
+    Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
 
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
             Route::get('/', function () {

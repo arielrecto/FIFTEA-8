@@ -267,8 +267,6 @@
                             price: price
                         }]
                         return this.total = price
-
-                        return this.total = parseInt(this.size[0].price)
                     }
 
                     const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot

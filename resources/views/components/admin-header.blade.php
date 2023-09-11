@@ -22,6 +22,11 @@
 
         @auth
             <div class="hidden md:flex space-x-2">
+
+                <div>
+                    <a href="{{ route('admin.dashboard.index') }}">Employee Dashboard</a>
+                </div>
+
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
