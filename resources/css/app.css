@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.abril {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.dancing-script {
+    font-family: 'Dancing Script', cursive;
+}
 
 .active {
     background-color: #00704A;
