@@ -17,9 +17,12 @@ return new class extends Migration
             $table->foreignIdFor(Cart::class);
             $table->foreignIdFor(Product::class);
             $table->string('size');
+            $table->string('cart_product_no');
             $table->string('sugar_level');
+            $table->string('price');
             $table->string('quantity');
-            $table->string('extras');
+            $table->json('extras');
+            $table->string('total');
         });
     }
 

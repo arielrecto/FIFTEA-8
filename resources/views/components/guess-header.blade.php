@@ -9,9 +9,11 @@
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">Home</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">About Us</a>
                 </div>
@@ -23,7 +25,7 @@
 
             @if (Auth::user())
                 <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
-                    href="{{ Auth::user()->roles->first()->name === 'admin' ? route('admin.dashboard.index') : (Auth::user()->roles()->first()->name === 'customer' ? route('client.dashboard.index') : route('employee.dashboard.index'))}}">DASHBOARD</a>
+                    href="{{ Auth::user()->roles->first()->name === 'admin'? route('admin.dashboard.index'): (Auth::user()->roles()->first()->name === 'customer'? route('client.dashboard.index'): route('employee.dashboard.index')) }}">DASHBOARD</a>
             @else
                 <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
                     href="{{ route('login') }}">LOGIN</a>

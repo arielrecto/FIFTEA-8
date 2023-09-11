@@ -23,7 +23,8 @@ class StoreProductAction
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price
+            'price' => $request->price,
+            'sizes'=> $request->sizes
         ]);
 
 

@@ -21,9 +21,10 @@
                     </template>
                 </div>
                 @if (Session::has('message'))
-                <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
+                    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+                        class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
                         <i class='bx bx-check-circle text-white text-xl'></i>
-                        <p class="text-white text-sm text-center" >{{Session::get('message')}}</p>
+                        <p class="text-white text-sm text-center">{{ Session::get('message') }}</p>
                     </div>
                 @endif
                 <section id="products-container" class="flex w-full flex-wrap relative">
@@ -43,8 +44,11 @@
 
                                         <p class="font-sans text-sbblack" x-text="product.price"></p>
 
-                                        <button @click="openModal(product.id)"
-                                            class="text-sm text-white bg-sbgreen rounded py-1 px-4">ORDER</button>
+
+                                        @if (Auth::user())
+                                            <button @click="openModal(product.id)"
+                                                class="text-sm text-white bg-sbgreen rounded py-1 px-4">ORDER</button>
+                                        @endif
                                         <div x-show="modal === product.id" x-transition.duration.700ms class="absolute">
                                             <div class="modal-box w-auto">
                                                 <form action="{{ route('client.cart.add') }}" method="post">
@@ -57,20 +61,33 @@
                                                         <div class="flex flex-col space-y-2">
                                                             <div class="flex items-center space-x-2">
                                                                 <i class='bx bx-info-circle text-sbgreen text-xl'></i>
-                                                                <h1 class="text-xl text-sbgreen font-medium">More Details</h1>
+                                                                <h1 class="text-xl text-sbgreen font-medium">More
+                                                                    Details</h1>
                                                             </div>
 
                                                             <div class="w-full flex items-center space-x-4">
                                                                 <div class="w-1/3">
                                                                     <label for="size" class="text-xs">SIZE:</label>
-                                                                    <select name="size" id="size" name="size"
+                                                                    <input type="hidden" name="size"
+                                                                        :value="size">
+                                                                    <input type="hidden" name="price" x-model="size[0].price">
+                                                                    <select name="size" id="size"
+                                                                        @change="getSize($event, product)"
                                                                         class="w-full rounded">
-                                                                        <option value="small">Small</option>
+                                                                        <option selected value="regular">Regular
+                                                                        </option>
+                                                                        <template
+                                                                            x-for="(size, index) in JSON.parse(product.sizes)"
+                                                                            :key="index">
+                                                                            <option :value="size.name"><span
+                                                                                    x-text="size.name"></span></option>
+                                                                        </template>
+                                                                        {{-- <option value="small">Small</option>
                                                                         <option value="medium">Medium</option>
-                                                                        <option value="large">Large</option>
+                                                                        <option value="large">Large</option> --}}
                                                                     </select>
                                                                 </div>
-                                                                
+
                                                                 <div class="w-1/3">
                                                                     <label for="sugar-level" class="text-xs">SUGAR
                                                                         LEVEL:</label>
@@ -84,37 +101,78 @@
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="w-1/3">
+                                                                <div class="w-1/3">>
                                                                     <label for="quantity"
                                                                         class="text-xs">Quantity</label>
                                                                     <input type="number" id="quantity" name="quantity"
-                                                                        class="w-full rounded" placeholder="0">
+                                                                        x-model="quantity" class="w-full rounded"
+                                                                        placeholder="0">
                                                                 </div>
                                                             </div>
 
                                                             <div>
                                                                 <label for="sugar-level" class="text-xs">EXTRAs:</label>
-                                                                <select name="extras" id="sugar-level"
+                                                                <div class="flex gap-2 flex-wrap p-2">
+                                                                    <template x-for="extra in extras.data"
+                                                                        :key="extra.id">
+                                                                        <p class="px-2 py-1 bg-white rounded-lg shadow-sm"
+                                                                            x-text="extra.name"></p>
+                                                                    </template>
+                                                                </div>
+                                                                <input type="hidden" name="extras"
+                                                                    x-model="JSON.stringify(extras)">
+                                                                <select id="sugar-level" @change="getExtras($event)"
                                                                     class="w-full rounded">
-                                                                    <option value="Pearl">Pearl</option>
-                                                                    <option value="ata De Coco">Nata De Coco</option>
+                                                                    <option selected value=" ">Select Extras
+                                                                    </option>
+                                                                    <template x-for="supply in supplies"
+                                                                        :key="supply.id">
+                                                                        <option :value="supply.id"
+                                                                            x-text="supply.name"></option>
+                                                                    </template>
+                                                                    {{-- <option value="Pearl">Pearl</option>
+                                                                    <option value="Nata De Coco">Nata De Coco</option>
                                                                     <option value="Crushed Cookies">Crushed Cookies
                                                                     </option>
                                                                     <option value="Cheesecake">Cheesecake</option>
-                                                                    <option value="Cream Puff">Cream Puff</option>
+                                                                    <option value="Cream Puff">Cream Puff</option> --}}
                                                                 </select>
+                                                            </div>
+                                                            <div class="flex">
+                                                                <p class="flex gap-2">Total : <span>
+                                                                        <p
+                                                                            x-text="total.toLocaleString('en-PH', {
+                                                                            style: 'currency',
+                                                                            currency: 'PHP',
+                                                                        });">
+                                                                        </p>
+                                                                    </span></p>
+                                                                <input type="hidden" name="total"
+                                                                    :value="total">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="flex items-center space-x-2 pt-3">
                                                         @csrf
-                                                        <input type="hidden" name="product_id" :value="product.id">
-                                                        <button class="py-1 px-4 bg-sbgreen text-white rounded flex items-center">
-                                                            <i class='bx bx-cart-add text-lg text-white mr-2'></i>
-                                                            add
-                                                        </button>
-                                                        <a @click="modal = null" class="py-1 px-4 text-lg rounded bg-gray-100 hover:bg-gray-200 cursor-pointer">Cancel</a>
+                                                        <input type="hidden" name="product_id"
+                                                            :value="product.id">
+                                                        <template x-if="isDone">
+                                                            <button
+                                                                class="py-1 px-4 bg-sbgreen text-white rounded flex items-center">
+                                                                <i class='bx bx-cart-add text-lg text-white mr-2'></i>
+                                                                add
+                                                            </button>
+                                                        </template>
+                                                        <template x-if="!isDone">
+                                                            <button @click="costumizeDone($event, product.price)"
+                                                                class="py-1 px-4 bg-sbgreen text-white rounded flex items-center">
+                                                                <i class='bx bx-cart-add text-lg text-white mr-2'></i>
+                                                                Save
+                                                            </button>
+                                                        </template>
+                                                        <a @click="modal = null"
+                                                            class="py-1 px-4 text-lg rounded bg-gray-100 hover:bg-gray-200 cursor-pointer">Cancel</a>
                                                     </div>
                                                 </form>
                                             </div>
@@ -131,15 +189,23 @@
 
     <script>
         function sample() {
-            const baseUrl = "http://localhost:8000";
+            // const baseUrl = "http://localhost:8000";
+            const baseUrl = "http://127.0.0.1:8000";
             return {
 
                 products: [],
                 categories: [],
                 isLoading: false,
                 productsFilter: [],
-                modal : null,
-
+                supplies: [],
+                modal: null,
+                total: 0,
+                quantity: 0,
+                size: null,
+                isDone: false,
+                extras: {
+                    data: []
+                },
                 getFilterProducts(data) {
                     if (data === 'all') {
                         this.productsFilter = this.products;
@@ -164,13 +230,61 @@
                         this.products = response.data.products;
                         this.categories = response.data.categories;
                         this.productsFilter = response.data.products;
+                        this.supplies = response.data.supplies;
+
+                        console.log(response.data.products)
 
                     } catch (error) {
                         console.log(error);
                     }
                 },
-                openModal(id){
+                openModal(id) {
                     this.modal = id
+                },
+                getExtras(e) {
+                    if (e.target.value === ' ') return
+
+                    const id = parseInt(e.target.value);
+                    console.log(id);
+                    const data = this.supplies.find(item => item.id === id)
+
+                    this.extras.data.push(data)
+                },
+                getTotal(price) {
+
+                    if (this.quantity === 0 || this.extras.data === null) {
+                        if (this.size === null) {
+                            this.size = [{
+                                name: 'regular',
+                                price: price
+                            }]
+                            return this.total = price
+                        }
+                        return this.total = parseInt(this.size[0].price)
+                    }
+
+                    const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot.price), 0)
+
+                    const total = (parseInt(this.size[0].price) + totalExtrasPrice) * this.quantity;
+
+                    this.total = total;
+                },
+                getSize(e, product) {
+                    if (e.target.value === 'regular') {
+                        this.size = [{
+                            name: 'regular',
+                            price: product.price
+                        }]
+                        return
+                    }
+                    const size = JSON.parse(product.sizes).filter((item) => item.name === e.target.value);
+
+                    this.size = size;
+                },
+                costumizeDone (e, price) {
+                    e.preventDefault();
+                    const total = this.getTotal(price);
+                    this.isDone = true;
                 }
             }
         }

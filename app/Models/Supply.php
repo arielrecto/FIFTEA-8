@@ -22,4 +22,7 @@ class Supply extends Model
     public function transactions () {
         return $this->belongsToMany(Transaction::class);
     }
+    public function types() {
+        return $this->belongsToMany(Type::class)->withPivot(['price']);
+    }
 }

@@ -26,15 +26,33 @@
                                             </h1>
                                         </div>
                                         <div>
-                                            <p>P{{ $product->price }}</p>
+                                            <p>P {{ $product->price }}</p>
+                                        </div>
+                                        @php
+                                            $extras = json_decode($product->pivot->extras, true);
+                                        @endphp
+                                             <div>
+                                                extras
+                                                @foreach ($extras['data'] as $extra)
+                                                    <p class="flex gap-2">
+                                                        {{$extra['name']}} <span>price : {{$extra['types'][0]['pivot']['price']
+                                                        }}</span>
+                                                    </p>
+                                                @endforeach
+                                            </div>
+                                        <div>
+                                            <p> {{ $product->pivot->quantity }} pcs</p>
+                                        </div>
+                                        <div>
+                                            <p>P {{ $product->pivot->total }}</p>
                                         </div>
                                     </div>
                                     <div class="flex flex-col lg:flex-row justify-enter lg:items-center lg:space-x-3">
                                         <div>
-                                            <button @click="openModal({{ $product }})">
+                                            <a href="{{route('client.cart.showProduct', ['id' => $product->pivot->cart_product_no ])}}">
                                                 <i
                                                     class='bx bx-edit text-gray-400 text-2xl hover:text-sbdlight cursor-pointer'></i>
-                                            </button>
+                                            </a>
 
                                             <div x-show="modal === product.id" id="modal-{{ $product->id }}">
                                                 <div class="modal-box">
@@ -70,21 +88,21 @@
                             <div class="w-full flex flex-col space-y-6 px-2">
                                 <div class="w-full flex justify-between">
                                     <p class="font-medium">ITEMS</p>
-                                    <P>{{$cart->products->count()}}</P>
+                                    <P>{{ $cart->products->count() }}</P>
                                 </div>
                                 <div class="w-full flex justify-between">
                                     <p class="font-medium">TOTAL PRICE</p>
-                                    <P>{{$total}}</P>
+                                    <P>{{ $total }}</P>
                                 </div>
                             </div>
 
 
 
-                            <form action="{{route('client.order.store')}}" method="post">
+                            <form action="{{ route('client.order.store') }}" method="post">
                                 <div class="w-full flex">
                                     @csrf
-                                    <input type="hidden" name="cart_id" value="{{$cart->id}}">
-                                    <input type="hidden" name="total" value="{{$total}}">
+                                    <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                    <input type="hidden" name="total" value="{{ $total }}">
                                     <button
                                         class="w-full text-white text-sm bg-sbgreen rounded py-2 px-4">CHECKOUT</button>
                                 </div>

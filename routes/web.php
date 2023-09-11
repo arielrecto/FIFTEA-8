@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
@@ -49,7 +50,7 @@ Route::get('/products', function () {
     //computation for subtotal if cart is not null
     if ($cart !== null) {
         foreach ($cart->products()->get() as $product) {
-            $subtotal = $subtotal + $product->price;
+            $subtotal = $subtotal + $product->pivot->total;
         }
     }
 
@@ -62,9 +63,11 @@ Route::get('/product/data', function () {
 
     $products = Product::with('categories', 'image')->get();
     $categories = Category::get();
+    $supplies = Supply::with('types')->get();
     return response([
         'products' => $products,
-        'categories' => $categories
+        'categories' => $categories,
+        'supplies' => $supplies
     ]);
 });
 
@@ -104,6 +107,10 @@ Route::middleware('auth')->group(function () {
                 $registeredCustomer = User::role('customer')->get()->count();
                 return view('users.admin.dashboard', compact(['totalSupplies', 'onlineOrder', 'walkinOrder', 'registeredCustomer', 'transactions', 'sales']));
             })->name('index');
+        });
+
+        Route::prefix('supply')->as('supply.')->group(function (){
+            Route::resource('type' , TypeController::class);
         });
 
         Route::resource('order', OrderController::class);
@@ -157,6 +164,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('cart')->as('cart.')->group(function () {
             Route::post('/addToCart', [CartController::class, 'addToCart'])->name('add');
             Route::get('/{id}', [CartController::class, 'index'])->name('index');
+            Route::get('/show/product/{id}', [CartController::class, 'showProduct'])->name('showProduct');
         });
 
         Route::resource('order', ClientOrderController::class)->only([
