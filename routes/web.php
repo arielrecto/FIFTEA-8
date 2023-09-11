@@ -50,7 +50,7 @@ Route::get('/products', function () {
     //computation for subtotal if cart is not null
     if ($cart !== null) {
         foreach ($cart->products()->get() as $product) {
-            $subtotal = $subtotal + $product->pivot->total;
+            $subtotal = $subtotal + $product->total;
         }
     }
 

@@ -70,11 +70,14 @@
                                                                     <label for="size" class="text-xs">SIZE:</label>
                                                                     <input type="hidden" name="size"
                                                                         :value="size">
-                                                                    <input type="hidden" name="price" x-model="size[0].price">
+                                                                    <input type="hidden" name="price"
+                                                                        x-model="size[0].price">
                                                                     <select name="size" id="size"
                                                                         @change="getSize($event, product)"
                                                                         class="w-full rounded">
-                                                                        <option selected value="regular">Regular
+                                                                        <option selected>Select Size
+                                                                        </option>
+                                                                        <option value="regular">Regular
                                                                         </option>
                                                                         <template
                                                                             x-for="(size, index) in JSON.parse(product.sizes)"
@@ -127,8 +130,11 @@
                                                                     </option>
                                                                     <template x-for="supply in supplies"
                                                                         :key="supply.id">
-                                                                        <option :value="supply.id"
-                                                                            x-text="supply.name"></option>
+                                                                        <template
+                                                                            x-if="supply.types[0].name.toLowerCase() === 'addons'">
+                                                                            <option :value="supply.id"
+                                                                                x-text="supply.name"></option>
+                                                                        </template>
                                                                     </template>
                                                                     {{-- <option value="Pearl">Pearl</option>
                                                                     <option value="Nata De Coco">Nata De Coco</option>
@@ -201,7 +207,10 @@
                 modal: null,
                 total: 0,
                 quantity: 0,
-                size: null,
+                size: [{
+                    name: null,
+                    price: 0
+                }],
                 isDone: false,
                 extras: {
                     data: []
@@ -232,7 +241,7 @@
                         this.productsFilter = response.data.products;
                         this.supplies = response.data.supplies;
 
-                        console.log(response.data.products)
+                        console.log(response.data.supplies)
 
                     } catch (error) {
                         console.log(error);
@@ -244,8 +253,7 @@
                 getExtras(e) {
                     if (e.target.value === ' ') return
 
-                    const id = parseInt(e.target.value);
-                    console.log(id);
+                    const id = parseInt(e.target.value)
                     const data = this.supplies.find(item => item.id === id)
 
                     this.extras.data.push(data)
@@ -253,17 +261,18 @@
                 getTotal(price) {
 
                     if (this.quantity === 0 || this.extras.data === null) {
-                        if (this.size === null) {
-                            this.size = [{
-                                name: 'regular',
-                                price: price
-                            }]
-                            return this.total = price
-                        }
+
+                        this.size = [{
+                            name: 'regular',
+                            price: price
+                        }]
+                        return this.total = price
+
                         return this.total = parseInt(this.size[0].price)
                     }
 
-                    const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot.price), 0)
+                    const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot
+                        .price), 0)
 
                     const total = (parseInt(this.size[0].price) + totalExtrasPrice) * this.quantity;
 
@@ -277,11 +286,14 @@
                         }]
                         return
                     }
+
                     const size = JSON.parse(product.sizes).filter((item) => item.name === e.target.value);
+
+                    console.log(size)
 
                     this.size = size;
                 },
-                costumizeDone (e, price) {
+                costumizeDone(e, price) {
                     e.preventDefault();
                     const total = this.getTotal(price);
                     this.isDone = true;

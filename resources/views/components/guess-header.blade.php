@@ -24,13 +24,8 @@
         <div class="hidden md:flex space-x-3">
 
             @if (Auth::user())
-<<<<<<< HEAD
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
-                    href="{{ Auth::user()->roles->first()->name === 'admin'? route('admin.dashboard.index'): (Auth::user()->roles()->first()->name === 'customer'? route('client.dashboard.index'): route('employee.dashboard.index')) }}">DASHBOARD</a>
-=======
                 <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
                     href="{{ Auth::user()->roles->first()->name === 'admin' ? route('admin.dashboard.index') : (Auth::user()->roles()->first()->name === 'customer' ? route('client.dashboard.index') : route('employee.dashboard.index'))}}">DASHBOARD</a>
->>>>>>> d0edc32825f04afcb53924e0ff2ed4e89d3e2a5d
             @else
                 <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 "
                     href="{{ route('login') }}">LOGIN</a>

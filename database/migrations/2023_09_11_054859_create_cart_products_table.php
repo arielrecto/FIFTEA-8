@@ -2,9 +2,9 @@
 
 use App\Models\Cart;
 use App\Models\Product;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart_product', function (Blueprint $table) {
+        Schema::create('cart_products', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(Cart::class);
             $table->foreignIdFor(Product::class);
             $table->string('size');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->json('extras');
             $table->string('total');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_product');
+        Schema::dropIfExists('cart_products');
     }
 };

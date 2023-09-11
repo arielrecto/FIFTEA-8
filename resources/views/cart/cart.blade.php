@@ -10,26 +10,26 @@
 
                     <div class="flex flex-col w-full md:w-2/3">
 
-                        @forelse ($cart->products as $product)
+                        @forelse ($cart->products as $c_product)
                             <div class="w-full flex flex-col space-y-2 border-b border-gray-200 p-4">
                                 <div class="w-full flex items-center justify-between">
                                     <div class="flex items-center space-x-8 lg:space-x-10">
-                                        <img class="w-24 h-24 md:w-36 md:h-36 rounded" src="{{ $product->image->url }}"
+                                        <img class="w-24 h-24 md:w-36 md:h-36 rounded" src="{{$c_product->product->image->url}}"
                                             alt="">
 
                                         <div class="flex flex-col">
                                             <h2
                                                 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                                CATEGORY : {{ $product->categories()->first()->name }}</h2>
+                                                CATEGORY : {{ $c_product->product->categories()->first()->name }}</h2>
                                             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                                                {{ $product->name }}
+                                                {{ $c_product->name }}
                                             </h1>
                                         </div>
                                         <div>
-                                            <p>P {{ $product->price }}</p>
+                                            <p>P {{ $c_product->price }}</p>
                                         </div>
                                         @php
-                                            $extras = json_decode($product->pivot->extras, true);
+                                            $extras = json_decode($c_product->extras, true);
                                         @endphp
                                              <div>
                                                 extras
@@ -41,20 +41,20 @@
                                                 @endforeach
                                             </div>
                                         <div>
-                                            <p> {{ $product->pivot->quantity }} pcs</p>
+                                            <p> {{ $c_product->quantity }} pcs</p>
                                         </div>
                                         <div>
-                                            <p>P {{ $product->pivot->total }}</p>
+                                            <p>P {{ $c_product->total }}</p>
                                         </div>
                                     </div>
                                     <div class="flex flex-col lg:flex-row justify-enter lg:items-center lg:space-x-3">
                                         <div>
-                                            <a href="{{route('client.cart.showProduct', ['id' => $product->pivot->cart_product_no ])}}">
+                                            <a href="{{route('client.cart.showProduct', ['id' => $c_product->id ])}}">
                                                 <i
                                                     class='bx bx-edit text-gray-400 text-2xl hover:text-sbdlight cursor-pointer'></i>
                                             </a>
 
-                                            <div x-show="modal === product.id" id="modal-{{ $product->id }}">
+                                            <div x-show="modal === product.id" id="modal-{{ $c_product->id }}">
                                                 <div class="modal-box">
 
                                                     <div class="w-full flex flex-col gap-2">

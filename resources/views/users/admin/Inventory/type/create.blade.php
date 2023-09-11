@@ -19,6 +19,8 @@
             <div class="flex flex-col border-b border-gray-400 pb-2">
                 <h1 class="text-2xl font-semibold text-sbgreen">New Supply Type</h1>
                 <p class="text-sm">This will be added to the list of supplies Type</p>
+                <p class="text-sm">Note: input "addons" if the supply has a additional price in the produc to show the price input field in the add supply form
+                </p>
             </div>
 
             <form action="{{ route('admin.supply.type.store') }}" method="post" class="flex flex-col space-y-4">

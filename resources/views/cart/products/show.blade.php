@@ -8,27 +8,27 @@
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24">
             <div class="w-full  bg-white rounded-lg shadow-sm flex p-5">
                 <div class="w-1/5">
-                    <img src="{{$product->image->url}}" alt="">
+                    <img src="{{$c_product->product->image->url}}" alt="">
                 </div>
                 <div class="flex-grow p-2 flex flex-col gap-2">
                     <h1 class="text-3xl font-bold">
-                        {{$product->name}}
+                        {{$c_product->name}}
                     </h1>
                     <p>
                         <span>Description : </span>
-                       {!!$product->description!!}
+                       {!!$c_product->description!!}
                     </p>
                     <p>
                         <span>Size :</span>
-                        {{$product->pivot->size}}
+                        {{$c_product->size}}
                     </p>
                     <p>
                         <span>Quantity</span>
-                        {{$product->pivot->quantity}}
+                        {{$c_product->quantity}}
                     </p>
 
                     @php
-                       $extras = json_decode($product->pivot->extras)
+                       $extras = json_decode($c_product->extras)
                     @endphp
                     <p>
                         <span>Extras : </span>
@@ -36,7 +36,7 @@
                             {{$extra->name}},
                         @endforeach
                     </p>
-                    <p class="w-full flex flex-row-reverse">P {{$product->pivot->total}}</p>
+                    <p class="w-full flex flex-row-reverse">P {{$c_product->total}}</p>
                 </div>
             </div>
         </div>

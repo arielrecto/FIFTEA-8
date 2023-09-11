@@ -111,7 +111,10 @@
                         hiddenInput: false,
                         type: '',
                         selectedType(e) {
-                            if (e.target.value === 'extras') {
+
+                            const selectType = e.target.value.toLowerCase();
+
+                            if (selectType === "addons") {
                                 this.hiddenInput = true;
                             } else {
                                 this.hiddenInput = false;
