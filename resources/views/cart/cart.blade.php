@@ -14,7 +14,7 @@
                             <div class="w-full flex flex-col space-y-2 border-b border-gray-200 p-4">
                                 <div class="w-full flex items-center justify-between">
                                     <div class="flex items-center space-x-8 lg:space-x-10">
-                                        <img class="w-24 h-24 md:w-36 md:h-36 rounded" src="{{$c_product->product->image->url}}"
+                                        <img class="w-24 h-24 md:w-36 md:h-36 rounded" src="{{asset($c_product->product->image)}}"
                                             alt="">
 
                                         <div class="flex flex-col">
@@ -27,6 +27,9 @@
                                         </div>
                                         <div>
                                             <p>P {{ $c_product->price }}</p>
+                                        </div>
+                                        <div>
+                                            <p>size :  {{ $c_product->size }}</p>
                                         </div>
                                         @php
                                             $extras = json_decode($c_product->extras, true);

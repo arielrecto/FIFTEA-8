@@ -8,7 +8,7 @@
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24">
             <div class="w-full  bg-white rounded-lg shadow-sm flex p-5">
                 <div class="w-1/5">
-                    <img src="{{$c_product->product->image->url}}" alt="">
+                    <img src="{{asset($c_product->product->image)}}" alt="">
                 </div>
                 <div class="flex-grow p-2 flex flex-col gap-2">
                     <h1 class="text-3xl font-bold">

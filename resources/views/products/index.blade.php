@@ -34,7 +34,7 @@
                             <div
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center" alt="blog"
-                                    :src="product.image.url">
+                                    :src="product.image">
                                 <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
