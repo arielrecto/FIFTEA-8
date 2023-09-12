@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <form method="post" action="{{ route('admin.products.store') }}"enctype="multipart/form-data"
+        <form method="post" action="{{ route('admin.products.store') }}" enctype="multipart/form-data"
             class=" w-full h-full flex flex-col space-y-6">
             @csrf
             <div class="w-full flex items-start ">
@@ -75,7 +75,7 @@
                     <div class="flex space-x-4 items-center">
                         <div class="w-full ">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Sizes</label>
-                        <input type="hidden" x-model="JSON.stringify(sizes)" name="sizes">
+                            <input type="hidden" x-model="JSON.stringify(sizes)" name="sizes">
                             <p
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 flex gap-2">
@@ -162,6 +162,7 @@
                         this.image = URL.createObjectURL(file);
                     },
                     submitData() {
+
                         this.content = document.getElementById('editor').querySelector('.ql-editor').innerHTML
                     },
                     openModalSize(e) {
@@ -193,6 +194,9 @@
                             this.fields.forEach(item => {
                                 this.sizes.push(item)
                             });
+                            const sizes = JSON.stringify(this.sizes);
+                            console.log(sizes)
+
                             this.modalSize = false
                             this.fields = [{
                                 name: null,

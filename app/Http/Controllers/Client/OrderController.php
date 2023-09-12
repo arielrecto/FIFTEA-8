@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -32,12 +33,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required',
+            'qr_ref' => 'required',
+            'amount' => 'required'
+        ]);
+
         $randomNumber = random_int(100000, 999999);
         $num_ref = 'ORDR' .  $randomNumber;
 
         $user = Auth::user();
 
-        $oder = Order::create([
+        $order = Order::create([
             'num_ref' => $num_ref,
             'user_id' => $user->id,
             'cart_id' => $request->cart_id,
@@ -45,7 +52,19 @@ class OrderController extends Controller
             'type' => 'online',
         ]);
 
+        $filename = 'payment' . uniqid() . '.' . $request->image->extension();
+
         $cart = Cart::find($request->cart_id);
+
+        Payment::create([
+            'user_id' => $user->id,
+            'order_id' => $order->id,
+            'amount' => $request->amount,
+            'payment_ref' => $request->qr_ref,
+            'image' => asset('storage/payment/image/' . $filename)
+        ]);
+
+        $request->image->storeAs('public/payment/image/' . $filename);
 
         $cart->update(['is_check_out' => true]);
 

@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\Transaction;
+use App\Models\Profile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $orders = Order::where('type', 'online')->where('status', 'pending')->with('cart.products')->with('payment.user')->get();
-
-        return view('users.employee.Orders.index', compact(['orders']));
+        //
     }
 
     /**
@@ -41,7 +37,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -66,19 +62,5 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-    public function approved($id) {
-        $order = Order::find($id);
-        $randomNumber = random_int(100000, 999999);
-        $num_transaction = 'TRSCTN' . $randomNumber;
-        $user = Auth::user();
-        $transaction = Transaction::create([
-            'user_id' => $user->id,
-            'transaction_ref' => $num_transaction,
-            'order_id' => $order->id,
-        ]);
-
-        $order->update(['status' => 'processed']);
-        return back()->with(['message' => 'Order Success']);
     }
 }

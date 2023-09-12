@@ -18,9 +18,11 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
+use App\Http\Controllers\HomeController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +36,8 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -118,6 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('products', ProductController::class);
         Route::resource('supply', SupplyController::class);
         Route::resource('employee', EmployeeController::class);
+        Route::resource('profile', ProfileController::class)->except('destroy', 'index');
     });
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
@@ -175,6 +180,7 @@ Route::middleware('auth')->group(function () {
             'create',
             'store'
         ]);
+        Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
             'index'
         ]);

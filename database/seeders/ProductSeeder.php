@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     {
 
         $categoriesCount = Category::count();
-        Product::factory(20)->create();
+        Product::factory(50)->create();
 
         $products = Product::get();
 
