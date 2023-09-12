@@ -70,7 +70,7 @@
 
                         <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
 
-                        {{-- <a class="rounded-md hover:bg-gray-200 py-1 px-2">Settings</a> --}}
+                        <a href="{{ route('client.dashboard.index') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Dashboard</a>
 
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf

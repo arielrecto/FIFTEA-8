@@ -39,9 +39,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // temporary routes
 Route::get('/products', function () {
@@ -72,7 +72,7 @@ Route::get('/product/data', function () {
 
 Route::get('product/filter/{name}', function ($name) {
 
-    $products  = Category::where('name', $name)->first()->products()->get();
+    $products = Category::where('name', $name)->first()->products()->get();
 
     return $products;
 });
@@ -108,8 +108,8 @@ Route::middleware('auth')->group(function () {
             })->name('index');
         });
 
-        Route::prefix('supply')->as('supply.')->group(function (){
-            Route::resource('type' , TypeController::class);
+        Route::prefix('supply')->as('supply.')->group(function () {
+            Route::resource('type', TypeController::class);
         });
 
         Route::resource('order', OrderController::class);
@@ -141,7 +141,11 @@ Route::middleware('auth')->group(function () {
 
 
         Route::resource('transaction', EmployeeTransactionController::class)->only([
-            'index', 'create', 'update', 'edit', 'store'
+            'index',
+            'create',
+            'update',
+            'edit',
+            'store'
         ]);
         Route::resource('supply', EmployeeSupplyController::class)->only([
             'index'
@@ -167,7 +171,9 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('order', ClientOrderController::class)->only([
-            'index', 'create', 'store'
+            'index',
+            'create',
+            'store'
         ]);
         Route::resource('products', ClientProductController::class)->only([
             'index'
