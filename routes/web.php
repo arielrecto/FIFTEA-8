@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
@@ -121,6 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('products', ProductController::class);
         Route::resource('supply', SupplyController::class);
         Route::resource('employee', EmployeeController::class);
+        Route::resource('profile', ProfileController::class)->except('destroy', 'index');
     });
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
@@ -172,6 +174,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('order', ClientOrderController::class)->only([
             'index', 'create', 'store'
         ]);
+        Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
             'index'
         ]);
