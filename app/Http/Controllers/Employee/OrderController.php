@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('type', 'online')->where('status', 'pending')->with('cart.products')->get();
+        $orders = Order::where('type', 'online')->where('status', 'pending')->with('cart.products')->with('payment.user')->get();
 
         return view('users.employee.Orders.index', compact(['orders']));
     }

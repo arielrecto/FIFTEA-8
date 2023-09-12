@@ -1,5 +1,5 @@
 <x-employee-panel>
-    <div class="p-5 flex flex-col gap-5">
+    <div class="p-5 flex flex-col gap-5" x-data="payment">
 
         @if (Session::has('message'))
             <div class="alert alert-success animate-pulse" id="alert">
@@ -8,7 +8,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{Session::get('message')}}</span>
+                <span>{{ Session::get('message') }}</span>
             </div>
         @endif
         <div class="w-full">
@@ -32,6 +32,9 @@
                         <th scope="col" class="px-6 py-3">
                             Price
                         </th>
+                        <th>
+                            Payment
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Action
                         </th>
@@ -53,9 +56,17 @@
                             <td class="px-6 py-4">
                                 ₱ {{ $order->total }}
                             </td>
+                            @php
+                                $payment = json_encode($order->payment);
+                            @endphp
+                            <td class="px-6 py-4">
+                                <button class="btn btn-ghost"
+                                    @click="openPaymentData({{ $payment }})">view</button>
+                            </td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
-                                    <form action="{{route('employee.order.approved', ['id' => $order->id])}}" method="post">
+                                    <form action="{{ route('employee.order.approved', ['id' => $order->id]) }}"
+                                        method="post">
                                         @csrf
                                         <button>
                                             <box-icon name='check'></box-icon>
@@ -73,6 +84,27 @@
                 </tbody>
             </table>
         </div>
+        <template x-if="paymentData !== null">
+            <div
+                class="w-full bg-gray-100 shadow-lg rounded-lg h-96 absolute max-w-screen-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 p-2">
+                <h1 class="text-center text-lg capitalize text-semibold">
+                    payment credential
+                </h1>
+                <div class="w-full flex gap-2">
+                    <div class="w-1/3">
+                        <img :src="paymentData.image"alt="" srcset="">
+                    </div>
+                    <div class="flex-grow flex flex-col gap-2">
+                        <h1>customer: <span class="font-bold" x-text="paymentData.user.name"></span></h1>
+                        <h1>gcash ref #: <span class="font-bold" x-text="paymentData.payment_ref"></span></h1>
+                        <h1>Amount: <span class="font-bold" x-text="paymentData.amount"></span></h1>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button class="btn btn-error" @click="paymentData = null">Close</button>
+                </div>
+            </div>
+        </template>
 
     </div>
 
@@ -81,6 +113,17 @@
             setTimeout(() => {
                 document.getElementById('alert').remove();
             }, 3000);
+        </script>
+        <script>
+            function payment() {
+                return {
+                    paymentData: null,
+                    openPaymentData(data) {
+                        console.log(data)
+                        this.paymentData = data
+                    }
+                }
+            }
         </script>
     @endpush
 </x-employee-panel>

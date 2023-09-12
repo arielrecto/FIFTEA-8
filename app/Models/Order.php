@@ -32,4 +32,7 @@ class Order extends Model
     public function cart(){
         return $this->belongsTo(Cart::class);
     }
+    public function payment () {
+        return $this->hasOne(Payment::class);
+    }
 }

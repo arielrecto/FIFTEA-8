@@ -21,6 +21,7 @@ use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
+use App\Http\Controllers\HomeController;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/', function () {
     return view('welcome');

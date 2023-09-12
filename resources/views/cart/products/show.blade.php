@@ -8,13 +8,13 @@
         <div class="max-w-[1300px] mx-auto px-4 pt-24">
             <div class="flex items-start justify-center">
                 <div class="flex flex-col space-y-4">
-                    {{-- 
+                    {{--
                     ----------------------------------------------------------
-                        PALAGYAN NALANG NG ROUTE ITONG BACK BUTTON SA BABA 
+                        PALAGYAN NALANG NG ROUTE ITONG BACK BUTTON SA BABA
                         POGI MO PO
-                        
+
                     --}}
-                    <a href="" class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
+                    <a href="{{route('client.cart.index', ['id' => $cart->id])}}" class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
                         <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
                         back
                     </a>
