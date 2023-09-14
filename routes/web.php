@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
@@ -163,10 +164,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:customer')->prefix('client')->as('client.')->group(function () {
 
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
-            Route::get('/', function () {
-                $products = Product::with('categories')->geT();
-                return view('users.client.dashboard', compact(['products']));
-            })->name('index');
+            Route::get('/', [DashboardController::class, 'index'])->name('index');
         });
 
         Route::prefix('cart')->as('cart.')->group(function () {
@@ -182,7 +180,7 @@ Route::middleware('auth')->group(function () {
         ]);
         Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
-            'index'
+            'index', 'show'
         ]);
     });
 });
