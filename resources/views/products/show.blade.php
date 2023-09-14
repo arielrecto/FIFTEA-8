@@ -1,22 +1,38 @@
 <x-app-layout>
-    <x-user-header/>
+    <x-user-header />
     <section>
-        <div class="max-w-[1300px] mx-auto px-4 pt-24">
-            <a href="{{ route('products') }}" class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
+
+
+        <div class="max-w-[1300px] mx-auto px-4 pt-24" x-data="product">
+            <a href="{{ route('products') }}"
+                class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
                 <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
                 back
             </a>
+            @if (Session::has('message'))
+                <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+                    class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
+                    <i class='bx bx-check-circle text-white text-xl'></i>
+                    <p class="text-white text-sm text-center">{{ Session::get('message') }}</p>
+                </div>
+            @endif
             <div class="flex items-center justify-between space-x-4 py-4">
-                <img src="" alt=""
-                class="w-[500px] h-[400px] rounded bg-gray-300">
-                <div class="flex flex-col space-y-3">
-                    <span class="text-base font-semibold text-gray-400">Milktea</span>
-                    <h1 class="text-4xl font-bold ">White Caramel</h1>
-                    <p class="text-base text-gray-600">Savor the exquisite blend of creamy white milk and sophisticated caramel in our White Caramel Milk Tea for a sip of pure delight and indulgence.</p>
+                <img src="{{ $product->image }}" alt=""
+                    class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
+                <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
+
+                    @csrf
+
+                    <span class="text-base font-semibold text-gray-400">{{ $product->categories[0]->name }}</span>
+                    <h1 class="text-4xl font-bold ">{{ $product->name }}</h1>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="price" value="{{ $product->price }}">
+                    <p class="text-base text-gray-600">{!! $product->description !!}</p>
                     <div class="flex items-center space-x-8">
                         <div class="flex flex-col space-y-1">
                             <label for="" class="text-base font-semibold">Sugar Level</label>
-                            <select name="" id="" class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300">
+                            <select name="sugar_level" id=""
+                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300">
                                 <option value="0">0%</option>
                                 <option value="0.25">25%</option>
                                 <option value="0.5">50%</option>
@@ -26,19 +42,26 @@
                         </div>
                         <div class="flex flex-col space-y-1">
                             <label for="" class="text-base font-semibold">Extras</label>
-                            <select name="" id="" class="w-[200px] rounded px-4 py-2 text-sm border border-gray-300">
-                                <option value="Pearl">Pearl</option>
-                                <option value="Nata De Coco">Nata De Coco</option>
-                                <option value="Crushed Cookies">Crushed Cookies</option>
-                                <option value="Cheesecake">Cheesecake</option>
-                                <option value="Cream Puff">Cream Puff</option>
+                            <select name="extras" id=""
+                                class="w-[200px] rounded px-4 py-2 text-sm border border-gray-300">
+                                <option selected disabled>Select Extras</option>
+                                @php
+                                    $extras = json_decode($product->extras ?? '[]');
+                                @endphp
+
+                                @forelse ($extras as $extra)
+                                    <option value="Pearl">{{ $extra->name }}</option>
+                                @empty
+                                    <option disabled>No Exteas Available</option>s
+                                @endforelse
                             </select>
                         </div>
                     </div>
                     <div class="flex items-start space-x-8">
                         <div class="flex flex-col space-y-1">
                             <label for="" class="text-base font-semibold">Size</label>
-                            <select name="" id="" class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300">
+                            <select name="size" id=""
+                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300">
                                 <option value="small">Small</option>
                                 <option value="Regular">Regular</option>
                                 <option value="large">Large</option>
@@ -47,24 +70,64 @@
                         <div class="flex flex-col space-y-1">
                             <label for="" class="text-base font-semibold">Quatity</label>
                             <div class="flex items-center space-x-2">
-                                <button class="py-1 px-2 hover:bg-gray-200 rounded">
+                                <button class="py-1 px-2 hover:bg-gray-200 rounded"
+                                    @click="changeQuantity($event, 'minus')">
                                     <i class='bx bx-minus text-lg'></i>
                                 </button>
-                                <p class="py-1 px-4 rounded border border-gray-300 bg-gradient-to-r from-green-400 to-blue-400 text-white">1</p>
-                                <button class="py-1 px-2 hover:bg-gray-200 rounded">
-                                    <i class='bx bx-plus text-lg'></i> 
+                                <p
+                                    class="py-1 px-4 rounded border border-gray-300 bg-gradient-to-r from-green-400 to-blue-400 text-white">
+                                    <span x-text="quantity"></span>
+                                    <input type="hidden" name="quantity" x-model="quantity">
+                                </p>
+                                <button class="py-1 px-2 hover:bg-gray-200 rounded"
+                                    @click="changeQuantity($event, 'add')">
+                                    <i class='bx bx-plus text-lg'></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="pt-3">
-                        <div class="w-full flex items-center justify-between border-t border-gray-200 py-3">
-                            <p class="font-bold text-lg">&#8369;150</p>
-                            <button class="px-4 py-2 rounded text-sm bg-gradient-to-r from-green-400 to-blue-400 text-white">Place Order</button>
+                        <div class="w-full flex items-center justify-between border-t border-gray-200 py-3"
+                            x-init="initPrice({{ $product->price }})">
+                            <input type="hidden" name="total" x-model="total">
+                            <p class="font-bold text-lg">&#8369; <span x-text="total"></span></p>
+                            <button
+                                class="px-4 py-2 rounded text-sm bg-gradient-to-r from-green-400 to-blue-400 text-white">Place
+                                Order</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
+
+    @push('js')
+        <script>
+            function product() {
+                return {
+                    price: 0,
+                    total: 0,
+                    quantity: 1,
+                    changeQuantity(e, operator) {
+                        e.preventDefault();
+                        if (operator.toLowerCase() === 'add') {
+                            this.quantity++
+                            this.totalPrice()
+                            return
+                        }
+                        if (this.quantity <= 0) return
+                        this.quantity--
+                        this.totalPrice()
+                    },
+                    initPrice(price) {
+                        this.price = price
+                        this.totalPrice()
+                    },
+                    totalPrice() {
+                        this.total = this.price * this.quantity
+                    }
+                }
+            }
+        </script>
+    @endpush
 </x-app-layout>

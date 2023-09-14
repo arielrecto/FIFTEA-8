@@ -40,7 +40,7 @@
                                         <span x-text="product.categories[0].name"></span>
                                     </h2>
                                     <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name"></h1>
-                                    
+
                                     <div class="flex items-center justify-between flex-wrap ">
 
                                         <p class="font-sans font-bold">
@@ -197,8 +197,8 @@
 
     <script>
         function sample() {
-            const baseUrl = "http://localhost:8000";
-            // const baseUrl = "http://127.0.0.1:8000";
+            //const baseUrl = "http://localhost:8000";
+            const baseUrl = "http://127.0.0.1:8000";
             return {
 
                 products: [],
@@ -252,52 +252,52 @@
                 openModal(id) {
                     window.location.href = baseUrl + `/client/products/${id}`
                 },
-                getExtras(e) {
-                    if (e.target.value === ' ') return
+                // getExtras(e) {
+                //     if (e.target.value === ' ') return
 
-                    const id = parseInt(e.target.value)
-                    const data = this.supplies.find(item => item.id === id)
+                //     const id = parseInt(e.target.value)
+                //     const data = this.supplies.find(item => item.id === id)
 
-                    this.extras.data.push(data)
-                },
-                getTotal(price) {
+                //     this.extras.data.push(data)
+                // },
+                // getTotal(price) {
 
-                    if (this.quantity === 0 || this.extras.data === null) {
+                //     if (this.quantity === 0 || this.extras.data === null) {
 
-                        this.size = [{
-                            name: 'regular',
-                            price: price
-                        }]
-                        return this.total = price
-                    }
+                //         this.size = [{
+                //             name: 'regular',
+                //             price: price
+                //         }]
+                //         return this.total = price
+                //     }
 
-                    const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot
-                        .price), 0)
+                //     const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot
+                //         .price), 0)
 
-                    const total = (parseInt(this.size[0].price) + totalExtrasPrice) * this.quantity;
+                //     const total = (parseInt(this.size[0].price) + totalExtrasPrice) * this.quantity;
 
-                    this.total = total;
-                },
-                getSize(e, product) {
-                    if (e.target.value === 'regular') {
-                        this.size = [{
-                            name: 'regular',
-                            price: product.price
-                        }]
-                        return
-                    }
+                //     this.total = total;
+                // },
+                // getSize(e, product) {
+                //     if (e.target.value === 'regular') {
+                //         this.size = [{
+                //             name: 'regular',
+                //             price: product.price
+                //         }]
+                //         return
+                //     }
 
-                    const size = JSON.parse(product.sizes).filter((item) => item.name === e.target.value);
+                //     const size = JSON.parse(product.sizes).filter((item) => item.name === e.target.value);
 
-                    console.log(size)
+                //     console.log(size)
 
-                    this.size = size;
-                },
-                costumizeDone(e, price) {
-                    e.preventDefault();
-                    const total = this.getTotal(price);
-                    this.isDone = true;
-                }
+                //     this.size = size;
+                // },
+                // costumizeDone(e, price) {
+                //     e.preventDefault();
+                //     const total = this.getTotal(price);
+                //     this.isDone = true;
+                // }
             }
         }
     </script>

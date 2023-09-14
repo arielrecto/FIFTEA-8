@@ -49,14 +49,14 @@
                                                 @php
                                                     $extras = json_decode($c_product->extras, true);
                                                 @endphp
-                                                <td class="px-4 py-3">
+                                                {{-- <td class="px-4 py-3">
                                                     @foreach ($extras['data'] as $extra)
-                                                        {{-- <p class="flex gap-2"> --}}
+                                                        <p class="flex gap-2">
                                                         {{ $extra['name'] }} <span>price :
                                                             {{ $extra['types'][0]['pivot']['price'] }}</span>
-                                                        {{-- </p> --}}
+                                                        </p>
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
                                                 <td class="px-4 py-3">{{ $c_product->quantity }}</td>
                                                 <td class="px-4 py-3">&#8369 {{ $c_product->total }}</td>
                                                 <td class="px-4 py-3">
