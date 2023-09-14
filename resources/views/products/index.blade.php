@@ -35,18 +35,21 @@
                                 class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
                                 <img class="lg:h-80 md:h-60 w-full object-cover object-center" alt="blog"
                                     :src="product.image">
-                                <div class="p-6 bg-gradient-to-tr from-sbdlight to-white">
+                                <div class="p-3">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                        CATEGORY : <span x-text="product.categories[0].name"></span> </span></h2>
-                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3" x-text="product.name">
-                                    </h1>
+                                        <span x-text="product.categories[0].name"></span>
+                                    </h2>
+                                    <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name"></h1>
+                                    
                                     <div class="flex items-center justify-between flex-wrap ">
 
-                                        <p class="font-sans text-sbblack" x-text="product.price"></p>
+                                        <p class="font-sans font-bold">
+                                            &#8369;<span x-text="product.price"></span>
+                                        </p>
 
                                         @if (Auth::user())
                                             <button @click="openModal(product.id)"
-                                                class="text-sm text-white bg-sbgreen rounded py-1 px-4">ORDER</button>
+                                                class="text-sm rounded text-white bg-gradient-to-r from-green-400 to-blue-400 py-2 px-4">Order</button>
                                         @endif
                                         {{-- <div x-show="modal === product.id" x-transition.duration.700ms class="absolute">
                                             <div class="modal-box w-auto">
