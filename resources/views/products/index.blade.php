@@ -44,12 +44,11 @@
 
                                         <p class="font-sans text-sbblack" x-text="product.price"></p>
 
-
                                         @if (Auth::user())
                                             <button @click="openModal(product.id)"
                                                 class="text-sm text-white bg-sbgreen rounded py-1 px-4">ORDER</button>
                                         @endif
-                                        <div x-show="modal === product.id" x-transition.duration.700ms class="absolute">
+                                        {{-- <div x-show="modal === product.id" x-transition.duration.700ms class="absolute">
                                             <div class="modal-box w-auto">
                                                 <form action="{{ route('client.cart.add') }}" method="post">
                                                     <div class="flex space-x-4 items-center">
@@ -85,9 +84,9 @@
                                                                             <option :value="size.name"><span
                                                                                     x-text="size.name"></span></option>
                                                                         </template>
-                                                                        {{-- <option value="small">Small</option>
+                                                                      <option value="small">Small</option>
                                                                         <option value="medium">Medium</option>
-                                                                        <option value="large">Large</option> --}}
+                                                                        <option value="large">Large</option>
                                                                     </select>
                                                                 </div>
 
@@ -136,12 +135,12 @@
                                                                                 x-text="supply.name"></option>
                                                                         </template>
                                                                     </template>
-                                                                    {{-- <option value="Pearl">Pearl</option>
+                                                                    <option value="Pearl">Pearl</option>
                                                                     <option value="Nata De Coco">Nata De Coco</option>
                                                                     <option value="Crushed Cookies">Crushed Cookies
                                                                     </option>
                                                                     <option value="Cheesecake">Cheesecake</option>
-                                                                    <option value="Cream Puff">Cream Puff</option> --}}
+                                                                    <option value="Cream Puff">Cream Puff</option>
                                                                 </select>
                                                             </div>
                                                             <div class="flex">
@@ -182,7 +181,7 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +247,7 @@
                     }
                 },
                 openModal(id) {
-                    this.modal = id
+                    window.location.href = baseUrl + `/client/products/${id}`
                 },
                 getExtras(e) {
                     if (e.target.value === ' ') return
