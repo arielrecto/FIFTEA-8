@@ -3,7 +3,7 @@
     <x-user-header/>
 
     <section class="bg-gray-100">
-        <div class="max-w-[1300px] mx-auto px-4 pt-24">
+        <div class="max-w-[1300px] mx-auto px-4 pt-24 pb-4">
             <div class="flex items-start justify-between space-x-6">
                 <div class="w-4/6 flex flex-col space-y-4">
                     {{--
@@ -87,11 +87,12 @@
                     <div class="w-full flex items-center justify-start">
                         <h1 class="text-base font-bold">Order History</h1>
                     </div>
-                    <div class="flex flex-col space-y-2">
+
+                    <div class="min-h-[300px] h-auto flex flex-col space-y-2 px-2 py-3 rounded bg-white shadow">
 
                         @forelse ($orders as $order)
                             <div tabindex="0"
-                                class="collapse collapse-arrow border border-base-200 shadow-sm rounded bg-white">
+                                class="collapse collapse-arrow border border-gray-400 shadow-sm rounded bg-gray-200">
                                 <div class="p-4 py-2 flex items-center justify-between">
                                     <div class="flex items-center space-x-4">
                                         <p class="text-sm font-bold">{{ $order->num_ref }}</p>
@@ -130,14 +131,8 @@
 
                             </div>
                         @empty
-                            <div tabindex="0"
-                                class="collapse collapse-arrow border border-base-200 shadow-sm rounded bg-white">
-                                <div class="p-4 py-2 flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <p class="text-sm font-bold">No Oders</p>
-                                    </div>
-                                    <i class='bx bx-chevron-down text-2xl'></i>
-                                </div>
+                            <div class="h-[280px] w-full flex items-center justify-center" >
+                                <p class="text-sm font-bold text-red-600">No Oders</p>
                             </div>
                         @endforelse
 
@@ -171,7 +166,11 @@
                             <p class="text-base ">{{ $profile->user->email }}</p>
                             <p class="text-sm ">09123456789</p>
                             <div class="pt-4 flex items-start justify-center w-[80%]">
-
+                                {{-- 
+                                --------------------------------------
+                                    ADDRESS TO DITO NG CUSTOMER
+                                -------------------------------------
+                                --}}
                                 <p class="text-sm text-center"></p>
                             </div>
                         </div>
@@ -215,24 +214,3 @@
         </div>
     </section>
 </x-app-layout>
-
-{{-- <div class="w-full flex flex-wrap">
-    @forelse ($products  as $product)
-        <a href="#"
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl
-            hover:bg-gray-100 ">
-            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src="{{asset($product->image)}}" alt="">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$product->name}}</h5>
-                <p class="mb-3 font-normal text-gray-700">{!! $product->description!!}</p>
-            </div>
-        </a>
-
-    @empty
-
-        <h1>
-            Empty
-        </h1>
-    @endforelse
-</div> --}}

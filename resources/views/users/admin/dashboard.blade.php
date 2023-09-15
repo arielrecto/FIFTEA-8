@@ -43,10 +43,8 @@
                     </div>
                 </div>
 
-
-
                 <div class="w-1/3 flex flex-col ">
-                    <div class="w-full flex flex flex-col flex-wrap -m-4">
+                    <div class="w-full flex flex-col flex-wrap -m-4">
                         <div class="p-4 w-full">
                             <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
                                 <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
