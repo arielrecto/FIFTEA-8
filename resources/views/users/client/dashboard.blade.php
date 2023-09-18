@@ -41,7 +41,7 @@
                             class="w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-purple-500 to-pink-400  relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-package text-2xl text-white'></i>
-                                <p class="text-base text-white">Delivered Orders</p>
+                                <p class="text-base text-white">Confirmed Orders</p>
                             </div>
                             <div class="w-full h-2/3 flex items-center justify-start">
                                 <span class="text-2xl font-bold text-white">6</span>
