@@ -1,21 +1,12 @@
 <x-app-layout>
     <x-user-header />
     <section>
-
-
         <div class="max-w-[1300px] mx-auto px-4 pt-24" x-data="product">
             <a href="{{ route('products') }}"
                 class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
                 <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
                 back
             </a>
-            @if (Session::has('message'))
-                <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-                    class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
-                    <i class='bx bx-check-circle text-white text-xl'></i>
-                    <p class="text-white text-sm text-center">{{ Session::get('message') }}</p>
-                </div>
-            @endif
             <div class="flex items-center justify-between space-x-4 py-4">
                 <img src="{{ $product->image }}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">

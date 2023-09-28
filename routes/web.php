@@ -168,9 +168,14 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('cart')->as('cart.')->group(function () {
-            Route::post('/addToCart', [CartController::class, 'addToCart'])->name('add');
-            Route::get('/{id}', [CartController::class, 'index'])->name('index');
-            Route::get('/show/product/{id}', [CartController::class, 'showProduct'])->name('showProduct');
+            Route::controller(CartController::class)->group(function() {
+                Route::post('/addToCart', 'addToCart')->name('add');
+                Route::get('/{id}', 'index')->name('index');
+                Route::get('/show/{id}', 'showProduct')->name('showProduct');
+                Route::put('/show/{id}', 'updateCartItem')->name('updateCartItem');
+                Route::delete('/show/{id}/delete', 'deleteCartItem')->name('deleteCartItem');
+            });
+           
         });
 
         Route::resource('order', ClientOrderController::class)->only([

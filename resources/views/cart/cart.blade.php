@@ -67,7 +67,13 @@
                                                     </a>
                                                 </td>
                                                 <td class="px-4 py-3">
-                                                    <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                    <form action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">
+                                                            <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
