@@ -1,14 +1,14 @@
 <x-employee-panel>
-    <div class="w-full relative p-5 flex flex-col space-y-2" x-data="pos" x-init="getAllProducts({{ $products }})">
+    <div class="w-full p-5 flex flex-col space-y-2" x-data="pos" x-init="getAllProducts({{ $products }})">
 
-        <div class="p-4 bg-sblight py-2 w-full">
-            <h1 class="w-full flex justify-center text-white text-xl font-bold">Point of Sale</h1>
+        <div class="p-4 pb-3 bg-sbgreen py-2 w-full rounded flex items-center justify-start">
+            <h1 class="text-white text-xl font-bold">Point of Sale</h1>
         </div>
 
         <div class="w-full flex space-x-4">
 
             <div class="w-3/4 flex flex-grow">
-                <div class="w-full flex items-start justify-start flex-col space-y-1">
+                <div class="w-full flex items-start justify-start flex-col h-[590px] overflow-y-auto space-y-2">
                     <template x-for="product in products" :key="product.id">
                         <button @click="select(product)" class="w-full border border-gray-300 p-2 hover:bg-gray-300 rounded">
                             <div class="flex justify-between">
@@ -20,13 +20,13 @@
                 </div>
             </div>
 
-            <div class="w-1/4 border border-gray-300 flex flex-col">
+            <div class="w-1/4 h-fit border border-gray-300 flex flex-col rounded">
                 <div class="border-b border-gray-300 p-2">
                     <h1 class="w-full text-base text-sbgreen text-center font-bold">SELECTED PRODUCTS</h1>
                 </div>
 
                 <div class="p-2">
-                    <div class="flex flex-col space-y-1 p-1 h-96 overflow auto">
+                    <div class="flex flex-col space-y-1 p-1 h-96 overflow-y-auto">
 
                         <template x-for="item in selectedProducts" :key="item.id">
                             <button @click="remove(item)">
@@ -52,8 +52,8 @@
 
         </div>
 
-        <div class="w-1/2 bg-gradient-to-br from-sbdlight to-white shadow-2xl border border-gray-300 rounded-lg  flex flex-col gap-2 absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
-            x-show="modal" x-transition.duration.700>
+        <div class="w-1/2 bg-gradient-to-br from-sbdlight to-white shadow-2xl border border-gray-300 rounded-md  flex flex-col gap-2 absolute z-10 top-[200px] left-1/2 transform -translate-x-1/2 p-4"
+            x-show="modal">
 
             <div class="w-full flex justify-start items-center space-x-2">
                 <i class='bx bx-credit-card text-xl' ></i>

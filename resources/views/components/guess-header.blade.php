@@ -1,17 +1,19 @@
-<div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
+<div class="w-full fixed  z-50 border-b border-gray-200 bg-white shadow">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-22 lg:px-28 ">
         <div class="flex items-center py-1">
             <div class="flex items-center space-x-2">
-                <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
+                <img class="w-12 h-12" src="{{ asset('images/logo.png') }}" alt="">
                 <a class="text-xl font-sans font-semibold">Fiftea-8</a>
             </div>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">Home</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">About Us</a>
                 </div>
@@ -22,12 +24,12 @@
         <div class="hidden md:flex space-x-3">
 
             @if (Auth::user())
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
                     href="{{ Auth::user()->roles->first()->name === 'admin' ? route('admin.dashboard.index') : (Auth::user()->roles()->first()->name === 'customer' ? route('client.dashboard.index') : route('employee.dashboard.index'))}}">DASHBOARD</a>
             @else
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 "
                     href="{{ route('login') }}">LOGIN</a>
-                <a class="font-sans text-sm text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
+                <a class="font-sans text-gray-600 font-medium text-sm bg-gray-200 hover:bg-gray-300 py-2 px-4 "
                     href="{{ route('register') }}">REGISTER</a>
             @endif
 

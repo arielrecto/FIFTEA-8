@@ -8,6 +8,7 @@
         <title>Fif'tea-8</title>
 
         <link rel="icon" href="{{asset('images/logo.png')}}"/>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,5 +26,7 @@
         <div class="w-full">
             {{ $slot }}
         </div>
+
+        <x-flash-messages />
     </body>
 </html>

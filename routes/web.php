@@ -15,12 +15,17 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
+use App\Http\Controllers\HomeController;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +37,8 @@ use App\Models\Transaction;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,7 +55,7 @@ Route::get('/products', function () {
     //computation for subtotal if cart is not null
     if ($cart !== null) {
         foreach ($cart->products()->get() as $product) {
-            $subtotal = $subtotal + $product->price;
+            $subtotal = $subtotal + $product->total;
         }
     }
 
@@ -58,18 +65,19 @@ Route::get('/products', function () {
 
 Route::get('/product/data', function () {
 
-
-    $products = Product::with('categories', 'image')->get();
+    $products = Product::with('categories')->get();
     $categories = Category::get();
+    $supplies = Supply::with('types')->get();
     return response([
         'products' => $products,
-        'categories' => $categories
+        'categories' => $categories,
+        'supplies' => $supplies
     ]);
 });
 
 Route::get('product/filter/{name}', function ($name) {
 
-    $products  = Category::where('name', $name)->first()->products()->get();
+    $products = Category::where('name', $name)->first()->products()->get();
 
     return $products;
 });
@@ -96,7 +104,7 @@ Route::middleware('auth')->group(function () {
                 $orders = Order::where('status', 'processed')->get();
                 $sales = 0;
 
-                foreach($orders as $order) {
+                foreach ($orders as $order) {
                     $sales = $sales + $order->total;
                 }
 
@@ -105,36 +113,45 @@ Route::middleware('auth')->group(function () {
             })->name('index');
         });
 
+        Route::prefix('supply')->as('supply.')->group(function () {
+            Route::resource('type', TypeController::class);
+        });
+
         Route::resource('order', OrderController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('category', CategoryController::class);
         Route::resource('products', ProductController::class);
         Route::resource('supply', SupplyController::class);
         Route::resource('employee', EmployeeController::class);
+        Route::resource('profile', ProfileController::class)->except('destroy', 'index');
     });
 
-    Route::middleware('role:employee')->prefix('employee')->as('employee.')->group(function () {
+    Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
 
-        Route::prefix('dashboard')->as('dashboard.')->group(function(){
-            Route::get('/', function(){
+        Route::prefix('dashboard')->as('dashboard.')->group(function () {
+            Route::get('/', function () {
                 return view('users.employee.dashboard');
             })->name('index');
         });
 
-        Route::prefix('pos')->as('pos.')->group(function(){
-            Route::get('/', function(){
+        Route::prefix('pos')->as('pos.')->group(function () {
+            Route::get('/', function () {
                 $products = Product::get();
                 return view('users.employee.PointOfSale.index', compact(['products']));
             })->name('index');
         });
 
-        Route::prefix('order')->as('order.')->group(function(){
+        Route::prefix('order')->as('order.')->group(function () {
             Route::post('/approve/{id}', [EmployeeOrderController::class, 'approved'])->name('approved');
         });
 
 
         Route::resource('transaction', EmployeeTransactionController::class)->only([
-            'index', 'create', 'update', 'edit', 'store'
+            'index',
+            'create',
+            'update',
+            'edit',
+            'store'
         ]);
         Route::resource('supply', EmployeeSupplyController::class)->only([
             'index'
@@ -147,22 +164,28 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:customer')->prefix('client')->as('client.')->group(function () {
 
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
-            Route::get('/', function () {
-                $products = Product::with('categories')->geT();
-                return view('users.client.dashboard', compact(['products']));
-            })->name('index');
+            Route::get('/', [DashboardController::class, 'index'])->name('index');
         });
 
         Route::prefix('cart')->as('cart.')->group(function () {
-            Route::post('/addToCart', [CartController::class, 'addToCart'])->name('add');
-            Route::get('/{id}', [CartController::class, 'index'])->name('index');
+            Route::controller(CartController::class)->group(function() {
+                Route::post('/addToCart', 'addToCart')->name('add');
+                Route::get('/{id}', 'index')->name('index');
+                Route::get('/show/{id}', 'showProduct')->name('showProduct');
+                Route::put('/show/{id}', 'updateCartItem')->name('updateCartItem');
+                Route::delete('/show/{id}/delete', 'deleteCartItem')->name('deleteCartItem');
+            });
+           
         });
 
         Route::resource('order', ClientOrderController::class)->only([
-            'index', 'create', 'store'
+            'index',
+            'create',
+            'store'
         ]);
+        Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
-            'index'
+            'index', 'show'
         ]);
     });
 });

@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->default('P123.jpg');
             $table->string('last_name');
             $table->string('middle_name')->nullable();
             $table->string('first_name');

@@ -3,8 +3,8 @@
     'subtotal' => $subtotal,
 ])
 
-<div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
-    <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-22 lg:px-28 ">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white">
+    <div class="navbar flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
                 <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
@@ -14,9 +14,11 @@
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">Home</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
+
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">About Us</a>
                 </div>
@@ -56,7 +58,7 @@
                         </div>
                     </div>
                 @endif
-                
+
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
@@ -68,7 +70,7 @@
 
                         <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
 
-                        {{-- <a class="rounded-md hover:bg-gray-200 py-1 px-2">Settings</a> --}}
+                        <a href="{{ route('client.dashboard.index') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Dashboard</a>
 
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -81,9 +83,9 @@
             </div>
         @else
             <div class="hidden md:flex space-x-3">
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans  text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
                     href="{{ route('login') }}">LOGIN</a>
-                <a class="font-sans text-sm text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
+                <a class="font-sans text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth

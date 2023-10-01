@@ -18,27 +18,19 @@ class StoreProductAction
 
         $category = Category::where('name' , $request->category)->first();
 
-
+        $filename = 'product' . uniqid() . '.' . $request->image->extension();
 
         $product = Product::create([
+            'image' =>  'storage/product/image/' . $filename,
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price
+            'price' => $request->price,
+            'sizes'=> $request->sizes
         ]);
 
 
         $product->categories()->attach($category->id);
 
-        $filename = 'product' . uniqid() . '.' . $request->image->extension();
-
-
-        $productImage = ProductImage::create([
-            'name' => $filename,
-            'url' => asset(
-                'storage/product/image/' . $filename,
-            ),
-            'product_id' => $product->id
-        ]);
 
         $request->image->storeAs('public/product/image/' . $filename);
     }

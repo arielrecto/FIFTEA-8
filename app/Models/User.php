@@ -48,5 +48,7 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(Profile::class);
     }
-
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
 }

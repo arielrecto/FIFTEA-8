@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -12,7 +13,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+
+        $transactions = Transaction::with('order.cart')->get();
+        $totalOnline = $this->getTotalTransactionByOrderType($transactions->toArray(), 'online');
+        $totalWalkin = $this->getTotalTransactionByOrderType($transactions->toArray(), 'walk_in');
+
+        return view('users.admin.transaction.index', compact(['transactions', 'totalOnline', 'totalWalkin']));
     }
 
     /**
@@ -61,5 +67,18 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    private function getTotalTransactionByOrderType($transactions, $type){
+
+        $total = 0;
+
+        foreach($transactions as $transaction) {
+
+            if($transaction['order']['type'] === $type){
+                $total = $total + 1;
+            }
+        }
+
+        return $total;
     }
 }

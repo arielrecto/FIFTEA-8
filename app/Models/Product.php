@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'image',
         'name',
         'description',
-        'price'
+        'price',
+        'sizes'
     ];
 
     public function orders()
@@ -29,7 +32,7 @@ class Product extends Model
     public function image() {
         return $this->hasOne(ProductImage::class);
     }
-    public function carts(){
-        return $this->belongsToMany(Cart::class);
+    public function cart(){
+        return $this->hasOne(CartProduct::class);
     }
 }

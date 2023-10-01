@@ -32,14 +32,16 @@
 
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="font-sans">
+    <div class="min-h-screen">
 
         <main>
             {{ $slot }}
         </main>
 
     </div>
+
+    <x-flash-messages />
 
     @stack('js')
 </body>
