@@ -42,14 +42,14 @@ class TransactionController extends Controller
 
         $products = $request->products;
 
-        foreach($products as $product){
-            $cart->products()->attach($product['id'],  [
-                'size' => 'medium',
-                'sugar_level' => '80%',
-                'quantity' => 1,
-                'extras' => 'extras'
-            ]);
-        }
+        // foreach($products as $product){
+        //     $cart->products()->attach($product['id'],  [
+        //         'size' => 'medium',
+        //         'sugar_level' => '80%',
+        //         'quantity' => 1,
+        //         'extras' => 'extras'
+        //     ]);
+        // }
         $order = Order::create([
             'num_ref' => $num_order,
             'user_id' => $user->id,
