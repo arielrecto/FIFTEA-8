@@ -41,12 +41,12 @@
 
         <x-employee-header />
 
-        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 pt-16">
+        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 relative">
             <div class="w-1/6 h-full sticky top-0">
                 <x-employee-siderbar/>
             </div>
 
-            <main class="w-5/6">
+            <main class="w-5/6 pt-16">
                 {{ $slot }}
             </main>
         </div>

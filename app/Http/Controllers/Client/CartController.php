@@ -34,7 +34,8 @@ class CartController extends Controller
             'price' => $request->price,
             'cart_product_no' => $cart_product_id
         ]);
-        return back()->with(['message' => 'Product added to your Cart']);
+        
+        return redirect()->route('products')->with(['success' => 'Product has been added to your Cart']);
     }
     public function index($id) {
         $cart = Cart::where('id', $id)->with('products')->first();
@@ -57,5 +58,37 @@ class CartController extends Controller
         }
 
         return view('cart.products.show', compact(['cart', 'subTotal', 'c_product']));
+    }
+
+    public function updateCartItem(Request $request, $itemId) {
+
+        // dd($request->all());
+
+        $c_product = CartProduct::find($itemId);
+
+        $updated = $c_product->update([
+                'size' => $request->size,
+                'quantity' => $request->quantity,
+                'total' => $request->quantity * $c_product->price
+            ]);
+
+        if ($updated) {
+            return redirect()->back()->with(['success' => 'Cart Item has been updated']);
+        } else {
+            return redirect()->back()->with(['error' => 'Cart Item cannot been updated']);    
+        }
+
+    }
+
+    public function deleteCartItem($itemId) {
+        $c_product = CartProduct::find($itemId);
+
+        $deleted = $c_product->delete();
+
+        if ($deleted) {
+            return redirect()->back()->with(['success' => 'Cart Item has been deleted']);
+        } else {
+            return redirect()->back()->with(['error' => 'Cart Item cannot been deleted']);    
+        }
     }
 }

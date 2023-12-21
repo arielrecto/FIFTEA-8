@@ -22,19 +22,22 @@
                     <div class="flex items-center space-x-4 p-4 border bordergray-200 rounded-md shadow">
                         <img src="{{asset($c_product->product->image)}}" alt=""
                         class="w-48 h-48 border border-gray-200">
-                        <form action="" class="flex flex-col space-y-4">
+                        <form action="{{ route('client.cart.updateCartItem', $c_product->id) }}" method="POST" class="flex flex-col space-y-4">
+                            @csrf
+                            @method('PUT')
                             <div class="flex items-center space-x-4">
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">SIZE</label>
-                                    <select name="" id="" class="text-sm rounded border border-gray-300 px-3 w-[200px]">
-                                        <option value="">Small</option>
-                                        <option value="">Medium</option>
-                                        <option value="">Large</option>
+                                    <select name="size" id="" class="text-sm rounded border border-gray-300 px-3 w-[200px]" value="{{ $c_product->size }}">
+                                        <option value="small" {{ $c_product->size === 'small' ? 'selected' : '' }}>Small</option>
+                                        <option value="medium" {{ $c_product->size === 'medium' ? 'selected' : '' }}>Medium</option>
+                                        <option value="regular" {{ $c_product->size === 'regular' ? 'selected' : '' }}>Regular</option>
+                                        <option value="large" {{ $c_product->size === 'large' ? 'selected' : '' }}>Large</option>
                                     </select>
                                 </div>
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">EXTRAS</label>
-                                    <select name="" id="" class="text-sm rounded border border-gray-300 px-3 w-[200px]">
+                                    <select name="extras" id="" class="text-sm rounded border border-gray-300 px-3 w-[200px]">
                                         <option value="">Extra 1</option>
                                         <option value="">Extra 1</option>
                                         <option value="">Extra 1</option>
@@ -42,7 +45,7 @@
                                 </div>
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
-                                    <input type="number" class="text-sm rounded border border-gray-300 px-3 w-[200px]">
+                                    <input type="number" name="quantity" class="text-sm rounded border border-gray-300 px-3 w-[200px]" value="{{ $c_product->quantity }}">
                                 </div>
                             </div>
                             <div class="flex items-center justify-start">

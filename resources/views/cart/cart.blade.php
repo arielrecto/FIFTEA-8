@@ -67,7 +67,13 @@
                                                     </a>
                                                 </td>
                                                 <td class="px-4 py-3">
-                                                    <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                    <form action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">
+                                                            <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -130,31 +136,30 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="flex flex-col gap-2 py-2" x-show="toggle" x-transition.duration.700ms>
+                                <div class="flex flex-col space-y-4 py-2" x-show="toggle" x-transition.duration.700ms>
                                     <div class="w-full flex justify-center">
                                         <img src="{{ asset('images/QR-2.png') }}" alt=""
                                             class="object object-center w-1/2 h-1/2">
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-400">Gcash ref #</label>
-                                        <input type="text" class="input input-accent" name="qr_ref"
-                                            placeholder="Ref #">
+                                        <label for="" class="text-sm ">GCASH REFERENCE NUMBER</label>
+                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded" name="qr_ref"
+                                            placeholder="reference number">
                                         @if ($errors->has('qr_ref'))
                                             <p class="text-xs text-error">{{ $errors->first('qr_ref') }}</p>
                                         @endif
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-400">Upload Image Reciept</label>
-                                        <input type="file" name="image"
-                                            class="file-input file-input-bordered file-input-accent w-full" />
+                                        <label for="" class="text-sm ">UPLOAD RECEIPT IMAGE</label>
+                                        <input type="file" name="image" class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
                                         @if ($errors->has('image'))
                                             <p class="text-xs text-error">{{ $errors->first('image') }}</p>
                                         @endif
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-400">Amount</label>
-                                        <input type="text" class="input input-accent" name="amount"
-                                            placeholder="Amount">
+                                        <label for="" class="text-sm ">AMOUNT</label>
+                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded" name="amount"
+                                        placeholder="amount">
                                         @if ($errors->has('amount'))
                                             <p class="text-xs text-error">{{ $errors->first('amount') }}</p>
                                         @endif

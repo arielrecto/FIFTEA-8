@@ -26,5 +26,7 @@
         <div class="w-full">
             {{ $slot }}
         </div>
+
+        <x-flash-messages />
     </body>
 </html>

@@ -41,6 +41,8 @@
 
     </div>
 
+    <x-flash-messages />
+
     @stack('js')
 </body>
 

@@ -10,12 +10,12 @@
         
         <div class="w-full flex flex-col">
             <div class="w-full overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300 ">
+                <table class="w-full border-collapse border border-gray-300 bg-white shadow rounded-md">
                     <thead>
-                        <tr class="bg-sblight ">
-                            <th class="poppins text-white text-sm border border-gray-300 px-4 py-2 text-center">NAME</th>
-                            <th class="poppins text-white text-sm border border-gray-300 px-4 py-2 text-center">EMAIL</th>
-                            <th class="poppins text-white text-sm border border-gray-300 px-4 py-2 text-center">ROLE</th>
+                        <tr class="bg-gray-100">
+                            <th class="poppins  text-sm border border-gray-300 px-4 py-2 text-center">NAME</th>
+                            <th class="poppins text-sm border border-gray-300 px-4 py-2 text-center">EMAIL</th>
+                            <th class="poppins text-sm border border-gray-300 px-4 py-2 text-center">ROLE</th>
                         </tr>
                     </thead>
                     <tbody>

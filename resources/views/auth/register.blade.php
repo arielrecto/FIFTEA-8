@@ -191,7 +191,7 @@
     </div>
     <script>
         window.register = () => {
-            const baseUrl = "http://localhost:8000";
+            const baseUrl = "http://127.0.0.1:8000";
             return {
                 currentPhase: 'profile',
                 phases: ['profile', 'address', 'account'],

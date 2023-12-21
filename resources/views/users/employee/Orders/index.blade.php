@@ -11,9 +11,9 @@
                 <span>{{ Session::get('message') }}</span>
             </div>
         @endif
-        <div class="w-full">
-            <h1 class="text-xl text-center font-bold">
-                Orders - Online
+        <div class="w-full flex items-center justify-start py-2 bg-sbgreen px-4 rounded">
+            <h1 class="text-xl text-center font-bold text-white">
+                Online Orders
             </h1>
         </div>
         <div class="relative overflow-x-auto">
