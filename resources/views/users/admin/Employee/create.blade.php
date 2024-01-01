@@ -43,11 +43,11 @@
                     <div class="flex flex-col space-y-1">
                         <label for="password" class="text-sm">PASSWORD</label>
                         <input type="password" name="password" class="rounded px-4 border border-gray-300" id="password">
-                        @error('unit')
+                        @error('password')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
-            
+
                 </div>
 
                 <div>
@@ -56,7 +56,7 @@
                         save
                     </button>
                 </div>
-                
+
             </form>
         </div>
     </div>

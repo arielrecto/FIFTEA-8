@@ -60,11 +60,14 @@
                                             </form>
 
                                             <div>
-                                                <label for="my-modal" class="p-0 m-0">
-                                                    <i
-                                                        class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
-                                                </label>
-                                                <input type="checkbox" id="my-modal" class="modal-toggle" />
+                                                <a href="{{route('admin.products.edit', ['product' => $product->id])}}">
+                                                    <label for="my-modal" class="p-0 m-0">
+                                                        <i
+                                                            class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
+                                                    </label>
+                                                </a>
+
+                                                {{-- <input type="checkbox" id="my-modal" class="modal-toggle" />
                                                 <div class="modal">
                                                     <div class="modal-box">
 
@@ -76,7 +79,7 @@
                                                             <label for="my-modal" class="btn">Yay!</label>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </td>

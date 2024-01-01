@@ -18,13 +18,6 @@
                         <i class='bx bx-left-arrow-alt text-2xl text-gray-500 hover:text-gray-800'></i>
                     </a>
                 </div>
-                <div>
-                    <a href="{{ route('admin.supply.type.create') }}"
-                        class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
-                        <i class='bx bx-save mr-2'></i>
-                        Add Supply Type
-                    </a>
-                </div>
             </div>
 
             <div class="flex flex-col border-b border-gray-400 pb-2">
@@ -94,11 +87,18 @@
                     </template>
                 </div>
 
-                <div>
+                <div class="flex justify-between">
                     <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
                         <i class='bx bx-save mr-2'></i>
                         save
                     </button>
+                    <div>
+                        <a href="{{ route('admin.supply.type.create') }}"
+                            class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
+                            <i class='bx bx-save mr-2'></i>
+                            Add Supply Type
+                        </a>
+                    </div>
                 </div>
 
             </form>

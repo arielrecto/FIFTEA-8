@@ -8,7 +8,7 @@
                         <tr>
                             <th class="px-4 py-2 bg-gray-100 text-left">ID</th>
                             <th class="px-4 py-2 bg-gray-100 text-left">Order Id</th>
-                            {{-- <th class="px-4 py-2 bg-gray-100">Action</th> --}}
+                            <th class="px-4 py-2 bg-gray-100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -17,11 +17,13 @@
                         <tr>
                             <td class="px-4 text-sm py-2">{{$transaction->transaction_ref}}</td>
                             <td class="px-4 text-sm py-2">{{$transaction->order->num_ref}}</td>
-                            {{-- <td class="px-4 py-2">
-                                <a href="#" class="text-blue-500 hover:underline">
-                                    <button class="px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded">View</button>
+                            <td class="px-4 py-2">
+                                <a href="{{route('admin.transaction.show', ['transaction' => $transaction->id])}}" class="text-blue-500 hover:underline">
+                                    <button class="px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded">
+                                        <i class="fi fi-rr-eye"></i>
+                                    </button>
                                 </a>
-                            </td> --}}
+                            </td>
                         </tr>
                         @empty
                         <tr>

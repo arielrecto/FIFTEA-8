@@ -42,7 +42,9 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $transaction = Transaction::whereId($id)->with(['order.user'])->first();
+
+       return view('users.admin.transaction.show', compact(['transaction']));
     }
 
     /**
