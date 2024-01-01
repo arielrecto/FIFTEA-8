@@ -8,7 +8,7 @@
 
     <title>Fif'tea-8</title>
 
-    <link rel="icon" href="{{asset('images/logo.png')}}"/>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -33,12 +33,10 @@
 </head>
 
 <body class="font-sans">
-    <div class="min-h-screen">
-
+    <div class="overflow-x-hidden w-full min-h-screen">
         <main>
             {{ $slot }}
         </main>
-
     </div>
 
     <x-flash-messages />
