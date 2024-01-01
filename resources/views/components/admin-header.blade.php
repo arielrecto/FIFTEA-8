@@ -14,9 +14,9 @@
                         <p class="font-sans text-base">Products</p>
                     </a>
                 @endif --}}
-                <a href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
+                {{-- <a href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
                     <p class="font-sans text-base">About Us</p>
-                </a>
+                </a> --}}
             </div>
         </div>
 
