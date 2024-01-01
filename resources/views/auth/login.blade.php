@@ -3,8 +3,8 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
 
-    <div class="w-full flex flex-col space-y-6 items-center justify-center pt-32">
-        <div class="flex flex-col items-center space-y-4 w-96">
+    <div class="bg-white w-full h-screen flex flex-col space-y-6 items-center justify-center pt-10 md:pt-32 px-4">
+        <div class="flex flex-col items-center space-y-4 w-full md:w-96">
             <div class="w-32 rounded-full">
                 <img src="{{asset('images/logo.png')}}" />
             </div>
@@ -13,7 +13,7 @@
                 <p class="text-gray-500 text-sm text-center">Please log in to your account.</p>
             </div>
         </div>
-        <form method="POST" action="{{ route('login') }}" class="w-96">
+        <form method="POST" action="{{ route('login') }}" class="w-full md:w-96">
             @csrf
 
             <!-- Email Address -->

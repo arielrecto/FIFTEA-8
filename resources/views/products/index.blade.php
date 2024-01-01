@@ -5,7 +5,7 @@
         @else
             <x-header :cart="$cart" :subtotal="$subtotal" />
         @endif
-        <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24">
+        <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24 bg-white h-screen">
 
             {{-- x-init="actions.fetchProduct" --}}
             <div class="flex w-full flex-col space-y-2" x-data="sample" x-init="fetchProduct">
