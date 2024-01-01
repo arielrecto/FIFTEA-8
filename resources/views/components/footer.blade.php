@@ -1,12 +1,12 @@
 <footer class="" >
     <div class="bg-gray-100">
         <div class="max-w-[1300px] mx-auto px-4">
-            <div class="w-full flex items-start justify-between py-12">
+            <div class="w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between py-12 space-y-4 md:space-y-0">
                 <div class="flex items-center space-x-2">
                     <img class="w-12 h-12" src="{{ asset('images/logo.png') }}" alt="">
                     <a class="text-xl font-sans font-semibold">Fiftea-8</a>
                 </div>
-                <div class="flex flex-col space-y-1 ">
+                <div class="flex flex-col space-y-1 text-center md:text-left ">
                     <p class="text-sm font-medium text-gray-600">Brgy. San Nicolas III, Bacoor City</p>
                     <p class="text-sm font-medium text-gray-600">fiftea8@sampleemail.com</p>
                     <p class="text-sm font-medium text-gray-600">09123456789</p>
@@ -37,5 +37,5 @@
             </div>
         </div>
     </div>
-    
+
 </footer>

@@ -2,30 +2,30 @@
     <section class="p-5 flx flex-col space-y-5">
         <div class="flex items-start space-x-4">
             <div class="w-3/4 py-4 px-2">
-                <table class="min-w-full bg-white shadow-lg rounded-sm border border-gray-200">
+                <table class="min-w-full bg-white border border-gray-200">
                     <!-- Head -->
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 bg-gray-100">ID</th>
-                            <th class="px-4 py-2 bg-gray-100">Order Id</th>
-                            <th class="px-4 py-2 bg-gray-100">Action</th>
+                            <th class="px-4 py-2 bg-gray-100 text-left">ID</th>
+                            <th class="px-4 py-2 bg-gray-100 text-left">Order Id</th>
+                            {{-- <th class="px-4 py-2 bg-gray-100">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Rows -->
                         @forelse ($transactions as $transaction)
                         <tr>
-                            <td class="px-4 py-2">{{$transaction->transaction_ref}}</td>
-                            <td class="px-4 py-2">{{$transaction->order->num_ref}}</td>
-                            <td class="px-4 py-2">
+                            <td class="px-4 text-sm py-2">{{$transaction->transaction_ref}}</td>
+                            <td class="px-4 text-sm py-2">{{$transaction->order->num_ref}}</td>
+                            {{-- <td class="px-4 py-2">
                                 <a href="#" class="text-blue-500 hover:underline">
                                     <button class="px-2 py-1 bg-blue-200 hover:bg-blue-300 rounded">View</button>
                                 </a>
-                            </td>
+                            </td> --}}
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="3" class="px-4 py-2 text-red-600 text-center">No Item</td>
+                            <td colspan="3" class="px-4 py-2 text-red-600 text-left">No Item</td>
                         </tr>
                         @endforelse
                     </tbody>

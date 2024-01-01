@@ -1,9 +1,9 @@
 <x-guess-header />
 
-<section class="text-gray-600 body-font ">  {{--bg-gradient-to-tr from-sbdlight to-white--}}
-    <div class="h-[700px] max-w-[1300px] mx-auto flex items-center px-4 pt-[90px]">
-       
-        <div class="w-2/5 flex flex-col space-y-5 justify-start">
+<section class="text-gray-600 body-font py-12 md:py-0">  {{--bg-gradient-to-tr from-sbdlight to-white--}}
+    <div class="md:h-[700px] w-full max-w-[1300px] mx-auto flex flex-col md:flex-row items-center px-4 pt-[90px]">
+
+        <div class="w-full md:w-2/5 flex flex-col space-y-5 justify-start items-center">
             <h2 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="200"
                 class="font-sans text-2xl font-semibold text-yellow-700">
                 Experience
@@ -35,23 +35,23 @@
             </div>
         </div>
 
-        <div class="w-3/5 h-full ">
+        <div class="w-full md:w-3/5 h-full hidden md:block">
             <div class="w-full h-full flex items-center justify-end space-x-2">
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300"
-                    class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded" 
+                    class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded"
                     alt="hero" src="{{ asset('images/girl.jpg') }}">
                 </div>
 
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-down" data-aos-duration="2000" data-aos-delay="400"
-                    class="w-[250px] h-[450px] object-cover object-center shadow-md bg-white rounded" 
+                    class="w-[250px] h-[450px] object-cover object-center shadow-md bg-white rounded"
                     alt="hero" src="{{ asset('images/single.jpg') }}">
                 </div>
 
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
-                    class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded" 
+                    class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded"
                     alt="hero" src="{{ asset('images/with-hand.jpg') }}">
                 </div>
             </div>
