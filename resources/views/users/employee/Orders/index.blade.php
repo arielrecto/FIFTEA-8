@@ -33,7 +33,7 @@
                             Price
                         </th>
                         <th>
-                            Payment
+                            Details
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -60,8 +60,11 @@
                                 $payment = json_encode($order->payment);
                             @endphp
                             <td class="px-6 py-4">
-                                <button class="btn btn-ghost"
-                                    @click="openPaymentData({{ $payment }})">view</button>
+                                <a href="{{route('employee.order.show', ['order' => $order->id])}}" class="btn btn-ghost">
+                                    <i class="fi fi-rr-eye"></i>
+                                </a>
+                                {{-- <button class="btn btn-ghost"
+                                    @click="openPaymentData({{ $payment }})">view</button> --}}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
@@ -72,9 +75,13 @@
                                             <box-icon name='check'></box-icon>
                                         </button>
                                     </form>
-                                    <button>
-                                        <box-icon name='x'></box-icon>
-                                    </button>
+                                    <form action="{{route('employee.order.destroy', ['order' => $order->id])}}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button>
+                                            <box-icon name='x'></box-icon>
+                                        </button>
+                                    </form>
                                 </div>
 
                             </td>
@@ -114,7 +121,7 @@
                 document.getElementById('alert').remove();
             }, 3000);
         </script>
-        <script>
+        {{-- <script>
             function payment() {
                 return {
                     paymentData: null,
@@ -124,6 +131,6 @@
                     }
                 }
             }
-        </script>
+        </script> --}}
     @endpush
 </x-employee-panel>

@@ -33,6 +33,13 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'email' => 'required|unique:users,email',
+            'name' => 'required',
+            'password' => 'required'
+        ]);
+
         $employee = User::create([
             'name' => $request->name,
             'email' => $request->email,

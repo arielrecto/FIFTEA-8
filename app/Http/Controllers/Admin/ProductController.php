@@ -54,7 +54,14 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        $categories = Category::get();
+
+
+
+
+        return view('users.admin.product.edit', compact(['product', 'categories']));
     }
 
     /**
@@ -62,7 +69,36 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+
+        if ($request->category !== null) {
+            $category = Category::where('name', $request->category)->first();
+        }
+
+
+        if ($request->image !== null) {
+            $filename = 'product' . uniqid() . '.' . $request->image->extension();
+        }
+
+        $product = Product::find($id);
+
+        $product->update([
+            'image' =>  $request->image !== null ?  'storage/product/image/' . $filename : $product->image,
+            'name' =>  $request->name !== null ? $request->name : $product->name,
+            'description' => $request->description !== "<p><br></p>"? $request->description : $product->description,
+            'price' => $request->price !== null ? $request->price : $product->price,
+            'sizes' => $request->sizes !== "[]" ? $request->sizes : $product->sizes
+        ]);
+
+        if ($request->category !== null) {
+            $product->categories()->attach($category->id);
+        }
+
+        if ($request->image !== null) {
+            $request->image->storeAs('public/product/image/' . $filename);
+        }
+
+        return back()->with(['message' => 'product updated']);
     }
 
     /**

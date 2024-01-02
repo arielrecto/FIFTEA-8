@@ -13,6 +13,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Admin\SupplyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TypeController;
@@ -95,22 +96,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function () {
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
-            Route::get('/', function () {
-                $totalSupplies = Supply::get()->count();
-                $onlineOrder = Order::where('type', 'online')->where('status', 'processed')->count();
-                $walkinOrder = Order::where('type', 'walk_in')->where('status', 'processed')->count();
-                $transactions = Transaction::get()->count();
-
-                $orders = Order::where('status', 'processed')->get();
-                $sales = 0;
-
-                foreach ($orders as $order) {
-                    $sales = $sales + $order->total;
-                }
-
-                $registeredCustomer = User::role('customer')->get()->count();
-                return view('users.admin.dashboard', compact(['totalSupplies', 'onlineOrder', 'walkinOrder', 'registeredCustomer', 'transactions', 'sales']));
-            })->name('index');
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
         });
 
         Route::prefix('supply')->as('supply.')->group(function () {
@@ -157,7 +143,7 @@ Route::middleware('auth')->group(function () {
             'index'
         ]);
         Route::resource('order', EmployeeOrderController::class)->only([
-            'index'
+            'index', 'show', 'destroy'
         ]);
     });
 
@@ -175,7 +161,7 @@ Route::middleware('auth')->group(function () {
                 Route::put('/show/{id}', 'updateCartItem')->name('updateCartItem');
                 Route::delete('/show/{id}/delete', 'deleteCartItem')->name('deleteCartItem');
             });
-           
+
         });
 
         Route::resource('order', ClientOrderController::class)->only([

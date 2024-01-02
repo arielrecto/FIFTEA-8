@@ -41,7 +41,9 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::whereId($id)->with(['payment'])->first();
+
+        return view('users.employee.Orders.show', compact(['order']));
     }
 
     /**
@@ -65,7 +67,16 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $order = Order::find($id);
+
+
+        $order->update([
+            'status' => 'reject'
+        ]);
+
+
+        return back()->with(['message' => 'order deleted']);
+
     }
     public function approved($id) {
         $order = Order::find($id);

@@ -16,7 +16,7 @@ class Cart extends Model
 
     public function products()
     {
-        return $this->hasMany(CartProduct::class);
+        return $this->hasMany(CartProduct::class)->with(['product']);
     }
     public function order()
     {
