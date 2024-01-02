@@ -3,8 +3,8 @@
         @if (Auth::check() && Auth::user()->hasRole('admin'))
             <x-admin-header />
         @else
-            {{-- <x-header :cart="$cart" :subtotal="$subtotal" /> --}}
-            <x-guest-header />
+            <x-header :cart="$cart" :subtotal="$subtotal" />
+            {{-- <x-guest-header /> --}}
         @endif
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24 bg-white h-screen">
 
@@ -40,7 +40,8 @@
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         <span x-text="product.categories[0].name"></span>
                                     </h2>
-                                    <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name"></h1>
+                                    <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name">
+                                    </h1>
 
                                     <div class="flex items-center justify-between flex-wrap ">
 
