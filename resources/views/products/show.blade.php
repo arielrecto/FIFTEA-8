@@ -49,13 +49,14 @@
                         </div>
                     </div>
                     <div class="flex items-start space-x-8">
-                        <div class="flex flex-col space-y-1">
+                        <div class="flex flex-col space-y-1" x-init="initSetSizes({{$sizes}})">
                             <label for="" class="text-base font-semibold">Size</label>
                             <select name="size" id=""
-                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300">
-                                <option value="small">Small</option>
-                                <option value="Regular">Regular</option>
-                                <option value="large">Large</option>
+                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300" @change="changeProductPriceBySize($event)">
+                                <option selected value="">Select Size</span></option>
+                                <template x-for="size in sizes" :id="size.id">
+                                    <option :value="size.name"><span x-text="size.name"></span></option>
+                                </template>
                             </select>
                         </div>
                         <div class="flex flex-col space-y-1">
@@ -97,8 +98,14 @@
             function product() {
                 return {
                     price: 0,
+                    prev_price : 0,
                     total: 0,
                     quantity: 1,
+                    sizes : [],
+                    initSetSizes(sizes){
+                        console.log(sizes);
+                         this.sizes = [...sizes]
+                    },
                     changeQuantity(e, operator) {
                         e.preventDefault();
                         if (operator.toLowerCase() === 'add') {
@@ -112,10 +119,23 @@
                     },
                     initPrice(price) {
                         this.price = price
+                        this.prev_price = price
                         this.totalPrice()
                     },
                     totalPrice() {
                         this.total = this.price * this.quantity
+                    },
+                    changeProductPriceBySize(e){
+                        const name = e.target.value;
+                        if(name == ''){
+                            this.price = this.prev_price
+                            this.totalPrice()
+                            return
+                        }
+                        const size = this.sizes.find((size) => size.name  === name);
+                        this.price = size.price;
+
+                        this.totalPrice()
                     }
                 }
             }

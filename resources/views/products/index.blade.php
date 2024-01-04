@@ -3,8 +3,8 @@
         @if (Auth::check() && Auth::user()->hasRole('admin'))
             <x-admin-header />
         @else
-            {{-- <x-header :cart="$cart" :subtotal="$subtotal" /> --}}
-            <x-guest-header />
+            <x-header :cart="$cart" :subtotal="$subtotal" />
+
         @endif
         <div class="container mx-auto flex px-5 md:px-22 lg:px-28 pt-24 bg-white h-screen">
 
@@ -198,8 +198,8 @@
 
     <script>
         function sample() {
-            const baseUrl = "http://localhost:8000";
-            // const baseUrl = "http://127.0.0.1:8000";
+            // const baseUrl = "http://localhost:8000";
+            const baseUrl = "http://127.0.0.1:8000";
             return {
 
                 products: [],
