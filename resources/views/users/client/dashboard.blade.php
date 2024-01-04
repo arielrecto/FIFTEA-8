@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <x-user-header/>
+    <x-user-header />
 
     <section class="bg-gray-100">
         <div class="max-w-[1300px] mx-auto px-4 pt-24 pb-4">
@@ -131,7 +131,7 @@
 
                             </div>
                         @empty
-                            <div class="h-[280px] w-full flex items-center justify-center" >
+                            <div class="h-[280px] w-full flex items-center justify-center">
                                 <p class="text-sm font-bold text-red-600">No Oders</p>
                             </div>
                         @endforelse
@@ -150,31 +150,35 @@
                     <div class="w-full flex items-center justify-start">
                         <h1 class="text-base font-bold">Profile</h1>
                     </div>
-                    <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
-                        <div class="w-full h-fit relative ">
-                            <a href="{{route('profile.edit')}}">
-                                <i
-                                    class='bx bx-edit-alt text-xl px-1 opacity-80 top-4 right-4 absolute
-                                 bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
-                            </a>
-                            <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
-                            <img src="{{ asset('storage/profile/' . $profile->image) }}" alt=""
-                                class="w-36 h-36 rounded-full absolute border border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
-                        </div>
-                        <div class="pt-20 flex flex-col items-center justify-start">
-                            <p class="text-xl font-bold">{{ $profile->first_name . ' ' . $profile->last_name }}</p>
-                            <p class="text-base ">{{ $profile->user->email }}</p>
-                            <p class="text-sm ">09123456789</p>
-                            <div class="pt-4 flex items-start justify-center w-[80%]">
-                                {{-- 
-                                --------------------------------------
-                                    ADDRESS TO DITO NG CUSTOMER
-                                -------------------------------------
-                                --}}
-                                <p class="text-sm text-center"></p>
+
+                    @if ($profile)
+                        <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
+                            <div class="w-full h-fit relative ">
+                                <a href="{{ route('profile.edit') }}">
+                                    <i
+                                        class='bx bx-edit-alt text-xl px-1 opacity-80 top-4 right-4 absolute
+                                    bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
+                                </a>
+                                <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
+                                <img src="{{ $profile->image ? asset('storage/profile/' . $profile->image) : '' }}"
+                                    alt=""
+                                    class="w-36 h-36 rounded-full absolute border border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
+                            </div>
+                            <div class="pt-20 flex flex-col items-center justify-start">
+                                <p class="text-xl font-bold">{{ $profile->first_name . ' ' . $profile->last_name }}</p>
+                                <p class="text-base ">{{ $profile->user->email }}</p>
+                                <p class="text-sm ">09123456789</p>
+                                <div class="pt-4 flex items-start justify-center w-[80%]">
+                                    {{--
+                                    --------------------------------------
+                                        ADDRESS TO DITO NG CUSTOMER
+                                    -------------------------------------
+                                    --}}
+                                    <p class="text-sm text-center"></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
 
                     @if ($cart !== null)
                         <div class="w-full flex items-center justify-start">
@@ -202,7 +206,7 @@
                                 @endforeach
 
                                 <div class="w-full flex pt-2">
-                                    <a href="{{route('client.cart.index',['id' => $cart->id])}}"
+                                    <a href="{{ route('client.cart.index', ['id' => $cart->id]) }}"
                                         class="text-sm text-white w-full text-center rounded py-2 bg-gradient-to-r from-green-400 to-blue-400">VIEW</a>
                                 </div>
                             </div>
