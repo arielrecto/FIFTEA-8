@@ -11,90 +11,25 @@
             <div class="flex items-start justify-between space-x-6">
                 <div class="w-full flex flex-col">
 
-                    <ul class="steps">
-                        <li class="step step-primary">Pending</li>
-                        <li
-                            class="step {{ ($order->status === OrderStatus::PROCESSED->value) |
-                            ($order->status === OrderStatus::DELIVERY->value) |
-                            ($order->status === OrderStatus::DONE->value)
-                                ? 'step-primary'
-                                : ' ' }}">
-                            Processed</li>
-                        <li
-                            class="step {{ ($order->status === OrderStatus::DELIVERY->value) | ($order->status === OrderStatus::DONE->value)
-                                ? 'step-primary'
-                                : ' ' }}">
-                            Delivery</li>
-                        <li
-                            class="step {{ $order->status === OrderStatus::DONE->value ? 'step-primary' : ' ' }}">
-                            Done</li>
-                    </ul>
-                    <div class="flex flex-col gap-2">
-                        <div class="flex items-center justify-between">
-                            <h1 class="flex items-center gap-2">
-                                <span>
-                                    order #
-                                </span>
-                                {{ $order->num_ref }}
-                            </h1>
-                            <h1 class="flex items-center gap-2">
-                                <span>
-                                    transaction #
-                                </span>
-                                {{ $order->transaction->transaction_ref }}
-                            </h1>
-                        </div>
+                    <h1 class="text-3xl font-bold tracking-widest">
+                        Add Feedback
+                    </h1>
+
+                    <form action="{{ route('client.feedbacks.store') }}" method="post" class="flex flex-col gap-2 w-full">
+                        @csrf
                         <div class="flex flex-col gap-2">
-                            <h1>
-                                <span>total : </span>
-                                <span>
-                                    {{ $order->total }}</span>
-                            </h1>
+                            <label for="" class="text-sm text-gray-700">Message</label>
+                            <textarea class="w-full textarea-accent" name="message" placeholder="message">
 
-                            <div class="overflow-x-auto">
-                                <table class="table">
-                                    <!-- head -->
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Name</th>
-                                            <th>quantity</th>
-                                            <th>Size</th>
-                                            <th>price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- row 1 -->
-                                        @forelse ($order->cart->products as $cart_product)
-                                            <tr class="bg-base-200">
-                                                <th>1</th>
-                                                <td>{{ $cart_product->product->name }}</td>
-                                                <td>{{ $cart_product->quantity }}</td>
-                                                <td>{{ $cart_product->size }}</td>
-                                                {{-- <td>{{$cart_product->extras}}</td> --}}
-                                                <td>{{ $cart_product->total }}</td>
-                                            </tr>
-
-                                        @empty
-                                            <tr class="bg-base-200">
-                                                <td>No product</td>
-                                            </tr>
-                                        @endforelse
-
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            </textarea>
+                            {{-- @if (errors->has('message'))
+                            <p>{{errors->first('message')}}</p>
+                            @endif --}}
                         </div>
-
-                    </div>
-                    @if ($order->status === OrderStatus::DONE->value)
-                        <div class="flex items-center justify-end">
-                            <a href="{{ route('client.feedbacks.create') }}" class="btn btn-accent">Add Feedback</a>
-                        </div>
-                    @endif
-
-
+                        <button class="btn btn-sm btn-accent">
+                            Submit
+                        </button>
+                    </form>
                 </div>
 
                 {{--

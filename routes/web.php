@@ -15,9 +15,11 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\client\FeedbackController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
@@ -111,6 +113,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('supply', SupplyController::class);
         Route::resource('employee', EmployeeController::class);
         Route::resource('profile', ProfileController::class)->except('destroy', 'index');
+        Route::resource('feedbacks', AdminFeedbackController::class)->except(['store', 'create']);
     });
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
@@ -174,6 +177,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
             'index', 'show'
+        ]);
+        Route::resource('feedbacks', FeedbackController::class)->except([
+            'index',
+            'edit',
+            'destroy',
+            'update',
+            'show'
         ]);
     });
 });
