@@ -208,7 +208,7 @@
     </div>
     <script>
         window.register = () => {
-            const baseUrl = "https://127.0.0.1:8000";
+            const baseUrl = "https://fiftea8.shop";
             return {
                 currentPhase: 'profile',
                 phases: ['profile', 'address', 'account'],
