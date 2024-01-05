@@ -162,12 +162,12 @@
                                 <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
                                 <img src="{{ $profile ? asset('storage/profile/' . $profile->image) : '' }}"
                                     alt=""
-                                    class="w-36 h-36 rounded-full absolute border border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
+                                    class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                             </div>
                             <div class="pt-20 flex flex-col items-center justify-start">
-                                <p class="text-xl font-bold">{{ $profile ? ($profile->first_name . ' ' . $profile->last_name) : '' }}</p>
-                                <p class="text-base ">{{ $profile->user->email ?? '' }}</p>
-                                <p class="text-sm ">09123456789</p>
+                                <p class="text-xl font-bold">{{ $profile ? ($profile->first_name . ' ' . $profile->last_name) : 'Your Name' }}</p>
+                                <p class="text-base ">{{ $profile->user->email ?? 'Your Email' }}</p>
+                                <p class="text-sm ">{{$profile->phone ?? 'Your Phone'}}</p>
                                 <div class="pt-4 flex items-start justify-center w-[80%]">
                                     {{--
                                     --------------------------------------
