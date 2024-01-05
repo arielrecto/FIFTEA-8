@@ -11,7 +11,7 @@
             @endif
 
             <div>
-                <a href="{{url()->previous()}}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center w-fit">
+                <a href="{{route('admin.supply.create')}}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center w-fit">
                     <i class='bx bx-left-arrow-alt text-2xl text-gray-500 hover:text-gray-800'></i>
                 </a>
             </div>

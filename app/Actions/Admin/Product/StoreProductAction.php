@@ -18,6 +18,7 @@ class StoreProductAction
 
         $category = Category::where('name' , $request->category)->first();
 
+
         $filename = 'product' . uniqid() . '.' . $request->image->extension();
 
         $product = Product::create([

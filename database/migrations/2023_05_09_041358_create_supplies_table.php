@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('unit_value');
             $table->string('unit');
             $table->string('quantity');
+            $table->string('size');
             $table->timestamps();
         });
     }

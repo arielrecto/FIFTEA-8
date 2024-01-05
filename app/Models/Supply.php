@@ -13,7 +13,8 @@ class Supply extends Model
         'unit_value',
         'unit',
         'quantity',
-        'product_fields_id'
+        'product_fields_id',
+        'size'
     ];
 
     public function field(){

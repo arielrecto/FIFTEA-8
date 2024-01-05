@@ -14,7 +14,8 @@ class StoreSupplyAction {
             'name' => $request->name,
             'unit_value' => $request->unit_value,
             'unit' => $request->unit,
-            'quantity' => $request->quantity
+            'quantity' => $request->quantity,
+            'size' => $request->size
         ]);
 
 

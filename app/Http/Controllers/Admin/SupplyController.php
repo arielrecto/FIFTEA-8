@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Type;
+use App\Models\Supply;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Actions\Admin\Supply\GetSupplyAction;
 use App\Actions\Admin\Supply\StoreSupplyAction;
 use App\Actions\Admin\Supply\UpdateSupplyAction;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Supply\StoreSupplyRequest;
-use App\Models\Type;
-use Illuminate\Http\Request;
 
 class SupplyController extends Controller
 {
@@ -34,15 +35,17 @@ class SupplyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSupplyRequest $request, StoreSupplyAction $storeSupplyAction)
+    public function store(Request $request, StoreSupplyAction $storeSupplyAction)
     {
+
 
         $request->validate([
             'name' => 'required',
             'unit_value' => 'required',
             'unit' => 'required',
             'quantity' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'size' => 'required'
         ]);
         $supply = $storeSupplyAction->handle($request);
 
@@ -80,6 +83,13 @@ class SupplyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       $supply = Supply::find($id);
+
+       $supply->delete();
+
+
+       return back()->with([
+        'message' => 'supply Deleted'
+       ]);
     }
 }

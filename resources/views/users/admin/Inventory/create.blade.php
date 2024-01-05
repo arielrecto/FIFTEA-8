@@ -63,6 +63,20 @@
                         @enderror
                     </div>
                     <div class="flex flex-col space-y-1">
+                        <label for="quantity" class="text-sm">Size</label>
+                        <select type="text" name="size" class="rounded px-4 border border-gray-300 capitalize"
+                            id="quantity" @change="selectedType($event)">
+                            <option selected disabled>Select Size</option>
+                            <option value="small">small</option>
+                            <option value="medium"> medium</option>
+                            <option value="large">large</option>
+
+                        </select>
+                        @error('size')
+                            <div class="error text-xs text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">Type</label>
                         <select type="text" name="type" class="rounded px-4 border border-gray-300"
                             id="quantity" @change="selectedType($event)">

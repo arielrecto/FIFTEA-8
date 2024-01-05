@@ -35,6 +35,8 @@ class ProductController extends Controller
      */
     public function store(Request $request, StoreProductAction $storeProductAction)
     {
+
+
         $product = $storeProductAction->handle($request);
 
 
