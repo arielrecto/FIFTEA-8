@@ -18,10 +18,6 @@
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
-
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">About Us</a>
-                </div>
             </div>
         </div>
 

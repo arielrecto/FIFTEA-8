@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="w-full"  x-data="register">
+                <div class="w-full" x-data="register">
 
                     <template x-if="currentPhase === 'profile'">
                         <div id="_profile" class="flex flex-col space-y-10">
@@ -56,7 +56,7 @@
                                         <label for="age" class="text-sm ">Age</label>
                                         <input id="age" name="age" type="number" x-model="profileData.age"
                                             class="text-xm rounded-md border-gray-300" placeholder="age">
-                                            <span x-text="errors.age" class="text-red-500 text-xs capitalize"></span>
+                                        <span x-text="errors.age" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
@@ -79,7 +79,8 @@
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white" @click="addProfile()">Next</button>
+                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="addProfile()">Next</button>
                             </div>
                         </div>
                     </template>
@@ -91,13 +92,16 @@
                                 <div class="w-full flex items-center space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="lot" class="text-sm ">Lot</label>
-                                        <input id="lot" name="lot" type="text" x-model="addressData.lot" class="text-xm rounded-md border-gray-300" placeholder="lot number">
+                                        <input id="lot" name="lot" type="text" x-model="addressData.lot"
+                                            class="text-xm rounded-md border-gray-300" placeholder="lot number">
                                         <span x-text="errors.lot" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="block" class="text-sm ">Block</label>
-                                        <input id="block" name="block" type="text" x-model="addressData.block" class="text-xm rounded-md border-gray-300" placeholder="block number">
+                                        <input id="block" name="block" type="text"
+                                            x-model="addressData.block" class="text-xm rounded-md border-gray-300"
+                                            placeholder="block number">
                                         <span x-text="errors.block" class="text-red-500 text-xs capitalize"></span>
                                     </div>
                                 </div>
@@ -105,52 +109,61 @@
                                 <div class="w-full flex items-center space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="street" class="text-sm ">Street</label>
-                                        <input id="street" name="street" type="text" x-model="addressData.street" 
-                                        class="text-xm rounded-md border-gray-300" placeholder="street name">
+                                        <input id="street" name="street" type="text"
+                                            x-model="addressData.street" class="text-xm rounded-md border-gray-300"
+                                            placeholder="street name">
                                         <span x-text="errors.street" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="subdivision" class="text-sm ">Subdivision</label>
-                                        <input id="subdivision" name="subdivision" type="text"  x-model="addressData.subdivision"
-                                        class="text-xm rounded-md border-gray-300" placeholder="subdivision">
-                                        <span x-text="errors.subdivision" class="text-red-500 text-xs capitalize"></span>
+                                        <input id="subdivision" name="subdivision" type="text"
+                                            x-model="addressData.subdivision"
+                                            class="text-xm rounded-md border-gray-300" placeholder="subdivision">
+                                        <span x-text="errors.subdivision"
+                                            class="text-red-500 text-xs capitalize"></span>
                                     </div>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="barangay" class="text-sm ">Barangay</label>
-                                    <input id="barangay" name="barangay" type="text" x-model="addressData.barangay" 
-                                    class="text-xm rounded-md border-gray-300" placeholder="barangay">
+                                    <input id="barangay" name="barangay" type="text"
+                                        x-model="addressData.barangay" class="text-xm rounded-md border-gray-300"
+                                        placeholder="barangay">
                                     <span x-text="errors.barangay" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="municipality" class="text-sm ">Municipality</label>
-                                    <input id="municipality" name="municipality" type="text" x-model="addressData.municipality" x-mode="addressData.municipality" 
-                                    class="text-xm rounded-md border-gray-300" placeholder="municipality">
+                                    <input id="municipality" name="municipality" type="text"
+                                        x-model="addressData.municipality" x-mode="addressData.municipality"
+                                        class="text-xm rounded-md border-gray-300" placeholder="municipality">
                                     <span x-text="errors.municipality" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="flex items-center space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="region" class="text-sm ">Region</label>
-                                        <input id="region" name="region" type="text" x-model="addressData.region" 
-                                        class="text-xm rounded-md border-gray-300" placeholder="region">
+                                        <input id="region" name="region" type="text"
+                                            x-model="addressData.region" class="text-xm rounded-md border-gray-300"
+                                            placeholder="region">
                                         <span x-text="errors.region" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
                                         <label for="zip_code" class="text-sm ">Zip Code</label>
-                                        <input id="zip_code" name="zip_code" type="text" x-model="addressData.zipCode"
-                                        class="text-xm rounded-md border-gray-300" placeholder="zip code">
+                                        <input id="zip_code" name="zip_code" type="text"
+                                            x-model="addressData.zipCode" class="text-xm rounded-md border-gray-300"
+                                            placeholder="zip code">
                                         <span x-text="errors.zipCode" class="text-red-500 text-xs capitalize"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button class="px-4 py-2 rounded-md bg-gray-200" @click="setCurrentPhase('profile')">Back</button>
-                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"  @click="addAddress()">Next</button>
+                                <button class="px-4 py-2 rounded-md bg-gray-200"
+                                    @click="setCurrentPhase('profile')">Back</button>
+                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="addAddress()">Next</button>
                             </div>
                         </div>
                     </template>
@@ -167,20 +180,24 @@
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="password" class="text-sm ">Password</label>
-                                    <input id="password" name="password" type="password" x-model="accountData.password" 
-                                    class="text-xm rounded-md border-gray-300" placeholder="password">
+                                    <input id="password" name="password" type="password"
+                                        x-model="accountData.password" class="text-xm rounded-md border-gray-300"
+                                        placeholder="password">
                                     <span x-text="errors.password" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="confirm_password" class="text-sm ">Confirm Password</label>
                                     <input id="confirm_password" name="confirm_password" type="password"
-                                    class="text-xm rounded-md border-gray-300" placeholder="confirm password" required>
+                                        class="text-xm rounded-md border-gray-300" placeholder="confirm password"
+                                        required>
                                 </div>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
-                                <button class="px-4 py-2 rounded-md bg-gray-200" @click="setCurrentPhase('address')">Back</button>
-                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white" @click="submitData()">Submit</button>
+                                <button class="px-4 py-2 rounded-md bg-gray-200"
+                                    @click="setCurrentPhase('address')">Back</button>
+                                <button class="px-4 py-2 rounded-md bg-sbgreen text-white"
+                                    @click="submitData()">Submit</button>
                             </div>
                         </div>
                     </template>
@@ -191,7 +208,7 @@
     </div>
     <script>
         window.register = () => {
-            const baseUrl = "http://127.0.0.1:8000";
+            const baseUrl = "https://127.0.0.1:8000";
             return {
                 currentPhase: 'profile',
                 phases: ['profile', 'address', 'account'],
@@ -219,14 +236,14 @@
                     confirmPassword: '',
                 },
                 errors: {},
-    
+
                 setCurrentPhase(phase) {
                     this.currentPhase = phase;
                 },
-    
+
                 validateProfileFields() {
                     this.errors = {};
-    
+
                     if (!this.profileData.lastName) {
                         this.errors.lastName = 'Last name is required.';
                     }
@@ -245,10 +262,10 @@
 
                     return Object.keys(this.errors).length === 0;
                 },
-    
+
                 validateAddressFields() {
                     this.errors = {};
-    
+
                     if (!this.addressData.lot) {
                         this.errors.lot = 'Lot number is required.';
                     }
@@ -276,23 +293,23 @@
 
                     return Object.keys(this.errors).length === 0;
                 },
-    
+
                 validateAccountFields() {
                     this.errors = {};
-    
+
                     if (!this.accountData.email) {
                         this.errors.email = 'Email is required.';
                     }
-    
+
                     if (!this.accountData.password) {
                         this.errors.password = 'Password is required.';
                     }
-    
+
                     // Perform other account field validations...
-    
+
                     return Object.keys(this.errors).length === 0;
                 },
-    
+
                 addProfile() {
                     if (this.validateProfileFields()) {
                         const currentIndex = this.phases.indexOf(this.currentPhase);
@@ -301,7 +318,7 @@
                         console.log(nextPhase);
                     }
                 },
-    
+
                 addAddress() {
                     console.log('clicked');
                     if (this.validateAddressFields()) {
@@ -310,7 +327,7 @@
                         this.setCurrentPhase(nextPhase);
                     }
                 },
-    
+
                 removeData(phase) {
                     if (phase === 'profile') {
                         this.profileData = {
@@ -334,10 +351,10 @@
                         };
                     }
                 },
-    
+
                 async submitData() {
                     if (this.validateAccountFields()) {
-                        
+
                         try {
                             const data = {
                                 profile: this.profileData,
@@ -364,7 +381,7 @@
                         } catch (error) {
 
                             console.log(error)
-                            
+
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Something is wrong',

@@ -70,8 +70,8 @@
                                         <p class="text-sm">{!! $product->description !!}</p>
                                         <div class="flex space-x-3 items-center absolute bottom-2 right-3">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
-                                            <a href=""
-                                                class="py-1 px-4 rounded text-sm text-white bg-gradient-to-r from-green-400 to-blue-400">View</a>
+                                            <a href="/client/products/{{ $product->id }}"
+                                                class="py-1 px-4 rounded text-sm text-white bg-blue-700">Order</a>
                                         </div>
                                     </div>
                                 </div>
@@ -152,32 +152,32 @@
                     </div>
 
                     {{-- @if ($profile) --}}
-                        <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
-                            <div class="w-full h-fit relative ">
-                                <a href="{{ route('profile.edit') }}">
-                                    <i
-                                        class='bx bx-edit-alt text-xl px-1 opacity-80 top-4 right-4 absolute
+                    <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
+                        <div class="w-full h-fit relative ">
+                            <a href="{{ route('profile.edit') }}">
+                                <i
+                                    class='bx bx-edit-alt text-xl px-1 opacity-80 top-4 right-4 absolute
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
-                                </a>
-                                <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
-                                <img src="{{ $profile ? asset('storage/profile/' . $profile->image) : '' }}"
-                                    alt=""
-                                    class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
-                            </div>
-                            <div class="pt-20 flex flex-col items-center justify-start">
-                                <p class="text-xl font-bold">{{ $profile ? ($profile->first_name . ' ' . $profile->last_name) : 'Your Name' }}</p>
-                                <p class="text-base ">{{ $profile->user->email ?? 'Your Email' }}</p>
-                                <p class="text-sm ">{{$profile->phone ?? 'Your Phone'}}</p>
-                                <div class="pt-4 flex items-start justify-center w-[80%]">
-                                    {{--
+                            </a>
+                            <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
+                            <img src="{{ $profile ? asset('storage/profile/' . $profile->image) : '' }}" alt=""
+                                class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
+                        </div>
+                        <div class="pt-20 flex flex-col items-center justify-start">
+                            <p class="text-xl font-bold">
+                                {{ $profile ? $profile->first_name . ' ' . $profile->last_name : 'Your Name' }}</p>
+                            <p class="text-base ">{{ $profile->user->email ?? 'Your Email' }}</p>
+                            <p class="text-sm ">{{ $profile->phone ?? 'Your Phone' }}</p>
+                            <div class="pt-4 flex items-start justify-center w-[80%]">
+                                {{--
                                     --------------------------------------
                                         ADDRESS TO DITO NG CUSTOMER
                                     -------------------------------------
                                     --}}
-                                    <p class="text-sm text-center"></p>
-                                </div>
+                                <p class="text-sm text-center"></p>
                             </div>
                         </div>
+                    </div>
                     {{-- @endif --}}
 
                     @if ($cart !== null)
@@ -207,7 +207,7 @@
 
                                 <div class="w-full flex pt-2">
                                     <a href="{{ route('client.cart.index', ['id' => $cart->id]) }}"
-                                        class="text-sm text-white w-full text-center rounded py-2 bg-gradient-to-r from-green-400 to-blue-400">VIEW</a>
+                                        class="text-sm text-white w-full text-center rounded py-2 bg-blue-700">VIEW</a>
                                 </div>
                             </div>
                         </div>
