@@ -13,7 +13,8 @@
                 class="dancing-script text-7xl text-sbgreen">Fif'tea-8
             </h1>
             <p data-aos="fade-left" data-aos-duration="2000" data-aos-delay="400"
-                class="font-sans  leading-relaxed text-lg text-center md:text-left">Our menu offers a tantalizing selection of premium teas,
+                class="font-sans  leading-relaxed text-lg text-center md:text-left">Our menu offers a tantalizing
+                selection of premium teas,
                 carefully sourced
                 ingredients, and customizable options to suit your unique preferences.</p>
             <div class="flex items-center">
@@ -22,18 +23,21 @@
                     Now</a>
             </div>
 
-            {{-- <div class="flex items-center space-x-4 py-2 " data-aos="fade-right" data-aos-duration="2000"
+            <div class="flex items-center space-x-4 py-2 " data-aos="fade-right" data-aos-duration="2000"
                 data-aos-delay="600">
                 <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
-                    <i class='bx bxl-facebook-circle text-2xl text-blue-700 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                    <i
+                        class='bx bxl-facebook-circle text-2xl text-blue-700 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
-                <a href=""  class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
-                    <i class='bx bxl-instagram-alt text-2xl text-red-500 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
+                    <i
+                        class='bx bxl-instagram-alt text-2xl text-red-500 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
-                <a href=""  class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
-                    <i class='bx bxl-tiktok text-2xl text-black group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
+                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
+                    <i
+                        class='bx bxl-tiktok text-2xl text-black group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
                 </a>
-            </div> --}}
+            </div>
         </div>
 
         <div class="w-full md:w-3/5 h-full hidden md:block">

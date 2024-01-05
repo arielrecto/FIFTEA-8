@@ -52,6 +52,45 @@
                     </div>
                     <div class="flex items-start space-x-8">
                         <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
+                            <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
+                                <label for="" class="text-base font-semibold">Size</label>
+                                <select name="size" id=""
+                                    class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300"
+                                    @change="changeProductPriceBySize($event)">
+                                    <option selected value="">Select Size</span></option>
+                                    <template x-for="size in sizes" :id="size.id">
+                                        <option :value="size.name"><span x-text="size.name"></span></option>
+                                    </template>
+                                </select>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <label for="" class="text-base font-semibold">Quatity</label>
+                                <div class="flex items-center space-x-2">
+                                    <button class="py-1 px-2 hover:bg-gray-200 rounded"
+                                        @click="changeQuantity($event, 'minus')">
+                                        <i class='bx bx-minus text-lg'></i>
+                                    </button>
+                                    <p class="py-1 px-4 rounded border border-gray-300 bg-green-600 text-white">
+                                        <span x-text="quantity"></span>
+                                        <input type="hidden" name="quantity" x-model="quantity">
+                                    </p>
+                                    <button class="py-1 px-2 hover:bg-gray-200 rounded"
+                                        @click="changeQuantity($event, 'add')">
+                                        <i class='bx bx-plus text-lg'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-3">
+                            <div class="w-full flex items-center justify-between border-t border-gray-200 py-3"
+                                x-init="initPrice({{ $product->price }})">
+                                <input type="hidden" name="total" x-model="total">
+                                <p class="font-bold text-lg">&#8369; <span x-text="total"></span></p>
+                                <button class="px-4 py-2 rounded text-sm bg-green-600 text-white">Place
+                                    Order</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
                             <select name="size" id=""
                                 class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300"
@@ -106,7 +145,7 @@
                     quantity: 1,
                     sizes: [],
                     addons: [],
-                    addon : null,
+                    addon: null,
                     initSetSizes(sizes) {
                         console.log(sizes);
                         this.sizes = [...sizes]
@@ -144,25 +183,26 @@
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
 
-                        this.totalPrice()
-                    },
-                    changeProductPriceByAddons(e) {
-                        const name = e.target.value;
-                        const addon = this.addons.find((item) => item.name === name);
-                        if (name == '') {
+                            this.totalPrice()
+                        },
+                        changeProductPriceByAddons(e) {
+                            const name = e.target.value;
+                            const addon = this.addons.find((item) => item.name === name);
+                            if (name == '') {
 
-                            if(this.addon !== null) {
-                                this.price = this.price - parseInt(this.addon.pivot.price)
+                                if (this.addon !== null) {
+                                    this.price = this.price - parseInt(this.addon.pivot.price)
+                                }
+
+                                this.totalPrice()
+                                return
                             }
 
+                            this.addon = addon
+                            this.price = this.price + parseInt(addon.pivot.price)
+
                             this.totalPrice()
-                            return
                         }
-
-                        this.addon = addon
-                        this.price = this.price + parseInt(addon.pivot.price)
-
-                        this.totalPrice()
                     }
                 }
             }

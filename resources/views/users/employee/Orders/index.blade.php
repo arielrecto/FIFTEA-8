@@ -19,20 +19,21 @@
             <h1 class="text-xl text-center font-bold text-white">
                 Online Orders
             </h1>
-            <div>
-                <a href="{{ route('employee.order.index') }}" class="btn btn-xs btn-primary">
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('employee.order.index') }}"
+                    class="py-2 px-4 rounded text-sm text-white border border-white">
                     Pending
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::PROCESSED->value }}"
-                    class="btn btn-xs btn-secondary">
+                    class="py-2 px-4 rounded text-sm text-white border border-white">
                     Processed
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DELIVERY->value }}"
-                    class="btn btn-xs btn-accent">
+                    class="py-2 px-4 rounded text-sm text-white border border-white">
                     Delivery
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DONE->value }}"
-                    class="btn btn-xs btn-base">
+                    class="py-2 px-4 rounded text-sm text-white border border-white">
                     Done
                 </a>
             </div>
@@ -84,8 +85,8 @@
                             @endphp
                             <td class="px-6 py-4">
                                 <a href="{{ route('employee.order.show', ['order' => $order->id]) }}"
-                                    class="btn btn-ghost">
-                                    <i class="fi fi-rr-eye"></i>
+                                    class="btn btn-ghost flex items-center justify-center">
+                                    <i class="fi fi-rr-eye text-lg text-blue-700"></i>
                                 </a>
                                 {{-- <button class="btn btn-ghost"
                                     @click="openPaymentData({{ $payment }})">view</button> --}}
@@ -99,7 +100,7 @@
                                             method="post">
                                             @csrf
                                             <button>
-                                                <box-icon name='check'></box-icon>
+                                                <box-icon name='check' color="green"></box-icon>
                                             </button>
                                         </form>
                                         <form action="{{ route('employee.order.destroy', ['order' => $order->id]) }}"
@@ -107,7 +108,7 @@
                                             @method('delete')
                                             @csrf
                                             <button>
-                                                <box-icon name='x'></box-icon>
+                                                <box-icon name='x' color="red"></box-icon>
                                             </button>
                                         </form>
                                     </div>
