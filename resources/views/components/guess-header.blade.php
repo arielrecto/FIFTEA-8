@@ -1,5 +1,5 @@
 <div class="w-full sticky top-0 z-50 border-b border-gray-200 bg-white shadow">
-    <div class="py-2 flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
+    <div class="py-2 flex justify-between items-center w-full max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center py-1">
             <div class="flex items-center space-x-2">
                 <img class="w-12 h-12" src="{{ asset('images/logo.png') }}" alt="">
@@ -41,6 +41,7 @@
                     <li><a href="/" class="font-sans">Home</a></li>
                     <li><a href="{{ route('products') }}" class="font-sans">Products</a></li>
                     <li><a href="{{ route('login') }}" class="font-sans">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="font-sans">Register</a></li>
                 </ul>
             </div>
 

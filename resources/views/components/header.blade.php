@@ -93,10 +93,10 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-1">
-                    <li><a class="font-sans">Home</a></li>
-                    <li><a class="font-sans">Products</a></li>
-                    <li><a class="font-sans">About Us</a></li>
-                    <li><a class="font-sans">Login</a></li>
+                    <li><a href="/" class="font-sans">Home</a></li>
+                    <li><a href="{{ route('products') }}" class="font-sans">Products</a></li>
+                    <li><a href="{{ route('login') }}" class="font-sans">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="font-sans">Register</a></li>
                 </ul>
             </div>
 

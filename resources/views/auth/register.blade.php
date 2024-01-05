@@ -2,8 +2,8 @@
 
     <div class="w-full h-full flex bg-white">
 
-        <div class="w-full flex container mx-auto p-32 pb-0 space-x-6">
-            <div class="w-1/2 h-full ">
+        <div class="w-full flex flex-col md:flex-row container mx-auto pt-10 px-4 md:p-32 pb-0 md:space-x-6">
+            <div class="w-full md:w-1/2 h-full ">
                 <div class="flex flex-col space-y-2">
                     <h1 class="text-xl font-semibold text-sbgreen">Welcome to FifTea-8</h1>
                     <p class="text-gray-500">Create your account in order to place orders.</p>
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="w-1/2 flex flex-col space-y-8 px-8">
+            <div class="w-full md:w-1/2 flex flex-col space-y-8 px-8">
                 <div class="flex flex-col space-y-3">
                     <p class="text-sm text-gray-500">START HERE</p>
                     <h1 class="text-2xl font-bold">Sign up to FifTea-8</h1>
@@ -51,15 +51,15 @@
                                         placeholder="middle name">
                                 </div>
 
-                                <div class="w-full flex items-center justify-start space-x-6">
-                                    <div class="flex flex-col space-y-1">
+                                <div class="w-full flex flex-col md:flex-row items-center md:justify-start md:space-x-6">
+                                    <div class="w-full flex flex-col space-y-1">
                                         <label for="age" class="text-sm ">Age</label>
                                         <input id="age" name="age" type="number" x-model="profileData.age"
                                             class="text-xm rounded-md border-gray-300" placeholder="age">
                                         <span x-text="errors.age" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
-                                    <div class="flex flex-col space-y-1">
+                                    <div class="w-full flex flex-col space-y-1">
                                         <label for="sex" class="text-sm ">Sex</label>
                                         <select name="sex" id="sex" x-model="profileData.sex"
                                             class="text-xm rounded-md border-gray-300">
@@ -78,7 +78,7 @@
                                     <span x-text="errors.phone" class="text-red-500 text-xs capitalize"></span>
                                 </div>
                             </div>
-                            <div class="w-full flex items-center justify-between pt-10">
+                            <div class="w-full flex items-center justify-between">
                                 <button class="px-4 py-2 rounded-md bg-sbgreen text-white"
                                     @click="addProfile()">Next</button>
                             </div>
@@ -89,7 +89,7 @@
                     <template x-if="currentPhase === 'address'">
                         <div id="_address">
                             <div class="flex flex-col space-y-3">
-                                <div class="w-full flex items-center space-x-6">
+                                <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="lot" class="text-sm ">Lot</label>
                                         <input id="lot" name="lot" type="text" x-model="addressData.lot"
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
 
-                                <div class="w-full flex items-center space-x-6">
+                                <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="street" class="text-sm ">Street</label>
                                         <input id="street" name="street" type="text"
@@ -141,7 +141,7 @@
                                     <span x-text="errors.municipality" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
-                                <div class="flex items-center space-x-6">
+                                <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="region" class="text-sm ">Region</label>
                                         <input id="region" name="region" type="text"
@@ -150,7 +150,7 @@
                                         <span x-text="errors.region" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
-                                    <div class="flex flex-col space-y-1">
+                                    <div class="w-full flex flex-col space-y-1">
                                         <label for="zip_code" class="text-sm ">Zip Code</label>
                                         <input id="zip_code" name="zip_code" type="text"
                                             x-model="addressData.zipCode" class="text-xm rounded-md border-gray-300"
