@@ -48,7 +48,12 @@ Route::get('/', function () {
 
     $feedBacks = Feedback::latest()->where('is_display', true)->limit(4)->get();
 
-    return view('welcome', compact(['feedBacks']));
+    $products = Product::withCount(['cart'=>function ($q){
+        $q->where('is_check_out', true);
+    }])->orderByDesc('cart_count')->take(3)->get();
+
+
+    return view('welcome', compact(['feedBacks', 'products']));
 });
 
 // Route::get('/dashboard', function () {

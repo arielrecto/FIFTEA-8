@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="bg-white welcome text-gray-700">
         <x-hero/>
-        <x-preview/>
+        <x-preview :products="$products"/>
         <x-testimony :feedBacks="$feedBacks"/>
         <x-footer/>
     </div>
