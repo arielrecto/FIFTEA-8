@@ -18,9 +18,8 @@ class DashboardController extends Controller
 
         $orderPending = Order::pending();
 
-        $orders = Order::latest()->where('user_id',$user->id)->get();
+        $orders = Order::latest()->where('user_id', $user->id)->get();
 
-        dd($orders);
 
         $spent = Order::userTotalSpent(Auth::user());
 
