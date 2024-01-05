@@ -151,7 +151,7 @@
                         <h1 class="text-base font-bold">Profile</h1>
                     </div>
 
-                    @if ($profile)
+                    {{-- @if ($profile) --}}
                         <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
                             <div class="w-full h-fit relative ">
                                 <a href="{{ route('profile.edit') }}">
@@ -165,8 +165,8 @@
                                     class="w-36 h-36 rounded-full absolute border border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                             </div>
                             <div class="pt-20 flex flex-col items-center justify-start">
-                                <p class="text-xl font-bold">{{ $profile->first_name . ' ' . $profile->last_name }}</p>
-                                <p class="text-base ">{{ $profile->user->email }}</p>
+                                <p class="text-xl font-bold">{{ $profile ? ($profile->first_name . ' ' . $profile->last_name) : '' }}</p>
+                                <p class="text-base ">{{ $profile->user->email ?? '' }}</p>
                                 <p class="text-sm ">09123456789</p>
                                 <div class="pt-4 flex items-start justify-center w-[80%]">
                                     {{--
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    {{-- @endif --}}
 
                     @if ($cart !== null)
                         <div class="w-full flex items-center justify-start">
