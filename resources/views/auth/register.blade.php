@@ -51,7 +51,8 @@
                                         placeholder="middle name">
                                 </div>
 
-                                <div class="w-full flex flex-col md:flex-row items-center md:justify-start md:space-x-6">
+                                <div
+                                    class="w-full flex flex-col md:flex-row items-center md:justify-start md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="age" class="text-sm ">Age</label>
                                         <input id="age" name="age" type="number" x-model="profileData.age"
@@ -127,15 +128,17 @@
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="barangay" class="text-sm ">Barangay</label>
-                                    <input id="barangay" name="barangay" type="text" x-model="addressData.barangay"
-                                    class="text-xm rounded-md border-gray-300" placeholder="barangay">
+                                    <input id="barangay" name="barangay" type="text"
+                                        x-model="addressData.barangay" class="text-xm rounded-md border-gray-300"
+                                        placeholder="barangay">
                                     <span x-text="errors.barangay" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="municipality" class="text-sm ">Municipality</label>
-                                    <input id="municipality" name="municipality" type="text" x-model="addressData.municipality" x-mode="addressData.municipality"
-                                    class="text-xm rounded-md border-gray-300" placeholder="municipality">
+                                    <input id="municipality" name="municipality" type="text"
+                                        x-model="addressData.municipality" x-mode="addressData.municipality"
+                                        class="text-xm rounded-md border-gray-300" placeholder="municipality">
                                     <span x-text="errors.municipality" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 

@@ -79,6 +79,8 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
+
+
         $user = Auth::user();
 
         $profile = $user->profile;
@@ -86,6 +88,14 @@ class OrderController extends Controller
         $cart = $user->cart->where('is_check_out', false)->first();
 
         $order = Order::find($id);
+
+
+       if(!$order->has('transaction')->exists()){
+
+            return back()->with(['message' => 'Your Order is Pending the employee will processed!']);
+       }
+
+
 
         return view('users.client.order.show', compact(['profile', 'order', 'cart']));
     }

@@ -50,7 +50,10 @@
 
                                         @if (Auth::user())
                                             <button @click="openModal(product.id)"
-                                                class="text-sm rounded text-white bg-gradient-to-r from-green-400 to-blue-400 py-2 px-4">Order</button>
+                                                class="text-sm rounded font-semibold text-blue-700 border-2 border-blue-600 py-1 px-4">Order</button>
+                                        @else
+                                            <a href="{{ route('login') }}"
+                                                class="text-sm rounded font-semibold text-blue-700 border-2 border-blue-600 py-1 px-4">Order</a>
                                         @endif
                                     </div>
                                 </div>

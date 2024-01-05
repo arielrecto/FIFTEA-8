@@ -23,6 +23,11 @@ class CartController extends Controller
                 'user_id' => $user->id
             ]);
         }
+
+        if (is_null($request->size)) {
+            return back()->with('error', 'Please psecify the size');
+        }
+
         CartProduct::create([
             'cart_id' => $cart->id,
             'product_id' => $request->product_id,
@@ -34,7 +39,7 @@ class CartController extends Controller
             'price' => $request->price,
             'cart_product_no' => $cart_product_id
         ]);
-        
+
         return redirect()->route('products')->with(['success' => 'Product has been added to your Cart']);
     }
     public function index($id) {
@@ -75,7 +80,7 @@ class CartController extends Controller
         if ($updated) {
             return redirect()->back()->with(['success' => 'Cart Item has been updated']);
         } else {
-            return redirect()->back()->with(['error' => 'Cart Item cannot been updated']);    
+            return redirect()->back()->with(['error' => 'Cart Item cannot been updated']);
         }
 
     }
@@ -88,7 +93,7 @@ class CartController extends Controller
         if ($deleted) {
             return redirect()->back()->with(['success' => 'Cart Item has been deleted']);
         } else {
-            return redirect()->back()->with(['error' => 'Cart Item cannot been deleted']);    
+            return redirect()->back()->with(['error' => 'Cart Item cannot been deleted']);
         }
     }
 }
