@@ -10,7 +10,7 @@
             <div class="flex items-center justify-between space-x-4 py-4">
 
 
-                <img src="{{ asset($product->image)}}" alt=""
+                <img src="{{ $product->image}}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
 
