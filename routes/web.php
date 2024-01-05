@@ -27,6 +27,7 @@ use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 use App\Http\Controllers\HomeController;
+use App\Models\Feedback;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,10 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $feedBacks = Feedback::latest()->where('is_display', true)->limit(4)->get();
+
+    return view('welcome', compact(['feedBacks']));
 });
 
 // Route::get('/dashboard', function () {

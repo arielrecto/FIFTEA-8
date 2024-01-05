@@ -46,8 +46,9 @@ class FeedbackController extends Controller
 
         if($isDisplay !== null){
 
+            $feedback->update(['is_display' => $isDisplay === '1' ? true : false ]);
 
-            $feedback->where(['is_display' => $isDisplay === '1' ? true: false ]);
+            return back()->with(['message' => 'Feedback is display']);
 
         }
 

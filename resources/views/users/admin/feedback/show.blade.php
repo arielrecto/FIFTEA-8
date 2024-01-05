@@ -12,9 +12,9 @@
                 </div>
                 <div>
 
-                    @if ($feedback->is_display)
+                    @if (!$feedback->is_display)
                         <a
-                            href="{{ route('admin.feedbacks.show', ['feedback' => $feedback->id]) }}?display={{ true }}">
+                            href="{{ route('admin.feedbacks.show', ['feedback' => $feedback->id]) }}?display=1">
                             Display
                         </a>
                     @else
@@ -23,6 +23,7 @@
                             remove
                         </a>
                     @endif
+
                 </div>
             </div>
 
