@@ -34,7 +34,7 @@ class CartController extends Controller
             'size' => $request->size,
             'sugar_level' => $request->sugar_level,
             'quantity' => $request->quantity,
-            'extras' => $request->input('extras') ?? '[]',
+            'extras' => $request->extras ?? json_encode([]),
             'total' => $request->total,
             'price' => $request->price,
             'cart_product_no' => $cart_product_id
