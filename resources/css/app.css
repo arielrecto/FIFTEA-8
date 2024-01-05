@@ -18,6 +18,11 @@
     color: white;
 }
 
+.active-orders {
+    background-color: #ffffff;
+    color: #000;
+}
+
 #back-button {
     display: none;
 }

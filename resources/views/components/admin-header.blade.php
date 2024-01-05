@@ -24,7 +24,7 @@
             <div class="hidden md:flex space-x-2">
 
                 <div>
-                    <a href="{{ route('employee.dashboard.index') }}">Employee Dashboard</a>
+                    <a href="{{ route('employee.order.index') }}">Employee Dashboard</a>
                 </div>
 
                 <div class="dropdown dropdown-end">

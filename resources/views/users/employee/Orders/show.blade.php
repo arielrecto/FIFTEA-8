@@ -21,16 +21,16 @@
             </h1>
         </div>
 
-        <div class="w-full h-full flex flex-col space-y-4">
-            
-            <div class="w-full flex justify-between items-center">
-                <h1 class="flex items-center text-xl gap-4">
-                    <span class="">Order #:</span>
+        <div class="w-full h-full flex flex-col space-y-2">
+
+            <div class="w-full py-2 border-b border-gray-300 flex justify-between items-center">
+                <h1 class="flex items-center text-base gap-4">
+                    <span class="">Order Number:</span>
                     <span class="font-bold">
                         {{ $order->num_ref }}
                     </span>
                 </h1>
-                <h1 class="flex items-center text-xl gap-4">
+                <h1 class="flex items-center text-base gap-4">
                     <span class="">Date:</span>
                     <span class="font-bold">
                         {{ date('F m, Y', strtotime($order->created_at)) }}
@@ -38,9 +38,9 @@
                 </h1>
             </div>
 
-            <div class="flex flex-col gap-2">
-                <h1>Payment Details</h1>
-                <div class="grid grid-cols-3 grid-flow-row h-32">
+            <div class="flex flex-col">
+                <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
+                <div class="flex">
                     <div class="w-80 h-auto">
                         <img src="{{ $order->payment->image }}" alt=""
                             class="object object-center h-full w-full">
@@ -53,11 +53,13 @@
                         <h1>Amount</h1>
                         &#8369 {{ $order->payment->amount }}
                     </div>
+                    <div>
+                        <span>Total : {{ $order->total }}</span>
+                    </div>
                 </div>
             </div>
 
-            {{-- <div class="flex flex-col gap-2">
-                Total : {{ $order->total }}
+            <div class="flex flex-col gap-2">
                 <h1 class="text-2xl font-bold">
                     Products
                 </h1>
@@ -106,7 +108,7 @@
                     </a>
                 @endif
                 </div>
-            </div> --}}
+            </div>
         </div>
 
     </div>

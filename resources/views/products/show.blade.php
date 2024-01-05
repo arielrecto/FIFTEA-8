@@ -8,7 +8,7 @@
                 back
             </a>
             <div class="flex items-center justify-between space-x-4 py-4">
-                <img src="/{{ $product->image }}" alt=""
+                <img src="{{ asset($product->image) }}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
 
@@ -183,28 +183,28 @@
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
 
-                            this.totalPrice()
-                        },
-                        changeProductPriceByAddons(e) {
-                            const name = e.target.value;
-                            const addon = this.addons.find((item) => item.name === name);
-                            if (name == '') {
+                        this.totalPrice()
+                    },
+                    changeProductPriceByAddons(e) {
+                        const name = e.target.value;
+                        const addon = this.addons.find((item) => item.name === name);
+                        if (name == '') {
 
-                                if (this.addon !== null) {
-                                    this.price = this.price - parseInt(this.addon.pivot.price)
-                                }
-
-                                this.totalPrice()
-                                return
+                            if (this.addon !== null) {
+                                this.price = this.price - parseInt(this.addon.pivot.price)
                             }
 
-                            this.addon = addon
-                            this.price = this.price + parseInt(addon.pivot.price)
-
                             this.totalPrice()
+                            return
                         }
+
+                        this.addon = addon
+                        this.price = this.price + parseInt(addon.pivot.price)
+
+                        this.totalPrice()
                     }
                 }
+            }
             }
         </script>
     @endpush
