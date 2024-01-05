@@ -33,7 +33,7 @@
                         </div>
                         <div class="flex flex-col space-y-1" x-init="initAddOns({{ $supplies }})">
                             <label for="" class="text-base font-semibold">Extras</label>
-                            <select name="extras" id="" @change="changeProductPriceByAddons($event)"
+                            <select  id="" @change="changeProductPriceByAddons($event)"
                                 class="w-[200px] rounded px-4 py-2 text-sm border border-gray-300">
                                 <option selected value="">Select Extras</option>
 
@@ -48,6 +48,7 @@
                                     <option disabled>No Exteas Available</option>s
                                 @endforelse --}}
                             </select>
+                            <input type="hidden" name="extras"  x-model="JSON.stringify(addon)">
                         </div>
                     </div>
                     <div class="flex items-start space-x-8">
