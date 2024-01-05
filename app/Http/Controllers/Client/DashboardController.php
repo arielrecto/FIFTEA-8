@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index(){
+
+        $user = Auth::user()->id;
         $products = Product::get();
 
         $orderPending = Order::pending();
 
-        $orders = Order::latest()->where('user_id', Auth::user()->id)->get();
+        $orders = Order::latest()->where('user_id',$user->id)->get();
+
+        dd($orders);
 
         $spent = Order::userTotalSpent(Auth::user());
 
