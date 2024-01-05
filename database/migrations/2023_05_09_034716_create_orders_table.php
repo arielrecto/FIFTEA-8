@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrderStatus;
 use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Cart::class);
             $table->string('type');
-            $table->string('status')->default('pending');
+            $table->string('status')->default(OrderStatus::PENDING->value);
             $table->string('total');
             $table->timestamps();
         });

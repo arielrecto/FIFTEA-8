@@ -91,15 +91,19 @@
                     <div class="min-h-[300px] h-auto flex flex-col space-y-2 px-2 py-3 rounded bg-white shadow">
 
                         @forelse ($orders as $order)
+
                             <div tabindex="0"
                                 class="collapse collapse-arrow border border-gray-400 shadow-sm rounded bg-gray-200">
                                 <div class="p-4 py-2 flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <p class="text-sm font-bold">{{ $order->num_ref }}</p>
-                                        <p class="text-sm font-bold">DATE: {{ $order->created_at->format('M-d-Y') }}
-                                        </p>
-                                        <p class="text-sm font-bold">TOTAL: &#8369 {{ $order->total }}</p>
-                                    </div>
+                                    <a href="{{route('client.order.show', ['order' => $order->id])}}">
+                                        <div class="flex items-center space-x-4">
+                                            <p class="text-sm font-bold">{{ $order->num_ref }}</p>
+                                            <p class="text-sm font-bold">DATE: {{ $order->created_at->format('M-d-Y') }}
+                                            </p>
+                                            <p class="text-sm font-bold">TOTAL: &#8369 {{ $order->total }}</p>
+                                        </div>
+                                    </a>
+
                                     <i class='bx bx-chevron-down text-2xl'></i>
                                 </div>
 

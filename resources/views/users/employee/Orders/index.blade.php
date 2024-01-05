@@ -1,3 +1,7 @@
+@php
+    use App\Enums\OrderStatus;
+@endphp
+
 <x-employee-panel>
     <div class="p-5 flex flex-col gap-5" x-data="payment">
 
@@ -11,10 +15,27 @@
                 <span>{{ Session::get('message') }}</span>
             </div>
         @endif
-        <div class="w-full flex items-center justify-start py-2 bg-sbgreen px-4 rounded">
+        <div class="w-full flex items-center justify-between py-2 bg-sbgreen px-4 rounded ">
             <h1 class="text-xl text-center font-bold text-white">
                 Online Orders
             </h1>
+            <div>
+                <a href="{{ route('employee.order.index') }}" class="btn btn-xs btn-primary">
+                    Pending
+                </a>
+                <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::PROCESSED->value }}"
+                    class="btn btn-xs btn-secondary">
+                    Processed
+                </a>
+                <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DELIVERY->value }}"
+                    class="btn btn-xs btn-accent">
+                    Delivery
+                </a>
+                <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DONE->value }}"
+                    class="btn btn-xs btn-base">
+                    Done
+                </a>
+            </div>
         </div>
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500">
@@ -35,9 +56,11 @@
                         <th>
                             Details
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
+                        @if (app('request')->input('status') === null)
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -60,31 +83,37 @@
                                 $payment = json_encode($order->payment);
                             @endphp
                             <td class="px-6 py-4">
-                                <a href="{{route('employee.order.show', ['order' => $order->id])}}" class="btn btn-ghost">
+                                <a href="{{ route('employee.order.show', ['order' => $order->id]) }}"
+                                    class="btn btn-ghost">
                                     <i class="fi fi-rr-eye"></i>
                                 </a>
                                 {{-- <button class="btn btn-ghost"
                                     @click="openPaymentData({{ $payment }})">view</button> --}}
                             </td>
-                            <td class="px-6 py-4">
-                                <div class="flex gap-2">
-                                    <form action="{{ route('employee.order.approved', ['id' => $order->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button>
-                                            <box-icon name='check'></box-icon>
-                                        </button>
-                                    </form>
-                                    <form action="{{route('employee.order.destroy', ['order' => $order->id])}}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button>
-                                            <box-icon name='x'></box-icon>
-                                        </button>
-                                    </form>
-                                </div>
 
-                            </td>
+
+                            @if (app('request')->input('status') === null)
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-2">
+                                        <form action="{{ route('employee.order.approved', ['id' => $order->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            <button>
+                                                <box-icon name='check'></box-icon>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('employee.order.destroy', ['order' => $order->id]) }}"
+                                            method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button>
+                                                <box-icon name='x'></box-icon>
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </td>
+                            @endif
                         </tr>
                     @empty
                     @endforelse

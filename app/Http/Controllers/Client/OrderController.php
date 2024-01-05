@@ -79,7 +79,15 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = Auth::user();
+
+        $profile = $user->profile;
+
+        $cart = $user->cart->where('is_check_out', false)->first();
+
+        $order = Order::find($id);
+
+        return view('users.client.order.show', compact(['profile', 'order', 'cart']));
     }
 
     /**

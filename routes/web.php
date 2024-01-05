@@ -168,7 +168,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('order', ClientOrderController::class)->only([
             'index',
             'create',
-            'store'
+            'store',
+            'show'
         ]);
         Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([

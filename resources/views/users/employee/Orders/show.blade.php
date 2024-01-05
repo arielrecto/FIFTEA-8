@@ -1,3 +1,6 @@
+@php
+    use App\Enums\OrderStatus;
+@endphp
 <x-employee-panel>
     <div class="p-5 flex flex-col gap-5" x-data="payment">
 
@@ -36,20 +39,21 @@
                 <h1>Payment Details</h1>
                 <div class="grid grid-cols-3 grid-flow-row h-32">
                     <div class="w-32 h-auto">
-                        <img src="{{$order->payment->image}}" alt="" class="object object-center h-full w-full">
+                        <img src="{{ $order->payment->image }}" alt=""
+                            class="object object-center h-full w-full">
                     </div>
                     <div class="w-full h-full flex-col gap-2">
                         <h1>Referrence #</h1>
-                        {{$order->payment->payment_ref}}
+                        {{ $order->payment->payment_ref }}
                     </div>
                     <div class="w-full h-full flex-col gap-2">
                         <h1>Amount</h1>
-                        &#8369 {{$order->payment->amount}}
+                        &#8369 {{ $order->payment->amount }}
                     </div>
                 </div>
             </div>
             <div class="flex flex-col gap-2">
-                Total : {{$order->total}}
+                Total : {{ $order->total }}
                 <h1 class="text-2xl font-bold">
                     Products
                 </h1>
@@ -70,20 +74,33 @@
                         <tbody>
                             @forelse ($order->cart->products as $cart_product)
                                 <tr class="bg-base-200">
-                                    <th>{{$cart_product->product->id}}</th>
-                                    <td>{{$cart_product->product->name}}</td>
-                                    <td>{{$cart_product->size}}</td>
-                                    <td>{{$cart_product->sugar_level}}</td>
-                                    <td>{{$cart_product->quantity}}</td>
-                                    <td>&#8369 {{$cart_product->price}}</td>
-                                    <td>&#8369 {{$cart_product->total}}</td>
+                                    <th>{{ $cart_product->product->id }}</th>
+                                    <td>{{ $cart_product->product->name }}</td>
+                                    <td>{{ $cart_product->size }}</td>
+                                    <td>{{ $cart_product->sugar_level }}</td>
+                                    <td>{{ $cart_product->quantity }}</td>
+                                    <td>&#8369 {{ $cart_product->price }}</td>
+                                    <td>&#8369 {{ $cart_product->total }}</td>
                                 </tr>
 
                             @empty
                             @endforelse
-
                         </tbody>
                     </table>
+                </div>
+                <div class="flex justify-end items-center">
+                    @if ($order->status === OrderStatus::PROCESSED->value)
+                        <a href="{{ route('employee.order.show', ['order' => $order->id]) }}?status={{ OrderStatus::DELIVERY->value }}&message=Order is on delivery"
+                            class="btn btn-accent btn-sm">
+                            Deliver
+                        </a>
+                    @endif
+                    @if ($order->status === OrderStatus::DELIVERY->value)
+                    <a href="{{ route('employee.order.show', ['order' => $order->id]) }}?status={{ OrderStatus::DONE->value }}&message=Order is Done!"
+                        class="btn btn-accent btn-sm">
+                        Done
+                    </a>
+                @endif
                 </div>
             </div>
         </div>

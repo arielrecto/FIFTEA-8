@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Transaction;
@@ -13,9 +14,23 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::where('type', 'online')->where('status', 'pending')->with('cart.products')->with('payment.user')->get();
+
+        $status = $request->query('status');
+
+        $builder = Order::where('type', 'online')->where('status', 'pending');
+
+        if($status !== null) {
+
+            $builder = Order::where('type', 'online')->where('status', $status);
+        }
+
+
+       $orders = $builder->with([
+        'cart.products',
+        'payment.user'
+    ])->get();
 
         return view('users.employee.Orders.index', compact(['orders']));
     }
@@ -39,9 +54,26 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
+
+        $status = $request->query('status');
+        $message = $request->query('message');
+
         $order = Order::whereId($id)->with(['payment'])->first();
+
+        if($status !== null) {
+
+
+            $order->update([
+                'status' => $status
+            ]);
+
+
+            return back()->with(['message' => $message]);
+
+        }
+
 
         return view('users.employee.Orders.show', compact(['order']));
     }
@@ -89,7 +121,7 @@ class OrderController extends Controller
             'order_id' => $order->id,
         ]);
 
-        $order->update(['status' => 'processed']);
+        $order->update(['status' => OrderStatus::PROCESSED->value]);
         return back()->with(['message' => 'Order Success']);
     }
 }
