@@ -8,7 +8,7 @@
                 back
             </a>
             <div class="flex items-center justify-between space-x-4 py-4">
-                <img src="{{ $product->image }}" alt=""
+                <img src="/{{ $product->image }}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
 
@@ -31,28 +31,31 @@
                                 <option value="1">100%</option>
                             </select>
                         </div>
-                        <div class="flex flex-col space-y-1">
+                        <div class="flex flex-col space-y-1" x-init="initAddOns({{ $supplies }})">
                             <label for="" class="text-base font-semibold">Extras</label>
-                            <select name="extras" id=""
+                            <select name="extras" id="" @change="changeProductPriceByAddons($event)"
                                 class="w-[200px] rounded px-4 py-2 text-sm border border-gray-300">
-                                <option selected disabled>Select Extras</option>
-                                @php
-                                    $extras = json_decode($product->extras ?? '[]');
-                                @endphp
+                                <option selected value="">Select Extras</option>
 
+                                <template x-for="add in addons" id="add.id">
+                                    <option :value="add.name"><span x-text="add.name"></span></option>
+                                </template>
+
+                                {{--
                                 @forelse ($extras as $extra)
                                     <option value="Pearl">{{ $extra->name }}</option>
                                 @empty
                                     <option disabled>No Exteas Available</option>s
-                                @endforelse
+                                @endforelse --}}
                             </select>
                         </div>
                     </div>
                     <div class="flex items-start space-x-8">
-                        <div class="flex flex-col space-y-1" x-init="initSetSizes({{$sizes}})">
+                        <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
                             <select name="size" id=""
-                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300" @change="changeProductPriceBySize($event)">
+                                class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300"
+                                @change="changeProductPriceBySize($event)">
                                 <option selected value="">Select Size</span></option>
                                 <template x-for="size in sizes" :id="size.id">
                                     <option :value="size.name"><span x-text="size.name"></span></option>
@@ -98,13 +101,19 @@
             function product() {
                 return {
                     price: 0,
-                    prev_price : 0,
+                    prev_price: 0,
                     total: 0,
                     quantity: 1,
-                    sizes : [],
-                    initSetSizes(sizes){
+                    sizes: [],
+                    addons: [],
+                    addon : null,
+                    initSetSizes(sizes) {
                         console.log(sizes);
-                         this.sizes = [...sizes]
+                        this.sizes = [...sizes]
+                    },
+                    initAddOns(addons) {
+                        this.addons = [...addons]
+                        console.log(this.addons);
                     },
                     changeQuantity(e, operator) {
                         e.preventDefault();
@@ -125,15 +134,33 @@
                     totalPrice() {
                         this.total = this.price * this.quantity
                     },
-                    changeProductPriceBySize(e){
+                    changeProductPriceBySize(e) {
                         const name = e.target.value;
-                        if(name == ''){
+                        if (name == '') {
                             this.price = this.prev_price
                             this.totalPrice()
                             return
                         }
-                        const size = this.sizes.find((size) => size.name  === name);
-                        this.price = size.price;
+                        const size = this.sizes.find((size) => size.name === name);
+                        this.price = parseInt(size.price);
+
+                        this.totalPrice()
+                    },
+                    changeProductPriceByAddons(e) {
+                        const name = e.target.value;
+                        const addon = this.addons.find((item) => item.name === name);
+                        if (name == '') {
+
+                            if(this.addon !== null) {
+                                this.price = this.price - parseInt(this.addon.pivot.price)
+                            }
+
+                            this.totalPrice()
+                            return
+                        }
+
+                        this.addon = addon
+                        this.price = this.price + parseInt(addon.pivot.price)
 
                         this.totalPrice()
                     }

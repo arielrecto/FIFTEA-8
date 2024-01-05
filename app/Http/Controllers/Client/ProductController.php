@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\SupplyDefaultTypes;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Supply;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -37,9 +40,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
+
+        $type = Type::where('name', SupplyDefaultTypes::ADDONS->value)->first();
+        $supplies = $type->supplies()->get()->toJson();
         $product = Product::find($id);
         $sizes  = $product->sizes;
-        return view('products.show', compact(['product', 'sizes']));
+
+        return view('products.show', compact(['product', 'sizes', 'supplies']));
     }
 
     /**
