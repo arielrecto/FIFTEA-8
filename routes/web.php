@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('type', TypeController::class);
         });
 
+
         Route::resource('order', OrderController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('category', CategoryController::class);

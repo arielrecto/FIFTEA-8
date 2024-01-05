@@ -198,8 +198,10 @@
 
     <script>
         function sample() {
-            // const baseUrl = "http://localhost:8000";
-            const baseUrl = "http://127.0.0.1:8000";
+            // const hello = `{{ env('APP_URL')}}`;
+            // console.log(hello);
+            // // const baseUrl = "http://localhost:8000";
+            // const baseUrl = "http://127.0.0.1:8000";
             return {
 
                 products: [],
@@ -235,7 +237,7 @@
                         this.isLoading = true;
 
                         const response = await axios.get(
-                            baseUrl + '/product/data'
+                            '/product/data'
                         );
 
                         this.isLoading = false;
@@ -251,7 +253,7 @@
                     }
                 },
                 openModal(id) {
-                    window.location.href = baseUrl + `/client/products/${id}`
+                    window.location.href = `/client/products/${id}`
                 },
                 // getExtras(e) {
                 //     if (e.target.value === ' ') return

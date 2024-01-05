@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,6 +22,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('users.admin.product.category.create');
+
     }
 
     /**
@@ -28,7 +31,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return back()->with([
+            'message' => 'Category Added'
+        ]);
     }
 
     /**
