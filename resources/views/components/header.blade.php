@@ -18,10 +18,6 @@
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
-
-                <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">About Us</a>
-                </div>
             </div>
         </div>
 
@@ -62,7 +58,7 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{ asset('images/logo.png') }}" />
+                            <img src="{{ asset('images/user-image.png') }}" />
                         </div>
                     </label>
                     <ul tabindex="0"
@@ -70,7 +66,8 @@
 
                         <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
 
-                        <a href="{{ route('client.dashboard.index') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Dashboard</a>
+                        <a href="{{ route('client.dashboard.index') }}"
+                            class="rounded-md hover:bg-gray-200 py-1 px-2">Dashboard</a>
 
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
@@ -96,10 +93,10 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-1">
-                    <li><a class="font-sans">Home</a></li>
-                    <li><a class="font-sans">Products</a></li>
-                    <li><a class="font-sans">About Us</a></li>
-                    <li><a class="font-sans">Login</a></li>
+                    <li><a href="/" class="font-sans">Home</a></li>
+                    <li><a href="{{ route('products') }}" class="font-sans">Products</a></li>
+                    <li><a href="{{ route('login') }}" class="font-sans">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="font-sans">Register</a></li>
                 </ul>
             </div>
 

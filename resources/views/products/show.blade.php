@@ -52,6 +52,7 @@
                     </div>
                     <div class="flex items-start space-x-8">
                         <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
+                        <div class="flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
                             <select name="size" id=""
                                 class="w-[150px] rounded px-4 py-2 text-sm border border-gray-300"
@@ -70,7 +71,7 @@
                                     <i class='bx bx-minus text-lg'></i>
                                 </button>
                                 <p
-                                    class="py-1 px-4 rounded border border-gray-300 bg-gradient-to-r from-green-400 to-blue-400 text-white">
+                                    class="py-1 px-4 rounded border border-gray-300 bg-green-600 text-white">
                                     <span x-text="quantity"></span>
                                     <input type="hidden" name="quantity" x-model="quantity">
                                 </p>
@@ -87,7 +88,7 @@
                             <input type="hidden" name="total" x-model="total">
                             <p class="font-bold text-lg">&#8369; <span x-text="total"></span></p>
                             <button
-                                class="px-4 py-2 rounded text-sm bg-gradient-to-r from-green-400 to-blue-400 text-white">Place
+                                class="px-4 py-2 rounded text-sm bg-green-600 text-white">Place
                                 Order</button>
                         </div>
                     </div>
@@ -102,6 +103,7 @@
                 return {
                     price: 0,
                     prev_price: 0,
+                    prev_price: 0,
                     total: 0,
                     quantity: 1,
                     sizes: [],
@@ -109,6 +111,7 @@
                     addon : null,
                     initSetSizes(sizes) {
                         console.log(sizes);
+                        this.sizes = [...sizes]
                         this.sizes = [...sizes]
                     },
                     initAddOns(addons) {
@@ -135,7 +138,9 @@
                         this.total = this.price * this.quantity
                     },
                     changeProductPriceBySize(e) {
+                    changeProductPriceBySize(e) {
                         const name = e.target.value;
+                        if (name == '') {
                         if (name == '') {
                             this.price = this.prev_price
                             this.totalPrice()

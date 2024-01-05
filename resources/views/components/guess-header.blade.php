@@ -1,5 +1,5 @@
 <div class="w-full sticky top-0 z-50 border-b border-gray-200 bg-white shadow">
-    <div class="py-4 flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
+    <div class="py-2 flex justify-between items-center w-full max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center py-1">
             <div class="flex items-center space-x-2">
                 <img class="w-12 h-12" src="{{ asset('images/logo.png') }}" alt="">
@@ -13,10 +13,6 @@
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="{{ route('products') }}">Products</a>
                 </div>
-
-                {{-- <div class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <a class="font-sans text-base" href="/">About Us</a>
-                </div> --}}
             </div>
         </div>
 
@@ -24,8 +20,8 @@
         <div class="hidden md:flex space-x-3">
 
             @if (Auth::user())
-                <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
-                    href="{{ Auth::user()->roles->first()->name === 'admin' ? route('admin.dashboard.index') : (Auth::user()->roles()->first()->name === 'customer' ? route('client.dashboard.index') : route('employee.dashboard.index'))}}">DASHBOARD</a>
+                <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4"
+                    href="{{ Auth::user()->roles->first()->name === 'admin'? route('admin.dashboard.index'): (Auth::user()->roles()->first()->name === 'customer'? route('client.dashboard.index'): route('employee.dashboard.index')) }}">Dashboard</a>
             @else
                 <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4 "
                     href="{{ route('login') }}">LOGIN</a>
@@ -45,6 +41,7 @@
                     <li><a href="/" class="font-sans">Home</a></li>
                     <li><a href="{{ route('products') }}" class="font-sans">Products</a></li>
                     <li><a href="{{ route('login') }}" class="font-sans">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="font-sans">Register</a></li>
                 </ul>
             </div>
 
