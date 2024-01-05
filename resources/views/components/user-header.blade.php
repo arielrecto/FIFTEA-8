@@ -24,8 +24,8 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img
-                                src="{{ Auth::user()->profile->image ? asset('storage/profile/' . Auth::user()->profile->image) : '' }}" />
+                            {{-- <img
+                                src="{{ Auth::user()->profile->image ? asset('storage/profile/' . Auth::user()->profile->image) : '' }}" /> --}}
                         </div>
                     </label>
                     <ul tabindex="0"
