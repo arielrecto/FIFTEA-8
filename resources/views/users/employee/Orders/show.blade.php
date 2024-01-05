@@ -2,7 +2,7 @@
     use App\Enums\OrderStatus;
 @endphp
 <x-employee-panel>
-    <div class="p-5 flex flex-col gap-5" x-data="payment">
+    <div class="w-full h-full p-5 flex flex-col gap-5" x-data="payment">
 
         @if (Session::has('message'))
             <div class="alert alert-success animate-pulse" id="alert">
@@ -14,31 +14,34 @@
                 <span>{{ Session::get('message') }}</span>
             </div>
         @endif
+
         <div class="w-full flex items-center justify-start py-2 bg-sbgreen px-4 rounded">
             <h1 class="text-xl text-center font-bold text-white">
                 Orders Details
             </h1>
         </div>
 
-        <div class="flex flex-col gap-2">
+        <div class="w-full h-full flex flex-col space-y-4">
+            
             <div class="w-full flex justify-between items-center">
-                <h1 class="flex items-center text-3xl gap-4">
+                <h1 class="flex items-center text-xl gap-4">
                     <span class="">Order #:</span>
                     <span class="font-bold">
                         {{ $order->num_ref }}
                     </span>
                 </h1>
-                <h1 class="flex items-center text-lg gap-4">
+                <h1 class="flex items-center text-xl gap-4">
                     <span class="">Date:</span>
                     <span class="font-bold">
                         {{ date('F m, Y', strtotime($order->created_at)) }}
                     </span>
                 </h1>
             </div>
+
             <div class="flex flex-col gap-2">
                 <h1>Payment Details</h1>
                 <div class="grid grid-cols-3 grid-flow-row h-32">
-                    <div class="w-32 h-auto">
+                    <div class="w-80 h-auto">
                         <img src="{{ $order->payment->image }}" alt=""
                             class="object object-center h-full w-full">
                     </div>
@@ -52,7 +55,8 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col gap-2">
+
+            {{-- <div class="flex flex-col gap-2">
                 Total : {{ $order->total }}
                 <h1 class="text-2xl font-bold">
                     Products
@@ -102,7 +106,7 @@
                     </a>
                 @endif
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>

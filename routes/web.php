@@ -140,9 +140,11 @@ Route::middleware('auth')->group(function () {
             'edit',
             'store'
         ]);
+
         Route::resource('supply', EmployeeSupplyController::class)->only([
             'index'
         ]);
+
         Route::resource('order', EmployeeOrderController::class)->only([
             'index', 'show', 'destroy'
         ]);

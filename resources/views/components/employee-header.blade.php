@@ -12,9 +12,6 @@
                 <a href="{{ route('products') }}" class="py-2 px-4 hover:bg-gray-200 rounded">
                     <p class="font-sans text-base">Products</p>
                 </a>
-                <a href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
-                    <p class="font-sans text-base">About Us</p>
-                </a>
             </div>
         </div>
 
@@ -29,7 +26,7 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{ asset('images/logo.png') }}" />
+                            <img src="{{ asset('images/user-image.png') }}" />
                         </div>
                     </label>
                     <ul tabindex="0"
