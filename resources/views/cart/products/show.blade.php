@@ -43,7 +43,7 @@
                                             Large</option>
                                     </select>
                                 </div>
-                                <div class="flex flex-col space-y-1">
+                                {{-- <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
@@ -51,7 +51,7 @@
                                         <option value="">Extra 1</option>
                                         <option value="">Extra 1</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
                                     <input type="number" name="quantity"

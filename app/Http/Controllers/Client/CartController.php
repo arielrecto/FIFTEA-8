@@ -52,6 +52,7 @@ class CartController extends Controller
         }
         return view('cart.cart', compact(['cart', 'total']));
     }
+    
     public function showProduct ($id) {
         $cart = Cart::where('is_check_out', false)->first();
         $c_product = CartProduct::find($id);
