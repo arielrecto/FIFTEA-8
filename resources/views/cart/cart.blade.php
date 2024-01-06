@@ -15,11 +15,11 @@
                                         <tr
                                             class="text-xs tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-200 dark:text-gray-400 dark:bg-gray-800">
                                             <th class="px-4 py-3">Product</th>
-                                            <th class="px-4 py-3">Unit Price</th>
+                                            {{-- <th class="px-4 py-3">Unit Price</th> --}}
                                             <th class="px-4 py-3">Size</th>
                                             <th class="px-4 py-3">Extras</th>
                                             <th class="px-4 py-3">Quantity</th>
-                                            <th class="px-4 py-3">Total Price</th>
+                                            <th class="px-4 py-3">Price</th>
                                             <th class="px-4 py-3"></th>
                                             <th class="px-4 py-3"></th>
                                         </tr>
@@ -44,19 +44,21 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-4 py-3">&#8369 {{ $c_product->product->price }}</td>
+                                                {{-- <td class="px-4 py-3">&#8369 {{ $c_product->product->price }}</td> --}}
                                                 <td class="px-4 py-3">{{ $c_product->size }}</td>
                                                 @php
-                                                    $extras = json_decode($c_product->extras, true);
+                                                    $extra = json_decode($c_product->extras);
                                                 @endphp
-                                                {{-- <td class="px-4 py-3">
-                                                    @foreach ($extras['data'] as $extra)
-                                                        <p class="flex gap-2">
-                                                        {{ $extra['name'] }} <span>price :
-                                                            {{ $extra['types'][0]['pivot']['price'] }}</span>
-                                                        </p>
-                                                    @endforeach
-                                                </td> --}}
+
+
+                                                <td class="px-4 py-3">
+
+                                                    <p class="flex gap-2">
+                                                        {{ $extra->name }} <span>price : &#8369
+                                                            {{ $extra->pivot->price }}</span>
+                                                    </p>
+
+                                                </td>
                                                 <td class="px-4 py-3">{{ $c_product->quantity }}</td>
                                                 <td class="px-4 py-3">&#8369 {{ $c_product->total }}</td>
                                                 <td class="px-4 py-3">
