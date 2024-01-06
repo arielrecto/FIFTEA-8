@@ -30,7 +30,7 @@
                                                 <td class="px-4 py-3">
                                                     <div class="flex items-center space-x-2">
                                                         <img class="w-12 h-12 rounded"
-                                                            src="{{ asset($c_product->product->image) }}"
+                                                            src="{{ asset($c_product->product->image ?? '') }}"
                                                             alt="">
 
                                                         <div class="flex flex-col">
@@ -67,7 +67,9 @@
                                                     </a>
                                                 </td>
                                                 <td class="px-4 py-3">
-                                                    <form action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}" method="POST">
+                                                    <form
+                                                        action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit">
@@ -143,23 +145,24 @@
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
                                         <label for="" class="text-sm ">GCASH REFERENCE NUMBER</label>
-                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded" name="qr_ref"
-                                            placeholder="reference number">
+                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded"
+                                            name="qr_ref" placeholder="reference number">
                                         @if ($errors->has('qr_ref'))
                                             <p class="text-xs text-error">{{ $errors->first('qr_ref') }}</p>
                                         @endif
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
                                         <label for="" class="text-sm ">UPLOAD RECEIPT IMAGE</label>
-                                        <input type="file" name="image" class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
+                                        <input type="file" name="image"
+                                            class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
                                         @if ($errors->has('image'))
                                             <p class="text-xs text-error">{{ $errors->first('image') }}</p>
                                         @endif
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
                                         <label for="" class="text-sm ">AMOUNT</label>
-                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded" name="amount"
-                                        placeholder="amount">
+                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded"
+                                            name="amount" placeholder="amount">
                                         @if ($errors->has('amount'))
                                             <p class="text-xs text-error">{{ $errors->first('amount') }}</p>
                                         @endif
