@@ -159,14 +159,14 @@
                                             <p class="text-xs text-error">{{ $errors->first('image') }}</p>
                                         @endif
                                     </div>
-                                    <div class="w-full flex flex-col gap-2">
+                                    {{-- <div class="w-full flex flex-col gap-2">
                                         <label for="" class="text-sm ">AMOUNT</label>
                                         <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded"
                                             name="amount" placeholder="amount">
                                         @if ($errors->has('amount'))
                                             <p class="text-xs text-error">{{ $errors->first('amount') }}</p>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="w-full flex">

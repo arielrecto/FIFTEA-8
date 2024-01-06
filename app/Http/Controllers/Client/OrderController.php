@@ -36,7 +36,7 @@ class OrderController extends Controller
 
         // dd($request->all());
         $request->validate([
-            'image' => 'required',
+            'image' => 'required:|mimes:jpg,jpeg',
             'qr_ref' => 'required',
             'amount' => 'required'
         ]);
@@ -61,7 +61,7 @@ class OrderController extends Controller
         Payment::create([
             'user_id' => $user->id,
             'order_id' => $order->id,
-            'amount' => $request->amount,
+            'amount' => $request->total,
             'payment_ref' => $request->qr_ref,
             'image' => asset('storage/payment/image/' . $filename)
         ]);
