@@ -18,6 +18,8 @@ class TransactionController extends Controller
         $totalOnline = $this->getTotalTransactionByOrderType($transactions->toArray(), 'online');
         $totalWalkin = $this->getTotalTransactionByOrderType($transactions->toArray(), 'walk_in');
 
+        // dd(compact(['transactions', 'totalOnline', 'totalWalkin']));
+
         return view('users.admin.transaction.index', compact(['transactions', 'totalOnline', 'totalWalkin']));
     }
 
