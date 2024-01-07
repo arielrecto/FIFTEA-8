@@ -11,6 +11,8 @@
                 <img src="{{ $product->image}}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
 
+                    @dd($product->image)
+
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
                     @csrf
                     <span class="text-base font-semibold text-gray-400">{{ $product->categories[0]->name }}</span>
