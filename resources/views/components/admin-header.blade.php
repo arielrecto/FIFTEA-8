@@ -54,29 +54,19 @@
             </div>
         @else
             <div class="hidden md:flex space-x-3">
-                <a class="font-sans text-sm text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans text-sm text-white font-medium bg-sbgreen hover:bg-green-800 py-2 px-4"
                     href="{{ route('login') }}">LOGIN</a>
-                <a class="font-sans text-sm text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
+                <a class="font-sans text-sm text-gray-600 font-medium bg-gray-200 hover:bg-gray-300 py-2 px-4"
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth
-        <div class="flex md:hidden">
-            <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                    <i class='bx bx-menu text-3xl font-medium text-gray-600'></i>
-                </label>
-                <ul tabindex="0"
-                    class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-1">
-                    <li><a class="font-sans">Home</a></li>
-                    <li><a class="font-sans">Products</a></li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button
-                            class="w-full rounded-md bg-sbgreen hover:bg-sblight py-1 px-2 cursor-pointer text-white">Logout</button>
-                    </form>
-                </ul>
-            </div>
-
+        <!-- drawer init and show -->
+        <div class="md:hidden text-center">
+            <button type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation"
+                aria-controls="drawer-navigation">
+                <i class='bx bx-menu text-3xl font-medium text-gray-600'></i>
+            </button>
         </div>
+
     </div>
 </div>

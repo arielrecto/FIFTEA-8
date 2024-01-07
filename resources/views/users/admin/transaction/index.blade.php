@@ -1,7 +1,7 @@
 <x-panel>
-    <section class="p-5 flx flex-col space-y-5">
-        <div class="flex items-start space-x-4">
-            <div class="w-3/4 py-4 px-2">
+    <section class="md:p-5 py-5 flx flex-col space-y-5">
+        <div class="flex flex-col-reverse md:flex-row space-y-4 md:space-y-0 items-start md:space-x-4">
+            <div class="w-full md:w-3/4 py-4 md:px-2">
                 <table class="min-w-full bg-white border border-gray-200">
                     <!-- Head -->
                     <thead>
@@ -34,15 +34,15 @@
                 </table>
             </div>
 
-            <div class="w-1/4 flex flex-col justify-center">
-                <div class="p-4 w-full">
+            <div class="w-full md:w-1/4 flex flex-col justify-center">
+                <div class="py-4 md:p-4 w-full">
                     <div class="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center">
                         <i class='bx bx-cart-alt text-sbgreen text-5xl'></i>
                         <h2 class="title-font font-medium text-3xl text-gray-900">{{$totalOnline}}</h2>
                         <p class="leading-relaxed">Online Orders</p>
                     </div>
                 </div>
-                <div class="p-4 w-full">
+                <div class="py-4 md:p-4 w-full">
                     <div class="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center">
                         <i class='bx bx-store text-sbgreen text-5xl'></i>
                         <h2 class="title-font font-medium text-3xl text-gray-900">{{$totalWalkin}}</h2>

@@ -1,7 +1,7 @@
 <x-guess-header />
 
 <section class="text-gray-600 body-font py-12 md:py-0"> {{-- bg-gradient-to-tr from-sbdlight to-white --}}
-    <div class="md:h-[700px] w-full max-w-[1300px] mx-auto flex flex-col md:flex-row items-center px-4 pt-[90px]">
+    <div class="md:h-[700px] w-full max-w-[1300px] mx-auto flex flex-col md:flex-row items-center px-4 pt-[40px]">
 
         <div class="w-full md:w-2/5 flex flex-col space-y-5 justify-start items-center md:items-start">
             <h2 data-aos="fade-right" data-aos-duration="2000" data-aos-delay="200"
@@ -23,21 +23,14 @@
                     Now</a>
             </div>
 
-            <div class="flex items-center space-x-4 py-2 " data-aos="fade-right" data-aos-duration="2000"
+            <a href="" class="flex items-center space-x-4 py-2 px-4 border border-gray-300 hover:border-blue-700 rounded-md" data-aos="fade-right" data-aos-duration="2000"
                 data-aos-delay="600">
-                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
+                <span class="text-base text-blue-700">Follow us on</span>
+                <div class="">
                     <i
-                        class='bx bxl-facebook-circle text-2xl text-blue-700 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
-                </a>
-                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
-                    <i
-                        class='bx bxl-instagram-alt text-2xl text-red-500 group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
-                </a>
-                <a href="" class="p-2 px-3 bg-gray-200 rounded-full hover:bg-black group">
-                    <i
-                        class='bx bxl-tiktok text-2xl text-black group-hover:text-white hover:transform hover:scale-110 transition duration-300 ease-in-out'></i>
-                </a>
-            </div>
+                        class='bx bxl-facebook-circle text-2xl text-blue-700'></i>
+                </div>
+            </a>
         </div>
 
         <div class="w-full md:w-3/5 h-full hidden md:block">

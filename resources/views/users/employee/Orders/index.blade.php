@@ -3,7 +3,7 @@
 @endphp
 
 <x-employee-panel>
-    <div class="p-5 flex flex-col gap-5" x-data="payment">
+    <div class="md:p-5 py-5 flex flex-col gap-5" x-data="payment">
 
         @if (Session::has('message'))
             <div class="alert alert-success animate-pulse" id="alert">
@@ -15,73 +15,29 @@
                 <span>{{ Session::get('message') }}</span>
             </div>
         @endif
-        <div class="w-full flex items-center justify-between py-2 bg-sbgreen px-4 rounded ">
-            <h1 class="text-xl text-center font-bold text-white">
+        <div
+            class="w-full flex flex-col md:flex-row md:items-center md:justify-between py-2 bg-sbgreen px-2 before:md:px-4 rounded space-y-1 md:space-y-0">
+            <h1 class="text-xl text-left font-bold text-white">
                 Online Orders
             </h1>
             <div class="orders-status flex items-center space-x-2">
                 <a href="{{ route('employee.order.index') }}"
-                    class=" py-2 px-4 rounded text-sm text-white border border-white">
+                    class=" text-xs py-2 px-4 rounded text-white border border-white">
                     Pending
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::PROCESSED->value }}"
-                    class="py-2 px-4 rounded text-sm text-white border border-white">
+                    class="py-2 px-4 rounded text-xs text-white border border-white">
                     Processed
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DELIVERY->value }}"
-                    class="py-2 px-4 rounded text-sm text-white border border-white">
+                    class="py-2 px-4 rounded text-xs text-white border border-white">
                     Delivery
                 </a>
                 <a href="{{ route('employee.order.index') }}?status={{ OrderStatus::DONE->value }}"
-                    class="py-2 px-4 rounded text-sm text-white border border-white">
+                    class="py-2 px-4 rounded text-xs text-white border border-white">
                     Done
                 </a>
             </div>
-
-            {{-- <script>
-                const links = document.querySelectorAll('.orders-status a');
-                links.forEach(link => {
-                  link.addEventListener('click', function(event) {
-                    links.forEach(l => l.classList.remove('active-orders'));
-                    this.classList.add('active-orders');
-                  });
-                });
-            </script> --}}
-
-            <script>
-                // Get all anchor tags inside the flex container
-                const links = document.querySelectorAll('.orders-status a');
-
-                // Check if there is a stored active link in localStorage
-                const storedActiveLinkIndex = localStorage.getItem('activeLink');
-
-                // If no active link is stored, set the first link as default active
-                if (storedActiveLinkIndex === null) {
-                  links[0].classList.add('active-orders');
-                }
-
-                // Add click event listener to each link
-                links.forEach(link => {
-                  link.addEventListener('click', function(event) {
-                    // Prevent default link behavior
-                    event.preventDefault();
-
-                    // Remove 'active' class from all links
-                    links.forEach(l => l.classList.remove('active-orders'));
-
-                    // Add 'active' class to the clicked link
-                    this.classList.add('active-orders');
-
-                    // Store the active link's index in localStorage
-                    localStorage.setItem('activeLink', Array.from(links).indexOf(this).toString());
-                  });
-                });
-
-                // Check if there is a stored active link and apply the 'active' class
-                if (storedActiveLinkIndex !== null) {
-                  links[parseInt(storedActiveLinkIndex)].classList.add('ctive-orders');
-                }
-            </script>
         </div>
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500">

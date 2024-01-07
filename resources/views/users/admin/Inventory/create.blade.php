@@ -1,7 +1,7 @@
 <x-panel>
-    <div class="w-full flex flex-col items-center justify-center p-4" x-data="supplyScript">
+    <div class="w-full flex flex-col items-center justify-center md:p-4 py-4" x-data="supplyScript">
 
-        <div class="w-1/2 p-4 flex flex-col space-y-6">
+        <div class="w-full md:w-1/2 md:p-4 py-4 flex flex-col space-y-6">
 
             @if (Session::has('message'))
                 <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"

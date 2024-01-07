@@ -2,10 +2,11 @@
 
     <x-user-header />
 
-    <section class="bg-gray-100">
+    <section class="bg-gray-50">
         <div class="max-w-[1300px] mx-auto px-4 pt-24 pb-4">
-            <div class="flex items-start justify-between space-x-6">
-                <div class="w-4/6 flex flex-col space-y-4">
+            <div class="flex flex-col md:flex-row items-start justify-between md:space-x-6 space-y-4 md:space-y-0">
+
+                <div class="w-full md:w-4/6 flex flex-col space-y-4">
                     {{--
                     ---------------------------------------------------
                         ITO YUNG PART NG TOTAL AMOUNT SPENT
@@ -14,9 +15,10 @@
                     <div class="w-full flex items-center justify-start">
                         <h1 class="text-base font-bold">Overview</h1>
                     </div>
-                    <div class="flex items-start justify-between space-x-4">
+                    <div
+                        class="flex flex-col md:flex-row items-start justify-between md:space-x-4 space-y-4 md:space-y-0">
                         <div
-                            class="w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-cyan-500 to-blue-400  relative">
+                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-cyan-500 to-blue-400  relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-credit-card text-2xl text-white'></i>
                                 <p class="text-base text-white">Total Amount Spent</p>
@@ -27,7 +29,7 @@
                             <i class='bx bx-bar-chart absolute bottom-0 right-0 text-7xl opacity-25 text-white'></i>
                         </div>
                         <div
-                            class="w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-violet-500 to-fuchsia-400 relative">
+                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-violet-500 to-fuchsia-400 relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-shopping-bag text-2xl text-white'></i>
                                 <p class="text-base text-white">Pending Orders</p>
@@ -38,7 +40,7 @@
                             <i class='bx bx-shopping-bag absolute bottom-1 right-2 text-6xl opacity-25 text-white'></i>
                         </div>
                         <div
-                            class="w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-purple-500 to-pink-400  relative">
+                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-gradient-to-r from-purple-500 to-pink-400  relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-package text-2xl text-white'></i>
                                 <p class="text-base text-white">Confirmed Orders</p>
@@ -88,14 +90,14 @@
                         <h1 class="text-base font-bold">Order History</h1>
                     </div>
 
-                    <div class="min-h-[300px] h-auto flex flex-col space-y-2 px-2 py-3 rounded bg-white shadow">
+                    <div class="min-h-[300px] h-auto flex flex-col space-y-2">
 
                         @forelse ($orders as $order)
 
                             <div tabindex="0"
-                                class="collapse collapse-arrow border border-gray-400 shadow-sm rounded bg-gray-200">
+                                class="collapse collapse-arrow border border-gray-200 shadow-sm rounded bg-white">
                                 <div class="p-4 py-2 flex items-center justify-between">
-                                    <a href="{{route('client.order.show', ['order' => $order->id])}}">
+                                    <a href="{{ route('client.order.show', ['order' => $order->id]) }}">
                                         <div class="flex items-center space-x-4">
                                             <p class="text-sm font-bold">{{ $order->num_ref }}</p>
                                             <p class="text-sm font-bold">DATE: {{ $order->created_at->format('M-d-Y') }}
@@ -108,13 +110,12 @@
                                 </div>
 
                                 {{--
-                        ---------------------------------------------------
-                            DITO YUNG MGA ITEMS NG ORDER
-                        ---------------------------------------------------
-                        --}}
+                                ---------------------------------------------------
+                                    DITO YUNG MGA ITEMS NG ORDER
+                                ---------------------------------------------------
+                                --}}
 
                                 <div class="collapse-content">
-
                                     @foreach ($order->cart->products as $c_product)
                                         <div class="flex justify-between p-2 px-1 border-t border-gray-200">
                                             <div class="flex items-center space-x-3">
@@ -126,13 +127,10 @@
                                                         {{ $c_product->product->categories[0]->name }}</p>
                                                 </div>
                                             </div>
-                                            <p class="text-sm">&#8369 150</p>
+                                            <p class="text-sm">&#8369 {{ $c_product->product->price }}</p>
                                         </div>
                                     @endforeach
-
-
                                 </div>
-
                             </div>
                         @empty
                             <div class="h-[280px] w-full flex items-center justify-center">
@@ -145,18 +143,18 @@
                 </div>
 
                 {{--
-                    ---------------------------------------------------
-                        DITO YUNG PROFILE
-                    ---------------------------------------------------
-                    --}}
+                ---------------------------------------------------
+                    DITO YUNG PROFILE
+                ---------------------------------------------------
+                --}}
 
-                <div class="w-2/6 flex flex-col space-y-4">
-                    <div class="w-full flex items-center justify-start">
+                <div class="w-full md:w-2/6 flex flex-col space-y-4">
+                    <div class="hidden md:flex w-full items-center justify-start">
                         <h1 class="text-base font-bold">Profile</h1>
                     </div>
 
                     {{-- @if ($profile) --}}
-                    <div class="rounded shadow-sm h-fit w-full bg-white pb-4">
+                    <div class="hidden md:block rounded shadow-sm h-fit w-full bg-white pb-4">
                         <div class="w-full h-fit relative ">
                             <a href="{{ route('profile.edit') }}">
                                 <i

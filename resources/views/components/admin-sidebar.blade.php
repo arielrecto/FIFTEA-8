@@ -1,4 +1,4 @@
-<div class="h-auto min-h-screen flex flex-col w-full py-8 border-r border-gray-300">
+<div class="flex h-auto min-h-screen flex-col w-full py-8 border-r border-gray-300">
     <ul class="flex flex-col space-y-1 px-3">
         <a href="{{route('admin.dashboard.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200">
             <i class='bx bxs-dashboard text-xl'></i>
@@ -35,7 +35,7 @@
         </a>
         <a href="{{route('admin.feedbacks.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group
         {{Route::is('admin.feedbacks.index') ? 'bg-gray-200' : ''}} hover:bg-gray-200 ">
-            <i class='bx bx-food-menu text-xl'></i>
+        <i class='bx bx-message-detail text-xl'></i>
             <p class="text-lg ">Feedbacks</p>
         </a>
     </ul>
