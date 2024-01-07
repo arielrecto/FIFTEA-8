@@ -1,15 +1,16 @@
 <x-panel>
-    <section class="w-full flex flex-col items-start p-4 pt-6 space-y-2">
+    <section class="w-full flex flex-col items-start md:p-4 pt-6 space-y-2">
         <div class="w-full items-center justify-start py-2 px-4  bg-sblight">
             <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>
         </div>
         @if (Session::has('message'))
-            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show" class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+                class="flex items-center bg-sblight w-full py-2 px-4 rounded-md space-x-2 ">
                 <i class='bx bx-check-circle text-white text-xl'></i>
-                <p class="text-white text-sm text-center" >{{Session::get('message')}}</p>
+                <p class="text-white text-sm text-center">{{ Session::get('message') }}</p>
             </div>
         @endif
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col verflow-x-auto">
             <div class="w-full overflow-x-auto">
                 <table class="w-full border-collapse border border-gray-400 ">
                     <thead>
@@ -31,12 +32,13 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">
                                         {!! $product->description !!}
                                     </td>
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left text-center   ">
+                                    <td
+                                        class="poppins text-sm border border-gray-400 px-4 py-2 text-left text-center   ">
                                         @php
-                                            $sizes = json_decode($product->sizes)
+                                            $sizes = json_decode($product->sizes);
                                         @endphp
                                         @foreach ($sizes as $size)
-                                          {{$size->name}} ,
+                                            {{ $size->name }} ,
                                         @endforeach
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
@@ -60,7 +62,8 @@
                                             </form>
 
                                             <div>
-                                                <a href="{{route('admin.products.edit', ['product' => $product->id])}}">
+                                                <a
+                                                    href="{{ route('admin.products.edit', ['product' => $product->id]) }}">
                                                     <label for="my-modal" class="p-0 m-0">
                                                         <i
                                                             class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
@@ -88,7 +91,7 @@
                         @endif
                     </tbody>
                 </table>
-                <div class="py-4">
+                <div class="w-full py-4">
                     {{ $products->links() }}
                 </div>
             </div>

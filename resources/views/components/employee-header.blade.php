@@ -56,7 +56,7 @@
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth
-        <div class="flex md:hidden">
+        {{-- <div class="flex md:hidden">
             <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <i class='bx bx-menu text-3xl font-medium text-gray-600'></i>
@@ -73,6 +73,13 @@
                 </ul>
             </div>
 
+        </div> --}}
+         <!-- drawer init and show -->
+         <div class="md:hidden text-center">
+            <button type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation"
+                aria-controls="drawer-navigation">
+                <i class='bx bx-menu text-3xl font-medium text-gray-600'></i>
+            </button>
         </div>
     </div>
 </div>

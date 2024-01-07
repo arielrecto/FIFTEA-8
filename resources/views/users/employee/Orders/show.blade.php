@@ -41,9 +41,9 @@
             <div class="flex flex-col">
                 <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
                 <div class="flex">
-                    <div class="w-80 h-auto">
+                    <div class="w-12 md:w-80 h-auto">
                         <img src="{{ $order->payment->image }}" alt=""
-                            class="object object-center h-full w-full">
+                            class="object object-center h-full w-full ">
                     </div>
                     <div class="w-full h-full flex-col gap-2">
                         <h1>Referrence #</h1>

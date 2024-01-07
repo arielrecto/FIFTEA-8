@@ -5,9 +5,9 @@
         <x-header :cart="$cart" :subtotal="$subTotal" />
     @endif
     <section>
-        <div class="max-w-[1300px] mx-auto px-4 pt-24">
-            <div class="flex items-start justify-center">
-                <div class="flex flex-col space-y-4">
+        <div class="w-full max-w-[1300px] mx-auto px-4 pt-24">
+            <div class="w-full flex justify-center items-center" >
+                <div class="w-full md:w-fit flex flex-col space-y-4">
                     {{--
                     ----------------------------------------------------------
                         PALAGYAN NALANG NG ROUTE ITONG BACK BUTTON SA BABA
@@ -20,14 +20,14 @@
                         back
                     </a>
                     <p class="text-lg font-bold">Update your Order</p>
-                    <div class="flex items-center space-x-4 p-4 border bordergray-200 rounded-md shadow">
+                    <div class="w-full md:w-fit flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0 p-4 border bordergray-200 rounded-md shadow">
                         <img src="{{ asset($c_product->product->image) }}" alt=""
-                            class="w-48 h-48 border border-gray-200">
+                            class="w-full h-auto md:w-48 md:h-48 border border-gray-200 rounded-md">
                         <form action="{{ route('client.cart.updateCartItem', $c_product->id) }}" method="POST"
                             class="flex flex-col space-y-4">
                             @csrf
                             @method('PUT')
-                            <div class="flex items-center space-x-4">
+                            <div class="flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0">
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">SIZE</label>
                                     <select name="size" id=""

@@ -16,7 +16,7 @@
             </div>
         </div>
         @auth
-            <div class="hidden md:flex space-x-2">
+            <div class="flex space-x-2">
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
@@ -48,7 +48,7 @@
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth
-        <div class="flex md:hidden">
+        {{-- <div class="flex md:hidden">
             <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <i class='bx bx-menu text-3xl font-medium text-gray-600'></i>
@@ -62,6 +62,6 @@
                 </ul>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 </header>

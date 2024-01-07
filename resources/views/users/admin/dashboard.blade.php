@@ -1,5 +1,6 @@
 <x-panel>
-    <div class="w-full p-4">
+    <div class="w-full md:p-4">
+
         <section class="text-gray-600 body-font">
             <div class="container py-10 mx-auto">
                 <div class="flex flex-wrap -m-4 text-center">
@@ -35,17 +36,16 @@
             </div>
         </section>
 
-
-        <div class="flex gap-2 space-x-4 grow">
-            <div class="w-2/3 bg-white rounded-lg  h-96 p-6">
+        <div class="w-full flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+            <div class="w-full md:w-2/3 bg-white rounded-lg h-96 p-6">
                 <div id="bar">
 
                 </div>
             </div>
 
-            <div class="w-1/3 flex flex-col ">
-                <div class="w-full flex flex-col flex-wrap -m-4">
-                    <div class="p-4 w-full">
+            <div class="w-full md:w-1/3 flex flex-col ">
+                <div class="w-full flex flex-col flex-wrap md:-m-4 space-y-4">
+                    <div class="md:p-4 w-full">
                         <div
                             class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
                             <div
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class="p-4 w-full">
+                    <div class="md:p-4 w-full">
                         <div
                             class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
                             <div
@@ -119,7 +119,7 @@
 
             chart.render();
 
-            const data = {!!json_encode($totalSalesByMonth)!!}
+            const data = {!! json_encode($totalSalesByMonth) !!}
 
             const months = Object.keys(data);
             const sales = Object.values(data)

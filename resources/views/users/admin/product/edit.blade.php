@@ -1,18 +1,18 @@
 <x-panel>
-    <div class="w-full flex flex-col pt-8 p-4 relative" x-data="data">
-        <div class="px-4">
+    <div class="w-full flex flex-col pt-8 md:p-4 relative" x-data="data">
+        <div class="md:px-4">
             <div class="flex flex-col border-b border-gray-400 pb-2">
                 <h1 class="text-2xl font-semibold text-sbgreen">Edit Product</h1>
                 <p class="text-sm">You are about to edit a product</p>
             </div>
         </div>
 
-        <form method="POST" action="{{ route('admin.products.update', ['product' => $product->id]) }}" enctype="multipart/form-data"
-            class=" w-full h-full flex flex-col space-y-6">
+        <form method="POST" action="{{ route('admin.products.update', ['product' => $product->id]) }}"
+            enctype="multipart/form-data" class=" w-full h-full flex flex-col space-y-6">
             @method('PUT')
             @csrf
-            <div class="w-full flex items-start ">
-                <div class="w-1/3 h-full flex p-4 ">
+            <div class="w-full flex-col md:flex-row flex items-start space-y-4 md:space-y-0">
+                <div class="w-full md:w-1/3 h-full flex md:p-4 ">
                     <div class="">
                         <template x-if="image !== null">
                             <img :src="image" class="h-96 rounded-md" />
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="w-2/3 flex flex-col space-y-6 p-4">
+                <div class="w-full md:w-2/3 flex flex-col space-y-6 md:p-4">
                     <div class="">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
                         <input type="text" name="name"
@@ -48,7 +48,7 @@
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
 
-                    <div class="flex space-x-4 items-center">
+                    <div class="flex flex-col md:flex-row space-y-6 md:space-0 md:space-x-4 items-center">
                         <div class="w-full ">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
                             <input type="text" name="price"
@@ -62,7 +62,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                               ">
-                                <option selected value="{{null}}">Select Category</option>
+                                <option selected value="{{ null }}">Select Category</option>
 
                                 @forelse ($categories as $category)
                                     <option value="{{ $category->name }}">{{ $category->name }}</option>
@@ -107,13 +107,13 @@
         </form>
 
         <div class="w-full h-full absolute z-10 flex justify-center" x-show="modalSize" x-transition.duration.700ms>
-            <div class="bg-gray-100 w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
+            <div class="bg-gray-100 w-full md:w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
                 <template x-for="(field, index) in fields" :key="index">
                     <div class="w-full">
                         <p class="flex w-full"> Field <span x-text="index + 1" class="flex-grow"></span> <span>
                                 <button @click="removeField(index)"
-                                    class="px-4 py-2 rounded-full bg-sbgreen text-white">
-                                    x
+                                    class="px-4 py-2 rounded-full hover:bg-gray-200">
+                                    <i class='bx bx-x text-red-600 text-xl'></i>
                                 </button></span></p>
                         <div class="w-full ">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Size</label>
@@ -134,10 +134,10 @@
                     +
                 </button>
                 <div>
-                    <button @click="addSizes" class="px-4 py-2 rounded-full bg-sbgreen text-white">
+                    <button @click="addSizes" class="px-4 py-2 rounded bg-sbgreen text-white">
                         Save
                     </button>
-                    <button @click="openModalSize" class="px-4 py-2 rounded-full bg-sbgreen text-white">
+                    <button @click="openModalSize" class="px-4 py-2 rounded text-gray-600 border border-gray-200 hover:bg-gray-200">
                         Cancel
                     </button>
                 </div>

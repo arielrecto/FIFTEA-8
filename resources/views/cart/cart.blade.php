@@ -2,22 +2,22 @@
     <x-header :cart="$cart" :subtotal="$total" />
     <section class="pt-16 bg-white">
         <div class="max-w-[1300px] mx-auto flex px-4">
-            <div class="w-full flex-col p-4">
+            <div class="w-full flex-col md:p-4">
                 <div class="w-full py-4 ">
                     <h1 class="text-xl font-sans font-bold">Your Cart</h1>
                 </div>
-                <div class="w-full flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-8" x-data="productData">
+                <div class="w-full flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-4" x-data="productData">
                     <div class="flex flex-col w-full md:w-2/3">
-                        <div class="w-full overflow-hidden rounded-md shadow">
+                        <div class="w-full overflow-hidden rounded border border-gray-200">
                             <div class="w-full overflow-x-auto">
                                 <table class="w-full whitespace-no-wrap">
                                     <thead>
                                         <tr
                                             class="text-xs tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-200 dark:text-gray-400 dark:bg-gray-800">
-                                            <th class="px-4 py-3">Product</th>
+                                            <th class="px-4 py-3 min-w-[150px]">Product</th>
                                             <th class="px-4 py-3">Unit Price</th>
                                             <th class="px-4 py-3">Size</th>
-                                            <th class="px-4 py-3">Extras</th>
+                                            {{-- <th class="px-4 py-3">Extras</th> --}}
                                             <th class="px-4 py-3">Quantity</th>
                                             <th class="px-4 py-3">Total Price</th>
                                             <th class="px-4 py-3"></th>
@@ -27,7 +27,7 @@
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                         @forelse ($cart->products as $c_product)
                                             <tr class="text-gray-700 dark:text-gray-400">
-                                                <td class="px-4 py-3">
+                                                <td class="px-4 py-3 min-w-[150px]">
                                                     <div class="flex items-center space-x-2">
                                                         <img class="w-12 h-12 rounded"
                                                             src="{{ asset($c_product->product->image ?? '') }}"
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="w-full md:w-1/3">
-                        <div class="w-full flex flex-col space-y-4 p-4 rounded-md shadow-md border border-gray-200">
+                        <div class="w-full flex flex-col space-y-4 p-4 rounded border border-gray-200">
                             <div class="w-full">
                                 <h1 class="text-lg font-bold">Summary</h1>
                             </div>
