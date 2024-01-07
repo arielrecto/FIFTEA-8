@@ -18,6 +18,7 @@
                         </template>
                     </div>
 
+
                     <div class="flex items-center justify-center w-full h-full" x-show="image === null">
                         <label for="dropzone-file"
                             class="flex flex-col items-center justify-center w-full h-96 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
@@ -37,6 +38,9 @@
                                 name="image"@change="preview($event)" />
                         </label>
                     </div>
+                    @if ($errors->has('image'))
+                        <p class="text-xs text-error">{{ $errors->first('image') }}</p>
+                    @endif
                 </div>
 
                 <div class="w-full md:w-2/3 flex flex-col space-y-6 md:p-4">
@@ -46,6 +50,9 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
+                    @if ($errors->has('name'))
+                        <p class="text-xs text-error">{{ $errors->first('name') }}</p>
+                    @endif
 
                     <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-4 items-center">
                         <div class="w-full ">
@@ -53,6 +60,9 @@
                             <input type="text" name="price"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            @if ($errors->has('price'))
+                                <p class="text-xs text-error">{{ $errors->first('price') }}</p>
+                            @endif
                         </div>
                         <div class="w-full">
                             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select
@@ -62,7 +72,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md
                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                               ">
-                                    <option selected>Select Category</option>
+                                    <option selected value="">Select Category</option>
 
                                     @forelse ($categories as $category)
                                         <option value="{{ $category->name }}">{{ $category->name }}</option>
@@ -96,6 +106,9 @@
                                     +
                                 </button>
                             </p>
+                            @if ($errors->has('sizes'))
+                                <p class="text-xs text-error">{{ $errors->first('sizes') }}</p>
+                            @endif
                         </div>
                     </div>
                     <div>
@@ -105,6 +118,46 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-2 w-full" x-init="initSupplies({{ $supplies }})">
+                        <h1 class="text-lg font-bold">
+                            Ingredients
+                        </h1>
+                        <p class="text-xs font-semibold">
+                            Select Supplies
+                        </p>
+                        <div
+                            class="flex gap-2 w-full max-w-full overflow-x-auto border-2 border-gray-100 rounded-lg p-2">
+                            <template x-for="supply in supplies" :key="supply.id">
+                                <button class="btn btn-xs btn-ghost" @click.prevent="addSupplyFields(supply)">
+                                    <span x-text="supply.name"></span>
+                                </button>
+                            </template>
+
+                        </div>
+                        <div class="grid grid-cols-2 grid-flow-row w-full">
+                            <template x-if="suppliesFields.lenth !== 0">
+                                <template x-for="(supplyField, index) in suppliesFields" :key="index">
+                                    <div class="flex items-center">
+                                        <label for="">
+                                            <span x-text="supplyField.name"></span>
+                                        </label>
+                                        <div class="flex items-center">
+                                            <input type="number" x-model="supplyField.quantity">
+                                            <button @click.prevent="removeSupplyField(supplyField)"
+                                                class="btn btn-error">X</button>
+                                        </div>
+
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                        @if ($errors->has('ingredients'))
+                            <p class="text-xs text-error">{{ $errors->first('ingredients') }}</p>
+                        @endif
+                    </div>
+
+                    <input type="hidden" name="ingredients" x-model="JSON.stringify(suppliesFields)">
+
                     <div class="w-full flex justify-start">
                         <button @click="submitData()" class="px-4 py-2 rounded bg-sbgreen text-white">Submit</button>
                     </div>
@@ -112,8 +165,14 @@
             </div>
         </form>
 
+<<<<<<< HEAD
         <div class="w-full h-full absolute z-10 flex justify-center" x-show="modalSize" x-transition.duration.700ms>
             <div class="bg-gray-100 w-full md:w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
+=======
+        <div class="w-full h-full absolute z-10 flex justify-center" x-show="modalSize" x-transition.duration.700ms
+            x-cloak>
+            <div class="bg-gray-100 w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
+>>>>>>> 0d044fdecb1da04adb6c42427cea47e244898905
                 <template x-for="(field, index) in fields" :key="index">
                     <div class="w-full">
                         <p class="flex w-full"> Size - <span x-text="index + 1" class="flex-grow"></span> <span>
@@ -164,6 +223,12 @@
                         name: null,
                         price: null,
                     }],
+                    supplies: [],
+                    suppliesFields: [],
+                    initSupplies(data) {
+                        console.log(data);
+                        this.supplies = [...data]
+                    },
                     preview(e) {
                         file = e.target.files[0]
 
@@ -211,6 +276,20 @@
                                 price: null
                             }]
                         }
+                    },
+                    addSupplyFields(supply) {
+                        if (this.suppliesFields.some(item => item.name === supply.name)) {
+                            return;
+                        }
+                        const supField = {
+                            name: supply.name,
+                            quantity: 0
+                        }
+
+                        this.suppliesFields = [...this.suppliesFields, supField]
+                    },
+                    removeSupplyField(supField) {
+                        this.suppliesFields = this.suppliesFields.filter(item => item.name !== supField.name)
                     }
                 }
             }

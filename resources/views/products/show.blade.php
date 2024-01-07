@@ -38,7 +38,7 @@
                                 <option selected value="">Select Extras</option>
 
                                 <template x-for="add in addons" id="add.id">
-                                    <option :value="add.name"><span x-text="add.name"></span></option>
+                                    <option :value="add.name"><span x-text="`${add.name} (₱ ${add.pivot.price})`"></span></option>
                                 </template>
                             </select>
                             <input type="hidden" name="extras"  x-model="JSON.stringify(addon)">
@@ -52,7 +52,7 @@
                                 @change="changeProductPriceBySize($event)">
                                 <option selected value="">Select Size</span></option>
                                 <template x-for="size in sizes" :id="size.id">
-                                    <option :value="size.name"><span x-text="size.name"></span></option>
+                                    <option :value="size.name"><span x-text="`${size.name}(₱ ${size.price})`"></span></option>
                                 </template>
                             </select>
                         </div>

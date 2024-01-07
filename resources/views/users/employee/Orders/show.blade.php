@@ -73,8 +73,8 @@
                                 <th>size</th>
                                 <th>sugar level</th>
                                 <th>quantity</th>
-                                <th>price</th>
-                                <th>total</th>
+                                {{-- <th>price</th> --}}
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,7 +85,7 @@
                                     <td>{{ $cart_product->size }}</td>
                                     <td>{{ $cart_product->sugar_level }}</td>
                                     <td>{{ $cart_product->quantity }}</td>
-                                    <td>&#8369 {{ $cart_product->price }}</td>
+                                    {{-- <td>&#8369 {{ $cart_product->price }}</td> --}}
                                     <td>&#8369 {{ $cart_product->total }}</td>
                                 </tr>
 

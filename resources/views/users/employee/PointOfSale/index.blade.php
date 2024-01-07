@@ -10,7 +10,8 @@
             <div class="w-full md:w-3/4 flex flex-grow 0">
                 <div class="w-full flex items-start justify-start flex-col h-[590px] overflow-y-auto space-y-2">
                     <template x-for="product in products" :key="product.id">
-                        <button @click="select(product)" class="w-full border border-gray-300 p-2 hover:bg-gray-300 rounded">
+                        <button @click="select(product)"
+                            class="w-full border border-gray-300 p-2 hover:bg-gray-300 rounded">
                             <div class="flex justify-between">
                                 <h1 x-text="product.name" class="text-left"></h1>
                                 <i class='bx bx-plus text-xl text-gray-600'></i>
@@ -30,12 +31,14 @@
 
                         <template x-for="item in selectedProducts" :key="item.id">
                             <button @click="remove(item)">
-                                <div class="border border-gray-300 py-1 px-2 rounded flex justify-between items-center hover:bg-gray-200">
+                                <div
+                                    class="border border-gray-300 py-1 px-2 rounded flex justify-between items-center hover:bg-gray-200">
                                     <span x-text="item.name" class="text-left"></span>
                                     <i class='bx bx-x'></i>
                                 </div>
                             </button>
                         </template>
+
 
                     </div>
                 </div>
@@ -56,7 +59,7 @@
             x-show="modal">
 
             <div class="w-full flex justify-start items-center space-x-2">
-                <i class='bx bx-credit-card text-xl' ></i>
+                <i class='bx bx-credit-card text-xl'></i>
                 <h1 class="text-center text-base font-bold">PAYMENT</h1>
             </div>
 
@@ -71,8 +74,7 @@
                     <tbody>
                         <template x-for="item in selectedProducts" :key="item.id">
                             <tr class="border-b">
-                                <td scope="row"
-                                    class="px-2 py-2 text-base text-gray-800">
+                                <td scope="row" class="px-2 py-2 text-base text-gray-800">
                                     <span x-text="item.name"></span>
                                 </td>
                                 <td class="px-2 py-2 text-base text-gray-800">
@@ -96,10 +98,14 @@
                     <span x-text="totalChange()" class="text-base"></span>
                 </div>
 
-                <div class="flex flex-col items-start justify-between p-2 border border-gray-300 rounded bg-white bg-opacity-70">
+                <div
+                    class="flex flex-col items-start justify-between p-2 border border-gray-300 rounded bg-white bg-opacity-70">
                     <span class="text-sm">AMOUNT:</span>
-                    <input type="text" class="border border-gray-200 rounded w-full text-sm" placeholder="amount" x-model="amount">
+                    <input type="text" class="border border-gray-200 rounded w-full text-sm" placeholder="amount"
+                        x-model="amount">
                 </div>
+
+
 
 
                 <div class="flex flex-row-reverse">
@@ -109,6 +115,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
@@ -129,8 +136,12 @@
                     select(data) {
 
 
+                        if (this.selectedProducts.includes(data) && this.selectedProducts.length !== 0) {
+                            return
+                        }
+
                         this.selectedProducts.push(data)
-                        this.products = this.products.filter(item => item.id !== data.id)
+                        // this.products = this.products.filter(item => item.id !== data.id)
 
                         console.log(this.selectedProducts)
                     },
@@ -188,15 +199,15 @@
                             const total = parseFloat(this.subtotal().replace(/[^0-9.-]+/g, ""));
 
                             const data = {
-                                'products' : this.selectedProducts,
-                                'type' : 'walk_in',
-                                'total' : total
+                                'products': this.selectedProducts,
+                                'type': 'walk_in',
+                                'total': total
                             };
                             const response = await axios.post('transaction', data, config);
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Order Success',
-                                text : `${response.data.message}`
+                                text: `${response.data.message}`
                             })
 
                             window.location.reload()
@@ -208,7 +219,8 @@
                                 text: `${error.response.data.message}`,
                             })
                         }
-                    }
+                    },
+
                 }
             }
         </script>

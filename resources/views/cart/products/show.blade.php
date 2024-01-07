@@ -8,6 +8,7 @@
         <div class="w-full max-w-[1300px] mx-auto px-4 pt-24">
             <div class="w-full flex justify-center items-center" >
                 <div class="w-full md:w-fit flex flex-col space-y-4">
+
                     {{--
                     ----------------------------------------------------------
                         PALAGYAN NALANG NG ROUTE ITONG BACK BUTTON SA BABA
@@ -43,15 +44,16 @@
                                             Large</option>
                                     </select>
                                 </div>
-                                {{-- <div class="flex flex-col space-y-1">
+                                <div class="flex flex-col space-y-1" x-data="{supplies : {{$supplies}}}">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
-                                        <option value="">Extra 1</option>
-                                        <option value="">Extra 1</option>
-                                        <option value="">Extra 1</option>
+                                        <template x-for="supply in supplies" :key="supply.id">
+                                            <option :value="JSON.stringify(supply)"><span x-text="`${supply.name} (${supply.pivot.price})`"></span></option>
+                                        </template>
+
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
                                     <input type="number" name="quantity"

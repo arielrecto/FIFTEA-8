@@ -15,7 +15,8 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'sizes'
+        'sizes',
+        'ingredients'
     ];
 
     public function orders()
@@ -29,9 +30,9 @@ class Product extends Model
     public function field(){
         return $this->hasOne(ProductField::class);
     }
-    public function image() {
-        return $this->hasOne(ProductImage::class);
-    }
+    // public function image() {
+    //     return $this->hasOne(ProductImage::class);
+    // }
     public function cart(){
         return $this->hasOne(CartProduct::class);
     }

@@ -45,7 +45,6 @@ class SupplyController extends Controller
             'unit' => 'required',
             'quantity' => 'required',
             'type' => 'required',
-            'size' => 'required'
         ]);
         $supply = $storeSupplyAction->handle($request);
 

@@ -24,11 +24,13 @@ use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
+use App\Http\Controllers\Employee\PointOfSaleController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 use App\Http\Controllers\HomeController;
 use App\Models\Feedback;
 use App\Models\Transaction;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -132,10 +134,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('pos')->as('pos.')->group(function () {
-            Route::get('/', function () {
-                $products = Product::get();
-                return view('users.employee.PointOfSale.index', compact(['products']));
-            })->name('index');
+            Route::get('/', [PointOfSaleController::class, 'index'])->name('index');
         });
 
         Route::prefix('order')->as('order.')->group(function () {

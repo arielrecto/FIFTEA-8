@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\SupplyDefaultTypes;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CartProduct;
+use App\Models\Supply;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -52,7 +55,7 @@ class CartController extends Controller
         }
         return view('cart.cart', compact(['cart', 'total']));
     }
-    
+
     public function showProduct ($id) {
         $cart = Cart::where('is_check_out', false)->first();
         $c_product = CartProduct::find($id);
@@ -62,20 +65,26 @@ class CartController extends Controller
         foreach($cart->products as $product) {
             $subTotal = $subTotal + $product->price;
         }
+        $type = Type::where('name', SupplyDefaultTypes::ADDONS->value)->first();
+        $supplies = $type->supplies()->get()->toJson();
 
-        return view('cart.products.show', compact(['cart', 'subTotal', 'c_product']));
+        return view('cart.products.show', compact(['cart', 'subTotal', 'c_product', 'supplies']));
     }
 
     public function updateCartItem(Request $request, $itemId) {
 
-        // dd($request->all());
+
+
+        $extra = json_decode($request->extras);
+
 
         $c_product = CartProduct::find($itemId);
+
 
         $updated = $c_product->update([
                 'size' => $request->size,
                 'quantity' => $request->quantity,
-                'total' => $request->quantity * $c_product->price
+                'total' => ($request->quantity + $extra->pivot->price) * $c_product->price
             ]);
 
         if ($updated) {
