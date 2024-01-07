@@ -165,14 +165,8 @@
             </div>
         </form>
 
-<<<<<<< HEAD
         <div class="w-full h-full absolute z-10 flex justify-center" x-show="modalSize" x-transition.duration.700ms>
             <div class="bg-gray-100 w-full md:w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
-=======
-        <div class="w-full h-full absolute z-10 flex justify-center" x-show="modalSize" x-transition.duration.700ms
-            x-cloak>
-            <div class="bg-gray-100 w-1/2 h-auto rounded-lg shadow-lg self-center p-4 flex flex-col gap-2">
->>>>>>> 0d044fdecb1da04adb6c42427cea47e244898905
                 <template x-for="(field, index) in fields" :key="index">
                     <div class="w-full">
                         <p class="flex w-full"> Size - <span x-text="index + 1" class="flex-grow"></span> <span>
