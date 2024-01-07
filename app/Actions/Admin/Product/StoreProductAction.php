@@ -21,10 +21,10 @@ class StoreProductAction
 
         $filename = 'product' . uniqid() . '.' . $request->image->extension();
 
-        $dir = $request->image->storeAs('/product/image/' . $filename, 'public');
+        $request->image->storeAs('public/product/image/' . $filename);
 
         $product = Product::create([
-            'image' =>  asset('/storage/'  . $dir),
+            'image' =>  asset('/storage/product/image/'  . $filename),
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
