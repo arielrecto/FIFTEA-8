@@ -38,7 +38,6 @@ class OrderController extends Controller
         $request->validate([
             'image' => 'required:|mimes:jpg,jpeg',
             'qr_ref' => 'required',
-            'amount' => 'required'
         ]);
 
         $randomNumber = random_int(100000, 999999);

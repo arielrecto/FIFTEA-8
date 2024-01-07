@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Supply;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -112,6 +113,25 @@ class OrderController extends Controller
     }
     public function approved($id) {
         $order = Order::find($id);
+
+        $products = collect($order->cart->products)->map(function($cart_product){
+            $product = $cart_product->product;
+
+            $ingredients = collect(json_decode($product->ingredients));
+
+            $ingredients->map(function($ingredient){
+                $supply = Supply::where('name', $ingredient->name)->first();
+
+                if($supply->quantity < $ingredient->quantity || $supply->quantity <= 0){
+                    return back()->with(['message' => "stock of {$supply->name} is not enough to process this order"]);
+                }
+                $supply->update([
+                    'quantity' => $supply->quantity - $ingredient->quantity
+                ]);
+            });
+
+        });
+
         $randomNumber = random_int(100000, 999999);
         $num_transaction = 'TRSCTN' . $randomNumber;
         $user = Auth::user();

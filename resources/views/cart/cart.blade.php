@@ -52,11 +52,14 @@
 
 
                                                 <td class="px-4 py-3">
-
+                                                    @if($extra !== null)
                                                     <p class="flex gap-2">
                                                         {{ $extra->name }} <span>price : &#8369
                                                             {{ $extra->pivot->price }}</span>
                                                     </p>
+                                                    @else
+                                                        <p>No Extra</p>
+                                                    @endif
 
                                                 </td>
                                                 <td class="px-4 py-3">{{ $c_product->quantity }}</td>

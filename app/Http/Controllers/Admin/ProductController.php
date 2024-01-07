@@ -7,7 +7,12 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Actions\Admin\Product\StoreProductAction;
+use App\Enums\SupplyDefaultTypes;
 use App\Http\Requests\Admin\Product\StoreProductRequest;
+use App\Models\Supply;
+use Illuminate\Validation\ValidationException;
+
+use function Laravel\Prompts\error;
 
 class ProductController extends Controller
 {
@@ -27,7 +32,10 @@ class ProductController extends Controller
     {
 
         $categories = Category::get();
-        return view('users.admin.product.create', compact(['categories']));
+        $supplies = Supply::whereHas('types', function($q){
+            $q->where('name', '!=', SupplyDefaultTypes::ADDONS->value);
+        })->get()->toJson();
+        return view('users.admin.product.create', compact(['categories', 'supplies']));
     }
 
     /**
@@ -36,6 +44,19 @@ class ProductController extends Controller
     public function store(Request $request, StoreProductAction $storeProductAction)
     {
 
+        $request->validate([
+            'name' => 'required|unique:products,name',
+            'price' => 'required',
+            'image' => 'required|mimes:jpeg,jpg',
+            'category' => 'required'
+        ]);
+        if(count(json_decode($request->sizes)) === 0){
+            return back()->withErrors(['sizes' => 'the sizes field is required']);
+        }
+
+        if(count(json_decode($request->ingredients)) === 0){
+            return back()->withErrors(['ingredients' => 'the ingredients field is required']);
+        }
 
         $product = $storeProductAction->handle($request);
 

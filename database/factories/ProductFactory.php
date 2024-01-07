@@ -22,7 +22,8 @@ class ProductFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->sentence(),
             'sizes' => '[{"name":"Large","price":"500"},{"name":"Medium","price":"400"},{"name":"Extra Large","price":"600"}]',
-            'price' => fake()->numberBetween($min = 1500, $max = 6000)
+            'price' => fake()->numberBetween($min = 1500, $max = 6000),
+            'ingredients' => '[{"name":"Pearl","quantity":"1"}]'
         ];
     }
 }

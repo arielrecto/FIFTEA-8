@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('price');
             $table->json('sizes');
+            $table->json('ingredients');
             $table->timestamps();
             $table->softDeletes();
         });
