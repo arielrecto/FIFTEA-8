@@ -24,7 +24,7 @@ class StoreProductAction
 
 
         $product = Product::create([
-            'image' =>  asset('storage/product/image/'  . $filename),
+            'image' =>  asset('storage/product/image/' . $filename),
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
