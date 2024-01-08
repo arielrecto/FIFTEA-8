@@ -85,6 +85,19 @@
                             <i class='bx bx-notepad text-xl'></i>
                             <p class="text-base ">Point Of Sale</p>
                         </a>
+                        <a href="{{ route('admin.dashboard.index') }}"
+                            class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
+                            <i class='bx bx-log-in-circle text-xl'></i>
+                            <p class="text-lg ">Admin Panel</p>
+                        </a>
+                        <form action="{{ route('logout') }}" method="POST" class="rounded">
+                            @csrf
+                            <button
+                                class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
+                                <i class='bx bx-log-out text-xl'></i>
+                                <p class="text-lg ">Logout</p>
+                            </button>
+                        </form>
                      </ul>
                  </div>
              </ul>

@@ -33,7 +33,7 @@
                                         {!! $product->description !!}
                                     </td>
                                     <td
-                                        class="poppins text-sm border border-gray-400 px-4 py-2 text-left text-center   ">
+                                        class="poppins text-sm border border-gray-400 px-4 py-2 text-center   ">
                                         @php
                                             $sizes = json_decode($product->sizes);
                                         @endphp

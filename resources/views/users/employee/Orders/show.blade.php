@@ -2,7 +2,7 @@
     use App\Enums\OrderStatus;
 @endphp
 <x-employee-panel>
-    <div class="w-full h-full p-5 flex flex-col gap-5" x-data="payment">
+    <div class="w-full h-full md:p-5 py-5 flex flex-col gap-5" x-data="payment">
 
         @if (Session::has('message'))
             <div class="alert alert-success animate-pulse" id="alert">
@@ -23,7 +23,7 @@
 
         <div class="w-full h-full flex flex-col space-y-2">
 
-            <div class="w-full py-2 border-b border-gray-300 flex justify-between items-center">
+            <div class="w-full py-2 border-b border-gray-300 flex flex-col md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center">
                 <h1 class="flex items-center text-base gap-4">
                     <span class="">Order Number:</span>
                     <span class="font-bold">
@@ -40,21 +40,22 @@
 
             <div class="flex flex-col">
                 <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
-                <div class="flex">
-                    <div class="w-12 md:w-80 h-auto">
+                <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 border-b border-gray-200">
+                    <div class="w-full md:w-80 h-auto mb-1 border-b border-gray-200">
                         <img src="{{ $order->payment->image }}" alt=""
                             class="object object-center h-full w-full ">
                     </div>
-                    <div class="w-full h-full flex-col gap-2">
-                        <h1>Referrence #</h1>
-                        {{ $order->payment->payment_ref }}
+                    <div class="w-full h-full flex flex-col md:items-center gap-2 mb-1 border-b md:border-0 border-gray-200">
+                        <h1 class="font-semibold">Referrence Number</h1>
+                        <span>{{ $order->payment->payment_ref }}</span>
                     </div>
-                    <div class="w-full h-full flex-col gap-2">
-                        <h1>Amount</h1>
-                        &#8369 {{ $order->payment->amount }}
+                    <div class="w-full h-full flex md:items-center flex-col gap-2 mb-1 border-b md:border-0 border-gray-200">
+                        <h1 class="font-semibold">Amount</h1>
+                        <span>&#8369 {{ $order->payment->amount }}</span>
                     </div>
-                    <div>
-                        <span>Total : {{ $order->total }}</span>
+                    <div class="w-full flex flex-col md:items-center mb-1 border-b md:border-0 border-gray-200">
+                        <span class="font-semibold">Total</span>
+                        <span>{{ $order->total }}</span>
                     </div>
                 </div>
             </div>
