@@ -13,7 +13,7 @@ class MediaController extends Controller
         return $url;
     }
     public function payment($name){
-        $url = response()->file(storage_path('app/public/product/'. $name));
+        $url = response()->file(storage_path('app/public/payment/image/'. $name));
         return url();
     }
 }
