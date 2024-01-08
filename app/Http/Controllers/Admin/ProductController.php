@@ -34,7 +34,7 @@ class ProductController extends Controller
         $categories = Category::get();
         $supplies = Supply::whereHas('types', function($q){
             $q->where('name', '!=', SupplyDefaultTypes::ADDONS->value);
-        })->get()->toJson();
+        })->with('types')->get()->toJson();
         return view('users.admin.product.create', compact(['categories', 'supplies']));
     }
 
@@ -79,9 +79,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $categories = Category::get();
-
-
+        $categories = Category::with('type')->get();
 
 
         return view('users.admin.product.edit', compact(['product', 'categories']));

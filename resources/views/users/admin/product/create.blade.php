@@ -128,8 +128,11 @@
                         <div
                             class="flex gap-2 w-full max-w-full overflow-x-auto border-2 border-gray-100 rounded-lg p-2">
                             <template x-for="supply in supplies" :key="supply.id">
+
                                 <button class="btn btn-xs btn-ghost" @click.prevent="addSupplyFields(supply)">
-                                    <span x-text="supply.name"></span>
+
+                                
+                                    <span x-text="`${supply.name} (${supply.size})`"></span>
                                 </button>
                             </template>
 
