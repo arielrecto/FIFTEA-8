@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Enums\SupplyDefaultTypes;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Type;
 use Illuminate\Support\Facades\Redis;
 
 class PointOfSaleController extends Controller
@@ -22,6 +24,11 @@ class PointOfSaleController extends Controller
 
         $categories = Category::get();
 
+        $type = Type::where('name', SupplyDefaultTypes::ADDONS->value)->first();
+
+        $supplies = $type->supplies->toJson();
+        
+
         if($queryCategory !== null){
 
             $category = Category::where('name', $queryCategory)->first();
@@ -30,7 +37,7 @@ class PointOfSaleController extends Controller
         }
 
 
-        return view('users.employee.PointOfSale.index', compact(['products', 'categories']));
+        return view('users.employee.PointOfSale.index', compact(['products', 'categories', 'supplies']));
     }
 
     /**
