@@ -65,7 +65,7 @@
                             <div
                                 class="carousel-item w-[350px] h-44 rounded-md shadow-md border border-gray-200 bg-gray-50">
                                 <div class="flex items-start space-x-1 ">
-                                    <img src="{{ $product->image }}" alt=""
+                                    <img src="{{ route('media.product', ['name' => $product->image])  }}" alt=""
                                         class="min-w-[200px] w-[200px] h-full rounded-l-md bg-gradient-to-r from-green-200 to-blue-200 ">
                                     <div class="h-full flex flex-col space-y-2 p-2 relative">
                                         <h1 class="text-base font-bold">{{ $product->name }}</h1>
@@ -119,7 +119,7 @@
                                     @foreach ($order->cart->products as $c_product)
                                         <div class="flex justify-between p-2 px-1 border-t border-gray-200">
                                             <div class="flex items-center space-x-3">
-                                                <img src="{{ $c_product->product->image }}" alt=""
+                                                <img src="{{ route('media.product', ['name' => $c_product->product->image])  }}" alt=""
                                                     class="w-10 h-10 border border-gray-200 ">
                                                 <div>
                                                     <p class="text-sm font-bold">{{ $c_product->product->name }}</p>

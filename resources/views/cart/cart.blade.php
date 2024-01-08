@@ -30,7 +30,7 @@
                                                 <td class="px-4 py-3 min-w-[150px]">
                                                     <div class="flex items-center space-x-2">
                                                         <img class="w-12 h-12 rounded"
-                                                            src="{{ asset($c_product->product->image ?? '') }}"
+                                                            src="{{ route('media.product', ['name' => $c_product->product->image]) }}"
                                                             alt="">
 
                                                         <div class="flex flex-col">
@@ -109,7 +109,7 @@
                                         <div class="flex justify-between items-start">
                                             <div class="flex items-center space-x-2">
                                                 <img class="w-10 h-10 rounded"
-                                                    src="{{ asset($c_product->product->image) }}" alt="">
+                                                    src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt="">
 
                                                 <div class="flex flex-col">
                                                     <h1 class="title-font text-sm font-medium text-gray-800 3">

@@ -42,7 +42,7 @@
                 <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 border-b border-gray-200">
                     <div class="w-full md:w-80 h-auto mb-1 border-b border-gray-200">
-                        <img src="{{ $order->payment->image }}" alt=""
+                        <img src="{{ route('media.payment', ['name' => $order->payment->image ]) }}" alt=""
                             class="object object-center h-full w-full ">
                     </div>
                     <div class="w-full h-full flex flex-col md:items-center gap-2 mb-1 border-b md:border-0 border-gray-200">
