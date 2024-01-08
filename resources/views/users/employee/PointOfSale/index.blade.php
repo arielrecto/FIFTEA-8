@@ -12,7 +12,7 @@
                     <template x-for="product in products" :key="product.id">
                         <button @click="select(product)" id="defaultModalButton" data-modal-target="defaultModal"
                             data-modal-toggle="defaultModal"
-                            class="w-64 h-auto border border-gray-300 p-2 bg-white hover:shadow-md rounded">
+                            class="w-64 h-fit border border-gray-300 p-2 bg-white hover:shadow-md rounded">
                             <div class="flex flex-col items-center justify-center space-y-2">
                                 <div class="">
                                     <img src="{{ asset('images/choco/BlueBerry.png') }}" alt=""
