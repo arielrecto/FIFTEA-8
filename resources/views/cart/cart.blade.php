@@ -18,10 +18,11 @@
                                             {{-- <th class="px-4 py-3">Unit Price</th> --}}
                                             <th class="px-4 py-3">Size</th>
                                             {{-- <th class="px-4 py-3">Extras</th> --}}
-                                            <th class="px-4 py-3">Quantity</th>
+                                            <th class="px-4 py-3">Extras</th>
                                             <th class="px-4 py-3">Price</th>
-                                            <th class="px-4 py-3"></th>
-                                            <th class="px-4 py-3"></th>
+                                            <th class="px-4 py-3">Total Price</th>
+                                            {{-- <th class="px-4 py-3"></th> --}}
+                                            <th colspan="2" class="px-4 py-3">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

@@ -55,7 +55,7 @@
 
         </div>
 
-        <div class="w-full md:w-1/2 bg-gradient-to-br from-sbdlight to-white shadow-2xl border border-gray-300 rounded-md  flex flex-col gap-2 absolute z-10 top-[200px] left-1/2 transform -translate-x-1/2 p-4"
+        <div class="w-[90%] md:w-1/2 bg-white shadow-2xl border border-gray-300 rounded-md  flex flex-col gap-2 absolute z-10 top-[200px] left-1/2 transform -translate-x-1/2 p-4"
             x-show="modal">
 
             <div class="w-full flex justify-start items-center space-x-2">
