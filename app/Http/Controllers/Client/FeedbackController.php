@@ -46,7 +46,8 @@ class FeedbackController extends Controller
 
         Feedback::create([
             'message' => $request->message,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'is_display' => true
         ]);
 
 
