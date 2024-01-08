@@ -275,12 +275,15 @@
                         }
                     },
                     addSupplyFields(supply) {
-                        if (this.suppliesFields.some(item => item.name === supply.name)) {
+                       
+                        if (this.suppliesFields.some(item => item.size === supply.size)) {
+                            console.log(supply);
                             return;
                         }
                         const supField = {
                             name: supply.name,
-                            quantity: 0
+                            quantity: 0,
+                            size : supply.size
                         }
 
                         this.suppliesFields = [...this.suppliesFields, supField]
