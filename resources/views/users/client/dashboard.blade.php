@@ -98,10 +98,10 @@
                                 class="collapse collapse-arrow border border-gray-200 shadow-sm rounded bg-white">
                                 <div class="w-full p-4 py-2 flex items-center justify-between">
                                     <div class="w-full flex items-center justify-between">
-                                        <div class="flex items-center space-x-4">
-                                            <p class="text-sm"><span class="font-bold">Order Number: </span> {{ $order->num_ref }}</p>
-                                            <p class="text-sm"><span class="font-bold">Date:</span> {{ $order->created_at->format('M-d-Y') }}</p>
-                                            <p class="text-sm"><span class="font-bold">Total Price:</span> &#8369 {{ $order->total }}</p>
+                                        <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-1 md:space-y-0">
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Order Number: </span> {{ $order->num_ref }}</p>
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Date:</span> {{ $order->created_at->format('M-d-Y') }}</p>
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Total Price:</span> &#8369 {{ $order->total }}</p>
                                         </div>
                                         <div class="flex items-center space-x-4 px-4">
                                             @if ($order->status == 'pending')
@@ -214,7 +214,7 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-green-200"></div>
-                            <img src="{{ $profile ? route('media.profile', ['name' => $profile->image]) : '' }}" alt=""
+                                <img src="{{ asset('images/profile.jpg') }}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
