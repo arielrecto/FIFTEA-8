@@ -162,7 +162,7 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
-                            <img src="{{ $profile ? route('media.profile', ['name' => $profile->image])) : '' }}" alt=""
+                            <img src="{{ $profile ? route('media.profile', ['name' => $profile->image]) : '' }}" alt=""
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
