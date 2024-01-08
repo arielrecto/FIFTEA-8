@@ -162,7 +162,7 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-gradient-to-r from-green-200 to-blue-200"></div>
-                            <img src="{{ $profile ? asset('storage/profile/' . $profile->image) : '' }}" alt=""
+                            <img src="{{ $profile ? route('media.profile', ['name' => $profile->image]) : '' }}" alt=""
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
@@ -195,7 +195,7 @@
                                 @foreach ($cart->products as $c_product)
                                     <div class="flex justify-between p-2 px-1 border-t border-gray-200">
                                         <div class="flex items-center space-x-3">
-                                            <img src="{{ $c_product->product->image }}" alt=""
+                                            <img src="{{ route('media.product', ['name' =>  $c_product->product->image]) }}" alt=""
                                                 class="w-10 h-10 border border-gray-200 ">
                                             <div>
                                                 <p class="text-sm font-bold">{{ $c_product->product->name }}</p>

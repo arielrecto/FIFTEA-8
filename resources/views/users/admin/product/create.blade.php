@@ -128,8 +128,11 @@
                         <div
                             class="flex gap-2 w-full max-w-full overflow-x-auto border-2 border-gray-100 rounded-lg p-2">
                             <template x-for="supply in supplies" :key="supply.id">
+
                                 <button class="btn btn-xs btn-ghost" @click.prevent="addSupplyFields(supply)">
-                                    <span x-text="supply.name"></span>
+
+                                
+                                    <span x-text="`${supply.name} (${supply.size})`"></span>
                                 </button>
                             </template>
 
@@ -272,12 +275,15 @@
                         }
                     },
                     addSupplyFields(supply) {
-                        if (this.suppliesFields.some(item => item.name === supply.name)) {
+                       
+                        if (this.suppliesFields.some(item => item.size === supply.size) && this.suppliesFields.some(item => item.name === supply.name)) {
+                            console.log(supply);
                             return;
                         }
                         const supField = {
                             name: supply.name,
-                            quantity: 0
+                            quantity: 0,
+                            size : supply.size
                         }
 
                         this.suppliesFields = [...this.suppliesFields, supField]

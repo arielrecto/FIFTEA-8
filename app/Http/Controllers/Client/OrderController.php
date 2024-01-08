@@ -88,9 +88,7 @@ class OrderController extends Controller
 
         $order = Order::find($id);
 
-
-       if(!$order->has('transaction')->exists()){
-
+       if(!$order->transaction){
             return back()->with(['message' => 'Your Order is Pending the employee will processed!']);
        }
 
