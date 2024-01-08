@@ -276,7 +276,7 @@
                     },
                     addSupplyFields(supply) {
                        
-                        if (this.suppliesFields.some(item => item.size === supply.size)) {
+                        if (this.suppliesFields.some(item => item.size === supply.size) && this.suppliesFields.some(item => item.name === supply.name)) {
                             console.log(supply);
                             return;
                         }
