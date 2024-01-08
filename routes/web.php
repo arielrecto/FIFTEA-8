@@ -195,13 +195,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('products', ClientProductController::class)->only([
             'index', 'show'
         ]);
-        Route::resource('feedbacks', FeedbackController::class)->except([
-            'index',
-            'edit',
-            'destroy',
-            'update',
-            'show'
-        ]);
+        Route::prefix('feedbacks')->as('feedbacks.')->group(function(){
+            Route::get('/create',[FeedbackController::class, 'create'])->name('create');
+            Route::post('/',[FeedbackController::class, 'store'])->name('store');
+        });
     });
 });
 
