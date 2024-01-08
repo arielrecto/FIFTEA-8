@@ -24,7 +24,7 @@ class StoreProductAction
 
 
         $product = Product::create([
-            'image' =>  asset('storage/product/image/'  . $filename),
+            'image' => $filename,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -35,7 +35,7 @@ class StoreProductAction
 
         $product->categories()->attach($category->id);
 
-        $request->image->storeAs('public/product/image/' . $filename);
+        $request->image->storeAs('public/product/' . $filename);
 
 
         return $product;

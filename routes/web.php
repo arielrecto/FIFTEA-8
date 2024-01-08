@@ -28,6 +28,7 @@ use App\Http\Controllers\Employee\PointOfSaleController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
 use App\Models\Feedback;
 use App\Models\Transaction;
 use App\Models\Type;
@@ -45,6 +46,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/home', [HomeController::class, 'home']);
+
+Route::prefix('media')->as('media.')->group(function(){
+    Route::get('product/{name}', [MediaController::class, 'product'])->name('product');
+});
 
 Route::get('/', function () {
 

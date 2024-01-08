@@ -8,7 +8,7 @@
                 back
             </a>
             <div class="flex flex-col md:flex-row items-center justify-between md:space-x-4 py-4">
-                <img src="{{ $product->image}}" alt=""
+                <img src="{{ route('media.product', ['name' => $product->image])}}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
 
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">

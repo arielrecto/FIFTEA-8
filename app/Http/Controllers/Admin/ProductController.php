@@ -58,7 +58,7 @@ class ProductController extends Controller
             return back()->withErrors(['ingredients' => 'the ingredients field is required']);
         }
 
-        $product = $storeProductAction->handle($request);
+        $storeProductAction->handle($request);
 
 
         return back()->with(['message' => 'product Added Success']);
