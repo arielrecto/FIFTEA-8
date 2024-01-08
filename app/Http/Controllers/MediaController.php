@@ -14,6 +14,6 @@ class MediaController extends Controller
     }
     public function payment($name){
         $url = response()->file(storage_path('app/public/payment/image/'. $name));
-        return url();
+        return $url;
     }
 }
