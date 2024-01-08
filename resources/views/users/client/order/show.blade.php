@@ -73,7 +73,13 @@
                                                 <th>1</th>
                                                 <td>{{ $cart_product->product->name }}</td>
                                                 <td>{{ $cart_product->quantity }}</td>
-                                                <td>{{ $cart_product->size }}</td>
+                                                @php
+                                                    $size = json_decode($cart_product->size)
+                                                @endphp
+                                                @if ($size !== null)
+                                                <td>{{ $size->name }}</td>     
+                                                @endif
+                                               
                                                 {{-- <td>{{$cart_product->extras}}</td> --}}
                                                 <td>{{ $cart_product->total }}</td>
                                             </tr>

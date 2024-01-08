@@ -46,7 +46,14 @@
                                                     </div>
                                                 </td>
                                                 {{-- <td class="px-4 py-3">&#8369 {{ $c_product->product->price }}</td> --}}
-                                                <td class="px-4 py-3">{{ $c_product->size }}</td>
+                                                @php
+
+                                                $size = json_decode($c_product->size);
+                                                @endphp
+                                                    
+                                                
+                                                @endphp
+                                                    <td class="px-4 py-3">{{$size->name}}</td>
                                                 @php
                                                     $extra = json_decode($c_product->extras);
                                                 @endphp

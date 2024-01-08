@@ -47,7 +47,7 @@
                     <div class="w-full flex items-start space-x-8">
                         <div class="w-full flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
-                            <select name="size" id=""
+                            <select id=""
                                 class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
                                 @change="changeProductPriceBySize($event)">
                                 <option selected value="">Select Size</span></option>
@@ -55,6 +55,7 @@
                                     <option :value="size.name"><span x-text="`${size.name}(₱ ${size.price})`"></span></option>
                                 </template>
                             </select>
+                            <input type="hidden" x-model="JSON.stringify(size)" name="size">
                         </div>
                         <div class="w-full flex flex-col space-y-1">
                             <label for="" class="text-base font-semibold">Quatity</label>
@@ -101,6 +102,7 @@
                     sizes: [],
                     addons: [],
                     addon: null,
+                    size : null,
                     initSetSizes(sizes) {
                         console.log(sizes);
                         this.sizes = [...sizes]
@@ -137,6 +139,7 @@
                         }
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
+                        this.size = size;
 
                         this.totalPrice()
                     },
