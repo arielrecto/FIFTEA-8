@@ -142,7 +142,7 @@
 
                         {{-- @dd($product->image) --}}
                         <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out z-[5]">
-                            <img src="/{{$product->image}}" alt=""
+                            <img src="{{route('media.product', ['name' => $product->image]) }}" alt=""
                                 class="w-[120px] h-[150px] md:w-[200px] md:h-[160px]">
                         </div>
                         <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
