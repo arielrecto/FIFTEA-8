@@ -62,7 +62,7 @@ class OrderController extends Controller
             'order_id' => $order->id,
             'amount' => $request->total,
             'payment_ref' => $request->qr_ref,
-            'image' => asset('storage/payment/image/' . $filename)
+            'image' => $filename 
         ]);
 
         $request->image->storeAs('public/payment/image/' . $filename);

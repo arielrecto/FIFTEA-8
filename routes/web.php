@@ -49,6 +49,9 @@ Route::get('/home', [HomeController::class, 'home']);
 
 Route::prefix('media')->as('media.')->group(function(){
     Route::get('product/{name}', [MediaController::class, 'product'])->name('product');
+    Route::middleware('auth')->group(function(){
+        Route::get('payment/{name}', [MediaController::class, 'payment'])->name('payment');
+    });
 });
 
 Route::get('/', function () {
