@@ -275,7 +275,7 @@
                         }
                     },
                     addSupplyFields(supply) {
-                        if (this.suppliesFields.some(item => item.name === supply.name)) {
+                        if (this.suppliesFields.some(item => item.size === supply.size)) {
                             return;
                         }
                         const supField = {
