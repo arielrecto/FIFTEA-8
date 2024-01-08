@@ -16,4 +16,7 @@ class MediaController extends Controller
         $url = response()->file(storage_path('app/public/payment/image/'. $name));
         return $url;
     }
+    public function profile($name){
+        $url = response()->file(storage_path('app/public/profile/'. $name));
+    }
 }
