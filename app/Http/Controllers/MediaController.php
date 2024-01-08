@@ -18,5 +18,6 @@ class MediaController extends Controller
     }
     public function profile($name){
         $url = response()->file(storage_path('app/public/profile/'. $name));
+        return $url;
     }
 }
