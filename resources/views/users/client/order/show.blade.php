@@ -150,7 +150,7 @@
                                 @foreach ($cart->products as $c_product)
                                     <div class="flex justify-between p-2 px-1 border-t border-gray-200">
                                         <div class="flex items-center space-x-3">
-                                            <img src="{{ $c_product->product->image }}" alt=""
+                                            <img src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt=""
                                                 class="w-10 h-10 border border-gray-200 ">
                                             <div>
                                                 <p class="text-sm font-bold">{{ $c_product->product->name }}</p>
