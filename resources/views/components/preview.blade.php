@@ -146,7 +146,7 @@
                                 class="w-[120px] h-[150px] md:w-[200px] md:h-[160px]">
                         </div>
                         <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
-                            <img src="/{{$product->image}}" alt=""
+                            <img src="{{$product->image}}" alt=""
                                 class="shadow-md w-[150px] h-[190px] md:h-[380px] md:w-[300px] bg-gradient-to-tr from-sbdlight to-white -rotate-12">
                         </div>
                     </div>
