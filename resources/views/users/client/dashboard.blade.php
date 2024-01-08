@@ -103,6 +103,7 @@
                                             <p class="text-sm font-bold">DATE: {{ $order->created_at->format('M-d-Y') }}
                                             </p>
                                             <p class="text-sm font-bold">TOTAL: &#8369 {{ $order->total }}</p>
+                                            <p class="text-sm font-bold">Status: {{ $order->status }}</p>
                                         </div>
                                     </a>
 
@@ -118,6 +119,7 @@
                                 <div class="collapse-content">
                                     @foreach ($order->cart->products as $c_product)
                                         <div class="flex justify-between p-2 px-1 border-t border-gray-200">
+                                            {{-- @dd($c_product) --}}
                                             <div class="flex items-center space-x-3">
                                                 <img src="{{ route('media.product', ['name' => $c_product->product->image])  }}" alt=""
                                                     class="w-10 h-10 border border-gray-200 ">
@@ -126,6 +128,26 @@
                                                     <p class="text-xs text-gray-500">
                                                         {{ $c_product->product->categories[0]->name }}</p>
                                                 </div>
+                                                <p>
+                                                    <span>
+                                                        Sugar Level :
+                                                    </span>
+                                                    <span>
+                                                         {{$c_product->sugar_level * 100}} %
+                                                    </span>
+                                                </p>
+
+                                                @php
+                                                    $extra = json_decode($c_product->extras)    
+
+                                                @endphp
+                                                
+                                                 @if($extra !== null)
+                                                    <p>extra : {{$extra->name}} (&#8369 {{$extra->pivot->price}})</p>
+                                                    @else
+                                                    <p>No Extra</p>
+                                                 @endif
+                                                <p>Size:  {{$c_product->size}}</p>
                                             </div>
                                             <p class="text-sm">&#8369 {{ $c_product->product->price }}</p>
                                         </div>
