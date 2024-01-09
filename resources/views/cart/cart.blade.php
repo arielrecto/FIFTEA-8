@@ -48,10 +48,7 @@
                                                 {{-- <td class="px-4 py-3">&#8369 {{ $c_product->product->price }}</td> --}}
                                                 @php
 
-                                                $size = json_decode($c_product->size);
-                                                @endphp
-                                                    
-                                                
+                                                    $size = json_decode($c_product->size);
                                                 @endphp
                                                     <td class="px-4 py-3">{{$size->name}}</td>
                                                 @php

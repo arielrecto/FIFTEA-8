@@ -11,8 +11,8 @@
 
             <div class="flex flex-col md:flex-row items-start md:space-x-4 justify-between space-y-4 md:space-y-0">
 
-                @if (count($feedBacks) === 0)
-                    <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
+                {{-- @if (count($feedBacks) === 0) --}}
+                    {{-- <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
                         data-aos="fade-down" data-aos-duration="2000" data-aos-delay="100">
                         <div class='flex items-center space-x-3'>
                             <img alt="" class='w-14 h-14 rounded-full bg-gray-300' />
@@ -72,25 +72,23 @@
                             but this shop's quality is unmatched. The teas taste fresh, and you can tell they use
                             high-quality ingredients. I'm a loyal customer now, and I can't recommend them enough!</p>
                     </div>
-                @else
+                @else --}}
                     @foreach ($feedBacks as $feedback)
                         <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
                             data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                             <div class='flex items-center space-x-3'>
                                 <img alt="" class='w-14 h-14 rounded-full bg-gray-300' />
                                 <div>
-                                    <p class='monument text-lg font-bold text-yellow-700'>{{$feedback->user->name}}</p>
+                                    <p class='monument text-lg font-bold text-yellow-700'>{{ $feedback->user->name }}
+                                    </p>
                                     {{-- <p class='font-medium text-[12px]'>Student</p> --}}
                                 </div>
                             </div>
-                            <p class='font-medium text-sm text-gray-600 text-justify'>{{$feedback->message}}
+                            <p class='font-medium text-sm text-gray-600 text-justify'>{{ $feedback->message }}
                             </p>
                         </div>
                     @endforeach
-
-                @endif
-
-
+                    {{-- @endif --}}
             </div>
         </div>
     </div>
