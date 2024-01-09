@@ -29,7 +29,6 @@ class StoreProductAction
             'description' => $request->description,
             'price' => $request->price,
             'sizes'=> $request->sizes,
-            'ingredients' => $request->ingredients
         ]);
 
 

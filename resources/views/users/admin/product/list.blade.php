@@ -57,7 +57,7 @@
                                                 @csrf
                                                 <button>
                                                     <i
-                                                        class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
+                                                        class='  text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
                                                 </button>
                                             </form>
 
@@ -69,6 +69,11 @@
                                                             class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
                                                     </label>
                                                 </a>
+                                                <a
+                                                href="{{ route('admin.products.show', ['product' => $product->id]) }}">      
+                                                    <i class='bx bx-show text-blue-500'></i>
+                                                </a>
+                                                
 
                                                 {{-- <input type="checkbox" id="my-modal" class="modal-toggle" />
                                                 <div class="modal">

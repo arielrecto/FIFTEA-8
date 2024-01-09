@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('price');
             $table->json('sizes');
-            $table->json('ingredients');
+            $table->json('supplies')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

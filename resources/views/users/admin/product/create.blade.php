@@ -118,7 +118,7 @@
 
                         </div>
                     </div>
-
+{{-- 
                     <div class="flex flex-col gap-2 w-full" x-init="initSupplies({{ $supplies }})">
                         <h1 class="text-lg font-bold">
                             Ingredients
@@ -158,7 +158,7 @@
                         @if ($errors->has('ingredients'))
                             <p class="text-xs text-error">{{ $errors->first('ingredients') }}</p>
                         @endif
-                    </div>
+                    </div> --}}
 
                     <input type="hidden" name="ingredients" x-model="JSON.stringify(suppliesFields)">
 
