@@ -27,38 +27,35 @@
                         <p class="text-white text-sm text-center">{{ Session::get('message') }}</p>
                     </div>
                 @endif
-                <section id="products-container" class="flex w-full flex-wrap relative">
+                <section id="products-container" class="flex w-full flex-wrap gap-2 md:gap-4 relative">
                     <template x-for="product in productsFilter" :key="product.id">
 
-                        <div class="p-4 lg:w-1/4 transition duration-500 ease-in-out" x-show="!isLoading">
-                            <div
-                                class="h-fit border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden  hover:shadow-lg bg-white">
-                                <img class="lg:h-80 md:h-60 w-full object-cover object-center" alt="blog"
-                                    :src="`/media/product/${product.image}`">
-                                <div class="p-3">
-                                    <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                        <span x-text="product.categories[0].name"></span>
-                                    </h2>
-                                    <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name">
-                                    </h1>
+                        <div class="w-full md:w-1/4 flex items-center space-x-2 transition duration-500 ease-in-out border border-gray-100 rounded-md" x-show="!isLoading">
+                            <img class="min-w-32 h-28 object-cover object-center rounded" alt="blog"
+                                :src="`/media/product/${product.image}`">
 
-                                    <div class="flex items-center justify-between flex-wrap ">
+                            <div class="w-full p-3">
+                                <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                                    <span x-text="product.categories[0].name"></span>
+                                </h2>
+                                <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name">
+                                </h1>
+                                <div class="flex items-center justify-between flex-wrap ">
+                                    <p class="font-sans font-bold">
+                                        &#8369;<span x-text="product.price"></span>
+                                    </p>
 
-                                        <p class="font-sans font-bold">
-                                            &#8369;<span x-text="product.price"></span>
-                                        </p>
-
-                                        @if (Auth::user())
-                                            <button @click="openModal(product.id)"
-                                                class="text-sm rounded font-semibold text-blue-700 border-2 border-blue-600 py-1 px-4">Order</button>
-                                        @else
-                                            <a href="{{ route('login') }}"
-                                                class="text-sm rounded font-semibold text-blue-700 border-2 border-blue-600 py-1 px-4">Order</a>
-                                        @endif
-                                    </div>
+                                    @if (Auth::user())
+                                        <button @click="openModal(product.id)"
+                                            class="text-sm rounded font-medium text-blue-700 border border-blue-600 py-1 px-4">Order</button>
+                                    @else
+                                        <a href="{{ route('login') }}"
+                                            class="text-sm rounded font-medium text-blue-700 border border-blue-600 py-1 px-4">Order</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+
                     </template>
                 </section>
             </div>

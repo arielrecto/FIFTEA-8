@@ -19,7 +19,8 @@
                     </div>
 
 
-                    <div class="flex items-center justify-center w-full h-full" x-show="image === null">
+                    <div class="flex flex-col items-start justify-start w-full h-full space-y-1"
+                        x-show="image === null">
                         <label for="dropzone-file"
                             class="flex flex-col items-center justify-center w-full h-96 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -37,10 +38,10 @@
                             <input id="dropzone-file" type="file" class="hidden"
                                 name="image"@change="preview($event)" />
                         </label>
+                        @if ($errors->has('image'))
+                            <p class="text-xs text-error">{{ $errors->first('image') }}</p>
+                        @endif
                     </div>
-                    @if ($errors->has('image'))
-                        <p class="text-xs text-error">{{ $errors->first('image') }}</p>
-                    @endif
                 </div>
 
                 <div class="w-full md:w-2/3 flex flex-col space-y-6 md:p-4">
@@ -131,7 +132,7 @@
 
                                 <button class="btn btn-xs btn-ghost" @click.prevent="addSupplyFields(supply)">
 
-                                
+
                                     <span x-text="`${supply.name} (${supply.size})`"></span>
                                 </button>
                             </template>
@@ -173,8 +174,7 @@
                 <template x-for="(field, index) in fields" :key="index">
                     <div class="w-full">
                         <p class="flex w-full"> Size - <span x-text="index + 1" class="flex-grow"></span> <span>
-                                <button @click="removeField(index)"
-                                    class="px-4 py-2 rounded-full hover:bg-gray-200">
+                                <button @click="removeField(index)" class="px-4 py-2 rounded-full hover:bg-gray-200">
                                     <i class='bx bx-x text-red-600 text-xl'></i>
                                 </button></span></p>
                         <div class="w-full ">
@@ -275,15 +275,16 @@
                         }
                     },
                     addSupplyFields(supply) {
-                       
-                        if (this.suppliesFields.some(item => item.size === supply.size) && this.suppliesFields.some(item => item.name === supply.name)) {
+
+                        if (this.suppliesFields.some(item => item.size === supply.size) && this.suppliesFields.some(item => item
+                                .name === supply.name)) {
                             console.log(supply);
                             return;
                         }
                         const supField = {
                             name: supply.name,
                             quantity: 0,
-                            size : supply.size
+                            size: supply.size
                         }
 
                         this.suppliesFields = [...this.suppliesFields, supField]
