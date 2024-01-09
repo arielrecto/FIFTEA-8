@@ -11,13 +11,16 @@
                 <div class="w-full flex flex-wrap gap-4 h-[590px] overflow-auto space-y-2">
                     <template x-for="product in products" :key="product.id">
                         <button @click="addCustomizeProduct(product)"
-                            class="w-64 h-fit border border-gray-300 p-2 bg-white hover:shadow-md rounded">
-                            <div class="flex flex-col items-center justify-center space-y-2">
+                            class="w-fit h-fit border border-gray-300 p-2 bg-white hover:shadow-md rounded">
+                            <div class="flex flex-col items-start justify-start space-y-1">
                                 <div class="">
                                     <img :src="`/media/product/${product.image}`" alt=""
-                                        class="w-full h-3/4 object-center object-cover ">
+                                        class="w-36 h-32 object-center object-cover rounded">
                                 </div>
-                                <h1 x-text="product.name" class="text-left"></h1>
+                                <div>
+                                    <h1 x-text="product.name" class="text-left font-semibold"></h1>
+                                    <h1 class="text-left text-sm">&#8369; <span x-text="product.price"></span></h1>
+                                </div>
                             </div>
                         </button>
                     </template>
@@ -33,7 +36,7 @@
                     <div class="flex flex-col space-y-1 p-1 h-96 overflow-y-auto">
 
                         <template x-for="(item, index) in selectedProducts" :key="index">
-                           
+
                                 <div
                                     class="border border-gray-300 py-1 px-2 rounded flex justify-between items-center hover:bg-gray-200">
                                     <div class="flex flex-col gap-2">
@@ -48,22 +51,19 @@
                                                 <span>extra : </span>
                                                 <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"></span>
                                             </p>
-                                        </template> 
+                                        </template>
                                         <p>
                                             <span >
-                                                quantity: 
+                                                quantity:
                                             </span>
                                             <span x-text="item.quantity"></span>
                                         </p>
-                                       
+
                                     </div>
-                                    
+
                                     <button @click="remove(index)"><i class='bx bx-x'></i></button>
                                 </div>
-                           
                         </template>
-
-
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
         </div>
         <template x-if="customizeProduct !== null">
             <div aria-hidden="true"
-                class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+                class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-modal md:h-full bg-gray-500 bg-opacity-20">
                 <div class="relative p-4 w-[80%]  h-full md:h-auto">
                     <!-- Modal content -->
                     <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -273,9 +273,9 @@
     {{-- <div id="defaultModal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-[80%]  h-full md:h-auto">
-          
+
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                
+
                 <div
                     class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -293,23 +293,23 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-              
+
                 <div>
                     <div class="h-full" x-data="product">
                         <div class="flex flex-col md:flex-row items-center justify-between md:space-x-4 py-4">
                             <img alt=""
                                 class="object object-cover object-center w-[600px] h-[400px] rounded bg-gray-300">
-                           
+
 
                             <form action="{{ route('client.cart.add') }}" method="POST"
                                 class="flex flex-col space-y-3 w-full">
                                 @csrf
-                                <span class="text-base font-semibold text-gray-400"></span> 
-                                <h1 class="text-4xl font-bold "></h1> 
-                                <input type="hidden" name="product_id"> 
-                                <input type="hidden" name="price"> 
+                                <span class="text-base font-semibold text-gray-400"></span>
+                                <h1 class="text-4xl font-bold "></h1>
+                                <input type="hidden" name="product_id">
+                                <input type="hidden" name="price">
 
-                                <p class="text-base text-gray-600"></p> 
+                                <p class="text-base text-gray-600"></p>
                                 <div
                                     class="w-full flex flex-col md:flex-row items-center md:space-x-8 space-y-4 md:space-y-0">
                                     <div class="w-full flex flex-col space-y-1">
@@ -323,7 +323,7 @@
                                             <option value="1">100%</option>
                                         </select>
                                     </div>
-                                    <div class="w-full flex flex-col space-y-1"> 
+                                    <div class="w-full flex flex-col space-y-1">
                                         <label for="" class="text-base font-semibold">Extras</label>
                                         <select id="" @change="changeProductPriceByAddons($event)"
                                             class="w-full  rounded px-4 py-2 text-sm border border-gray-300">
@@ -338,7 +338,7 @@
                                     </div>
                                 </div>
                                 <div class="w-full flex items-start space-x-8">
-                                    <div class="w-full flex flex-col space-y-1"> 
+                                    <div class="w-full flex flex-col space-y-1">
                                         <label for="" class="text-base font-semibold">Size</label>
                                         <select name="size" id=""
                                             class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
@@ -372,7 +372,7 @@
                                 <div class="pt-3">
                                     <div
                                         class="w-full flex items-center justify-between border-t border-gray-200 py-3">
-                                     
+
                                         <input type="hidden" name="total" x-model="total">
                                         <p class="font-bold text-lg">&#8369; <span x-text="total"></span></p>
                                         <button class="px-4 py-2 rounded text-sm bg-green-700 text-white">Place
