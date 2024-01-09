@@ -7,13 +7,15 @@
             </div>
         </div>
         <div class="flex flex-col gap-2">
-            <div class="">
+            <div class="flex items-center space-x-4 py-2">
                 <img src="{{ route('media.product', ['name' => $product->image]) }}" alt="" srcset=""
-                    class="h-16 w-16 object object-center">
+                    class="h-64 w-64 object object-center rounded">
 
-                    <h1>{{$product->name}}</h1>
-                    <p>{!! $product->description !!}</p>
-                    <p>{{$product->price}}</p>
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-semibold">{{$product->name}}</h1>
+                    <p class="text-sm">{!! $product->description !!}</p>
+                    <p class="font-semibold">{{$product->price}}</p>
+                </div>
             </div>
 
 
@@ -21,14 +23,13 @@
                 <div class="flex flex-col gap-2" x-data="suppliesData" x-init="initSizes({{ $product->sizes }}), initSupplies({{ $supplies }})">
                     <div class="flex flex-col gap-5">
                         <template x-for="(size, index) in sizes" :key="index">
-                            <div class="flex flex-col gap-2 border-2 rounded-lg p-2">
+                            <div class="flex flex-col gap-2 border border-gray-200 rounded p-2">
                                 <div class="flex justify-between">
                                     <h1 class="text-lg font-bold gap-2">
                                         <span x-text="size.name"></span>
-
                                     </h1>
 
-                                    <button class="btn btn-xs btn-ghost" @click="addSupplyForm(index, size.name)">
+                                    <button class="text-xs border border-green-200 text-green-600 px-4 py-2 rounded" @click="addSupplyForm(index, size.name)">
                                         Setup
                                     </button>
                                 </div>
@@ -36,27 +37,26 @@
                                 <template x-if="formIndex === index">
                                     <div class="flex flex-col gap-2">
                                         <h1>
-                                            inventory
+                                            Inventory
                                         </h1>
-                                        <div class="grid grid-cols-6 grid-flow-row w-full p-2 border-2 rounded-lg">
-
+                                        <div class="flex flex-wrap gap-2 w-full p-2 border border-gray-200 rounded">
                                             <template x-for="supply in blueprintSupplies" :key="supply.id">
-                                                <button class="btn btn-sm btn-ghost" @click="addSupplyField(supply)">
+                                                <button class="text-sm border border-gray-300 rounded px-4 py-2" @click="addSupplyField(supply)">
                                                     <span x-text="supply.name"></span>
                                                 </button>
                                             </template>
                                         </div>
-                                        <div class="grid grid-cols-3 grid-flow-row gap-2 2-full">
 
+                                        <div class="flex flex-col items-start space-y-2">
                                             <template x-for="field in suppliesForm.fields" :key="field.id">
-                                                <div class="flex items-center">
+                                                <div class="flex items-center space-x-2">
                                                     <h1><span x-text="field.name"></span></h1>
-                                                    <input type="number" x-model="field.quantity">
+                                                    <input type="number" x-model="field.quantity" class="w-20 border border-gray-300 rounded px-2 py-1 text-xs">
                                                 </div>
                                             </template>
-
                                         </div>
-                                        <button @click="addSupplyDataFromToSupplies(suppliesForm)">
+
+                                        <button @click="addSupplyDataFromToSupplies(suppliesForm)" class="w-fit px-6 py-2 text-xs bg-blue-700 text-white rounded">
                                             Add
                                         </button>
                                     </div>
@@ -69,7 +69,6 @@
                             <input type="hidden" x-model="JSON.stringify(supplies)" name="supply">
                             <button class="btn btn-sm btn-accent">Save</button>
                         </form>
-
                     </div>
                 </div>
                 @else

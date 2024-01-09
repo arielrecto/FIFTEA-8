@@ -1,10 +1,10 @@
 <div class="w-full sticky top-0 z-50 border-b border-gray-200 bg-white shadow">
     <div class="py-2 flex justify-between items-center w-full max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center py-1">
-            <div class="flex items-center space-x-2">
+            <a href="/" class="flex items-center space-x-2">
                 <img class="w-12 h-12" src="{{ asset('images/logo.png') }}" alt="">
                 <a class="text-xl font-sans font-semibold">Fiftea-8</a>
-            </div>
+            </a>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">Home</a>

@@ -46,41 +46,23 @@
 
             </form>
             <div class="overflow-x-auto">
-                <table class="table">
-                  <!-- head -->
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Name</th>
-
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- row 1 -->
 
                     @forelse ($types as $type)
-                    <tr>
-                        <th></th>
-                        <td>{{$type->name}}</td>
-
-                        <td>
+                    <div class="w-full flex items-center justify-between px-2 py-1 rounded border border-gray-300">
+                        <span>{{$type->name}}</span>
+                        <div>
                             <a href="{{route('admin.supply.type.edit', ['type' => $type->id])}}">
-                                <i class='bx bxs-edit-alt'></i>
+                                <i class='bx bxs-edit-alt text-blue-600'></i>
                             </a>
-                        </td>
-                      </tr>
+                        </div>
+                      </div>
                     @empty
-                    <tr>
-                        <th>No Type</th>
-                      </tr>
+                    <div class="py-5 flex items-center justify-center">
+                        <span class="text-red-500 text-sm">No Type</span>
+                    </div>
                     @endforelse
 
-
-
-                  </tbody>
-                </table>
-              </div>
+            </div>
         </div>
 
     </div>

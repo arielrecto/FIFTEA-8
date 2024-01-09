@@ -42,7 +42,7 @@
                                         @endforeach
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        {{ $product->price }}
+                                        &#8369; {{ $product->price }}
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $product->created_at }}</td>
@@ -57,37 +57,20 @@
                                                 @csrf
                                                 <button>
                                                     <i
-                                                        class='  text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
+                                                        class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
                                                 </button>
                                             </form>
 
-                                            <div>
-                                                <a
-                                                    href="{{ route('admin.products.edit', ['product' => $product->id]) }}">
+                                            <div class="flex items-center space-x-2">
+                                                <a href="{{ route('admin.products.edit', ['product' => $product->id]) }}">
                                                     <label for="my-modal" class="p-0 m-0">
                                                         <i
                                                             class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
                                                     </label>
                                                 </a>
-                                                <a
-                                                href="{{ route('admin.products.show', ['product' => $product->id]) }}">      
-                                                    <i class='bx bx-show text-blue-500'></i>
+                                                <a href="{{ route('admin.products.show', ['product' => $product->id]) }}">
+                                                    <i class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
                                                 </a>
-                                                
-
-                                                {{-- <input type="checkbox" id="my-modal" class="modal-toggle" />
-                                                <div class="modal">
-                                                    <div class="modal-box">
-
-                                                        <div>
-                                                            dito yung mg add ons
-                                                        </div>
-
-                                                        <div class="modal-action">
-                                                            <label for="my-modal" class="btn">Yay!</label>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
                                             </div>
                                         </div>
                                     </td>

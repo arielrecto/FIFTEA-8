@@ -107,15 +107,15 @@
                 <div class="flex justify-between">
                     <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
                         <i class='bx bx-save mr-2'></i>
-                        save
+                        Update
                     </button>
-                    <div>
+                    {{-- <div>
                         <a href="{{ route('admin.supply.type.create') }}"
                             class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
                             <i class='bx bx-save mr-2'></i>
                             Add Supply Type
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
 
             </form>

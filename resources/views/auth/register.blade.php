@@ -107,7 +107,7 @@
                                     </div> --}}
                                 </div>
 
-                                <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
+                                <div class="w-full flex items-start flex-col md:flex-row md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="street" class="text-sm ">Street</label>
                                         <input id="street" name="street" type="text"
@@ -152,7 +152,6 @@
                                         <option value="Mabolo III">Mabolo III</option>
                                         <option value="Mliksi I">Mliksi I</option>
                                         <option value="Maliksi II">Maliksi II</option>
-                                        <option value="Maliksi III">Maliksi III</option>
                                         <option value="Mambog I">Mambog I</option>
                                         <option value="Mambog II">Mambog II</option>
                                         <option value="Mambog III">Mambog III</option>
@@ -186,7 +185,20 @@
                                         <option value="San Nicolas I">San Nicolas I</option>
                                         <option value="San Nicolas II">San Nicolas II</option>
                                         <option value="San Nicolas III">San Nicolas III</option>
-                                        <option value="Sinegue">Sinegue</option>
+                                        <option value="Sineguelasan">Sineguelasan</option>
+                                        <option value="Tabing Dagat">Tabing Dagat</option>
+                                        <option value="Talaba I">Talaba I</option>
+                                        <option value="Talaba II">Talaba II</option>
+                                        <option value="Talaba III">Talaba III</option>
+                                        <option value="Talaba IV">Talaba IV</option>
+                                        <option value="Talaba V">Talaba V</option>
+                                        <option value="Talaba VI">Talaba VI</option>
+                                        <option value="Talaba VII">Talaba VII</option>
+                                        <option value="Zapote I">Zapote I</option>
+                                        <option value="Zapote II">Zapote II</option>
+                                        <option value="Zapote III">Zapote III</option>
+                                        <option value="Zapote IV">Zapote IV</option>
+                                        <option value="Zapote V">Zapote V</option>
                                     </select>
                                     {{-- <input id="barangay" name="barangay" type="text"
                                         x-model="addressData.barangay" class="text-xm rounded-md border-gray-300"
@@ -195,10 +207,10 @@
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="municipality" class="text-sm ">Municipality</label>
+                                    <label for="municipality" class="text-sm ">City/Municipality</label>
                                     <input id="municipality" name="municipality" type="text"
                                         x-model="addressData.municipality" x-mode="addressData.municipality"
-                                        class="text-xm rounded-md border-gray-300" value="Bacoor" x-text="Bacoor">
+                                        class="text-xm rounded-md border-gray-300" value="Bacoor">
                                     <span x-text="errors.municipality" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
@@ -241,18 +253,48 @@
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="password" class="text-sm ">Password</label>
-                                    <input id="password" name="password" type="password"
-                                        x-model="accountData.password" class="text-xm rounded-md border-gray-300"
-                                        placeholder="password">
+                                    <div class="flex items-center text-xm rounded-md border border-gray-300 pr-2">
+                                        <input id="password" name="password" type="password"
+                                            x-model="accountData.password"
+                                            class="text-xm border-0 w-full rounded-md focus:border-none focus:outline-none focus:ring-0"
+                                            placeholder="password">
+                                        <i class='bx bx-low-vision text-lg text-gray-300 cursor-pointer'
+                                            onclick="togglePasswordVisibility('password')"></i> {{-- eye icon --}}
+                                    </div>
                                     <span x-text="errors.password" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="confirm_password" class="text-sm ">Confirm Password</label>
-                                    <input id="confirm_password" name="confirm_password" type="password"
-                                        class="text-xm rounded-md border-gray-300" placeholder="confirm password"
-                                        required>
+                                    <label for="confirmPassword" class="text-sm ">Confirm Password</label>
+                                    <div class="flex items-center text-xm rounded-md border border-gray-300 pr-2">
+                                        <input id="confirmPassword" name="confirmPassword" type="password"
+                                            x-model="accountData.confirmPassword"
+                                            class="text-xm border-0 w-full rounded-md focus:border-none focus:outline-none focus:ring-0"
+                                            placeholder="confirm password" required>
+                                        <i class='bx bx-low-vision text-lg text-gray-300 cursor-pointer'
+                                            onclick="togglePasswordVisibility('confirmPassword')"></i>
+                                        {{-- eye icon --}}
+                                    </div>
+                                    <span x-text="errors.confirmPassword"
+                                        class="text-red-500 text-xs capitalize"></span>
                                 </div>
+
+                                <script>
+                                    function togglePasswordVisibility(inputId) {
+                                        const passwordInput = document.getElementById(inputId);
+                                        const eyeIcon = document.querySelector(`[for=${inputId}] i.bx-low-vision`);
+
+                                        if (passwordInput.type === 'password') {
+                                            passwordInput.type = 'text';
+                                            eyeIcon.classList.remove('bx-low-vision');
+                                            eyeIcon.classList.add('bx-show');
+                                        } else {
+                                            passwordInput.type = 'password';
+                                            eyeIcon.classList.remove('bx-show');
+                                            eyeIcon.classList.add('bx-low-vision');
+                                        }
+                                    }
+                                </script>
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
                                 <button class="px-4 py-2 rounded-md bg-gray-200"
@@ -268,6 +310,21 @@
         </div>
     </div>
     <script>
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+        function isValidPassword(password) {
+            const lengthRegex = /.{8,}/;
+            const uppercaseRegex = /[A-Z]/;
+            const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+            return lengthRegex.test(password) &&
+                uppercaseRegex.test(password) &&
+                specialCharacterRegex.test(password);
+        }
+
         window.register = () => {
             return {
                 currentPhase: 'profile',
@@ -282,13 +339,13 @@
                 },
                 addressData: {
                     lot: '',
-                    block: '',
+                    // block: '',
                     street: '',
                     subdivision: '',
                     barangay: '',
                     municipality: '',
-                    region: '',
-                    zipCode: '',
+                    // region: '',
+                    // zipCode: '',
                 },
                 accountData: {
                     email: '',
@@ -332,50 +389,53 @@
 
 
                     if (!this.addressData.lot) {
-                        this.errors.lot = 'Lot number is required.';
+                        this.errors.lot = 'Lot/Block/House number is required.';
                     }
-                    if (!this.addressData.block) {
-                        this.errors.block = 'Block number is required.';
-                    }
+                    // if (!this.addressData.block) {
+                    //     this.errors.block = 'Block number is required.';
+                    // }
                     if (!this.addressData.municipality) {
-                        this.errors.municipality = 'Municipality is required.';
+                        this.errors.municipality = 'City/Municipality is required.';
                     }
                     if (!this.addressData.barangay) {
                         this.errors.barangay = 'Barangay is required.';
                     }
-                    if (!this.addressData.subdivision) {
-                        this.errors.subdivision = 'Subdivision number is required.';
-                    }
+                    // if (!this.addressData.subdivision) {
+                    //     this.errors.subdivision = 'Subdivision number is required.';
+                    // }
                     if (!this.addressData.street) {
                         this.errors.street = 'Street number is required.';
                     }
-                    if (!this.addressData.region) {
-                        this.errors.region = 'Region number is required.';
-                    }
-                    if (!this.addressData.zipCode) {
-                        this.errors.zipCode = 'Zip Code number is required.';
-                    }
+                    // if (!this.addressData.region) {
+                    //     this.errors.region = 'Region number is required.';
+                    // }
+                    // if (!this.addressData.zipCode) {
+                    //     this.errors.zipCode = 'Zip Code number is required.';
+                    // }
 
                     return Object.keys(this.errors).length === 0;
                 },
 
-
                 validateAccountFields() {
                     this.errors = {};
 
-
                     if (!this.accountData.email) {
                         this.errors.email = 'Email is required.';
+                    } else if (!isValidEmail(this.accountData.email)) {
+                        this.errors.email = 'Invalid email';
                     }
-
 
                     if (!this.accountData.password) {
                         this.errors.password = 'Password is required.';
+                    } else if (!isValidPassword(this.accountData.password)) {
+                        this.errors.password = 'Password must be at least 8 characters, with at least one uppercase letter, and at least one special character.';
                     }
 
-
-                    // Perform other account field validations...
-
+                    if (!this.accountData.confirmPassword) {
+                        this.errors.confirmPassword = 'This field is required';
+                    } else if (this.accountData.password !== this.accountData.confirmPassword) {
+                        this.errors.confirmPassword = 'Passwords must match.';
+                    }
 
                     return Object.keys(this.errors).length === 0;
                 },
@@ -414,13 +474,10 @@
                     } else if (phase === 'address') {
                         this.addressData = {
                             lot: '',
-                            block: '',
                             street: '',
                             subdivision: '',
                             barangay: '',
                             municipality: '',
-                            region: '',
-                            zipCode: '',
                         };
                     }
                 },
@@ -428,8 +485,6 @@
 
                 async submitData() {
                     if (this.validateAccountFields()) {
-
-
                         try {
                             const data = {
                                 profile: this.profileData,
@@ -451,17 +506,17 @@
                                 text: 'You are now registered!',
                             })
 
-                            window.location.href = '/login';
+                            setTimeout(() => {
+                                window.location.href = '/login';
+                            }, 3000);
 
                         } catch (error) {
 
                             console.log(error)
 
-
                             Swal.fire({
-                                icon: 'error',
-                                title: 'Something is wrong',
-                                text: error.response.data.error,
+                                icon: 'info',
+                                title: error.response.data.error,
                             });
                         }
                     }

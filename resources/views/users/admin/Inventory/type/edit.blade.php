@@ -11,7 +11,7 @@
             @endif
 
             <div>
-                <a href="{{route('admin.supply.create')}}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center w-fit">
+                <a href="{{ route('admin.supply.type.create') }}" class="px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center w-fit">
                     <i class='bx bx-left-arrow-alt text-2xl text-gray-500 hover:text-gray-800'></i>
                 </a>
             </div>
@@ -40,7 +40,7 @@
                 <div>
                     <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
                         <i class='bx bx-save mr-2'></i>
-                        save
+                        update
                     </button>
                 </div>
 

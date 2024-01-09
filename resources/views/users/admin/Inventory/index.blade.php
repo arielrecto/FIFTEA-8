@@ -5,8 +5,8 @@
             <div class="">
                 <a href="{{ route('admin.supply.create') }}"
                     class="flex items-center px-4 py-2 rounded text-white bg-sbgreen text-sm">
-                    <i class='bx bx-list-plus text-xl mr-2'></i>
-                    add supply
+                    <i class='bx bx-plus text-lg mr-2 text-white'></i>
+                    Add Supply
                 </a>
             </div>
         </div>
@@ -48,39 +48,22 @@
                                         {{ $supply->quantity }}</td>
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
-                                        <div class="flex space-x-2">
-                                           <form action="{{route('admin.supply.destroy', ['supply' => $supply->id])}}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button>
-                                                <i
-                                                class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
-                                            </button>
-                                           </form>
+                                        <div class="flex items-center justify-center space-x-2">
+                                            <form
+                                                action="{{ route('admin.supply.destroy', ['supply' => $supply->id]) }}"
+                                                method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button>
+                                                    <i
+                                                        class='bx bx-trash text-red-500 text-xl rounded hover:bg-red-50 cursor-pointer py-1 px-2'></i>
+                                                </button>
+                                            </form>
 
-                                           <a href="{{route('admin.supply.edit', ['supply' => $supply->id])}}">
-                                            <i class='bx bxs-edit-alt'></i>
-                                        </a>
+                                            <a href="{{ route('admin.supply.edit', ['supply' => $supply->id]) }}">
+                                                <i class='bx bxs-edit-alt text-lg text-blue-600'></i>
+                                            </a>
 
-
-                                            {{-- <div>
-                                            <label for="my-modal" class="p-0 m-0">
-                                                <i class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
-                                            </label>
-                                            <input type="checkbox" id="my-modal" class="modal-toggle" />
-                                            <div class="modal">
-                                                <div class="modal-box">
-
-                                                    <div>
-                                                        dito yung mg add ons
-                                                    </div>
-
-                                                    <div class="modal-action">
-                                                        <label for="my-modal" class="btn">Yay!</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         </div>
                                     </td>
                                 </tr>

@@ -6,10 +6,10 @@
 <div class="w-full fixed z-50 border-b border-gray-200 bg-white">
     <div class="navbar flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center">
-            <div class="flex items-center space-x-2">
+            <a href="/" class="flex items-center space-x-2">
                 <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
                 <a class="text-xl font-sans font-semibold">Fiftea-8</a>
-            </div>
+            </a>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <div class="py-2 px-4 hover:bg-gray-200 rounded">
                     <a class="font-sans text-base" href="/">Home</a>
@@ -80,9 +80,9 @@
             </div>
         @else
             <div class="hidden md:flex space-x-3">
-                <a class="font-sans  text-white font-medium text-base bg-sbgreen hover:bg-green-800 py-2 px-4 rounded"
+                <a class="font-sans  text-white font-medium text-sm bg-sbgreen hover:bg-green-800 py-2 px-4"
                     href="{{ route('login') }}">LOGIN</a>
-                <a class="font-sans text-gray-600 font-medium text-base bg-gray-200 hover:bg-gray-300 py-2 px-4 rounded"
+                <a class="font-sans text-gray-600 font-medium text-sm bg-gray-200 hover:bg-gray-300 py-2 px-4"
                     href="{{ route('register') }}">REGISTER</a>
             </div>
         @endauth

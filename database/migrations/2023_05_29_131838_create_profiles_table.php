@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -21,14 +20,14 @@ return new class extends Migration
             $table->string('age');
             $table->string('sex');
             $table->string('phone');
-            $table->string('block');
+            // $table->string('block');
             $table->string('lot');
             $table->string('street');
             $table->string('municipality');
             $table->string('barangay');
-            $table->string('subdivision');
-            $table->string('region');
-            $table->string('zip_code');
+            $table->string('subdivision')->nullable();
+            // $table->string('region');
+            // $table->string('zip_code');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

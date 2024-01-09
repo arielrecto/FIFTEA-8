@@ -32,44 +32,43 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
 
-     public function store(Request $request): JsonResponse
-     {
-         $data = $request->all();
-     
-         $existingUser = User::where('email', $data['account']['email'])->first();
-         if ($existingUser) {
-             return response()->json(['error' => 'Email already exists.'], 422);
-         }
-     
-         $user = User::create([
-             'name' => $data['profile']['firstName'] . ' ' . $data['profile']['lastName'],
-             'email' => $data['account']['email'],
-             'password' => Hash::make($data['account']['password']),
-         ]);
-     
-         $profile = Profile::create([
-             'last_name' => $data['profile']['lastName'],
-             'first_name' => $data['profile']['firstName'],
-             'middle_name' => $data['profile']['middleName'],
-             'age' => $data['profile']['age'],
-             'sex' => $data['profile']['sex'],
-             'phone' => $data['profile']['phone'],
-             'lot' => $data['address']['lot'],
-             'block' => $data['address']['block'],
-             'street' => $data['address']['street'],
-             'subdivision' => $data['address']['subdivision'],
-             'barangay' => $data['address']['barangay'],
-             'municipality' => $data['address']['municipality'],
-             'region' => $data['address']['region'],
-             'zip_code' => $data['address']['zipCode'],
-             'user_id' => $user->id,
-         ]);
-     
-         $adminRole = Role::where('name', 'customer')->first();
-     
-         $user->assignRole($adminRole->id);
-     
+    public function store(Request $request): JsonResponse
+    {
+        // dd($request->all());
+
+        $data = $request->all();
+
+        $existingUser = User::where('email', $data['account']['email'])->first();
+        if ($existingUser) {
+            return response()->json(['error' => 'Email already exists.'], 422);
+        }
+
+        $user = User::create([
+            'name' => $data['profile']['firstName'] . ' ' . $data['profile']['lastName'],
+            'email' => $data['account']['email'],
+            'password' => Hash::make($data['account']['password']),
+        ]);
+
+        $profile = Profile::create([
+            'last_name' => $data['profile']['lastName'],
+            'first_name' => $data['profile']['firstName'],
+            'middle_name' => $data['profile']['middleName'],
+            'age' => $data['profile']['age'],
+            'sex' => $data['profile']['sex'],
+            'phone' => $data['profile']['phone'],
+            'lot' => $data['address']['lot'],
+            'street' => $data['address']['street'],
+            'subdivision' => $data['address']['subdivision'] ?? null,
+            'barangay' => $data['address']['barangay'],
+            'municipality' => $data['address']['municipality'],
+            'user_id' => $user->id,
+        ]);
+
+        $adminRole = Role::where('name', 'customer')->first();
+
+        $user->assignRole($adminRole->id);
+
         return response()->json(['message' => 'Registration successful'], 200);
-    }    
+    }
 
 }

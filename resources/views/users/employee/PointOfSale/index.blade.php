@@ -5,9 +5,15 @@
             <h1 class="text-white text-xl font-bold">Point of Sale</h1>
         </div>
 
-        <div class="w-full flex flex-col-reverse md:flex-row md:space-x-4 ">
+        <div class="w-full flex flex-col-reverse md:flex-row md:space-x-4">
 
-            <div class="w-full md:w-3/4 flex flex-grow 0">
+            <div class="w-full md:w-3/4 flex flex-col flex-grow">
+                <div class="w-full flex items-center border-b border-gray-300 py-2">
+                    <span class="text-sm text-gray-700 font-semibold mr-2">Filter Products:</span>
+                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">All</a>
+                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">Milktea</a>
+                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">Siomai</a>
+                </div>
                 <div class="w-full flex flex-wrap gap-4 h-[590px] overflow-auto space-y-2">
                     <template x-for="product in products" :key="product.id">
                         <button @click="addCustomizeProduct(product)"

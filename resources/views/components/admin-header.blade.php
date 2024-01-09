@@ -1,10 +1,10 @@
 <div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-10 lg:px-10 ">
         <div class="flex items-center">
-            <div class="flex items-center space-x-2">
+            <a href="/" class="flex items-center space-x-2">
                 <img class="w-14 h-14" src="{{ asset('images/logo.png') }}" alt="">
                 <a class="text-xl font-sans font-semibold">Fif'tea-8</a>
-            </div>
+            </a>
             <div class="hidden md:flex items-center space-x-2 px-5">
                 <a href="/" class="py-2 px-4 hover:bg-gray-200 rounded">
                     <p class="font-sans text-base">Home</p>
