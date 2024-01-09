@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\SupplyDefaultTypes;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('users.admin.Inventory.type.create');
+
+        $types = Type::where('name', '!=', SupplyDefaultTypes::ADDONS->value)->get();
+
+        return view('users.admin.Inventory.type.create', compact(['types']));
     }
 
     /**
@@ -49,7 +53,10 @@ class TypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $type = Type::find($id);
+
+        return view('users.admin.Inventory.type.edit', compact(['type']));
     }
 
     /**
@@ -57,7 +64,14 @@ class TypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $type = Type::find($id);
+
+        $type->update([
+            'name' => $request->name
+        ]);
+
+
+        return back()->with(['message' => 'Type name updated!']);
     }
 
     /**

@@ -17,19 +17,19 @@
             </div>
 
             <div class="flex flex-col border-b border-gray-400 pb-2">
-                <h1 class="text-2xl font-semibold text-sbgreen">New Supply Type</h1>
-                <p class="text-sm">This will be added to the list of supplies Type</p>
+                <h1 class="text-2xl font-semibold text-sbgreen">Edit Supply Type</h1>
+                <p class="text-sm">This will be reflect to the list of supplies Type</p>
                 <p class="text-sm">Note: input "addons" if the supply has a additional price in the produc to show the price input field in the add supply form
                 </p>
             </div>
 
-            <form action="{{ route('admin.supply.type.store') }}" method="post" class="flex flex-col space-y-4">
-
+            <form action="{{ route('admin.supply.type.update', ['type' => $type->id]) }}" method="post" class="flex flex-col space-y-4">
+                @method('put')
                 @csrf
                 <div class="flex flex-col space-y-2">
                     <div class="flex flex-col space-y-1">
                         <label for="name" class="text-sm">NAME <span class="text-red-500 text-base">*</span></label>
-                        <input type="text" name="name" id="name" class="rounded px-4 border border-gray-300">
+                        <input type="text" name="name" id="name" class="rounded px-4 border border-gray-300" placeholder="{{$type->name}}">
                         @error('name')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
@@ -45,7 +45,7 @@
                 </div>
 
             </form>
-            <div class="overflow-x-auto">
+            {{-- <div class="overflow-x-auto">
                 <table class="table">
                   <!-- head -->
                   <thead>
@@ -57,15 +57,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- row 1 -->
 
-                    @forelse ($types as $type)
+ @forelse ($types as $type)
                     <tr>
                         <th></th>
                         <td>{{$type->name}}</td>
 
                         <td>
-                            <a href="{{route('admin.supply.type.edit', ['type' => $type->id])}}">
+                            <a href="http://">
                                 <i class='bx bxs-edit-alt'></i>
                             </a>
                         </td>
@@ -80,7 +79,7 @@
 
                   </tbody>
                 </table>
-              </div>
+              </div> --}}
         </div>
 
     </div>

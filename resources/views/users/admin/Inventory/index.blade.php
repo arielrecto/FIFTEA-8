@@ -58,6 +58,10 @@
                                             </button>
                                            </form>
 
+                                           <a href="{{route('admin.supply.edit', ['supply' => $supply->id])}}">
+                                            <i class='bx bxs-edit-alt'></i>
+                                        </a>
+
 
                                             {{-- <div>
                                             <label for="my-modal" class="p-0 m-0">

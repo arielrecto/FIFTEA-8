@@ -54,10 +54,6 @@ class ProductController extends Controller
             return back()->withErrors(['sizes' => 'the sizes field is required']);
         }
 
-        if(count(json_decode($request->ingredients)) === 0){
-            return back()->withErrors(['ingredients' => 'the ingredients field is required']);
-        }
-
         $storeProductAction->handle($request);
 
 
@@ -67,9 +63,26 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
-        //
+        $product = Product::find($id);
+
+        $productSupply = $request->supply;
+
+        if($productSupply !== null){
+
+            $product->update([
+                'supplies' => $productSupply
+            ]);
+
+        }
+
+
+        $supplies = Supply::whereHas('types', function($q){
+            $q->where('name', '!=', SupplyDefaultTypes::ADDONS->value);
+        })->get()->toJson();
+
+        return view('users.admin.product.show', compact(['product', 'supplies']));
     }
 
     /**
@@ -79,7 +92,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $categories = Category::with('type')->get();
+        $categories = Category::get();
 
 
         return view('users.admin.product.edit', compact(['product', 'categories']));

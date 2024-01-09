@@ -65,7 +65,11 @@ class SupplyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $supply = Supply::find($id);
+
+        $types = Type::get();
+
+        return view('users.admin.Inventory.edit', compact(['supply', 'types']));
     }
 
     /**
@@ -73,7 +77,10 @@ class SupplyController extends Controller
      */
     public function update(Request $request, string $id, UpdateSupplyAction $updateSupplyAction)
     {
+
         $supply = $updateSupplyAction->handle($request, $id);
+
+        return back()->with(['message' => 'Supply Data is Updated!']);
 
     }
 

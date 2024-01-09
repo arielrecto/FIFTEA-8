@@ -117,18 +117,40 @@ class OrderController extends Controller
         $products = collect($order->cart->products)->map(function($cart_product){
             $product = $cart_product->product;
 
-            $ingredients = collect(json_decode($product->ingredients));
 
-            $ingredients->map(function($ingredient){
-                $supply = Supply::where('name', $ingredient->name)->first();
+            $supplies = collect(json_decode($product->supplies));
+            $size = json_decode($cart_product->size)->name;
 
-                if($supply->quantity < $ingredient->quantity || $supply->quantity <= 0){
-                    return back()->with(['message' => "stock of {$supply->name} is not enough to process this order"]);
+            $supplies->map(function($supply) use ($size) {
+                if($supply->size === $size){
+                    $productSupplies = $supply->supplies;
+
+                    collect($productSupplies)->map(function($p_supply){
+                        $inventSupply = Supply::find($p_supply->id);
+
+                        $inventSupply->update([
+                            'quantity' => $inventSupply->quantity - $p_supply->quantity
+                        ]);
+                    });
                 }
-                $supply->update([
-                    'quantity' => $supply->quantity - $ingredient->quantity
-                ]);
             });
+
+
+
+
+
+            // $ingredients = collect(json_decode($product->ingredients));
+
+            // $ingredients->map(function($ingredient){
+            //     $supply = Supply::where('name', $ingredient->name)->first();
+
+            //     if($supply->quantity < $ingredient->quantity || $supply->quantity <= 0){
+            //         return back()->with(['message' => "stock of {$supply->name} is not enough to process this order"]);
+            //     }
+            //     $supply->update([
+            //         'quantity' => $supply->quantity - $ingredient->quantity
+            //     ]);
+            // });
 
         });
 

@@ -43,13 +43,15 @@ class TransactionController extends Controller
         $user = Auth::user();
         $cart_product_id  = 'crtprdctid-' . uniqid();
 
-        $cart = Cart::create(['user_id' => $user->id]);
+         $cart = Cart::create(['user_id' => $user->id]);
 
         $products = $request->products;
 
         foreach ($products as $product) {
 
-            $productData = Product::find($product['id']);
+             $productData = Product::find($product['id']);
+
+
             CartProduct::create([
                 'product_id' => $productData->id,
                 'size' => $product['size'],
@@ -61,20 +63,34 @@ class TransactionController extends Controller
                 'price' => $productData->price,
                 'cart_product_no' => $cart_product_id
             ]);
-          
-        
-            $ingredients = collect(json_decode($productData->ingredients));
 
-            $ingredients->map(function ($ingredient) {
-                $supply = Supply::where('name', $ingredient->name)->first();
 
-                if ($supply->quantity < $ingredient->quantity || $supply->quantity <= 0) {
-                    return back()->with(['message' => "stock of {$supply->name} is not enough to process this order"]);
+            $supplies = collect(json_decode($productData->supplies));
+            $size = $product['size'];
+            $supplies->map(function($supply) use ($size) {
+                if($supply->size === $size){
+                    $productSupplies = $supply->supplies;
+                    collect($productSupplies)->map(function($p_supply){
+                        $inventSupply = Supply::find($p_supply->id);
+                        $inventSupply->update([
+                            'quantity' => $inventSupply->quantity - $p_supply->quantity
+                        ]);
+                    });
                 }
-                $supply->update([
-                    'quantity' => $supply->quantity - $ingredient->quantity
-                ]);
             });
+
+
+
+            // $ingredients->map(function ($ingredient) {
+            //     $supply = Supply::where('name', $ingredient->name)->first();
+
+            //     if ($supply->quantity < $ingredient->quantity || $supply->quantity <= 0) {
+            //         return back()->with(['message' => "stock of {$supply->name} is not enough to process this order"]);
+            //     }
+            //     $supply->update([
+            //         'quantity' => $supply->quantity - $ingredient->quantity
+            //     ]);
+            // });
         }
         $order = Order::create([
             'num_ref' => $num_order,

@@ -16,7 +16,7 @@ class Product extends Model
         'description',
         'price',
         'sizes',
-        'ingredients'
+        'supplies'
     ];
 
     public function orders()
