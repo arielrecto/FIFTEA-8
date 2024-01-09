@@ -11,7 +11,7 @@
 
             <div class="flex flex-col md:flex-row items-start md:space-x-4 justify-between space-y-4 md:space-y-0">
 
-                @if (count($feedBacks) === 0)
+                {{-- @if (count($feedBacks) === 0) --}}
                     {{-- <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
                         data-aos="fade-down" data-aos-duration="2000" data-aos-delay="100">
                         <div class='flex items-center space-x-3'>
@@ -88,7 +88,6 @@
                             </p>
                         </div>
                     @endforeach
-
                     {{-- @endif --}}
             </div>
         </div>
