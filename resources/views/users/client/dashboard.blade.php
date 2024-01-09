@@ -17,8 +17,7 @@
                     </div>
                     <div
                         class="flex flex-col md:flex-row items-start justify-between md:space-x-4 space-y-4 md:space-y-0">
-                        <div
-                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-cyan-500  relative">
+                        <div class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-cyan-500  relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-credit-card text-2xl text-white'></i>
                                 <p class="text-base text-white">Total Amount Spent</p>
@@ -28,8 +27,7 @@
                             </div>
                             <i class='bx bx-bar-chart absolute bottom-0 right-0 text-7xl opacity-25 text-white'></i>
                         </div>
-                        <div
-                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-violet-500 relative">
+                        <div class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-violet-500 relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-shopping-bag text-2xl text-white'></i>
                                 <p class="text-base text-white">Pending Orders</p>
@@ -39,8 +37,7 @@
                             </div>
                             <i class='bx bx-shopping-bag absolute bottom-1 right-2 text-6xl opacity-25 text-white'></i>
                         </div>
-                        <div
-                            class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-pink-400  relative">
+                        <div class="w-full md:w-1/3 h-32 rounded shadow-md p-4 bg-pink-400  relative">
                             <div class="h-1/3 flex items-center space-x-2">
                                 <i class='bx bx-package text-2xl text-white'></i>
                                 <p class="text-base text-white">Confirmed Orders</p>
@@ -65,7 +62,7 @@
                             <div
                                 class="carousel-item w-[350px] h-44 rounded-md shadow-md border border-gray-200 bg-gray-50">
                                 <div class="flex items-start space-x-1 ">
-                                    <img src="{{ route('media.product', ['name' => $product->image])  }}" alt=""
+                                    <img src="{{ route('media.product', ['name' => $product->image]) }}" alt=""
                                         class="min-w-[200px] w-[200px] h-full rounded-l-md bg-blue-200 ">
                                     <div class="h-full flex flex-col space-y-2 p-2 relative">
                                         <h1 class="text-base font-bold">{{ $product->name }}</h1>
@@ -98,22 +95,31 @@
                                 class="collapse collapse-arrow border border-gray-200 shadow-sm rounded bg-white">
                                 <div class="w-full p-4 py-2 flex items-center justify-between">
                                     <div class="w-full flex items-center justify-between">
-                                        <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-1 md:space-y-0">
-                                            <p class="text-sm"><span class="font-bold hidden md:block">Order Number: </span> {{ $order->num_ref }}</p>
-                                            <p class="text-sm"><span class="font-bold hidden md:block">Date:</span> {{ $order->created_at->format('M-d-Y') }}</p>
-                                            <p class="text-sm"><span class="font-bold hidden md:block">Total Price:</span> &#8369 {{ $order->total }}</p>
+                                        <div
+                                            class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-1 md:space-y-0">
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Order Number:
+                                                </span> {{ $order->num_ref }}</p>
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Date:</span>
+                                                {{ $order->created_at->format('M-d-Y') }}</p>
+                                            <p class="text-sm"><span class="font-bold hidden md:block">Total
+                                                    Price:</span> &#8369 {{ $order->total }}</p>
                                         </div>
                                         <div class="flex items-center space-x-4 px-4">
                                             @if ($order->status == 'pending')
-                                                <p class="text-sm bg-red-500 text-white rounded py-1 px-2">{{ $order->status }}</p>
+                                                <p class="text-sm bg-red-500 text-white rounded py-1 px-2">
+                                                    {{ $order->status }}</p>
                                             @elseif ($order->status == 'processed')
-                                                <p class="text-sm font-bold bg-blue-500 text-white rounded py-1 px-2">{{ $order->status }}</p>
+                                                <p class="text-sm font-bold bg-blue-500 text-white rounded py-1 px-2">
+                                                    {{ $order->status }}</p>
                                             @elseif ($order->status == 'delivery')
-                                                <p class="text-sm font-bold bg-orange-500 text-white rounded py-1 px-2">{{ $order->status }}</p>
+                                                <p class="text-sm font-bold bg-orange-500 text-white rounded py-1 px-2">
+                                                    {{ $order->status }}</p>
                                             @elseif ($order->status == 'done')
-                                                <p class="text-sm font-bold bg-green-500 text-white rounded py-1 px-2">{{ $order->status }}</p>
+                                                <p class="text-sm font-bold bg-green-500 text-white rounded py-1 px-2">
+                                                    {{ $order->status }}</p>
                                             @endif
-                                            <a href="{{ route('client.order.show', ['order' => $order->id]) }}" class="text-sm text-blue-600">View</a>
+                                            <a href="{{ route('client.order.show', ['order' => $order->id]) }}"
+                                                class="text-sm text-blue-600">View</a>
                                         </div>
                                     </div>
                                     <i class='bx bx-chevron-down text-2xl'></i>
@@ -127,14 +133,17 @@
 
                                 <div class="collapse-content flex flex-col space-y-4">
                                     @foreach ($order->cart->products as $c_product)
-                                        <div class="flex flex-col space-y-2 justify-between p-2 px-1 border-t border-gray-200">
+                                        <div
+                                            class="flex flex-col space-y-2 justify-between p-2 px-1 border-t border-gray-200">
                                             {{-- @dd($c_product) --}}
-                                            <div class="w-full flex items-end justify-between border-b border-dashed border-gray-300 py-1">
+                                            <div
+                                                class="w-full flex items-end justify-between border-b border-dashed border-gray-300 py-1">
                                                 <div class="flex items-center space-x-3">
-                                                    <img src="{{ route('media.product', ['name' => $c_product->product->image])  }}" alt=""
-                                                        class="w-10 h-10 border border-gray-200 ">
+                                                    <img src="{{ route('media.product', ['name' => $c_product->product->image]) }}"
+                                                        alt="" class="w-10 h-10 border border-gray-200 ">
                                                     <div>
-                                                        <p class="text-sm font-bold">{{ $c_product->product->name }}</p>
+                                                        <p class="text-sm font-bold">{{ $c_product->product->name }}
+                                                        </p>
                                                         <p class="text-xs text-gray-500">
                                                             {{ $c_product->product->categories[0]->name }}</p>
                                                     </div>
@@ -148,37 +157,52 @@
                                                         Sugar level:
                                                     </span>
                                                     <span>
-                                                         {{$c_product->sugar_level * 100}} %
+                                                        {{ $c_product->sugar_level * 100 }} %
                                                     </span>
                                                 </p>
                                             </div>
 
-                                            <div class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
+                                            <div
+                                                class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
                                                 <div>
                                                     @php
-                                                    $extra = json_decode($c_product->extras)
+                                                        $extra = json_decode($c_product->extras);
                                                     @endphp
                                                     <p class="text-sm ">
                                                         <span class="font-semibold">Extra:</span>
-                                                        @if($extra !== null)
-                                                        {{$extra->name}} (&#8369 {{$extra->pivot->price}})
+                                                        @if ($extra !== null)
+                                                            {{ $extra->name }} (&#8369 {{ $extra->pivot->price }})
                                                         @else
-                                                        <span class="text-sm">No Extra</span>
-                                                    @endif
+                                                            <span class="text-sm">No Extra</span>
+                                                        @endif
                                                     </p>
                                                 </div>
-                                                <span class="text-sm">&#8369 50</span>
+                                                @if ($extra !== null)
+                                                    <span class="text-sm">&#8369
+                                                        {{ $extra->pivot->price }}
+                                                    </span>
+                                                @endif
                                             </div>
 
-                                            <div class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
-                                                <div>
-                                                    <p class="text-sm"><span class="font-semibold">Size:</span>  {{$c_product->size}}</p>
-                                                </div>
-                                                <span class="text-sm">&#8369 50</span>
+                                            <div
+                                                class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
+                                                @php
+                                                    $size = json_decode($c_product->size);
+                                                @endphp
+                                                @if ($size !== null)
+                                                    <div>
+                                                        <p class="text-sm"><span class="font-semibold">Size:</span>
+                                                            {{ $size->name }}</p>
+                                                    </div>
+                                                    <span class="text-sm">&#8369 {{ $size->price }}</span>
+                                                @endif
+
                                             </div>
-                                            <div class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
+                                            <div
+                                                class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
                                                 <span class="text-sm font-semibold">Total:</span>
-                                                <span class="text-sm font-semibold">&#8369 500</span>
+                                                <span class="text-sm font-semibold">&#8369
+                                                    {{ $c_product->total }}</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -214,7 +238,7 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-green-200"></div>
-                                <img src="{{ asset('images/profile.jpg') }}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
+                            <img src="{{ asset('images/profile.jpg') }}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
@@ -247,8 +271,8 @@
                                 @foreach ($cart->products as $c_product)
                                     <div class="flex justify-between p-2 px-1 border-t border-gray-200">
                                         <div class="flex items-center space-x-3">
-                                            <img src="{{ route('media.product', ['name' =>  $c_product->product->image]) }}" alt=""
-                                                class="w-10 h-10 border border-gray-200 ">
+                                            <img src="{{ route('media.product', ['name' => $c_product->product->image]) }}"
+                                                alt="" class="w-10 h-10 border border-gray-200 ">
                                             <div>
                                                 <p class="text-sm font-bold">{{ $c_product->product->name }}</p>
                                                 <p class="text-xs text-gray-500">

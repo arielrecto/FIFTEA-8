@@ -1,38 +1,38 @@
 <?php
 
 use App\Models\Cart;
+use App\Models\Type;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Supply;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Feedback;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Admin\SupplyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\TypeController;
-use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\client\FeedbackController;
+use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Employee\PointOfSaleController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
-use App\Http\Controllers\Employee\PointOfSaleController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MediaController;
-use App\Models\Feedback;
-use App\Models\Transaction;
-use App\Models\Type;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -195,13 +195,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('products', ClientProductController::class)->only([
             'index', 'show'
         ]);
-        Route::resource('feedbacks', FeedbackController::class)->except([
-            'index',
-            'edit',
-            'destroy',
-            'update',
-            'show'
-        ]);
+        Route::prefix('feedbacks')->as('feedbacks.')->group(function(){
+            Route::get('/create',[FeedbackController::class, 'create'])->name('create');
+            Route::post('/',[FeedbackController::class, 'store'])->name('store');
+        });
     });
 });
 

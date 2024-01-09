@@ -47,7 +47,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|unique:products,name',
             'price' => 'required',
-            'image' => 'required|mimes:jpeg,jpg',
+            'image' => 'required|mimes:jpeg,jpg,png',
             'category' => 'required'
         ]);
         if(count(json_decode($request->sizes)) === 0){

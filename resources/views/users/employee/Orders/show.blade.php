@@ -23,7 +23,8 @@
 
         <div class="w-full h-full flex flex-col space-y-2">
 
-            <div class="w-full py-2 border-b border-gray-300 flex flex-col md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center">
+            <div
+                class="w-full py-2 border-b border-gray-300 flex flex-col md:flex-row space-y-2 md:space-y-0 md:justify-between md:items-center">
                 <h1 class="flex items-center text-base gap-4">
                     <span class="">Order Number:</span>
                     <span class="font-bold">
@@ -42,14 +43,16 @@
                 <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 border-b border-gray-200">
                     <div class="w-full md:w-80 h-auto mb-1 border-b border-gray-200">
-                        <img src="{{ route('media.payment', ['name' => $order->payment->image ]) }}" alt=""
+                        <img src="{{ route('media.payment', ['name' => $order->payment->image]) }}" alt=""
                             class="object object-center h-full w-full ">
                     </div>
-                    <div class="w-full h-full flex flex-col md:items-center gap-2 mb-1 border-b md:border-0 border-gray-200">
+                    <div
+                        class="w-full h-full flex flex-col md:items-center gap-2 mb-1 border-b md:border-0 border-gray-200">
                         <h1 class="font-semibold">Referrence Number</h1>
                         <span>{{ $order->payment->payment_ref }}</span>
                     </div>
-                    <div class="w-full h-full flex md:items-center flex-col gap-2 mb-1 border-b md:border-0 border-gray-200">
+                    <div
+                        class="w-full h-full flex md:items-center flex-col gap-2 mb-1 border-b md:border-0 border-gray-200">
                         <h1 class="font-semibold">Amount</h1>
                         <span>&#8369 {{ $order->payment->amount }}</span>
                     </div>
@@ -83,7 +86,12 @@
                                 <tr class="bg-base-200">
                                     <th>{{ $cart_product->product->id }}</th>
                                     <td>{{ $cart_product->product->name }}</td>
-                                    <td>{{ $cart_product->size }}</td>
+                                    @php
+                                        $size = json_decode($cart_product->size);
+                                    @endphp
+                                    @if ($size !== null)
+                                        <td>{{ $size->name }}</td>
+                                    @endif
                                     <td>{{ $cart_product->sugar_level }}</td>
                                     <td>{{ $cart_product->quantity }}</td>
                                     {{-- <td>&#8369 {{ $cart_product->price }}</td> --}}
@@ -103,11 +111,11 @@
                         </a>
                     @endif
                     @if ($order->status === OrderStatus::DELIVERY->value)
-                    <a href="{{ route('employee.order.show', ['order' => $order->id]) }}?status={{ OrderStatus::DONE->value }}&message=Order is Done!"
-                        class="btn btn-accent btn-sm">
-                        Done
-                    </a>
-                @endif
+                        <a href="{{ route('employee.order.show', ['order' => $order->id]) }}?status={{ OrderStatus::DONE->value }}&message=Order is Done!"
+                            class="btn btn-accent btn-sm">
+                            Done
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
