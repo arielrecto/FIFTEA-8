@@ -92,19 +92,19 @@
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
-                                        <label for="lot" class="text-sm ">Lot</label>
+                                        <label for="lot" class="text-sm ">Lot/Block/House No.</label>
                                         <input id="lot" name="lot" type="text" x-model="addressData.lot"
                                             class="text-xm rounded-md border-gray-300" placeholder="lot number">
                                         <span x-text="errors.lot" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
-                                    <div class="w-full flex flex-col space-y-1">
+                                    {{-- <div class="w-full flex flex-col space-y-1">
                                         <label for="block" class="text-sm ">Block</label>
                                         <input id="block" name="block" type="text"
                                             x-model="addressData.block" class="text-xm rounded-md border-gray-300"
                                             placeholder="block number">
                                         <span x-text="errors.block" class="text-red-500 text-xs capitalize"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
@@ -128,9 +128,69 @@
 
                                 <div class="w-full flex flex-col space-y-1">
                                     <label for="barangay" class="text-sm ">Barangay</label>
-                                    <input id="barangay" name="barangay" type="text"
+                                    <select id="barangay" name="barangay" x-model="addressData.barangay"
+                                        class="text-xm rounded-md border-gray-300">
+                                        <option value="Aniban I">Aniban I</option>
+                                        <option value="Aniban II">Aniban II</option>
+                                        <option value="Aniban III">Aniban III</option>
+                                        <option value="Aniban IV">Aniban IV</option>
+                                        <option value="Aniban V">Aniban V</option>
+                                        <option value="Banalo">Banalo</option>
+                                        <option value="Bayanan">Bayanan</option>
+                                        <option value="Campo Santo">Campo Santo</option>
+                                        <option value="Daang Bukid">Daang Bukid</option>
+                                        <option value="Digman">Digman</option>
+                                        <option value="Dulong Bayan">Dulong Bayan</option>
+                                        <option value="Habay I">Habay I</option>
+                                        <option value="Habay II">Habay II</option>
+                                        <option value="Kaingin">Kaingin</option>
+                                        <option value="Ligas I">Ligas I</option>
+                                        <option value="Ligas II">Ligas II</option>
+                                        <option value="Ligas III">Ligas III</option>
+                                        <option value="Mabolo I">Mabolo I</option>
+                                        <option value="Mabolo II">Mabolo II</option>
+                                        <option value="Mabolo III">Mabolo III</option>
+                                        <option value="Mliksi I">Mliksi I</option>
+                                        <option value="Maliksi II">Maliksi II</option>
+                                        <option value="Maliksi III">Maliksi III</option>
+                                        <option value="Mambog I">Mambog I</option>
+                                        <option value="Mambog II">Mambog II</option>
+                                        <option value="Mambog III">Mambog III</option>
+                                        <option value="Mambog IV">Mambog IV</option>
+                                        <option value="Mambog V">Mambog V</option>
+                                        <option value="Molino I">Molino I</option>
+                                        <option value="Molino II">Molino II</option>
+                                        <option value="Molino III">Molino III</option>
+                                        <option value="Molino IV">Molino IV</option>
+                                        <option value="Molino V">Molino V</option>
+                                        <option value="Molino VI">Molino VI</option>
+                                        <option value="Molino VII">Molino VII</option>
+                                        <option value="Niog I">Niog I</option>
+                                        <option value="Niog II">Niog II</option>
+                                        <option value="Niog III">Niog III</option>
+                                        <option value="P.F Espiritu I (Panapaan)">P.F Espiritu I (Panapaan)</option>
+                                        <option value="P.F Espiritu II">P.F Espiritu II</option>
+                                        <option value="P.F Espiritu III">P.F Espiritu III</option>
+                                        <option value="P.F Espiritu IV">P.F Espiritu IV</option>
+                                        <option value="P.F Espiritu V">P.F Espiritu V</option>
+                                        <option value="P.F Espiritu VII">P.F Espiritu VII</option>
+                                        <option value="P.F Espiritu VIII">P.F Espiritu VIII</option>
+                                        <option value="Queens Row East">Queens Row East</option>
+                                        <option value="Queens Row West">Queens Row West</option>
+                                        <option value="Real I">Real I</option>
+                                        <option value="Real II">Real II</option>
+                                        <option value="Salinas I">Salinas I</option>
+                                        <option value="Salinas II">Salinas II</option>
+                                        <option value="Salinas III">Salinas III</option>
+                                        <option value="Salinas IV">Salinas IV</option>
+                                        <option value="San Nicolas I">San Nicolas I</option>
+                                        <option value="San Nicolas II">San Nicolas II</option>
+                                        <option value="San Nicolas III">San Nicolas III</option>
+                                        <option value="Sinegue">Sinegue</option>
+                                    </select>
+                                    {{-- <input id="barangay" name="barangay" type="text"
                                         x-model="addressData.barangay" class="text-xm rounded-md border-gray-300"
-                                        placeholder="barangay">
+                                        placeholder="barangay"> --}}
                                     <span x-text="errors.barangay" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
@@ -138,11 +198,11 @@
                                     <label for="municipality" class="text-sm ">Municipality</label>
                                     <input id="municipality" name="municipality" type="text"
                                         x-model="addressData.municipality" x-mode="addressData.municipality"
-                                        class="text-xm rounded-md border-gray-300" placeholder="municipality">
+                                        class="text-xm rounded-md border-gray-300" value="Bacoor" x-text="Bacoor">
                                     <span x-text="errors.municipality" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
-                                <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
+                                {{-- <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
                                         <label for="region" class="text-sm ">Region</label>
                                         <input id="region" name="region" type="text"
@@ -158,7 +218,7 @@
                                             placeholder="zip code">
                                         <span x-text="errors.zipCode" class="text-red-500 text-xs capitalize"></span>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="w-full flex items-center justify-between pt-10">
                                 <button class="px-4 py-2 rounded-md bg-gray-200"

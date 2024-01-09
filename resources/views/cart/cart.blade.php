@@ -47,7 +47,6 @@
                                                 </td>
                                                 {{-- <td class="px-4 py-3">&#8369 {{ $c_product->product->price }}</td> --}}
                                                 @php
-
                                                     $size = json_decode($c_product->size);
                                                 @endphp
                                                     <td class="px-4 py-3">{{$size->name}}</td>
@@ -59,8 +58,8 @@
                                                 <td class="px-4 py-3">
                                                     @if($extra !== null)
                                                     <p class="flex gap-2">
-                                                        {{ $extra->name }} <span>price : &#8369
-                                                            {{ $extra->pivot->price }}</span>
+                                                        {{ $extra->name }}
+                                                        {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
                                                     </p>
                                                     @else
                                                         <p>No Extra</p>
