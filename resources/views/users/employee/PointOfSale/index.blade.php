@@ -38,30 +38,33 @@
                         <template x-for="(item, index) in selectedProducts" :key="index">
 
                                 <div
-                                    class="border border-gray-300 py-1 px-2 rounded flex justify-between items-center hover:bg-gray-200">
+                                    class="relative border border-gray-300 py-1 px-2 rounded flex justify-between items-start ">
                                     <div class="flex flex-col gap-2">
-                                        <img :src="`/media/product/${item.image}`" alt="" srcset="" class="h-4 w-4 object object-center">
-                                        <span x-text="item.name" class="text-left"></span>
-                                        <p>
-                                            <span>price: </span>
+                                        <div class="w-full flex items-center space-x-2">
+                                            <img :src="`/media/product/${item.image}`" alt="" srcset="" class="h-8 w-8 rounded object object-center">
+                                            <span x-text="item.name" class="text-left"></span>
+                                        </div>
+
+                                        <p class="text-sm">
+                                            <span class="font-semibold">Price: </span>
                                             <span x-text="item.total"></spanx>
                                         </p>
                                         <template x-if="item.addon !== null">
-                                            <p>
-                                                <span>extra : </span>
+                                            <p class="text-sm">
+                                                <span class="font-semibold">Extra : </span>
                                                 <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"></span>
                                             </p>
                                         </template>
-                                        <p>
-                                            <span >
-                                                quantity:
+                                        <p class="text-sm">
+                                            <span class="font-semibold">
+                                                Quantity:
                                             </span>
                                             <span x-text="item.quantity"></span>
                                         </p>
 
                                     </div>
 
-                                    <button @click="remove(index)"><i class='bx bx-x'></i></button>
+                                    <button @click="remove(index)"><i class='bx bx-x hover:text-red-500 hover:bg-gray-200'></i></button>
                                 </div>
                         </template>
                     </div>
