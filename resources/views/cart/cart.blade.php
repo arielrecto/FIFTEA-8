@@ -12,7 +12,8 @@
                             <div class="w-full overflow-x-auto bg-white">
                                 <table class="w-full whitespace-no-wrap bg-white">
                                     <thead>
-                                        <tr class="text-xs tracking-wide text-left text-gray-500 uppercase border-b bg-gray-200">
+                                        <tr
+                                            class="text-xs tracking-wide text-left text-gray-500 uppercase border-b bg-gray-200">
                                             <th class="px-4 py-3 min-w-[150px]">Product</th>
                                             <th class="px-4 py-3">Size</th>
                                             <th class="px-4 py-3">Extras</th>
@@ -45,48 +46,50 @@
                                                 @php
                                                     $size = json_decode($c_product->size);
                                                 @endphp
-                                                    <td class="px-4 py-3">{{$size->name}} <span class="text-xs text-blue-500">(&#8369;10)</span></td>  {{--  pabago ng pice dito tol --}}
+                                                <td class="px-4 py-3">{{ $size->name }} <span
+                                                        class="text-xs text-blue-500">(&#8369;10)</span></td>
+                                                {{--  pabago ng pice dito tol --}}
 
                                                 @php
                                                     $extra = json_decode($c_product->extras);
                                                 @endphp
 
                                                 <td class="px-4 py-3">
-                                                    @if($extra !== null)
-                                                    <p class="flex items-center">
-                                                        {{ $extra->name }}
-                                                        <span class="text-xs text-blue-500 ml-2">(&#8369;10)</span></td> {{--  pabago ng pice dito tol --}}
-                                                        {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
-                                                    </p>
-                                                    @else
-                                                        <p class="text-xs text-red-400">No Extra</p>
-                                                    @endif
-                                                </td>
-                                                <td class="px-4 py-3">{{ $c_product->quantity }}</td>
-                                                <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
-                                                <td class="px-4 py-3">
-                                                    <a
-                                                        href="{{ route('client.cart.showProduct', ['id' => $c_product->id]) }}">
-                                                        <i
-                                                            class='bx bx-edit text-blue-700 text-lg hover:text-sbgreen cursor-pointer'></i>
-                                                    </a>
-                                                </td>
-                                                <td class="px-4 py-3">
-                                                    <form
-                                                        action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit">
-                                                            <i class='bx bx-x text-2xl text-gray-500'></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <td>
-                                                <p class="text-sm text-red-600">Not item</p>
-                                            </td>
+                                                    @if ($extra !== null)
+                                                        <p class="flex items-center">
+                                                            {{ $extra->name }}
+                                                            <span class="text-xs text-blue-500 ml-2">(&#8369;10)</span>
+                                                </td> {{--  pabago ng pice dito tol --}}
+                                                {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
+                                                </p>
+                                            @else
+                                                <p class="text-xs text-red-400">No Extra</p>
+                                        @endif
+                                        </td>
+                                        <td class="px-4 py-3">{{ $c_product->quantity }}</td>
+                                        <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
+                                        <td class="px-4 py-3">
+                                            <a href="{{ route('client.cart.showProduct', ['id' => $c_product->id]) }}">
+                                                <i
+                                                    class='bx bx-edit text-blue-700 text-lg hover:text-sbgreen cursor-pointer'></i>
+                                            </a>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <form
+                                                action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">
+                                                    <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        </tr>
+                                    @empty
+                                        <td>
+                                            <p class="text-sm text-red-600">Not item</p>
+                                        </td>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -111,7 +114,8 @@
                                                 <div class="w-full flex justify-between items-start">
                                                     <div class="flex items-center space-x-2">
                                                         <img class="w-10 h-10 rounded"
-                                                            src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt="">
+                                                            src="{{ route('media.product', ['name' => $c_product->product->image]) }}"
+                                                            alt="">
 
                                                         <div class="flex flex-col">
                                                             <h1 class="title-font text-sm font-medium text-gray-800 3">
@@ -124,43 +128,50 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <p class="font-medium text-sm">&#8369 {{ $c_product->total }}</p>
+                                                        <p class="font-medium text-sm">&#8369 {{ $c_product->total }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div class="w-full flex flex-col space-y-2">
                                                     <div class="flex flex-col space-y-1">
-                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Sugar Level</span>
+                                                        <span
+                                                            class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Sugar
+                                                            Level</span>
                                                         <div class="w-full flex items-center justify-between">
                                                             <span class="text-xs">Percent</span>
-                                                            <span class="text-xs">{{$c_product->sugar_level * 100}}%</span>
+                                                            <span
+                                                                class="text-xs">{{ $c_product->sugar_level * 100 }}%</span>
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col space-y-1">
-                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Size</span>
+                                                        <span
+                                                            class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Size</span>
                                                         <div class="w-full flex items-center justify-between ">
                                                             @php
-                                                                $size = json_decode($c_product->size)
+                                                                $size = json_decode($c_product->size);
                                                             @endphp
-                                                            <span class="text-xs">{{$size->name}}</span>
-                                                            <span class="text-xs">&#8369; {{$size->price}}</span>
+                                                            <span class="text-xs">{{ $size->name }}</span>
+                                                            <span class="text-xs">&#8369; {{ $size->price }}</span>
                                                         </div>
                                                     </div>
                                                     @php
-                                                        $extras = json_decode($c_product->extras)
+                                                        $extras = json_decode($c_product->extras);
                                                     @endphp
                                                     <div class="flex flex-col space-y-1">
-                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
+                                                        <span
+                                                            class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
                                                         @if ($extras !== null)
-
-                                                        <div class="w-full flex items-center justify-between ">
-                                                            <span class="text-xs">{{$extras->name}}</span>
-                                                            <span class="text-xs">&#8369;{{$extras->pivot->price}}</span>
-                                                        </div>
+                                                            <div class="w-full flex items-center justify-between ">
+                                                                <span class="text-xs">{{ $extras->name }}</span>
+                                                                <span
+                                                                    class="text-xs">&#8369;{{ $extras->pivot->price }}</span>
+                                                            </div>
                                                         @endif
                                                     </div>
-                                                    <div class="w-full flex items-center justify-between border-t border-gray-400 py-1">
+                                                    <div
+                                                        class="w-full flex items-center justify-between border-t border-gray-400 py-1">
                                                         <span class="w-full text-sm font-semibold">Total</span>
-                                                        <span class="text-xs">&#8369;{{$c_product->total}} </span>
+                                                        <span class="text-xs">&#8369;{{ $c_product->total }} </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,20 +189,22 @@
                                 <div class="flex flex-wrap">
                                     <div class="p-2">
                                         <button @click="openToggle($event)">
-                                            <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
+                                            <img src="{{ asset('images/screenshot.png') }}" alt=""
                                                 class="h-12">
                                         </button>
                                     </div>
                                 </div>
                                 <div class="flex flex-col space-y-4 py-2" x-show="toggle" x-transition.duration.700ms>
                                     <div class="w-full flex justify-center">
-                                        <img src="{{ asset('images/QR-2.png') }}" alt=""
+                                        <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
                                             class="object object-center w-1/2 h-1/2">
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-700 font-semibold">GCASH REFERENCE NUMBER</label>
-                                        <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded"
-                                            name="qr_ref" placeholder="reference number" oninput="limitInput(this, 13, true)">
+                                        <label for="" class="text-sm text-gray-700 font-semibold">GCASH
+                                            REFERENCE NUMBER</label>
+                                        <input type="text"
+                                            class="text-base px-4 py-2 border border-gray-300 rounded" name="qr_ref"
+                                            placeholder="reference number" oninput="limitInput(this, 13, true)">
                                         @if ($errors->has('qr_ref'))
                                             <p class="text-xs text-error">{{ $errors->first('qr_ref') }}</p>
                                         @endif
@@ -214,7 +227,8 @@
                                         }
                                     </script>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-700 font-semibold">UPLOAD RECEIPT IMAGE <span class="text-xs">(jpg or jpeg only)</span></label>
+                                        <label for="" class="text-sm text-gray-700 font-semibold">UPLOAD
+                                            RECEIPT IMAGE <span class="text-xs">(jpg or jpeg only)</span></label>
                                         <input type="file" name="image"
                                             class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
                                         @if ($errors->has('image'))
