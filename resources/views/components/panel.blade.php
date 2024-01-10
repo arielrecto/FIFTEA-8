@@ -43,7 +43,7 @@
 
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased text-gray-700 bg-white">
     <div class="h-auto min-h-screen bg-gray-50">
 
         <x-admin-header />
@@ -62,7 +62,7 @@
 
         <!-- drawer component -->
         <div id="drawer-navigation"
-            class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800"
+            class="fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64"
             tabindex="-1" aria-labelledby="drawer-navigation-label">
             <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
                 Menu</h5>

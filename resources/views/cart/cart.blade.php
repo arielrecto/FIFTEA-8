@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-header :cart="$cart" :subtotal="$total" />
-    <section class="pt-16 bg-white">
+    <section class="pt-16 bg-white text-gray-700">
         <div class="max-w-[1300px] mx-auto flex px-4">
             <div class="w-full flex-col md:p-4">
                 <div class="w-full py-4 ">
@@ -8,26 +8,22 @@
                 </div>
                 <div class="w-full flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-4" x-data="productData">
                     <div class="flex flex-col w-full md:w-2/3">
-                        <div class="w-full overflow-hidden rounded border border-gray-200">
-                            <div class="w-full overflow-x-auto">
-                                <table class="w-full whitespace-no-wrap">
+                        <div class="w-full overflow-hidden rounded border border-gray-200 bg-white">
+                            <div class="w-full overflow-x-auto bg-white">
+                                <table class="w-full whitespace-no-wrap bg-white">
                                     <thead>
-                                        <tr
-                                            class="text-xs tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-200 dark:text-gray-400 dark:bg-gray-800">
+                                        <tr class="text-xs tracking-wide text-left text-gray-500 uppercase border-b bg-gray-200">
                                             <th class="px-4 py-3 min-w-[150px]">Product</th>
-                                            {{-- <th class="px-4 py-3">Unit Price</th> --}}
                                             <th class="px-4 py-3">Size</th>
-                                            {{-- <th class="px-4 py-3">Extras</th> --}}
                                             <th class="px-4 py-3">Extras</th>
-                                            <th class="px-4 py-3">Price</th>
+                                            <th class="px-4 py-3">Quantity</th>
                                             <th class="px-4 py-3">Total Price</th>
-                                            {{-- <th class="px-4 py-3"></th> --}}
                                             <th colspan="2" class="px-4 py-3">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                    <tbody class="bg-white divide-y">
                                         @forelse ($cart->products as $c_product)
-                                            <tr class="text-gray-700 dark:text-gray-400">
+                                            <tr class="text-gray-700 ">
                                                 <td class="px-4 py-3 min-w-[150px]">
                                                     <div class="flex items-center space-x-2">
                                                         <img class="w-12 h-12 rounded"
@@ -49,25 +45,25 @@
                                                 @php
                                                     $size = json_decode($c_product->size);
                                                 @endphp
-                                                    <td class="px-4 py-3">{{$size->name}}</td>
+                                                    <td class="px-4 py-3">{{$size->name}} <span class="text-xs text-blue-500">(&#8369;10)</span></td>  {{--  pabago ng pice dito tol --}}
+
                                                 @php
                                                     $extra = json_decode($c_product->extras);
                                                 @endphp
-
 
                                                 <td class="px-4 py-3">
                                                     @if($extra !== null)
                                                     <p class="flex gap-2">
                                                         {{ $extra->name }}
+                                                        <span class="text-xs text-blue-500">(&#8369;10)</span></td> {{--  pabago ng pice dito tol --}}
                                                         {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
                                                     </p>
                                                     @else
-                                                        <p>No Extra</p>
+                                                        <p class="text-xs text-red-400">No Extra</p>
                                                     @endif
-
                                                 </td>
                                                 <td class="px-4 py-3">{{ $c_product->quantity }}</td>
-                                                <td class="px-4 py-3">&#8369 {{ $c_product->total }}</td>
+                                                <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
                                                 <td class="px-4 py-3">
                                                     <a
                                                         href="{{ route('client.cart.showProduct', ['id' => $c_product->id]) }}">
@@ -108,30 +104,61 @@
                                     <p class="font-medium text-sm">ITEMS</p>
                                     <P class="font-medium text-sm">{{ $cart->products->count() }}</P>
                                 </div>
-                                <div class="flex flex-col space-y-2">
+                                <div class="flex flex-col space-y-4">
                                     @foreach ($cart->products as $c_product)
-                                        <div class="flex justify-between items-start">
-                                            <div class="flex items-center space-x-2">
-                                                <img class="w-10 h-10 rounded"
-                                                    src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt="">
+                                        <div class="w-full flex justify-between items-start">
+                                            <div class="w-full flex flex-col space-y-2">
+                                                <div class="w-full flex justify-between items-start">
+                                                    <div class="flex items-center space-x-2">
+                                                        <img class="w-10 h-10 rounded"
+                                                            src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt="">
 
-                                                <div class="flex flex-col">
-                                                    <h1 class="title-font text-sm font-medium text-gray-800 3">
-                                                        {{ $c_product->product->name }}
-                                                    </h1>
-                                                    <h2
-                                                        class="tracking-widest text-xs title-font font-medium text-gray-400">
-                                                        {{ $c_product->product->categories()->first()->name }}
-                                                    </h2>
+                                                        <div class="flex flex-col">
+                                                            <h1 class="title-font text-sm font-medium text-gray-800 3">
+                                                                {{ $c_product->product->name }}
+                                                            </h1>
+                                                            <h2
+                                                                class="tracking-widest text-xs title-font font-medium text-gray-400">
+                                                                {{ $c_product->product->categories()->first()->name }}
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-sm">&#8369 {{ $c_product->total }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <p class="font-medium text-sm">&#8369 {{ $c_product->total }}</p>
+                                                <div class="w-full flex flex-col space-y-2">
+                                                    <div class="flex flex-col space-y-1">
+                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Sugar Level</span>
+                                                        <div class="w-full flex items-center justify-between">
+                                                            <span class="text-xs">Pearl</span>
+                                                            <span class="text-xs">75%</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-1">
+                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Size</span>
+                                                        <div class="w-full flex items-center justify-between ">
+                                                            <span class="text-xs">Small</span>
+                                                            <span class="text-xs">&#8369;10</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col space-y-1">
+                                                        <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
+                                                        <div class="w-full flex items-center justify-between ">
+                                                            <span class="text-xs">Pearl</span>
+                                                            <span class="text-xs">&#8369;10</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full flex items-center justify-between border-t border-gray-400 py-1">
+                                                        <span class="w-full text-sm font-semibold">Total</span>
+                                                        <span class="text-xs">&#8369;10</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="w-full flex justify-between">
+                                <div class="w-full flex justify-between border-t border-gray-400 pt-2">
                                     <p class="font-medium text-sm">TOTAL PRICE</p>
                                     <P class="font-medium text-sm">&#8369 {{ $total }}</P>
                                 </div>
@@ -153,15 +180,32 @@
                                             class="object object-center w-1/2 h-1/2">
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm ">GCASH REFERENCE NUMBER</label>
+                                        <label for="" class="text-sm text-gray-700 font-semibold">GCASH REFERENCE NUMBER</label>
                                         <input type="text" class="text-base px-4 py-2 border border-gray-300 rounded"
-                                            name="qr_ref" placeholder="reference number">
+                                            name="qr_ref" placeholder="reference number" oninput="limitInput(this, 13, true)">
                                         @if ($errors->has('qr_ref'))
                                             <p class="text-xs text-error">{{ $errors->first('qr_ref') }}</p>
                                         @endif
                                     </div>
+                                    <script>
+                                        function limitInput(element, maxLength, onlyNumbers) {
+                                            let inputValue = element.value;
+                                            if (onlyNumbers) {
+                                                // Allow only numbers by removing non-numeric characters
+                                                inputValue = inputValue.replace(/[^0-9]/g, '');
+                                            }
+
+                                            // Limit the input length
+                                            if (inputValue.length > maxLength) {
+                                                inputValue = inputValue.slice(0, maxLength);
+                                            }
+
+                                            // Update the input value
+                                            element.value = inputValue;
+                                        }
+                                    </script>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm ">UPLOAD RECEIPT IMAGE</label>
+                                        <label for="" class="text-sm text-gray-700 font-semibold">UPLOAD RECEIPT IMAGE</label>
                                         <input type="file" name="image"
                                             class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
                                         @if ($errors->has('image'))

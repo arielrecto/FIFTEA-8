@@ -50,7 +50,7 @@
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
                         class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded" alt="hero"
-                        src="{{ asset('images/choco/Choco Hazelnut.png') }}">
+                        src="{{ asset('images/choco/Oreo Red Velvet.png') }}">
                 </div>
             </div>
         </div>

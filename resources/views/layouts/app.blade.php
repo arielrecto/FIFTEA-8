@@ -29,15 +29,16 @@
 
 
     <!-- flaticon -->
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
-<body class="font-sans">
-    <div class="overflow-x-hidden w-full min-h-screen">
+<body class="font-sans bg-white">
+    <div class="overflow-x-hidden w-full h-auto min-h-screen bg-white">
         <main>
             {{ $slot }}
         </main>

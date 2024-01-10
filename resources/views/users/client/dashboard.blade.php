@@ -2,7 +2,7 @@
 
     <x-user-header />
 
-    <section class="bg-gray-50">
+    <section class="bg-gray-50 text-gray-700">
         <div class="max-w-[1300px] mx-auto px-4 pt-24 pb-4">
             <div class="flex flex-col md:flex-row items-start justify-between md:space-x-6 space-y-4 md:space-y-0">
 
@@ -61,13 +61,16 @@
                         @foreach ($products as $product)
                             <div
                                 class="carousel-item w-[350px] h-44 rounded-md shadow-md border border-gray-200 bg-gray-50">
-                                <div class="flex items-start space-x-1 ">
+                                <div class="w-full flex items-start space-x-1 ">
                                     <img src="{{ route('media.product', ['name' => $product->image]) }}" alt=""
-                                        class="min-w-[200px] w-[200px] h-full rounded-l-md bg-blue-200 ">
-                                    <div class="h-full flex flex-col space-y-2 p-2 relative">
-                                        <h1 class="text-base font-bold">{{ $product->name }}</h1>
-                                        <p class="text-sm">{!! $product->description !!}</p>
-                                        <div class="flex space-x-3 items-center absolute bottom-2 right-3">
+                                        class="w-32 h-full rounded-l-md bg-blue-200 object-center object-cover ">
+
+                                    <div class="w-full h-full flex flex-col space-y-2 justify-between p-2 ">
+                                        <div>
+                                            <h1 class="text-base font-bold">{{ $product->name }}</h1>
+                                            <p class="text-sm">{!! $product->description !!}</p>
+                                        </div>
+                                        <div class="flex space-x-3 items-center justify-end ">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
                                             <a href="/client/products/{{ $product->id }}"
                                                 class="py-1 px-4 rounded text-sm text-white bg-blue-700">Order</a>

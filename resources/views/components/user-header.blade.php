@@ -1,4 +1,4 @@
-<header class="w-full fixed z-50 border-b border-gray-200 bg-white">
+<header class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center">
             <a href="/" class="flex items-center space-x-2">
@@ -24,7 +24,7 @@
                         </div>
                     </label>
                     <ul tabindex="0"
-                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-2">
+                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 flex flex-col space-y-2">
 
                         <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-200 py-1 px-2">Profile</a>
 
