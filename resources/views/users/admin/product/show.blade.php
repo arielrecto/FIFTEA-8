@@ -81,11 +81,11 @@
 
                                         <div class="flex flex-col items-start space-y-2">
                                             <template x-for="field in suppliesForm.fields" :key="field.id">
-                                                <div class="flex items-center space-x-2">
-                                                    <h1><span x-text="field.name"></span></h1>
-                                                    <input type="number" x-model="field.quantity" class="w-20 border border-gray-300 rounded px-2 py-1 text-xs">
-                                                    <button @click="removeSupplyField(field)" class="btn btn-error">
-                                                        <i class='bx bx-trash'></i>
+                                                <div class="flex items-center space-x-2 border border-gray-300 p-2 rounded">
+                                                    <h1><span x-text="field.name" class="text-sm"></span></h1>
+                                                    <input type="number" x-model="field.quantity" class="hidden w-20 border border-gray-300 rounded px-2 py-1 text-xs">
+                                                    <button @click="removeSupplyField(field)" class="">
+                                                        <i class='bx bx-trash text-sm text-red-600'></i>
                                                     </button>
                                                 </div>
                                             </template>
