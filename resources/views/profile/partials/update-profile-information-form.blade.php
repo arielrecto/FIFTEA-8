@@ -3,7 +3,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -26,7 +26,7 @@
                         <img id="image-preview" src="#" alt="Preview"
                             class="hidden w-72 h-full rounded-full object-cover object-center bg-white" />
                         <img id="db-cover-photo"
-                            src="{{ $user->profile ? asset('storage/' . $user->profile->image) : '' }}" alt="Image"
+                            src="{{asset('storage/' . $user->profile->image)}}" alt="Image"
                             class="w-full h-full rounded-full object-cover object-center bg-white" />
                         <input id="dropzone-file" type="file" name="image" class="hidden"
                             accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
@@ -78,7 +78,7 @@
                     <label for="first_name" class="poppins text-sm font-medium text-gray-700">First Name
                         <span class="text-red-500">*</span></label>
                     @error('first_name')
-                        <span class="text-xs font-light text-red-600">{{ $message }}</span>
+                        <span class="text-xs font-light text-red-600"></span>
                     @enderror
                 </div>
                 <input type="text" name="first_name" id="first_name"
