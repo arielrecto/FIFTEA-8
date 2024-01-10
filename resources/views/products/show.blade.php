@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-user-header />
     <section>
-        <div class="h-screen md:h-full max-w-[1300px] mx-auto px-4 pt-24" x-data="product">
+        <div class="h-screen md:h-full max-w-[1300px] mx-auto px-4 pt-24 text-gray-700" x-data="product">
             <a href="{{ route('products') }}"
                 class="rounded bg-gray-200 hover:bg-gray-300 px-4 py-1 flex items-center w-fit">
                 <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>

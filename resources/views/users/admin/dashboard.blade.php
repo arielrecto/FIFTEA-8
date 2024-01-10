@@ -1,5 +1,5 @@
 <x-panel>
-    <div class="w-full md:p-4">
+    <div class="w-full md:p-4 text-gray-700 bg-white">
 
         <section class="text-gray-600 body-font">
             <div class="container py-10 mx-auto">
