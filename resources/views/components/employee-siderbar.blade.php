@@ -15,6 +15,11 @@
             <i class='bx bx-notepad text-xl'></i>
             <p class="text-base ">Point Of Sale</p>
         </a>
+        <a href="{{ route('employee.transaction.index') }}"
+        class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200 ">
+        <i class='bx bx-notepad text-xl'></i>
+        <p class="text-base ">Transaction</p>
+    </a>
     </ul>
 </div>
 <script>

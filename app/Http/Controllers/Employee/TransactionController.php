@@ -19,7 +19,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::with('order.cart')->get();
+        $totalOnline = $this->getTotalTransactionByOrderType($transactions->toArray(), 'online');
+        $totalWalkin = $this->getTotalTransactionByOrderType($transactions->toArray(), 'walk_in');
+
+        // dd(compact(['transactions', 'totalOnline', 'totalWalkin']));
+
+        return view('users.employee.transaction.index', compact(['transactions', 'totalOnline', 'totalWalkin']));
     }
 
     /**
@@ -123,7 +129,9 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $transaction = Transaction::whereId($id)->with(['order.user'])->first();
+
+        return view('users.employee.transaction.show', compact(['transaction']));
     }
 
     /**
@@ -148,5 +156,18 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    private function getTotalTransactionByOrderType($transactions, $type){
+
+        $total = 0;
+
+        foreach($transactions as $transaction) {
+
+            if($transaction['order']['type'] === $type){
+                $total = $total + 1;
+            }
+        }
+
+        return $total;
     }
 }
