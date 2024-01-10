@@ -151,9 +151,14 @@
                             if (this.addon !== null) {
                                 this.price = this.price - parseInt(this.addon.pivot.price)
                             }
-
+                            this.addon = null
                             this.totalPrice()
                             return
+                        }
+
+
+                        if(this.addon !== addon && this.addon !== null){
+                            this.price = this.price - parseInt(this.addon.pivot.price)
                         }
 
                         this.addon = addon
