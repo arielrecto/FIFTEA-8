@@ -178,7 +178,7 @@
                                 <div class="flex flex-wrap">
                                     <div class="p-2">
                                         <button @click="openToggle($event)">
-                                            <img src="{{ asset('images/screenshot.png') }}" alt=""
+                                            <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
                                                 class="h-12">
                                         </button>
                                     </div>
