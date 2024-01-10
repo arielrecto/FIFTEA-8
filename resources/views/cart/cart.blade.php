@@ -53,9 +53,9 @@
 
                                                 <td class="px-4 py-3">
                                                     @if($extra !== null)
-                                                    <p class="flex gap-2">
+                                                    <p class="flex items-center">
                                                         {{ $extra->name }}
-                                                        <span class="text-xs text-blue-500">(&#8369;10)</span></td> {{--  pabago ng pice dito tol --}}
+                                                        <span class="text-xs text-blue-500 ml-2">(&#8369;10)</span></td> {{--  pabago ng pice dito tol --}}
                                                         {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
                                                     </p>
                                                     @else
@@ -217,7 +217,7 @@
                                         }
                                     </script>
                                     <div class="w-full flex flex-col gap-2">
-                                        <label for="" class="text-sm text-gray-700 font-semibold">UPLOAD RECEIPT IMAGE</label>
+                                        <label for="" class="text-sm text-gray-700 font-semibold">UPLOAD RECEIPT IMAGE <span class="text-xs">(jpg or jpeg only)</span></label>
                                         <input type="file" name="image"
                                             class="file-input file-input-ghost w-full border border-gray-300 rounded text-base" />
                                         @if ($errors->has('image'))
