@@ -156,7 +156,8 @@ Route::middleware('auth')->group(function () {
             'create',
             'update',
             'edit',
-            'store'
+            'store',
+            'show',
         ]);
 
         Route::resource('supply', EmployeeSupplyController::class)->only([
