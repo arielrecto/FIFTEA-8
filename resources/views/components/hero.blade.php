@@ -23,7 +23,7 @@
                     Now</a>
             </div>
 
-            <a href="" class="flex items-center space-x-4 py-2 px-4 border border-gray-300 hover:border-blue-700 rounded-md" data-aos="fade-right" data-aos-duration="2000"
+            <a href="https://facebook.com" class="flex items-center space-x-4 py-2 px-4 border border-gray-300 hover:border-blue-700 rounded-md" data-aos="fade-right" data-aos-duration="2000"
                 data-aos-delay="600">
                 <span class="text-base text-blue-700">Follow us on</span>
                 <div class="">

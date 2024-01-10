@@ -68,7 +68,8 @@
                                     <div class="w-full h-full flex flex-col space-y-2 justify-between p-2 ">
                                         <div>
                                             <h1 class="text-base font-bold">{{ $product->name }}</h1>
-                                            <p class="text-sm">{!! $product->description !!}</p>
+                                            <p class="text-sm">{{ strlen($product->description) > 30 ? substr($product->description, 0, 30) . '...' : $product->description }}</p>
+
                                         </div>
                                         <div class="flex space-x-3 items-center justify-end ">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
