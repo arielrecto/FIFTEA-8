@@ -71,15 +71,15 @@
                                     <div
                                         class="w-full flex items-center justify-between border-t border-dashed border-gray-200 py-1">
                                         <span class="w-full text-xs font-semibold">Sugar Level</span>
-                                        <span class="text-xs">25%</span>
+                                        <span class="text-xs" x-text="`${item.sugar_level * 100} %`"></span>
                                     </div>
 
                                     <div class="flex flex-col space-y-1">
                                         <span
                                             class="w-full border-b border-dashed border-gray-200 text-xs font-semibold">Size</span>
                                         <div class="w-full flex items-center justify-between ">
-                                            <span class="text-xs">Small</span>
-                                            <span class="text-xs">&#8369;10</span>
+                                            <span class="text-xs" x-text="item.size.name"></span>
+                                            <span class="text-xs" x-text="`&#8369; ${item.size.price}`"></span>
                                         </div>
                                     </div>
 
@@ -90,14 +90,14 @@
                                             <div class="w-full flex items-center justify-between ">
                                                 <span class="text-xs" x-text="`${item.addon.name}`"></span>
                                                 <span class="text-xs"
-                                                    x-text="`${item.addon.pivot.price}`">&#8369;10</span>
+                                                    x-text="`&#8369; ${item.addon.pivot.price}`"></span>
                                             </div>
                                         </div>
                                     </template>
 
                                     <div class="w-full flex items-center justify-between border-t border-gray-400 py-1">
                                         <span class="w-full text-sm font-semibold">Total</span>
-                                        <span class="text-xs">&#8369;60</span>
+                                        <span class="text-xs">&#8369; <span x-text="item.total"></span></span>
                                     </div>
 
                                     <template x-if="item.addon !== null">
@@ -498,6 +498,7 @@
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
                         this.addon = null
+                        this.size = size;
 
                         this.totalPrice()
                     },
