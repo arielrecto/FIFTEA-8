@@ -42,6 +42,7 @@ class ProfileController extends Controller
             'sex' => $request->input('sex'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
+            'lot' => $request->input('lot'),
             'street' => $request->input('street'),
             'subdivision' => $request->input('subdivision'),
             'barangay' => $request->input('barangay'),

@@ -81,10 +81,10 @@
                                         <option>Empty</option>
                                     @endforelse
                                 </select>
-                                <a href="{{ route('admin.category.create') }}"
+                                {{-- <a href="{{ route('admin.category.create') }}"
                                     class="px-4 py-2 rounded bg-sbgreen text-white">
                                     add
-                                </a>
+                                </a> --}}
 
                             </div>
 
@@ -118,7 +118,7 @@
 
                         </div>
                     </div>
-{{-- 
+{{--
                     <div class="flex flex-col gap-2 w-full" x-init="initSupplies({{ $supplies }})">
                         <h1 class="text-lg font-bold">
                             Ingredients

@@ -31,7 +31,7 @@
                         <input id="dropzone-file" type="file" name="image" class="hidden"
                             accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                     </label>
-                    <div class="h-2/3 w-full bg-green-300 absolute top-0 left-0 rounded-t-md"></div>
+                    <div class="h-2/3 w-full bg-gray-200 absolute top-0 left-0 rounded-t-md"></div>
 
                     <script>
                         function previewCoverPhoto(input) {
@@ -89,7 +89,7 @@
 
             <div class="w-full flex flex-col ">
                 <div class="flex items-baseline space-x-2">
-                    <label for="lastName" class="poppins text-sm font-medium text-gray-700">Last Name
+                    <label for="last_name" class="poppins text-sm font-medium text-gray-700">Last Name
                         <span class="text-red-500">*</span></label>
                     @error('last_name')
                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -105,7 +105,7 @@
         <div class="w-full flex flex-col md:flex-row items-start md:space-x-6 space-y-6 md:space-y-0">
             <div class="w-full flex flex-col ">
                 <div class="flex items-baseline space-x-2">
-                    <label for="middleName" class="poppins text-sm font-medium text-gray-700">Middle
+                    <label for="middle_name" class="poppins text-sm font-medium text-gray-700">Middle
                         Name</label>
                     @error('middle_name')
                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
@@ -120,7 +120,7 @@
             <div class="w-full flex items-center space-x-4">
                 <div class="w-full flex flex-col ">
                     <div class="flex items-baseline space-x-2">
-                        <label for="suffix" class="poppins text-sm font-medium text-gray-700">Age</label>
+                        <label for="age" class="poppins text-sm font-medium text-gray-700">Age</label>
                         @error('age')
                             <span class="text-xs font-light text-red-600">{{ $message }}</span>
                         @enderror
@@ -155,7 +155,7 @@
         <div class="w-full flex flex-col md:flex-row items-start md:space-x-6 space-y-4 md:space-y-0">
             <div class="w-full flex flex-col ">
                 <div class="flex items-baseline space-x-2">
-                    <label for="contactNumber" class="poppins text-sm font-medium text-gray-700">Phone Number</label>
+                    <label for="phone" class="poppins text-sm font-medium text-gray-700">Phone Number</label>
                     @error('phone')
                         <span class="text-xs font-light text-red-600">{{ $message }}</span>
                     @enderror
