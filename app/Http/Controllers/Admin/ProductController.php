@@ -78,9 +78,7 @@ class ProductController extends Controller
         }
 
 
-        $supplies = Supply::whereHas('types', function($q){
-            $q->where('name', '!=', SupplyDefaultTypes::ADDONS->value);
-        })->get()->toJson();
+        $supplies = Supply::get()->toJson();
 
         return view('users.admin.product.show', compact(['product', 'supplies']));
     }
