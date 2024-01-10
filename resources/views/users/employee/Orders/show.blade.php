@@ -43,8 +43,10 @@
                 <span class="py-2 mb-2 w-full border-b border-gray-300 text-sm font-semibold">PAYMENT DETAILS</span>
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 border-b border-gray-200">
                     <div class="w-full md:w-80 h-auto mb-1 border-b border-gray-200">
-                        <img src="{{ route('media.payment', ['name' => $order->payment->image]) }}" alt=""
-                            class="object object-center h-full w-full ">
+                        <a href="{{ route('media.payment', ['name' => $order->payment->image]) }}" data-baguettebox>
+                            <img src="{{ route('media.payment', ['name' => $order->payment->image]) }}" alt=""
+                                class="object object-center h-full w-full cursor-pointer">
+                        </a>
                     </div>
                     <div
                         class="w-full h-full flex flex-col md:items-center gap-2 mb-1 border-b md:border-0 border-gray-200">
@@ -67,37 +69,38 @@
                 <h1 class="text-2xl font-bold">
                     Products
                 </h1>
-                <div class="overflow-x-auto w-full">
-                    <table class="table w-full">
+                <div class="overflow-x-auto w-full bg-white">
+                    <table class="w-full bg-white border border-collapse">
                         <!-- head -->
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>size</th>
-                                <th>sugar level</th>
-                                <th>quantity</th>
-                                {{-- <th>price</th> --}}
-                                <th>Price</th>
+                                <th class="border px-4 py-2"></th>
+                                <th class="border px-4 py-2">Name</th>
+                                <th class="border px-4 py-2">Size</th>
+                                <th class="border px-4 py-2">Sugar Level</th>
+                                <th class="border px-4 py-2">Quantity</th>
+                                <th class="border px-4 py-2">Extra</th>
+                                <th class="border px-4 py-2">Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($order->cart->products as $cart_product)
-                                <tr class="bg-base-200">
-                                    <th>{{ $cart_product->product->id }}</th>
-                                    <td>{{ $cart_product->product->name }}</td>
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $cart_product->product->id }}</td>
+                                    <td class="border px-4 py-2">{{ $cart_product->product->name }}</td>
                                     @php
                                         $size = json_decode($cart_product->size);
                                     @endphp
                                     @if ($size !== null)
-                                        <td>{{ $size->name }}</td>
+                                        <td class="border px-4 py-2">{{ $size->name }}</td>
+                                    @else
+                                        <td class="border px-4 py-2"></td>
                                     @endif
-                                    <td>{{ $cart_product->sugar_level }}</td>
-                                    <td>{{ $cart_product->quantity }}</td>
-                                    {{-- <td>&#8369 {{ $cart_product->price }}</td> --}}
-                                    <td>&#8369 {{ $cart_product->total }}</td>
+                                    <td class="border px-4 py-2">{{ $cart_product->sugar_level }}</td>
+                                    <td class="border px-4 py-2">{{ $cart_product->quantity }}</td>
+                                    <td class="border px-4 py-2">Extras </td>
+                                    <td class="border px-4 py-2">&#8369; {{ $cart_product->total }}</td>
                                 </tr>
-
                             @empty
                             @endforelse
                         </tbody>
