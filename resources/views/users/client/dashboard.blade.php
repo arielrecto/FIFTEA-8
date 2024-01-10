@@ -241,7 +241,7 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-green-200"></div>
-                            <img src="{{ asset('images/profile.jpg') }}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
+                            <img src="{{asset('storage/' . auth()->user()->profile->image)}}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
