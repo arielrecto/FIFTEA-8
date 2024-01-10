@@ -123,8 +123,7 @@
             </table>
         </div>
         <template x-if="paymentData !== null">
-            <div
-                class="w-full bg-gray-100 shadow-lg rounded-lg h-96 absolute max-w-screen-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 p-2">
+            <div class="w-full bg-white shadow-lg rounded-lg h-96 absolute max-w-screen-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 p-2">
                 <h1 class="text-center text-lg capitalize text-semibold">
                     payment credential
                 </h1>
