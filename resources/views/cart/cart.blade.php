@@ -148,8 +148,6 @@
                                                     @php
                                                         $extras = json_decode($c_product->extras)
                                                     @endphp
-
-
                                                     <div class="flex flex-col space-y-1">
                                                         <span class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
                                                         @if ($extras !== null)
@@ -159,7 +157,6 @@
                                                             <span class="text-xs">&#8369;{{$extras->pivot->price}}</span>
                                                         </div>
                                                         @endif
-
                                                     </div>
                                                     <div class="w-full flex items-center justify-between border-t border-gray-400 py-1">
                                                         <span class="w-full text-sm font-semibold">Total</span>

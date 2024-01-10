@@ -9,7 +9,8 @@
             <div class="w-full md:w-3/4 flex flex-col flex-grow">
                 <div class="w-full flex items-center border-b border-gray-300 py-2">
                     <span class="text-sm text-gray-700 font-semibold mr-2">Filter Products:</span>
-                    <a href="{{route('employee.pos.index')}}" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">All</a>
+                    <a href="{{ route('employee.pos.index') }}"
+                        class="text-sm text-gray px-4 py-2 hover:bg-gray-200">All</a>
 
                     @foreach ($categories as $category)
                         <a
@@ -47,34 +48,72 @@
                         <template x-for="(item, index) in selectedProducts" :key="index">
 
                             <div
-                                class="relative border border-gray-300 py-1 px-2 rounded flex justify-between items-start ">
-                                <div class="flex flex-col gap-2">
+                                class="w-full relative border border-gray-300 py-1 px-2 rounded flex justify-between items-start ">
+                                <div class="w-full flex flex-col gap-2">
                                     <div class="w-full flex items-center space-x-2">
                                         <img :src="`/media/product/${item.image}`" alt="" srcset=""
                                             class="h-8 w-8 rounded object object-center">
                                         <span x-text="item.name" class="text-left"></span>
                                     </div>
 
-                                    <p class="text-sm">
-                                        <span class="font-semibold">Price: </span>
-                                        <span x-text="item.total"></spanx>
-                                    </p>
+                                    <div
+                                        class="w-full flex items-center justify-between border-t border-dashed border-gray-200 py-1">
+                                        <span class="w-full text-xs font-semibold">Price</span>
+                                        <p class="text-xs">&#8369;<span x-text="item.total"> </span></p>
+                                    </div>
+
+                                    <div
+                                        class="w-full flex items-center justify-between border-t border-dashed border-gray-200 py-1">
+                                        <span class="w-full text-xs font-semibold">Quantity</span>
+                                        <span x-text="item.quantity" class="text-xs"></span>
+                                    </div>
+
+                                    <div
+                                        class="w-full flex items-center justify-between border-t border-dashed border-gray-200 py-1">
+                                        <span class="w-full text-xs font-semibold">Sugar Level</span>
+                                        <span class="text-xs">25%</span>
+                                    </div>
+
+                                    <div class="flex flex-col space-y-1">
+                                        <span
+                                            class="w-full border-b border-dashed border-gray-200 text-xs font-semibold">Size</span>
+                                        <div class="w-full flex items-center justify-between ">
+                                            <span class="text-xs">Small</span>
+                                            <span class="text-xs">&#8369;10</span>
+                                        </div>
+                                    </div>
+
+                                    <template x-if="item.addon !== null">
+                                        <div class="flex flex-col space-y-1">
+                                            <span
+                                                class="w-full border-b border-dashed border-gray-200 text-xs font-semibold">Extra</span>
+                                            <div class="w-full flex items-center justify-between ">
+                                                <span class="text-xs" x-text="`${item.addon.name}`"></span>
+                                                <span class="text-xs"
+                                                    x-text="`${item.addon.pivot.price}`">&#8369;10</span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <div class="w-full flex items-center justify-between border-t border-gray-400 py-1">
+                                        <span class="w-full text-sm font-semibold">Total</span>
+                                        <span class="text-xs">&#8369;60</span>
+                                    </div>
+
                                     <template x-if="item.addon !== null">
                                         <p class="text-sm">
                                             <span class="font-semibold">Extra : </span>
-                                            <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"></span>
+                                        <p href="">
+                                            &#8369;
+                                            <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"
+                                                class="text-xs"></span>
+                                        </p>
                                         </p>
                                     </template>
-                                    <p class="text-sm">
-                                        <span class="font-semibold">
-                                            Quantity:
-                                        </span>
-                                        <span x-text="item.quantity"></span>
-                                    </p>
 
                                 </div>
 
-                                <button @click="remove(index)"><i
+                                <button class="absolute top-2 right-2" @click="remove(index)"><i
                                         class='bx bx-x hover:text-red-500 hover:bg-gray-200'></i></button>
                             </div>
                         </template>
@@ -93,14 +132,13 @@
         </div>
         <template x-if="customizeProduct !== null">
             <div aria-hidden="true"
-                class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-modal md:h-full bg-gray-500 bg-opacity-20">
+                class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-modal md:h-full bg-white bg-opacity-20">
                 <div class="relative p-4 w-[80%]  h-full md:h-auto">
                     <!-- Modal content -->
-                    <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                    <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
                         <!-- Modal header -->
-                        <div
-                            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                            <h3 class="text-lg font-semibold text-gray-900">
                                 Customize Order
                             </h3>
                             <button type="button" @click="customizeProduct = null"

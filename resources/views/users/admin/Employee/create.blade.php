@@ -47,7 +47,6 @@
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
-
                 </div>
 
                 <div>

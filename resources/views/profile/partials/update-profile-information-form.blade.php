@@ -23,10 +23,10 @@
                                     to upload</span> or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
                         </div>
-                        <img id="image-preview" src="#" alt="Preview" class="hidden w-72 h-full rounded-full" />
+                        <img id="image-preview" src="#" alt="Preview" class="hidden w-72 h-full rounded-full object-cover object-center" />
                         <img id="db-cover-photo"
                             src="{{ $user->profile ? asset('storage/' . $user->profile->image) : '' }}" alt="Image"
-                            class="w-full h-full rounded-full" />
+                            class="w-full h-full rounded-full object-cover object-center" />
                         <input id="dropzone-file" type="file" name="image" class="hidden"
                             accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                     </label>
