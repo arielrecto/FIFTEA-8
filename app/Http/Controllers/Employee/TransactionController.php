@@ -49,7 +49,7 @@ class TransactionController extends Controller
         $user = Auth::user();
         $cart_product_id  = 'crtprdctid-' . uniqid();
 
-         $cart = Cart::create(['user_id' => $user->id]);
+        $cart = Cart::create(['user_id' => $user->id]);
 
         $products = $request->products;
 
@@ -60,7 +60,7 @@ class TransactionController extends Controller
 
             CartProduct::create([
                 'product_id' => $productData->id,
-                'size' => $product['size'],
+                'size' => json_encode($product['size']),
                 'cart_id' => $cart->id,
                 'sugar_level' => $product['sugar_level'],
                 'quantity' => $product['quantity'],
@@ -72,7 +72,13 @@ class TransactionController extends Controller
 
 
             $supplies = collect(json_decode($productData->supplies));
-            $size = $product['size'];
+
+
+            $size = $product['size']['name'];
+
+
+
+
             $supplies->map(function($supply) use ($size) {
                 if($supply->size === $size){
                     $productSupplies = $supply->supplies;
