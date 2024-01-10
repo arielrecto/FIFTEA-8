@@ -459,6 +459,7 @@
                         }
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
+                        this.addon = null
 
                         this.totalPrice()
                     },
@@ -470,10 +471,16 @@
                             if (this.addon !== null) {
                                 this.price = parseInt(this.price) - parseInt(this.addon.pivot.price)
                             }
-
+                            this.addon = null
                             this.totalPrice()
                             return
                         }
+
+
+                        if(this.addon !== addon && this.addon !== null){
+                            this.price = this.price - parseInt(this.addon.pivot.price)
+                        }
+
 
                         this.addon = addon
                         this.price = parseInt(this.price) + parseInt(addon.pivot.price)
