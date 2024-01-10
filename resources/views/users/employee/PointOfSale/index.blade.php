@@ -4,15 +4,18 @@
         <div class="md:p-4 py-4 pb-3 bg-sbgreen w-full rounded flex items-center justify-start">
             <h1 class="text-white text-xl font-bold">Point of Sale</h1>
         </div>
-
         <div class="w-full flex flex-col-reverse md:flex-row md:space-x-4">
 
             <div class="w-full md:w-3/4 flex flex-col flex-grow">
                 <div class="w-full flex items-center border-b border-gray-300 py-2">
                     <span class="text-sm text-gray-700 font-semibold mr-2">Filter Products:</span>
-                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">All</a>
-                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">Milktea</a>
-                    <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">Siomai</a>
+                    <a href="{{route('employee.pos.index')}}" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">All</a>
+
+                    @foreach ($categories as $category)
+                        <a
+                            href="{{ route('employee.pos.index') }}?category={{ $category->name }}"class="text-sm text-gray px-4 py-2 hover:bg-gray-200">{{ $category->name }}</a>
+                    @endforeach
+                    {{-- <a href="" class="text-sm text-gray px-4 py-2 hover:bg-gray-200">Siomai</a> --}}
                 </div>
                 <div class="w-full flex flex-wrap gap-4 h-[590px] overflow-auto space-y-2">
                     <template x-for="product in products" :key="product.id">
@@ -43,35 +46,37 @@
 
                         <template x-for="(item, index) in selectedProducts" :key="index">
 
-                                <div
-                                    class="relative border border-gray-300 py-1 px-2 rounded flex justify-between items-start ">
-                                    <div class="flex flex-col gap-2">
-                                        <div class="w-full flex items-center space-x-2">
-                                            <img :src="`/media/product/${item.image}`" alt="" srcset="" class="h-8 w-8 rounded object object-center">
-                                            <span x-text="item.name" class="text-left"></span>
-                                        </div>
-
-                                        <p class="text-sm">
-                                            <span class="font-semibold">Price: </span>
-                                            <span x-text="item.total"></spanx>
-                                        </p>
-                                        <template x-if="item.addon !== null">
-                                            <p class="text-sm">
-                                                <span class="font-semibold">Extra : </span>
-                                                <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"></span>
-                                            </p>
-                                        </template>
-                                        <p class="text-sm">
-                                            <span class="font-semibold">
-                                                Quantity:
-                                            </span>
-                                            <span x-text="item.quantity"></span>
-                                        </p>
-
+                            <div
+                                class="relative border border-gray-300 py-1 px-2 rounded flex justify-between items-start ">
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-full flex items-center space-x-2">
+                                        <img :src="`/media/product/${item.image}`" alt="" srcset=""
+                                            class="h-8 w-8 rounded object object-center">
+                                        <span x-text="item.name" class="text-left"></span>
                                     </div>
 
-                                    <button @click="remove(index)"><i class='bx bx-x hover:text-red-500 hover:bg-gray-200'></i></button>
+                                    <p class="text-sm">
+                                        <span class="font-semibold">Price: </span>
+                                        <span x-text="item.total"></spanx>
+                                    </p>
+                                    <template x-if="item.addon !== null">
+                                        <p class="text-sm">
+                                            <span class="font-semibold">Extra : </span>
+                                            <span x-text="`${item.addon.name} (${item.addon.pivot.price})`"></span>
+                                        </p>
+                                    </template>
+                                    <p class="text-sm">
+                                        <span class="font-semibold">
+                                            Quantity:
+                                        </span>
+                                        <span x-text="item.quantity"></span>
+                                    </p>
+
                                 </div>
+
+                                <button @click="remove(index)"><i
+                                        class='bx bx-x hover:text-red-500 hover:bg-gray-200'></i></button>
+                            </div>
                         </template>
                     </div>
                 </div>
@@ -484,7 +489,7 @@
                             sugar_level: this.sugar_level,
                             addon: this.addon,
                             size: this.size,
-                            quantity : this.quantity
+                            quantity: this.quantity
                         }
 
                         this.selectedProducts.push(data);

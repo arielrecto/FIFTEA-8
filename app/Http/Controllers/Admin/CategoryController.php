@@ -21,8 +21,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
-        return view('users.admin.product.category.create');
+        $categories = Category::get();
+        return view('users.admin.product.category.create', compact(['categories']));
 
     }
 
@@ -57,7 +57,10 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $category = Category::find($id);
+
+        return view('users.admin.product.category.edit', compact(['category']));
     }
 
     /**
@@ -65,7 +68,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+
+        $category = Category::find($id);
+
+        $category->update([
+            'name' => $request->name
+        ]);
+
+
+        return back()->with([
+            'message' => 'Data Updated!'
+        ]);
     }
 
     /**
@@ -73,6 +87,16 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+
+
+
+        $category->delete();
+
+
+        return back()->with([
+            'message' => 'Data Deleted'
+        ]);
+
     }
 }
