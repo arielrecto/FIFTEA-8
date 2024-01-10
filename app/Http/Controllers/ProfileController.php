@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Profile;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -24,17 +25,28 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse //ProfileUpdateRequest
     {
-        $request->user()->fill($request->validated());
+        dd($request->all());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $imagePath = $request->file('image')->store('images', 'public');
 
-        $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+
+        Profile::create([
+            'image' => $imagePath,
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'middle_name' => $request->input('middle_name'),
+            'age' => $request->input('age'),
+            'sex' => $request->input('sex'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'street' => $request->input('street'),
+            'subdivision' => $request->input('subdivision'),
+            'barangay' => $request->input('barangay'),
+            'municipality' => $request->input('municipality'),
+        ]);
     }
 
     /**

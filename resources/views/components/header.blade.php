@@ -3,7 +3,7 @@
     'subtotal' => $subtotal,
 ])
 
-<div class="w-full fixed z-50 border-b border-gray-200 bg-white">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center">
             <a href="/" class="flex items-center space-x-2">
