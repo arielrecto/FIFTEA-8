@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
@@ -27,6 +28,8 @@ class DashboardController extends Controller
 
         $profile = Auth::user()->profile;
 
-        return view('users.client.dashboard', compact(['products', 'orderPending', 'orders', 'spent', 'cart', 'profile']));
+        $confirmOrder = Order::where('status', OrderStatus::DONE->value)->count();
+
+        return view('users.client.dashboard', compact(['products', 'orderPending', 'orders', 'spent', 'cart', 'profile', 'confirmOrder']));
     }
 }

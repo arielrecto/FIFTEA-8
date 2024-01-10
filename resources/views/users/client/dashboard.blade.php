@@ -43,7 +43,7 @@
                                 <p class="text-base text-white">Confirmed Orders</p>
                             </div>
                             <div class="w-full h-2/3 flex items-center justify-start">
-                                <span class="text-2xl font-bold text-white">0</span>
+                                <span class="text-2xl font-bold text-white">{{$confirmOrder}}</span>
                             </div>
                             <i class='bx bx-package absolute bottom-1 right-2 text-6xl opacity-25 text-white'></i>
                         </div>

@@ -98,7 +98,17 @@
                                     @endif
                                     <td class="border px-4 py-2">{{ $cart_product->sugar_level }}</td>
                                     <td class="border px-4 py-2">{{ $cart_product->quantity }}</td>
-                                    <td class="border px-4 py-2">Extras </td>
+
+                                    @php
+                                        $extra = json_decode($cart_product->extras)
+                                    @endphp
+                                    @if($extra !== null)
+
+                                    <td class="border px-4 py-2">{{$extra->name}} (&#8369;  {{$extra->pivot->price}})</td>
+                                    @else
+                                    <td class="border px-4 py-2">No Extras </td>
+                                    @endif
+
                                     <td class="border px-4 py-2">&#8369; {{ $cart_product->total }}</td>
                                 </tr>
                             @empty

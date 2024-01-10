@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
+use Database\Seeders\OrderSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +39,12 @@ class Order extends Model
         return $this->hasOne(Payment::class);
     }
     public static function pending () {
-        $pending  = Order::where('status', 'pending')->get();
+        $pending  = Order::where('status', OrderStatus::PENDING->value)->get();
 
         return $pending;
     }
     public static function userTotalSpent(User $user){
-        $total = Order::where('user_id', $user->id)->whereStatus('processed')->sum('total');
+        $total = Order::where('user_id', $user->id)->whereStatus(OrderStatus::DONE->value)->sum('total');
 
         return $total;
     }
