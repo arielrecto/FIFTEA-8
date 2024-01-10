@@ -140,6 +140,7 @@
                         const size = this.sizes.find((size) => size.name === name);
                         this.price = parseInt(size.price);
                         this.size = size;
+                        this.addon = null
 
                         this.totalPrice()
                     },
