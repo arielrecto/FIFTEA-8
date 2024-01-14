@@ -26,7 +26,7 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{ asset('images/user-image.png') }}" />
+                            <img src="{{asset('storage/' . auth()->user()->profile->image)}}"  class="w-10 h-10"/>
                         </div>
                     </label>
                     <ul tabindex="0"

@@ -30,13 +30,13 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{ asset('images/user-image.png') }}" />
+                            <img src="{{ asset('storage/' . auth()->user()->profile->image) }}" class="w-10 h-10" />
                         </div>
                     </label>
                     <ul tabindex="0"
-                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 flex flex-col space-y-2">
+                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 flex flex-col space-y-2">
 
-                        {{-- <a href="{{ route('admin.profile.show', ['profile' => Auther::user()]) }}" class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a> --}}
+                        <a href="{{ route('profile.edit') }}" class="rounded-md hover:bg-gray-100 py-1 px-2">Profile</a>
 
                         <a href="{{ route('admin.dashboard.index') }}"
                             class="rounded-md hover:bg-gray-100 py-1 px-2">Dashboard</a>

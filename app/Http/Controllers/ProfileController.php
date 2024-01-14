@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Profile;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -27,26 +29,61 @@ class ProfileController extends Controller
      */
     public function update(Request $request): RedirectResponse //ProfileUpdateRequest
     {
-        dd($request->all());
+        // dd($request->all());
 
-        $imagePath = $request->file('image')->store('images', 'public');
-
-
-
-        Profile::create([
-            'image' => $imagePath,
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'middle_name' => $request->input('middle_name'),
-            'age' => $request->input('age'),
-            'sex' => $request->input('sex'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'street' => $request->input('street'),
-            'subdivision' => $request->input('subdivision'),
-            'barangay' => $request->input('barangay'),
-            'municipality' => $request->input('municipality'),
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'age' => 'required|integer|min:1',
+            'sex' => 'required|in:Male,Female',
+            'phone' => 'required|string|max:20',
+            'street' => 'required|string|max:255',
+            'subdivision' => 'nullable|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'municipality' => 'required|string|max:255',
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore(auth()->user()->id)],
         ]);
+
+        // $request->file('image')->storeAs('public/profiles/' . $request->file('image'));
+
+        // $request->image->storeAs('public/product/' . $filename);
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('profiles', 'public') : auth()->user()->profile->image;
+
+        $user = auth()->user()->update([
+            'name' => $request->input('first_name') . ' ' . $request->input('last_name'),
+            'email' => $request->input('email')
+        ]);
+
+        if (!$user) {
+            return back()->with('error', 'Something went wrong, Please try again.');
+        }
+
+        $profile = auth()->user()->profile;
+
+        // Update the profile attributes
+        $profile->image = $imagePath;  // Replace with the actual image path
+        $profile->first_name = $request->input('first_name');
+        $profile->last_name = $request->input('last_name');
+        $profile->middle_name = $request->input('middle_name');
+        $profile->age = $request->input('age');
+        $profile->sex = $request->input('sex');
+        $profile->phone = $request->input('phone');
+        $profile->lot = $request->input('lot');
+        $profile->street = $request->input('street');
+        $profile->subdivision = $request->input('subdivision');
+        $profile->barangay = $request->input('barangay');
+        $profile->municipality = $request->input('municipality');
+
+        // Save the changes to the database
+        $profile->save();
+
+        if (!$profile) {
+            return back()->with('error', 'Something went wrong, Please try again.');
+        }
+
+        return back()->with('success', 'Profile updated successfully.');
     }
 
     /**

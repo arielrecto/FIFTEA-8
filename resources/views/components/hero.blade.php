@@ -23,7 +23,7 @@
                     Now</a>
             </div>
 
-            <a href="" class="flex items-center space-x-4 py-2 px-4 border border-gray-300 hover:border-blue-700 rounded-md" data-aos="fade-right" data-aos-duration="2000"
+            <a href="https://facebook.com" class="flex items-center space-x-4 py-2 px-4 border border-gray-300 hover:border-blue-700 rounded-md" data-aos="fade-right" data-aos-duration="2000"
                 data-aos-delay="600">
                 <span class="text-base text-blue-700">Follow us on</span>
                 <div class="">
@@ -38,19 +38,19 @@
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300"
                         class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded" alt="hero"
-                        src="{{ asset('images/choco/BlueBerry.png') }}">
+                        src="{{ asset('images/choco/Kiwi.png') }}">
                 </div>
 
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-down" data-aos-duration="2000" data-aos-delay="400"
                         class="w-[250px] h-[450px] object-cover object-center shadow-md bg-white rounded" alt="hero"
-                        src="{{ asset('images/choco/CheeseCake.png') }}">
+                        src="{{ asset('images/choco/Ube.png') }}">
                 </div>
 
                 <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                     <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
                         class="w-[200px] h-[380px] object-cover object-center shadow-md bg-white rounded" alt="hero"
-                        src="{{ asset('images/choco/Oreo Red Velvet.png') }}">
+                        src="{{ asset('images/choco/Strawberry.png') }}">
                 </div>
             </div>
         </div>

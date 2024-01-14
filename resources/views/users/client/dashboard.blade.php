@@ -43,7 +43,7 @@
                                 <p class="text-base text-white">Confirmed Orders</p>
                             </div>
                             <div class="w-full h-2/3 flex items-center justify-start">
-                                <span class="text-2xl font-bold text-white">{{$confirmOrder}}</span>
+                                <span class="text-2xl font-bold text-white">{{ $confirmOrder }}</span>
                             </div>
                             <i class='bx bx-package absolute bottom-1 right-2 text-6xl opacity-25 text-white'></i>
                         </div>
@@ -68,7 +68,7 @@
                                     <div class="w-full h-full flex flex-col space-y-2 justify-between p-2 ">
                                         <div>
                                             <h1 class="text-base font-bold">{{ $product->name }}</h1>
-                                            <p class="text-sm">{!! $product->description !!}</p>
+                                            <p class="text-sm">{!! strlen($product->description) > 50 ? substr($product->description, 0, 50) . '...' : $product->description !!}</p>
                                         </div>
                                         <div class="flex space-x-3 items-center justify-end ">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
@@ -241,7 +241,8 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-green-200"></div>
-                            <img src="{{ asset('images/profile.jpg') }}" alt="" {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
+                            <img src="{{ asset('storage/' . auth()->user()->profile->image) }}" alt=""
+                                {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
                                 class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">

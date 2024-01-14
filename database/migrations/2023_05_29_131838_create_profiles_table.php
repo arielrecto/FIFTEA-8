@@ -13,21 +13,18 @@ return new class extends Migration {
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->default('P123.jpg');
+            $table->string('image')->nullable();
             $table->string('last_name');
             $table->string('middle_name')->nullable();
             $table->string('first_name');
             $table->string('age');
             $table->string('sex');
             $table->string('phone');
-            // $table->string('block');
             $table->string('lot');
             $table->string('street');
             $table->string('municipality');
             $table->string('barangay');
             $table->string('subdivision')->nullable();
-            // $table->string('region');
-            // $table->string('zip_code');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });
