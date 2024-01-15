@@ -1,7 +1,11 @@
 <x-panel>
     <section class="w-full flex flex-col items-start md:p-4 pt-6 space-y-2">
-        <div class="w-full items-center justify-start py-2 px-4  bg-sblight">
+        <div class="w-full flex items-center justify-between py-2 px-4  bg-sblight">
             <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>
+            <form action="" class="flex items-center space-x-3">
+                <input type="text" class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" placeholder="Search here..">
+                <button class="px-4 py-2 rounded text-sm bg-white text-sbgreen">Search</button>
+            </form>
         </div>
         @if (Session::has('message'))
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
