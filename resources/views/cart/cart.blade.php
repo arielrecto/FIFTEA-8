@@ -47,7 +47,7 @@
                                                     $size = json_decode($c_product->size);
                                                 @endphp
                                                 <td class="px-4 py-3">{{ $size->name }} <span
-                                                        class="text-xs text-blue-500">(&#8369;10)</span></td>
+                                                        class="text-xs text-blue-500">(&#8369; {{ $size->price }})</span></td>
                                                 {{--  pabago ng pice dito tol --}}
 
                                                 @php
@@ -55,16 +55,17 @@
                                                 @endphp
 
                                                 <td class="px-4 py-3">
-                                                    @if ($extra !== null)
+                                                    @if ($extra)
                                                         <p class="flex items-center">
                                                             {{ $extra->name }}
-                                                            <span class="text-xs text-blue-500 ml-2">(&#8369;10)</span>
-                                                </td> {{--  pabago ng pice dito tol --}}
-                                                {{-- <span>price : &#8369 {{ $extra->pivot->price }}</span> --}}
-                                                </p>
-                                            @else
-                                                <p class="text-xs text-red-400">No Extra</p>
-                                        @endif
+                                                            <span class="text-xs text-blue-500 ml-2">
+                                                                (&#8369; {{ $extra->pivot->price }})
+                                                            </span>
+                                                        </p>
+                                                    @else
+                                                        <p class="text-xs text-red-400">No Extra</p>
+                                                    @endif
+                                                </td>
                                         </td>
                                         <td class="px-4 py-3">{{ $c_product->quantity }}</td>
                                         <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
@@ -160,12 +161,14 @@
                                                     <div class="flex flex-col space-y-1">
                                                         <span
                                                             class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
-                                                        @if ($extras !== null)
+                                                        @if ($extras)
                                                             <div class="w-full flex items-center justify-between ">
                                                                 <span class="text-xs">{{ $extras->name }}</span>
                                                                 <span
                                                                     class="text-xs">&#8369;{{ $extras->pivot->price }}</span>
                                                             </div>
+                                                        @else
+                                                            <span class="text-xs">None</span>
                                                         @endif
                                                     </div>
                                                     <div
