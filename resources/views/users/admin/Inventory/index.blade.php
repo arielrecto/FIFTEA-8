@@ -14,8 +14,8 @@
         <div class="w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
             <h1 class="font-medium text-white text-xl">SUPPLIES</h1>
             <div class="flex items-center space-x-4">
-                <form action="" class="flex items-center space-x-3">
-                    <input type="text" class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" placeholder="Search here..">
+                <form action="{{route('admin.supply.index')}}" class="flex items-center space-x-3" method="GET">
+                    <input type="text" class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" name="filter" placeholder="Search here..">
                     <button class="px-4 py-2 rounded text-sm bg-white text-sbgreen flex items-center">
                         <i class='bx bx-search-alt-2 text-base text-sbgreen mr-2'></i>
                         Search</button>
