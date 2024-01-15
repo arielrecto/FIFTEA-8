@@ -58,6 +58,8 @@
             </main>
         </div>
 
+        <x-flash-messages />
+
 
 
         <!-- drawer component -->

@@ -8,6 +8,7 @@ use App\Models\Supply;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Feedback;
+use App\Models\HeroContent;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\HeroContentController;
 use App\Http\Controllers\Admin\SupplyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -61,8 +63,11 @@ Route::get('/', function () {
 
     $products = Product::withCount('cart')->orderByDesc('cart_count')->take(3)->get();
 
+    $content = HeroContent::first();
 
-    return view('welcome', compact(['feedBacks', 'products']));
+
+    return view('welcome', compact(['feedBacks', 'products', 'content']));
+
 });
 
 // Route::get('/dashboard', function () {
@@ -132,6 +137,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
         Route::resource('profile', ProfileController::class)->except('destroy', 'index');
         Route::resource('feedbacks', AdminFeedbackController::class)->except(['store', 'create']);
+        Route::resource('hero', HeroContentController::class);
     });
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
@@ -167,6 +173,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('order', EmployeeOrderController::class)->only([
             'index', 'show', 'destroy'
         ]);
+
     });
 
     Route::middleware('role:customer')->prefix('client')->as('client.')->group(function () {

@@ -34,9 +34,14 @@
             <p class="text-lg ">Transaction</p>
         </a>
         <a href="{{route('admin.feedbacks.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group
-        {{Route::is('admin.feedbacks.index') ? 'bg-gray-200' : ''}} hover:bg-gray-200 ">
-        <i class='bx bx-message-detail text-xl'></i>
+            {{Route::is('admin.feedbacks.index') ? 'bg-gray-200' : ''}} hover:bg-gray-200 ">
+            <i class='bx bx-message-detail text-xl'></i>
             <p class="text-lg ">Feedbacks</p>
+        </a>
+        <a href="{{route('admin.hero.index')}}" class="flex space-x-2 items-center rounded-md px-4 py-2 group
+            {{Route::is('admin.feedbacks.index') ? 'bg-gray-200' : ''}} hover:bg-gray-200 ">
+            <i class='bx bx-credit-card-front text-xl'></i>
+            <p class="text-lg ">Hero Content</p>
         </a>
     </ul>
 </div>
