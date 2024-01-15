@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,17 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $cart = Cart::find($request->cart_id);
+
+        $products = $cart->products;
+        collect($products)->map(function ($product) use ($request){
+            $product->update([
+                'rate' => $request->rate
+            ]);
+        });
+
         $user = Auth::user();
 
         $request->validate([
@@ -47,6 +59,7 @@ class FeedbackController extends Controller
         Feedback::create([
             'message' => $request->message,
             'user_id' => $user->id,
+            'rate' => $request->rate,
             'is_display' => true
         ]);
 

@@ -16,9 +16,17 @@ class SupplyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(GetSupplyAction $getSupplyAction)
+    public function index(GetSupplyAction $getSupplyAction, Request $request)
     {
          $supplies = $getSupplyAction->handle();
+
+         $filter = $request->filter;
+
+         if($filter !== null){
+            $supplies = Supply::where('name', 'like', '%'.  $filter . '%')->orWhere('size' , 'like', '%' .  $filter . '%')->get();
+         }
+
+
 
          return view('users.admin.Inventory.index', compact(['supplies']));
     }

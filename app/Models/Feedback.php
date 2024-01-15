@@ -12,7 +12,8 @@ class Feedback extends Model
     protected $fillable = [
         'message',
         'user_id',
-        'is_display'
+        'is_display',
+        'rate'
     ];
 
 
