@@ -19,9 +19,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::latest()->paginate(10);
+
+        $filter = $request->filter;
+
+        if($filter !== null){
+            $products = Product::where('name', 'like', '%'.  $filter . '%')->paginate(10);
+         }
+
         return view('users.admin.product.list', compact(['products']));
     }
 
