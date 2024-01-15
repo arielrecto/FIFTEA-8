@@ -18,6 +18,7 @@ class CartProduct extends Model
         'price',
         'quantity',
         'extras',
+        'rate',
         'total'
     ];
 

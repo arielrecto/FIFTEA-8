@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->string('rate');
             $table->longText('message');
             $table->foreignIdFor(User::class);
             $table->boolean('is_display')->default(false);

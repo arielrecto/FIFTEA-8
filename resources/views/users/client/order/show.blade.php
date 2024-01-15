@@ -95,7 +95,7 @@
                     </div>
                     @if ($order->status === OrderStatus::DONE->value)
                         <div class="flex items-center justify-start py-4">
-                            <a href="{{ route('client.feedbacks.create') }}" class="text-sm bg-blue-700 text-white flex items-center rounded px-4 py-2 ">
+                            <a href="{{ route('client.feedbacks.create', ['cart' => $order->cart->id]) }}" class="text-sm bg-blue-700 text-white flex items-center rounded px-4 py-2 ">
                                 <i class='bx bx-message-detail text-xl mr-2'></i>
                                 Send a Feedback
                             </a>

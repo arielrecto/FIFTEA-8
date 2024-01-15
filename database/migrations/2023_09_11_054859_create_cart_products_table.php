@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->json('extras');
             $table->string('total');
+            $table->string('rate')->nullable();
             $table->timestamps();
         });
     }

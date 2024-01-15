@@ -102,7 +102,8 @@
                                     @php
                                         $extra = json_decode($cart_product->extras)
                                     @endphp
-                                    @if($extra !== null)
+
+                                    @if(!empty($extra))
 
                                     <td class="border px-4 py-2">{{$extra->name}} (&#8369;  {{$extra->pivot->price}})</td>
                                     @else

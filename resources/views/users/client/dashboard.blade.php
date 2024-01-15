@@ -173,14 +173,14 @@
                                                     @endphp
                                                     <p class="text-sm ">
                                                         <span class="font-semibold">Extra:</span>
-                                                        @if ($extra !== null)
+                                                        @if (!empty($extra))
                                                             {{ $extra->name }} (&#8369 {{ $extra->pivot->price }})
                                                         @else
                                                             <span class="text-sm">No Extra</span>
                                                         @endif
                                                     </p>
                                                 </div>
-                                                @if ($extra !== null)
+                                                @if (!empty($extra))
                                                     <span class="text-sm">&#8369
                                                         {{ $extra->pivot->price }}
                                                     </span>
