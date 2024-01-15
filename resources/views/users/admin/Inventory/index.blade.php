@@ -1,11 +1,28 @@
 <x-panel>
     <section class="w-full flex flex-col items-start md:p-4 pt-6 space-y-2">
-        <div class="w-full flex items-center justify-between py-2">
+        {{-- <div class="w-full flex items-center justify-between py-2">
             <h1 class="font-medium text-2xl ">SUPPLIES</h1>
             <div class="">
                 <a href="{{ route('admin.supply.create') }}"
                     class="flex items-center px-4 py-2 rounded text-white bg-sbgreen text-sm">
                     <i class='bx bx-plus text-lg mr-2 text-white'></i>
+                    Add Supply
+                </a>
+            </div>
+        </div> --}}
+
+        <div class="w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
+            <h1 class="font-medium text-white text-xl">SUPPLIES</h1>
+            <div class="flex items-center space-x-4">
+                <form action="" class="flex items-center space-x-3">
+                    <input type="text" class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" placeholder="Search here..">
+                    <button class="px-4 py-2 rounded text-sm bg-white text-sbgreen flex items-center">
+                        <i class='bx bx-search-alt-2 text-base text-sbgreen mr-2'></i>
+                        Search</button>
+                </form>
+                <a href="{{ route('admin.supply.create') }}"
+                    class="flex items-center px-4 py-2 bg-white rounded text-sbgreen text-sm">
+                    <i class='bx bx-plus text-base mr-2 text-sbgreen'></i>
                     Add Supply
                 </a>
             </div>

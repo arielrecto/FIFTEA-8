@@ -30,14 +30,20 @@
                         <div id="_profile" class="flex flex-col space-y-10">
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="last_name" class="text-sm ">Last Name</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">Last Name </label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <input id="last_name" name="last_name" type="text" x-model="profileData.lastName"
                                         class="text-xm rounded-md border-gray-300" placeholder="last name">
                                     <span x-text="errors.lastName" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="first_name" class="text-sm ">First Name</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">First Name </label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <input id="first_name" name="first_name" type="text"
                                         x-model="profileData.firstName" class="text-xm rounded-md border-gray-300"
                                         placeholder="first name">
@@ -54,14 +60,20 @@
                                 <div
                                     class="w-full flex flex-col md:flex-row items-center md:justify-start md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
-                                        <label for="age" class="text-sm ">Age</label>
+                                        <div class="flex items-start space-x-1">
+                                            <label for="last_name" class="">Age</label>
+                                            <span class="text-red-500"> *</span>
+                                        </div>
                                         <input id="age" name="age" type="number" x-model="profileData.age"
                                             class="text-xm rounded-md border-gray-300" placeholder="age">
                                         <span x-text="errors.age" class="text-red-500 text-xs capitalize"></span>
                                     </div>
 
                                     <div class="w-full flex flex-col space-y-1">
-                                        <label for="sex" class="text-sm ">Sex</label>
+                                        <div class="flex items-start space-x-1">
+                                            <label for="last_name" class="">Sex</label>
+                                            <span class="text-red-500"> *</span>
+                                        </div>
                                         <select name="sex" id="sex" x-model="profileData.sex"
                                             class="text-xm rounded-md border-gray-300">
                                             <option selected>Select Sex</option>
@@ -73,7 +85,10 @@
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="phone" class="text-sm ">Phone</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">Phone Number</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <input id="phone" name="phone" type="number" x-model="profileData.phone"
                                         class="text-xm rounded-md border-gray-300" placeholder="ex. 09123456789">
                                     <span x-text="errors.phone" class="text-red-500 text-xs capitalize"></span>
@@ -92,24 +107,22 @@
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col md:flex-row items-center md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
-                                        <label for="lot" class="text-sm ">Lot/Block/House No.</label>
+                                        <div class="flex items-start space-x-1">
+                                            <label for="last_name" class="">Lot/Block/House No.</label>
+                                            <span class="text-red-500"> *</span>
+                                        </div>
                                         <input id="lot" name="lot" type="text" x-model="addressData.lot"
                                             class="text-xm rounded-md border-gray-300" placeholder="lot number">
                                         <span x-text="errors.lot" class="text-red-500 text-xs capitalize"></span>
                                     </div>
-
-                                    {{-- <div class="w-full flex flex-col space-y-1">
-                                        <label for="block" class="text-sm ">Block</label>
-                                        <input id="block" name="block" type="text"
-                                            x-model="addressData.block" class="text-xm rounded-md border-gray-300"
-                                            placeholder="block number">
-                                        <span x-text="errors.block" class="text-red-500 text-xs capitalize"></span>
-                                    </div> --}}
                                 </div>
 
                                 <div class="w-full flex items-start flex-col md:flex-row md:space-x-6">
                                     <div class="w-full flex flex-col space-y-1">
-                                        <label for="street" class="text-sm ">Street</label>
+                                        <div class="flex items-start space-x-1">
+                                            <label for="last_name" class="">Street</label>
+                                            <span class="text-red-500"> *</span>
+                                        </div>
                                         <input id="street" name="street" type="text"
                                             x-model="addressData.street" class="text-xm rounded-md border-gray-300"
                                             placeholder="street name">
@@ -127,7 +140,10 @@
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="barangay" class="text-sm ">Barangay</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">Baranggay</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <select id="barangay" name="barangay" x-model="addressData.barangay"
                                         class="text-xm rounded-md border-gray-300">
                                         <option value="Aniban I">Aniban I</option>
@@ -207,7 +223,10 @@
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="municipality" class="text-sm ">City/Municipality</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">City/Municipality</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <input id="municipality" name="municipality" type="text"
                                         x-model="addressData.municipality" x-mode="addressData.municipality"
                                         class="text-xm rounded-md border-gray-300" value="Bacoor">
@@ -245,14 +264,20 @@
                         <div id="_account">
                             <div class="flex flex-col space-y-3">
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="email" class="text-sm ">Email</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">Email</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <input id="email" name="email" type="email" x-model="accountData.email"
                                         class="text-xm rounded-md border-gray-300" placeholder="sample@email.com">
                                     <span x-text="errors.email" class="text-red-500 text-xs capitalize"></span>
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="password" class="text-sm ">Password</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="last_name" class="">Password</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <div class="flex items-center text-xm rounded-md border border-gray-300 pr-2">
                                         <input id="password" name="password" type="password"
                                             x-model="accountData.password"
@@ -265,7 +290,10 @@
                                 </div>
 
                                 <div class="w-full flex flex-col space-y-1">
-                                    <label for="confirmPassword" class="text-sm ">Confirm Password</label>
+                                    <div class="flex items-start space-x-1">
+                                        <label for="confirmPassword" class="">Confirm Password</label>
+                                        <span class="text-red-500"> *</span>
+                                    </div>
                                     <div class="flex items-center text-xm rounded-md border border-gray-300 pr-2">
                                         <input id="confirmPassword" name="confirmPassword" type="password"
                                             x-model="accountData.confirmPassword"
@@ -339,13 +367,10 @@
                 },
                 addressData: {
                     lot: '',
-                    // block: '',
                     street: '',
                     subdivision: '',
                     barangay: '',
                     municipality: '',
-                    // region: '',
-                    // zipCode: '',
                 },
                 accountData: {
                     email: '',
@@ -391,27 +416,15 @@
                     if (!this.addressData.lot) {
                         this.errors.lot = 'Lot/Block/House number is required.';
                     }
-                    // if (!this.addressData.block) {
-                    //     this.errors.block = 'Block number is required.';
-                    // }
                     if (!this.addressData.municipality) {
                         this.errors.municipality = 'City/Municipality is required.';
                     }
                     if (!this.addressData.barangay) {
                         this.errors.barangay = 'Barangay is required.';
                     }
-                    // if (!this.addressData.subdivision) {
-                    //     this.errors.subdivision = 'Subdivision number is required.';
-                    // }
                     if (!this.addressData.street) {
                         this.errors.street = 'Street number is required.';
                     }
-                    // if (!this.addressData.region) {
-                    //     this.errors.region = 'Region number is required.';
-                    // }
-                    // if (!this.addressData.zipCode) {
-                    //     this.errors.zipCode = 'Zip Code number is required.';
-                    // }
 
                     return Object.keys(this.errors).length === 0;
                 },
