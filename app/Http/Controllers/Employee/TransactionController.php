@@ -76,16 +76,16 @@ class TransactionController extends Controller
 
             $size = $product['size']['name'];
 
+            $quantity = $product['quantity'];
 
 
-
-            $supplies->map(function($supply) use ($size) {
+            $supplies->map(function($supply) use ($size, $quantity) {
                 if($supply->size === $size){
                     $productSupplies = $supply->supplies;
-                    collect($productSupplies)->map(function($p_supply){
+                    collect($productSupplies)->map(function($p_supply) use ($quantity){
                         $inventSupply = Supply::find($p_supply->id);
                         $inventSupply->update([
-                            'quantity' => $inventSupply->quantity - $p_supply->quantity
+                            'quantity' => $inventSupply->quantity - ($p_supply->quantity * $quantity)
                         ]);
                     });
                 }

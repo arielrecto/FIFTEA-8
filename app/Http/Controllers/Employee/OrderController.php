@@ -116,20 +116,20 @@ class OrderController extends Controller
 
         $products = collect($order->cart->products)->map(function($cart_product){
             $product = $cart_product->product;
-
+            $quantity = $cart_product->quantity;
 
             $supplies = collect(json_decode($product->supplies));
             $size = json_decode($cart_product->size)->name;
 
-            $supplies->map(function($supply) use ($size) {
+            $supplies->map(function($supply) use ($size, $quantity) {
                 if($supply->size === $size){
                     $productSupplies = $supply->supplies;
 
-                    collect($productSupplies)->map(function($p_supply){
+                    collect($productSupplies)->map(function($p_supply) use ($quantity) {
                         $inventSupply = Supply::find($p_supply->id);
 
                         $inventSupply->update([
-                            'quantity' => $inventSupply->quantity - $p_supply->quantity
+                            'quantity' => $inventSupply->quantity - ($p_supply->quantity * $quantity)
                         ]);
                     });
                 }
