@@ -3,7 +3,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    <form method="post" action="{{ route('profile.update') }}" class="space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -25,9 +25,24 @@
                         </div>
                         <img id="image-preview" src="#" alt="Preview"
                             class="hidden w-72 h-full rounded-full object-cover object-center bg-white" />
-                        <img id="db-cover-photo"
+
+                        @if ($user->profile->image)
+                            <img id="db-cover-photo"
                             src="{{asset('storage/' . $user->profile->image)}}" alt="Image"
                             class="w-full h-full rounded-full object-cover object-center bg-white" />
+                        @else
+                            @if ($user->profile->sex == 'Male')
+                                <img id="db-cover-photo"
+                                src="{{asset('images/male.png')}}" alt="Image"
+                                class="w-full h-full rounded-full object-cover object-center bg-white" />
+                            @else
+                                <img id="db-cover-photo"
+                                src="{{asset('images/female.png')}}" alt="Image"
+                                class="w-full h-full rounded-full object-cover object-center bg-white" />
+                            @endif
+                        @endif
+
+
                         <input id="dropzone-file" type="file" name="image" class="hidden"
                             accept="image/png, image/jpeg, image/gif" onchange="previewCoverPhoto(this)" />
                     </label>

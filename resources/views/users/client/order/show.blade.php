@@ -6,7 +6,7 @@
 
     <x-user-header />
 
-    <section class="bg-gray-50 h-auto min-h-screen">
+    <section class="bg-gray-50 h-auto min-h-screen text-gray-700">
         <div class="max-w-[1300px] mx-auto px-4 pt-24 pb-4">
             <div class="flex items-start justify-between space-x-6">
                 <div class="w-full flex flex-col">
@@ -55,37 +55,36 @@
                     <div class="w-full flex flex-col gap-2">
                         <div class="w-full flex flex-col gap-2">
                             <div class="w-full overflow-x-auto">
-                                <table class="table w-full rounded">
+                                <table class="w-full rounded border border-gray-300 ">
                                     <!-- head -->
                                     <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Name</th>
-                                            <th>quantity</th>
-                                            <th>Size</th>
-                                            <th>price</th>
+                                        <tr class="border border-gray-300">
+                                            <th class="border p-2"></th>
+                                            <th class="border p-2">Name</th>
+                                            <th class="border p-2">Quantity</th>
+                                            <th class="border p-2">Size</th>
+                                            <th class="border p-2">Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- row 1 -->
                                         @forelse ($order->cart->products as $cart_product)
-                                            <tr class="bg-base-200">
-                                                <th>1</th>
-                                                <td>{{ $cart_product->product->name }}</td>
-                                                <td>{{ $cart_product->quantity }}</td>
+                                            <tr class="bg-white border border-gray-300">
+                                                <th class="border p-2">1</th>
+                                                <td class="border p-2">{{ $cart_product->product->name }}</td>
+                                                <td class="border p-2">{{ $cart_product->quantity }}</td>
                                                 @php
                                                     $size = json_decode($cart_product->size)
                                                 @endphp
                                                 @if ($size !== null)
-                                                <td>{{ $size->name }}</td>     
+                                                    <td class="border p-2">{{ $size->name }}</td>
                                                 @endif
-                                               
-                                                {{-- <td>{{$cart_product->extras}}</td> --}}
-                                                <td>{{ $cart_product->total }}</td>
+                                                {{-- <td class="border p-2">{{$cart_product->extras}}</td> --}}
+                                                <td class="border p-2">{{ $cart_product->total }}</td>
                                             </tr>
                                         @empty
-                                            <tr class="bg-base-200">
-                                                <td>No product</td>
+                                            <tr class="bg-white border border-gray-300">
+                                                <td class="border p-2">No product</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

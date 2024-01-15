@@ -29,7 +29,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request): RedirectResponse //ProfileUpdateRequest
     {
-        // dd($request->all());
 
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
@@ -46,9 +45,6 @@ class ProfileController extends Controller
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore(auth()->user()->id)],
         ]);
 
-        // $request->file('image')->storeAs('public/profiles/' . $request->file('image'));
-
-        // $request->image->storeAs('public/product/' . $filename);
         $imagePath = $request->hasFile('image') ? $request->file('image')->store('profiles', 'public') : auth()->user()->profile->image;
 
         $user = auth()->user()->update([
@@ -62,8 +58,7 @@ class ProfileController extends Controller
 
         $profile = auth()->user()->profile;
 
-        // Update the profile attributes
-        $profile->image = $imagePath;  // Replace with the actual image path
+        $profile->image = $imagePath;
         $profile->first_name = $request->input('first_name');
         $profile->last_name = $request->input('last_name');
         $profile->middle_name = $request->input('middle_name');
@@ -76,13 +71,11 @@ class ProfileController extends Controller
         $profile->barangay = $request->input('barangay');
         $profile->municipality = $request->input('municipality');
 
-        // Save the changes to the database
         $profile->save();
 
         if (!$profile) {
             return back()->with('error', 'Something went wrong, Please try again.');
         }
-
         return back()->with('success', 'Profile updated successfully.');
     }
 

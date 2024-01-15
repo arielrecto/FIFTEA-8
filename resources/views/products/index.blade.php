@@ -30,7 +30,7 @@
                 <section id="products-container" class="flex w-full flex-wrap gap-2 md:gap-4 relative">
                     <template x-for="product in productsFilter" :key="product.id">
 
-                        <div class="w-full md:w-1/4 flex items-center space-x-2 transition duration-500 ease-in-out border border-gray-100 rounded-md" x-show="!isLoading">
+                        <div class="w-full md:w-1/4 flex items-center space-x-2 transition duration-500 ease-in-out border border-gray-200 rounded-md" x-show="!isLoading">
                             <img class="min-w-32 h-28 object-cover object-center rounded" alt="blog"
                                 :src="`/media/product/${product.image}`">
 
@@ -38,8 +38,15 @@
                                 <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                     <span x-text="product.categories[0].name"></span>
                                 </h2>
-                                <h1 class="title-font text-xl font-bold text-gray-900 mb-3" x-text="product.name">
+                                <h1 class="title-font text-xl font-bold text-gray-900" x-text="product.name">
                                 </h1>
+                                <div class="rating rating-xs mb-3">
+                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
+                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled />
+                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
+                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
+                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
+                                </div>
                                 <div class="flex items-center justify-between flex-wrap ">
                                     <p class="font-sans font-bold">
                                         &#8369;<span x-text="product.price"></span>
