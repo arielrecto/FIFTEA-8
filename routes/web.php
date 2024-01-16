@@ -78,7 +78,8 @@ Route::get('/', function () {
 
 // temporary routes
 Route::get('/products', function () {
-    $cart = Cart::with('products')->where('is_check_out', false)->first();
+    $user = Auth::user();
+    $cart = Cart::with('products')->where('is_check_out', false)->where('user_id', $user->id)->first();
     $subtotal = 0;
     //computation for subtotal if cart is not null
     if ($cart !== null) {

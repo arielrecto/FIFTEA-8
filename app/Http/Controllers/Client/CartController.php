@@ -19,8 +19,9 @@ class CartController extends Controller
     {
         $cart_product_id  = 'crtprdctid-' . uniqid();
 
-        $cart = Cart::where('is_check_out', false)->first();
         $user = Auth::user();
+        $cart = Cart::where('is_check_out', false)->where('user_id', $user->id)->first();
+
         if ($cart === null) {
             $cart = Cart::create([
                 'user_id' => $user->id
@@ -46,7 +47,8 @@ class CartController extends Controller
         return redirect()->route('products')->with(['success' => 'Product has been added to your Cart']);
     }
     public function index($id) {
-        $cart = Cart::where('id', $id)->with('products')->first();
+        $user = Auth::user();
+        $cart = Cart::where('id', $id)->with('products')->where('user_id', $user->id)->first();
 
         $total = 0;
 
