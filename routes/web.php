@@ -33,6 +33,7 @@ use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\GcashPaymentController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
 
@@ -52,6 +53,7 @@ Route::get('/home', [HomeController::class, 'home']);
 Route::prefix('media')->as('media.')->group(function(){
     Route::get('product/{name}', [MediaController::class, 'product'])->name('product');
     Route::get('profile/{name}', [MediaController::class, 'profile'])->name('profile');
+    Route::get('gcash/{name}', [MediaController::class, 'gcash'])->name('gcash');
     Route::middleware('auth')->group(function(){
         Route::get('payment/{name}', [MediaController::class, 'payment'])->name('payment');
     });
@@ -129,7 +131,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/filter', [SupplyController::class, 'filter'])->name('filter.json');
         });
 
-
+        Route::resource('gcash', GcashPaymentController::class)->only('store', 'show', 'edit', 'update', 'index', 'create');
         Route::resource('order', OrderController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('category', CategoryController::class);

@@ -20,4 +20,8 @@ class MediaController extends Controller
         $url = response()->file(storage_path('app/public/profile/'. $name));
         return $url;
     }
+    public function gcash($name){
+        $url = response()->file(storage_path('app/public/gcash/'. $name));
+        return $url;
+    }
 }

@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CartProduct;
+use App\Models\GcashPayment;
 use App\Models\Supply;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,10 @@ class CartController extends Controller
         foreach($cart->products as $product){
             $total = $total + $product->total;
         }
-        return view('cart.cart', compact(['cart', 'total']));
+
+        $gcash = GcashPayment::latest()->first();
+
+        return view('cart.cart', compact(['cart', 'total', 'gcash']));
     }
 
     public function showProduct ($id) {

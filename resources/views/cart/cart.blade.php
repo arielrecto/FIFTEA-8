@@ -208,10 +208,17 @@
                                         </button>
                                     </div>
                                 </div>
+
                                 <div class="flex flex-col space-y-4 py-2" x-show="toggle" x-transition.duration.700ms>
                                     <div class="w-full flex justify-center">
-                                        <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
-                                            class="object object-center w-1/2 h-1/2">
+                                        @if ($gcash !== null)
+                                            <img src="{{ route('media.gcash', ['name' => $gcash->image]) }}"
+                                                alt="" class="object object-center w-1/2 h-1/2">
+                                        @else
+                                            <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
+                                                class="object object-center w-1/2 h-1/2">
+                                        @endif
+
                                     </div>
                                     <div class="w-full flex flex-col gap-2">
                                         <label for="" class="text-sm text-gray-700 font-semibold">GCASH
