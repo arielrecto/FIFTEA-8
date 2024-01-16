@@ -75,8 +75,16 @@
                             <td class="px-6 py-4">
                                 {{ $order->user->name }}
                             </td>
+                            @php
+                                $totalQuantity = 0;
+
+                               foreach ($order->cart->products as $c_product) {
+                                    $totalQuantity += $c_product->quantity;
+                               }
+
+                            @endphp
                             <td class="px-6 py-4">
-                                {{ $order->cart->products()->count() }}
+                                {{ $totalQuantity }}
                             </td>
                             <td class="px-6 py-4">
                                 ₱ {{ $order->total }}
