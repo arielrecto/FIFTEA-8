@@ -12,9 +12,9 @@
                     class="h-64 w-64 object object-center rounded">
 
                 <div class="flex flex-col">
-                    <h1 class="text-lg font-semibold">{{$product->name}}</h1>
+                    <h1 class="text-lg font-semibold">{{ $product->name }}</h1>
                     <p class="text-sm">{!! $product->description !!}</p>
-                    <p class="font-semibold">{{$product->price}}</p>
+                    <p class="font-semibold">{{ $product->price }}</p>
                 </div>
             </div>
 
@@ -32,7 +32,8 @@
                                                     <span>size : </span>
                                                     <span x-text="supply.size"> </span>
                                                 </h1>
-                                                <button class="btn btn-xs btn-error" @click="removeSupplyDataFromSupplies(supply)">
+                                                <button class="btn btn-xs btn-error"
+                                                    @click="removeSupplyDataFromSupplies(supply)">
                                                     close
                                                 </button>
                                             </div>
@@ -58,7 +59,8 @@
                                         <span x-text="size.name"></span>
                                     </h1>
 
-                                    <button class="text-xs border border-green-200 text-green-600 px-4 py-2 rounded" @click="addSupplyForm(index, size.name)">
+                                    <button class="text-xs border border-green-200 text-green-600 px-4 py-2 rounded"
+                                        @click="addSupplyForm(index, size.name)">
                                         Setup
                                     </button>
                                 </div>
@@ -68,12 +70,25 @@
                                         <h1>
                                             Inventory
                                         </h1>
+                                        <p class="text-xs">Filter</p>
+                                        <div class="">
+                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('small', 'sizes')">Small</button>
+                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('medium', 'sizes')">Medium</button>
+                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('large', 'sizes')">Large</button>
+                                            @foreach ($types as $type)
+                                                <button class="btn btn-xs btn-accent" @click="filterSupplies('{{$type->name}}', 'type')">{{$type->name}}</button>
+                                            @endforeach
+                                        </div>
                                         <div class="flex flex-wrap gap-2 w-full p-2 border border-gray-200 rounded">
                                             <template x-for="supply in blueprintSupplies" :key="supply.id">
-                                                <button class="text-sm border border-gray-300 rounded px-4 py-2 flex items-center" @click="addSupplyField(supply)">
+                                                <button
+                                                    class="text-sm border border-gray-300 rounded px-4 py-2 flex items-center"
+                                                    @click="addSupplyField(supply)">
                                                     <span x-text="supply.name"></span> |
                                                     <template x-if="supply.size !== null">
-                                                        <span><p x-text="supply.size" class="text-xs"></p></span>
+                                                        <span>
+                                                            <p x-text="supply.size" class="text-xs"></p>
+                                                        </span>
                                                     </template>
                                                 </button>
                                             </template>
@@ -81,9 +96,11 @@
 
                                         <div class="flex flex-col items-start space-y-2">
                                             <template x-for="field in suppliesForm.fields" :key="field.id">
-                                                <div class="flex items-center space-x-2 border border-gray-300 p-2 rounded">
+                                                <div
+                                                    class="flex items-center space-x-2 border border-gray-300 p-2 rounded">
                                                     <h1><span x-text="field.name" class="text-sm"></span></h1>
-                                                    <input type="number" x-model="field.quantity" class="hidden w-20 border border-gray-300 rounded px-2 py-1 text-xs">
+                                                    <input type="number" x-model="field.quantity"
+                                                        class="hidden w-20 border border-gray-300 rounded px-2 py-1 text-xs">
                                                     <button @click="removeSupplyField(field)" class="">
                                                         <i class='bx bx-trash text-sm text-red-600'></i>
                                                     </button>
@@ -91,7 +108,8 @@
                                             </template>
                                         </div>
 
-                                        <button @click="addSupplyDataFromToSupplies(suppliesForm)" class="w-fit px-6 py-2 text-xs bg-blue-700 text-white rounded">
+                                        <button @click="addSupplyDataFromToSupplies(suppliesForm)"
+                                            class="w-fit px-6 py-2 text-xs bg-blue-700 text-white rounded">
                                             Add
                                         </button>
                                     </div>
@@ -106,17 +124,17 @@
                         </form>
                     </div>
                 </div>
-                @else
+            @else
                 <div>
                     @php
-                        $supplies = json_decode($product->supplies)
+                        $supplies = json_decode($product->supplies);
                     @endphp
 
-                    @foreach ($supplies as $supply )
+                    @foreach ($supplies as $supply)
                         <div class="flex flex-col gap-2">
-                            <h1>{{$supply->size}}</h1>
-                            @foreach ( $supply->supplies as $s_supply)
-                                <h1>{{$s_supply->name}}</h1>
+                            <h1>{{ $supply->size }}</h1>
+                            @foreach ($supply->supplies as $s_supply)
+                                <h1>{{ $s_supply->name }}</h1>
                             @endforeach
                         </div>
                     @endforeach
@@ -168,11 +186,11 @@
 
                     console.log(this.suppliesForm);
                 },
-                removeSupplyField(data){
+                removeSupplyField(data) {
 
                     this.suppliesForm = {
                         ...this.suppliesForm,
-                        fields : [
+                        fields: [
                             ...this.suppliesForm.fields.filter(item => item.id !== data.id)
                         ]
                     }
@@ -190,8 +208,26 @@
                     this.suppliesForm = null;
 
                 },
-                removeSupplyDataFromSupplies(data){
-                    this.supplies = [ ...this.supplies.filter(item => item.id !== data.id)]
+                removeSupplyDataFromSupplies(data) {
+                    this.supplies = [...this.supplies.filter(item => item.id !== data.id)]
+                },
+                async filterSupplies(data, type){
+                    try {
+
+                        let url = `/admin/supply/filter?size=${data}`;
+
+                        if (type !== 'sizes'){
+                            url = `/admin/supply/filter?type=${data}`
+                        }
+
+                        const response = await axios.get(url);
+
+                        this.blueprintSupplies = [...response.data.supplies]
+
+
+                    } catch (error) {
+                        console.log(error.response.data);
+                    }
                 }
             });
         </script>

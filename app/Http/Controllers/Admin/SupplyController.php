@@ -106,4 +106,13 @@ class SupplyController extends Controller
         'message' => 'supply Deleted'
        ]);
     }
+    public function filter(Request $request){
+
+        $supplies = Supply::where('size', $request->size)->orWhereHas('types', function($q) use ($request){
+            $q->where('name', $request->type);
+        })->get();
+
+
+       return response(['supplies' => $supplies], 200);
+    }
 }

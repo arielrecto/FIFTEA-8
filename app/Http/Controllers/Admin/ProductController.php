@@ -10,6 +10,7 @@ use App\Actions\Admin\Product\StoreProductAction;
 use App\Enums\SupplyDefaultTypes;
 use App\Http\Requests\Admin\Product\StoreProductRequest;
 use App\Models\Supply;
+use App\Models\Type;
 use Illuminate\Validation\ValidationException;
 
 use function Laravel\Prompts\error;
@@ -84,10 +85,11 @@ class ProductController extends Controller
 
         }
 
-
         $supplies = Supply::get()->toJson();
 
-        return view('users.admin.product.show', compact(['product', 'supplies']));
+        $types = Type::get();
+
+        return view('users.admin.product.show', compact(['product', 'supplies', 'types']));
     }
 
     /**

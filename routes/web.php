@@ -126,6 +126,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('supply')->as('supply.')->group(function () {
             Route::resource('type', TypeController::class);
+            Route::get('/filter', [SupplyController::class, 'filter'])->name('filter.json');
         });
 
 
