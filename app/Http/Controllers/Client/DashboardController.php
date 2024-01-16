@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
         $spent = Order::userTotalSpent(Auth::user());
 
-        $cart = Cart::where('is_check_out', false)->first();
+        $cart = Cart::where('is_check_out', false)->where('user_id', $user->id)->first();
 
         $profile = Auth::user()->profile;
 
