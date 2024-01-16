@@ -204,7 +204,7 @@
                                             <div class="w-full flex flex-col space-y-1" x-init="initSetSizes(customizeProduct.sizes)">
                                                 {{--  x-init="initSetSizes({{ $sizes }})" --}}
                                                 <label for="" class="text-base font-semibold">Size</label>
-                                                <select name="size" x-model="size" id=""
+                                                <select id=""
                                                     class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
                                                     @change="changeProductPriceBySize($event)">
                                                     <option selected value="">Select Size</span></option>
@@ -214,6 +214,7 @@
                                                         </option>
                                                     </template>
                                                 </select>
+                                                <input type="hidden" name="size" x-model="size" >
                                             </div>
                                             <div class="w-full flex flex-col space-y-1">
                                                 <label for="" class="text-base font-semibold">Quatity</label>
