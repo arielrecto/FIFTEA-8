@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index(){
 
         $user = Auth::user();
-        $products = Product::get();
+        $products = Product::withAvg('cart', 'rate')->get();
 
         $orderPending = Order::pending();
 

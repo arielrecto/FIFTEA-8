@@ -7,6 +7,7 @@
             <div class="flex flex-col md:flex-row items-start justify-between md:space-x-6 space-y-4 md:space-y-0">
 
                 <div class="w-full md:w-4/6 flex flex-col space-y-4">
+
                     {{--
                     ---------------------------------------------------
                         ITO YUNG PART NG TOTAL AMOUNT SPENT
@@ -69,6 +70,11 @@
                                         <div>
                                             <h1 class="text-base font-bold">{{ $product->name }}</h1>
                                             <p class="text-sm">{!! strlen($product->description) > 50 ? substr($product->description, 0, 50) . '...' : $product->description !!}</p>
+                                        </div>
+                                        <div x-data="starRating">
+                                            <template x-for="i in 5">
+                                                <input type="radio" name="rating-5" :class="`mask mask-star-2 ${i <= {{$product->cart_avg_rate ?? 1}} ? 'bg-yellow-400' : '' }`" disabled/>
+                                            </template>
                                         </div>
                                         <div class="flex space-x-3 items-center justify-end ">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
