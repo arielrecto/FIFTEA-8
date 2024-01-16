@@ -16,8 +16,6 @@ class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
-
-
         $cart_product_id  = 'crtprdctid-' . uniqid();
 
         $cart = Cart::where('is_check_out', false)->first();

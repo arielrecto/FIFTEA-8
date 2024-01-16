@@ -13,12 +13,15 @@
 
                     <div class="w-full flex flex-col-reverse md:flex-row items-start md:space-x-4 py-5">
 
-                        <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:items-center md:justify-between border border-gray-400">
-                            <h1 class="w-full h-full border-b md:border-b-0 md:border-r border-gray-400 p-4 flex flex-col md:items-center ">
+                        <div
+                            class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:items-center md:justify-between border border-gray-400">
+                            <h1
+                                class="w-full h-full border-b md:border-b-0 md:border-r border-gray-400 p-4 flex flex-col md:items-center ">
                                 <span class="text-base font-semibold">Order Number</span>
                                 <span>{{ $order->num_ref }}</span>
                             </h1>
-                            <div class="w-full h-full border-b md:border-b-0 md:border-r border-gray-400 p-4 flex flex-col md:items-center">
+                            <div
+                                class="w-full h-full border-b md:border-b-0 md:border-r border-gray-400 p-4 flex flex-col md:items-center">
                                 <span class="text-base font-semibold">Transaction Number</span>
                                 <span>{{ $order->transaction->transaction_ref }}</span>
                             </div>
@@ -63,6 +66,7 @@
                                             <th class="border p-2">Name</th>
                                             <th class="border p-2">Quantity</th>
                                             <th class="border p-2">Size</th>
+                                            <th class="border p-2">Extras</th>
                                             <th class="border p-2">Price</th>
                                         </tr>
                                     </thead>
@@ -74,10 +78,26 @@
                                                 <td class="border p-2">{{ $cart_product->product->name }}</td>
                                                 <td class="border p-2">{{ $cart_product->quantity }}</td>
                                                 @php
-                                                    $size = json_decode($cart_product->size)
+                                                    $size = json_decode($cart_product->size);
                                                 @endphp
                                                 @if ($size !== null)
                                                     <td class="border p-2">{{ $size->name }}</td>
+                                                @endif
+                                                @php
+                                                    $extras = json_decode($cart_product->extras);
+                                                @endphp
+
+                                                @if (!empty($extras))
+                                                    <td class="border px-4 py-2">
+                                                        @foreach ($extras as $extra)
+                                                            <span>
+                                                                {{ $extra->name }} (&#8369;
+                                                                {{ $extra->pivot->price }})
+                                                            </span>
+                                                        @endforeach
+                                                    </td>
+                                                @else
+                                                    <td class="border px-4 py-2">No Extras </td>
                                                 @endif
                                                 {{-- <td class="border p-2">{{$cart_product->extras}}</td> --}}
                                                 <td class="border p-2">{{ $cart_product->total }}</td>
@@ -95,7 +115,8 @@
                     </div>
                     @if ($order->status === OrderStatus::DONE->value)
                         <div class="flex items-center justify-start py-4">
-                            <a href="{{ route('client.feedbacks.create', ['cart' => $order->cart->id]) }}" class="text-sm bg-blue-700 text-white flex items-center rounded px-4 py-2 ">
+                            <a href="{{ route('client.feedbacks.create', ['cart' => $order->cart->id]) }}"
+                                class="text-sm bg-blue-700 text-white flex items-center rounded px-4 py-2 ">
                                 <i class='bx bx-message-detail text-xl mr-2'></i>
                                 Send a Feedback
                             </a>

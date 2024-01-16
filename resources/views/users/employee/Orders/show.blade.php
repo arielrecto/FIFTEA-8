@@ -100,14 +100,20 @@
                                     <td class="border px-4 py-2">{{ $cart_product->quantity }}</td>
 
                                     @php
-                                        $extra = json_decode($cart_product->extras)
+                                        $extras = json_decode($cart_product->extras);
                                     @endphp
 
-                                    @if(!empty($extra))
-
-                                    <td class="border px-4 py-2">{{$extra->name}} (&#8369;  {{$extra->pivot->price}})</td>
+                                    @if (!empty($extras))
+                                        <td class="border px-4 py-2">
+                                            @foreach ($extras as $extra)
+                                                <span>
+                                                    {{ $extra->name }} (&#8369;
+                                                    {{ $extra->pivot->price }})
+                                                </span>
+                                            @endforeach
+                                        </td>
                                     @else
-                                    <td class="border px-4 py-2">No Extras </td>
+                                        <td class="border px-4 py-2">No Extras </td>
                                     @endif
 
                                     <td class="border px-4 py-2">&#8369; {{ $cart_product->total }}</td>

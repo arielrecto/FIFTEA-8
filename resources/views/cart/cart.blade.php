@@ -47,50 +47,54 @@
                                                     $size = json_decode($c_product->size);
                                                 @endphp
                                                 <td class="px-4 py-3">{{ $size->name }} <span
-                                                        class="text-xs text-blue-500">(&#8369; {{ $size->price }})</span></td>
+                                                        class="text-xs text-blue-500">(&#8369;
+                                                        {{ $size->price }})</span></td>
                                                 {{--  pabago ng pice dito tol --}}
 
                                                 @php
-                                                    $extra = json_decode($c_product->extras);
+                                                    $extras = json_decode($c_product->extras);
                                                 @endphp
 
                                                 <td class="px-4 py-3">
-                                                    @if ($extra)
-                                                        <p class="flex items-center">
-                                                            {{ $extra->name }}
-                                                            <span class="text-xs text-blue-500 ml-2">
-                                                                (&#8369; {{ $extra->pivot->price }})
-                                                            </span>
-                                                        </p>
+                                                    @if (!empty($extras))
+                                                        @foreach ($extras as $extra)
+                                                            <p class="flex items-center">
+                                                                {{ $extra->name }}
+                                                                <span class="text-xs text-blue-500 ml-2">
+                                                                    (&#8369; {{ $extra->pivot->price }})
+                                                                </span>
+                                                            </p>
+                                                        @endforeach
                                                     @else
                                                         <p class="text-xs text-red-400">No Extra</p>
                                                     @endif
                                                 </td>
-                                        </td>
-                                        <td class="px-4 py-3">{{ $c_product->quantity }}</td>
-                                        <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
-                                        <td class="px-4 py-3">
-                                            <a href="{{ route('client.cart.showProduct', ['id' => $c_product->id]) }}">
-                                                <i
-                                                    class='bx bx-edit text-blue-700 text-lg hover:text-sbgreen cursor-pointer'></i>
-                                            </a>
-                                        </td>
-                                        <td class="px-4 py-3">
-                                            <form
-                                                action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit">
-                                                    <i class='bx bx-x text-2xl text-gray-500'></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                        </tr>
-                                    @empty
-                                        <td>
-                                            <p class="text-sm text-red-600">Not item</p>
-                                        </td>
+                                                </td>
+                                                <td class="px-4 py-3">{{ $c_product->quantity }}</td>
+                                                <td class="px-4 py-3">&#8369; {{ $c_product->total }}</td>
+                                                <td class="px-4 py-3">
+                                                    <a
+                                                        href="{{ route('client.cart.showProduct', ['id' => $c_product->id]) }}">
+                                                        <i
+                                                            class='bx bx-edit text-blue-700 text-lg hover:text-sbgreen cursor-pointer'></i>
+                                                    </a>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <form
+                                                        action="{{ route('client.cart.deleteCartItem', ['id' => $c_product->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">
+                                                            <i class='bx bx-x text-2xl text-gray-500'></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <td>
+                                                <p class="text-sm text-red-600">Not item</p>
+                                            </td>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -161,15 +165,22 @@
                                                     <div class="flex flex-col space-y-1">
                                                         <span
                                                             class="w-full border-b border-dashed border-gray-200 text-sm font-semibold">Extra</span>
-                                                        @if ($extras)
-                                                            <div class="w-full flex items-center justify-between ">
-                                                                <span class="text-xs">{{ $extras->name }}</span>
-                                                                <span
-                                                                    class="text-xs">&#8369;{{ $extras->pivot->price }}</span>
-                                                            </div>
+                                                        @if (!empty($extras))
+                                                            @foreach ($extras as $extra)
+                                                                <div class="w-full flex items-center justify-between ">
+                                                                    <span class="text-xs">{{ $extra->name }}</span>
+                                                                    <span
+                                                                        class="text-xs">&#8369;{{ $extra->pivot->price }}</span>
+                                                                </div>
+                                                            @endforeach
                                                         @else
                                                             <span class="text-xs">None</span>
                                                         @endif
+                                                    </div>
+                                                    <div
+                                                        class="w-full flex items-center justify-between border-t border-gray-400 py-1">
+                                                        <span class="text-xs">Quantity</span>
+                                                        <span class="text-xs">{{ $c_product->quantity }} pc(s) </span>
                                                     </div>
                                                     <div
                                                         class="w-full flex items-center justify-between border-t border-gray-400 py-1">

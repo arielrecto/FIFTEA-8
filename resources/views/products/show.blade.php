@@ -8,7 +8,7 @@
                 back
             </a>
             <div class="flex flex-col md:flex-row items-center justify-between md:space-x-4 py-4">
-                <img src="{{ route('media.product', ['name' => $product->image])}}" alt=""
+                <img src="{{ route('media.product', ['name' => $product->image]) }}" alt=""
                     class="object object-cover object-center w-[500px] h-[400px] rounded bg-gray-300">
 
                 <form action="{{ route('client.cart.add') }}" method="POST" class="flex flex-col space-y-3 w-full">
@@ -45,26 +45,31 @@
                         </div> --}}
                         <div class="w-full flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
-                            <select id=""
-                                class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
+                            <select id="" class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
                                 @change="changeProductPriceBySize($event)">
                                 <option selected value="">Select Size</span></option>
                                 <template x-for="size in sizes" :id="size.id">
-                                    <option :value="size.name"><span x-text="`${size.name}(₱ ${size.price})`"></span></option>
+                                    <option :value="size.name"><span
+                                            x-text="`${size.name}(₱ ${size.price})`"></span></option>
                                 </template>
                             </select>
                             <input type="hidden" x-model="JSON.stringify(size)" name="size">
                         </div>
                     </div>
-                    <div class="w-full flex items-start space-x-8">
+                    <div class="w-full flex items-start space-x-8" x-init="initAddOns({{ $supplies }})">
                         <div class="w-full flex flex-col space-y-2">
                             <span class="text-base font-semibold">Extra</span>
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Pearl</label>
-                            </div>
 
-                            <div class="w-fit flex items-center space-x-2">
+                            <template x-for="addon in addons">
+                                <div class="w-fit flex items-center space-x-2">
+                                    <input type="checkbox" class="" @change="selectedAddons($event, addon)">
+                                    <label class="text-sm cursor-pointer"><span x-text="addon.name"></span></label>
+                                </div>
+                            </template>
+                            <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
+
+
+                            {{-- <div class="w-fit flex items-center space-x-2">
                                 <input type="checkbox" class="">
                                 <label class="text-sm cursor-pointer">Nata Di Coco</label>
                             </div>
@@ -92,7 +97,7 @@
                             <div class="w-fit flex items-center space-x-2">
                                 <input type="checkbox" class="">
                                 <label class="text-sm cursor-pointer">Another Pearl</label>
-                            </div>
+                            </div> --}}
                         </div>
 
 
@@ -103,8 +108,7 @@
                                     @click="changeQuantity($event, 'minus')">
                                     <i class='bx bx-minus text-lg'></i>
                                 </button>
-                                <p
-                                    class="py-1 px-4 rounded border border-gray-300 bg-green-600 text-white">
+                                <p class="py-1 px-4 rounded border border-gray-300 bg-green-600 text-white">
                                     <span x-text="quantity"></span>
                                     <input type="hidden" name="quantity" x-model="quantity">
                                 </p>
@@ -120,8 +124,7 @@
                             x-init="initPrice({{ $product->price }})">
                             <input type="hidden" name="total" x-model="total">
                             <p class="font-bold text-lg">&#8369; <span x-text="total"></span></p>
-                            <button
-                                class="px-4 py-2 rounded text-sm bg-green-700 text-white">Place
+                            <button class="px-4 py-2 rounded text-sm bg-green-700 text-white">Place
                                 Order</button>
                         </div>
                     </div>
@@ -140,8 +143,8 @@
                     quantity: 1,
                     sizes: [],
                     addons: [],
-                    addon: null,
-                    size : null,
+                    selectedAddonsData: [],
+                    size: null,
                     initSetSizes(sizes) {
                         console.log(sizes);
                         this.sizes = [...sizes]
@@ -183,27 +186,45 @@
 
                         this.totalPrice()
                     },
-                    changeProductPriceByAddons(e) {
-                        const name = e.target.value;
-                        const addon = this.addons.find((item) => item.name === name);
-                        if (name == '') {
+                    // changeProductPriceByAddons(e) {
+                    //     const name = e.target.value;
+                    //     const addon = this.addons.find((item) => item.name === name);
+                    //     if (name == '') {
 
-                            if (this.addon !== null) {
-                                this.price = this.price - parseInt(this.addon.pivot.price)
-                            }
-                            this.addon = null
+                    //         if (this.addon !== null) {
+                    //             this.price = this.price - parseInt(this.addon.pivot.price)
+                    //         }
+                    //         this.addon = null
+                    //         this.totalPrice()
+                    //         return
+                    //     }
+
+
+                    //     if (this.addon !== addon && this.addon !== null) {
+                    //         this.price = this.price - parseInt(this.addon.pivot.price)
+                    //     }
+
+                    //     this.addon = addon
+                    //     this.price = this.price + parseInt(addon.pivot.price)
+
+                    //     this.totalPrice()
+                    // },
+                    selectedAddons(e, data){
+                        const isChecked = e.target.checked;
+                        if(isChecked){
+                            this.selectedAddonsData = [...this.selectedAddonsData, data]
+
+                            console.log(this.selectedAddonsData);
+
+                            this.price = this.price + parseInt(data.pivot.price);
                             this.totalPrice()
-                            return
+                            return;
                         }
 
 
-                        if(this.addon !== addon && this.addon !== null){
-                            this.price = this.price - parseInt(this.addon.pivot.price)
-                        }
-
-                        this.addon = addon
-                        this.price = this.price + parseInt(addon.pivot.price)
-
+                        this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+                        this.price = this.price - parseInt(data.pivot.price);
+                        console.log(this.selectedAddonsData);
                         this.totalPrice()
                     }
                 }

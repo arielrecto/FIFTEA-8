@@ -169,20 +169,32 @@
                                                 class="w-full flex items-end justify-between border-b border-dashed border-gray-300">
                                                 <div>
                                                     @php
-                                                        $extra = json_decode($c_product->extras);
+                                                        $extras = json_decode($c_product->extras);
                                                     @endphp
                                                     <p class="text-sm ">
                                                         <span class="font-semibold">Extra:</span>
-                                                        @if (!empty($extra))
-                                                            {{ $extra->name }} (&#8369 {{ $extra->pivot->price }})
+                                                        @if (!empty($extras))
+                                                            @foreach ($extras as $extra)
+                                                                {{ $extra->name }} (&#8369
+                                                                {{ $extra->pivot->price }})
+                                                            @endforeach
                                                         @else
                                                             <span class="text-sm">No Extra</span>
                                                         @endif
                                                     </p>
                                                 </div>
-                                                @if (!empty($extra))
+                                                @if (!empty($extras))
                                                     <span class="text-sm">&#8369
-                                                        {{ $extra->pivot->price }}
+
+                                                        @php
+                                                            $totalExtrasPrice = 0;
+
+                                                            foreach ($extras as $_extra) {
+                                                                $totalExtrasPrice += $extra->pivot->price;
+                                                            }
+                                                        @endphp
+                                                      {{ $totalExtrasPrice }}
+
                                                     </span>
                                                 @endif
                                             </div>
