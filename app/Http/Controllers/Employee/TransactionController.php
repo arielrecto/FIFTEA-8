@@ -62,7 +62,7 @@ class TransactionController extends Controller
                 'product_id' => $productData->id,
                 'size' => json_encode($product['size']),
                 'cart_id' => $cart->id,
-                'sugar_level' => $product['sugar_level'],
+                'sugar_level' => $product['sugar_level'] ?? 0,
                 'quantity' => $product['quantity'],
                 'extras' => json_encode($product['addon']),
                 'total' => $product['total'],
