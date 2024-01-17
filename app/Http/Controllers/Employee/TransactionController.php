@@ -71,6 +71,7 @@ class TransactionController extends Controller
             ]);
 
 
+
             $supplies = collect(json_decode($productData->supplies));
 
 

@@ -22,16 +22,16 @@ class OrderController extends Controller
 
         $builder = Order::where('type', 'online')->where('status', 'pending');
 
-        if($status !== null) {
+        if ($status !== null) {
 
             $builder = Order::where('type', 'online')->where('status', $status);
         }
 
 
-       $orders = $builder->with([
-        'cart.products',
-        'payment.user'
-    ])->get();
+        $orders = $builder->with([
+            'cart.products',
+            'payment.user'
+        ])->get();
 
         return view('users.employee.Orders.index', compact(['orders']));
     }
@@ -49,7 +49,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -63,7 +62,7 @@ class OrderController extends Controller
 
         $order = Order::whereId($id)->with(['payment'])->first();
 
-        if($status !== null) {
+        if ($status !== null) {
 
 
             $order->update([
@@ -72,7 +71,6 @@ class OrderController extends Controller
 
 
             return back()->with(['message' => $message]);
-
         }
 
 
@@ -109,23 +107,37 @@ class OrderController extends Controller
 
 
         return back()->with(['message' => 'order deleted']);
-
     }
-    public function approved($id) {
+    public function approved($id)
+    {
         $order = Order::find($id);
 
-        $products = collect($order->cart->products)->map(function($cart_product){
+
+
+        $products = collect($order->cart->products)->map(function ($cart_product) {
             $product = $cart_product->product;
             $quantity = $cart_product->quantity;
+            $extras = $cart_product->extras;
+
+            $c_extras = json_decode($extras);
+            if (!empty($c_extras)){
+                collect($c_extras)->map(function ($extra) {
+                    $addon = Supply::find($extra->id);
+                    $addon->update([
+                        'quantity' => $addon->quantity - 1
+                    ]);
+                });
+            }
+
 
             $supplies = collect(json_decode($product->supplies));
             $size = json_decode($cart_product->size)->name;
 
-            $supplies->map(function($supply) use ($size, $quantity) {
-                if($supply->size === $size){
+            $supplies->map(function ($supply) use ($size, $quantity) {
+                if ($supply->size === $size) {
                     $productSupplies = $supply->supplies;
 
-                    collect($productSupplies)->map(function($p_supply) use ($quantity) {
+                    collect($productSupplies)->map(function ($p_supply) use ($quantity) {
                         $inventSupply = Supply::find($p_supply->id);
 
                         $inventSupply->update([
