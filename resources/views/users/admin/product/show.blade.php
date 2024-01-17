@@ -67,16 +67,16 @@
 
                                 <template x-if="formIndex === index">
                                     <div class="flex flex-col gap-2">
-                                        <h1>
+                                        {{-- <h1>
                                             Inventory
-                                        </h1>
-                                        <p class="text-xs">Filter</p>
+                                        </h1> --}}
+                                        <p class="">Filter</p>
                                         <div class="">
-                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('small', 'sizes')">Small</button>
-                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('medium', 'sizes')">Medium</button>
-                                            <button class="btn btn-xs btn-accent" @click="filterSupplies('large', 'sizes')">Large</button>
+                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('small', 'sizes')">Small</button>
+                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('medium', 'sizes')">Medium</button>
+                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('large', 'sizes')">Large</button>
                                             @foreach ($types as $type)
-                                                <button class="btn btn-xs btn-accent" @click="filterSupplies('{{$type->name}}', 'type')">{{$type->name}}</button>
+                                                <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('{{$type->name}}', 'type')">{{$type->name}}</button>
                                             @endforeach
                                         </div>
                                         <div class="flex flex-wrap gap-2 w-full p-2 border border-gray-200 rounded">

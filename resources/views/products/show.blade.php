@@ -63,7 +63,7 @@
                             <template x-for="addon in addons">
                                 <div class="w-fit flex items-center space-x-2">
                                     <input type="checkbox" class="" @change="selectedAddons($event, addon)">
-                                    <label class="text-sm cursor-pointer"><span x-text="addon.name"></span></label>
+                                    <label class="text-sm cursor-pointer"><span x-text="addon.name"></span> <span class="text-xs text-blue-500">(&#8369;<span x-text="addon.pivot.price"></span>)</span></label>
                                 </div>
                             </template>
                             <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">

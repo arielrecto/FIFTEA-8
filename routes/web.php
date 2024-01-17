@@ -50,11 +50,11 @@ use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionCo
 
 Route::get('/home', [HomeController::class, 'home']);
 
-Route::prefix('media')->as('media.')->group(function(){
+Route::prefix('media')->as('media.')->group(function () {
     Route::get('product/{name}', [MediaController::class, 'product'])->name('product');
     Route::get('profile/{name}', [MediaController::class, 'profile'])->name('profile');
     Route::get('gcash/{name}', [MediaController::class, 'gcash'])->name('gcash');
-    Route::middleware('auth')->group(function(){
+    Route::middleware('auth')->group(function () {
         Route::get('payment/{name}', [MediaController::class, 'payment'])->name('payment');
     });
 });
@@ -67,7 +67,6 @@ Route::get('/', function () {
 
     $content = HeroContent::first();
 
-
     return view('welcome', compact(['feedBacks', 'products', 'content']));
 
 });
@@ -79,7 +78,12 @@ Route::get('/', function () {
 // temporary routes
 Route::get('/products', function () {
     $user = Auth::user();
-    $cart = Cart::with('products')->where('is_check_out', false)->where('user_id', $user->id)->first();
+
+    if ($user) {
+        $cart = Cart::with('products')->where('is_check_out', false)->where('user_id', $user->id)->first();
+    } else {
+        $cart = null;
+    }
     $subtotal = 0;
     //computation for subtotal if cart is not null
     if ($cart !== null) {
@@ -175,7 +179,9 @@ Route::middleware('auth')->group(function () {
         ]);
 
         Route::resource('order', EmployeeOrderController::class)->only([
-            'index', 'show', 'destroy'
+            'index',
+            'show',
+            'destroy'
         ]);
 
     });
@@ -187,7 +193,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('cart')->as('cart.')->group(function () {
-            Route::controller(CartController::class)->group(function() {
+            Route::controller(CartController::class)->group(function () {
                 Route::post('/addToCart', 'addToCart')->name('add');
                 Route::get('/{id}', 'index')->name('index');
                 Route::get('/show/{id}', 'showProduct')->name('showProduct');
@@ -205,11 +211,12 @@ Route::middleware('auth')->group(function () {
         ]);
         Route::resource('profile', ClientProfileController::class)->except('destroy', 'index');
         Route::resource('products', ClientProductController::class)->only([
-            'index', 'show'
+            'index',
+            'show'
         ]);
-        Route::prefix('feedbacks')->as('feedbacks.')->group(function(){
-            Route::get('/create',[FeedbackController::class, 'create'])->name('create');
-            Route::post('/',[FeedbackController::class, 'store'])->name('store');
+        Route::prefix('feedbacks')->as('feedbacks.')->group(function () {
+            Route::get('/create', [FeedbackController::class, 'create'])->name('create');
+            Route::post('/', [FeedbackController::class, 'store'])->name('store');
         });
     });
 });
