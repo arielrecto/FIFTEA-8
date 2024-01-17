@@ -46,6 +46,8 @@ class GcashPaymentController extends Controller
 
         $request->image->storeAs('public/gcash/' . $filename);
 
+        return back()->with('success', 'Uploaded Successfully!');
+
     }
 
     /**

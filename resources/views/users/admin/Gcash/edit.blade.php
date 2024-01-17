@@ -19,13 +19,10 @@
                     @if($errors->has('image'))
                         <p class="text-xs text-error">{{$errors->first('image')}}</p>
                     @endif
-                    <button class="btn btn-sm btn-accent">Upload</button>
+                    <button class="btn btn-sm btn-accent">Update</button>
                 </form>
                </div>
             </div>
-
-
-
         </div>
     </section>
 
