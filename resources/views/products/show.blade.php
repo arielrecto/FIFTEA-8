@@ -31,18 +31,6 @@
                                 <option value="1">100%</option>
                             </select>
                         </div>
-                        {{-- <div class="w-full flex flex-col space-y-1" x-init="initAddOns({{ $supplies }})">
-                            <label for="" class="text-base font-semibold">Extras</label>
-                            <select  id="" @change="changeProductPriceByAddons($event)"
-                                class="w-full  rounded px-4 py-2 text-sm border border-gray-300">
-                                <option selected value="">Select Extras</option>
-
-                                <template x-for="add in addons" id="add.id">
-                                    <option :value="add.name"><span x-text="`${add.name} (₱ ${add.pivot.price})`"></span></option>
-                                </template>
-                            </select>
-                            <input type="hidden" name="extras"  x-model="JSON.stringify(addon)">
-                        </div> --}}
                         <div class="w-full flex flex-col space-y-1" x-init="initSetSizes({{ $sizes }})">
                             <label for="" class="text-base font-semibold">Size</label>
                             <select id="" class="w-[full rounded px-4 py-2 text-sm border border-gray-300"
@@ -68,36 +56,6 @@
                             </template>
                             <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
 
-
-                            {{-- <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Nata Di Coco</label>
-                            </div>
-
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Another Pearl</label>
-                            </div>
-
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Nata Di Coco</label>
-                            </div>
-
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Another Pearl</label>
-                            </div>
-
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Nata Di Coco</label>
-                            </div>
-
-                            <div class="w-fit flex items-center space-x-2">
-                                <input type="checkbox" class="">
-                                <label class="text-sm cursor-pointer">Another Pearl</label>
-                            </div> --}}
                         </div>
 
 

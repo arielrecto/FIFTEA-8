@@ -184,23 +184,7 @@
                                                     <option value="1">100%</option>
                                                 </select>
                                             </div>
-                                            <div class="w-full flex flex-col space-y-1" x-init="initAddOns({{ $supplies }})">
-                                                {{--  x-init="initAddOns({{ $supplies }})" --}}
-                                                <label for="" class="text-base font-semibold">Extras</label>
-                                                <select id="" @change="changeProductPriceByAddons($event)"
-                                                    class="w-full  rounded px-4 py-2 text-sm border border-gray-300">
-                                                    <option selected value="">Select Extras</option>
 
-                                                    <template x-for="add in addons" id="add.id">
-                                                        <option :value="add.name"><span
-                                                                x-text="`${add.name} (₱ ${add.pivot.price})`"></span>
-                                                        </option>
-                                                    </template>
-                                                </select>
-                                                <input type="hidden" name="extras" x-model="JSON.stringify(addon)">
-                                            </div>
-                                        </div>
-                                        <div class="w-full flex items-start space-x-8">
                                             <div class="w-full flex flex-col space-y-1" x-init="initSetSizes(customizeProduct.sizes)">
                                                 {{--  x-init="initSetSizes({{ $sizes }})" --}}
                                                 <label for="" class="text-base font-semibold">Size</label>
@@ -215,6 +199,20 @@
                                                     </template>
                                                 </select>
                                                 <input type="hidden" name="size" x-model="size" >
+                                            </div>
+                                        </div>
+                                        <div class="w-full flex items-start space-x-8">
+                                            <div class="w-full flex flex-col space-y-2">
+                                                <span class="text-base font-semibold">Extra</span>
+
+                                                <template x-for="addon in addons">
+                                                    <div class="w-fit flex items-center space-x-2">
+                                                        <input type="checkbox" class="" @change="selectedAddons($event, addon)">
+                                                        <label class="text-sm cursor-pointer"><span x-text="addon.name"></span> <span class="text-xs text-blue-500">(&#8369;<span x-text="addon.pivot.price"></span>)</span></label>
+                                                    </div>
+                                                </template>
+                                                <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
+
                                             </div>
                                             <div class="w-full flex flex-col space-y-1">
                                                 <label for="" class="text-base font-semibold">Quatity</label>

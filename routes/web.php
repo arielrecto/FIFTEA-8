@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SalesController;
 use App\Models\Cart;
 use App\Models\Type;
@@ -127,6 +128,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+
     Route::middleware('role:admin')->prefix('admin')->as('admin.')->group(function () {
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
@@ -137,7 +140,17 @@ Route::middleware('auth')->group(function () {
             Route::get('/filter', [SupplyController::class, 'filter'])->name('filter.json');
         });
 
+        //================================================================
+        // route for the sales report
+        //================================================================
         Route::get('/sales/print-preview', [SalesController::class, 'preview'])->name('sales.preview');
+
+        //================================================================
+        // route for the messages index page in the admin
+        //================================================================
+        Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+        Route::get('/messages/show', [MessageController::class, 'show'])->name('messages.show');
+
 
         Route::resource('gcash', GcashPaymentController::class)->only('store', 'show', 'edit', 'update', 'index', 'create');
         Route::resource('order', OrderController::class);
@@ -149,8 +162,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('profile', ProfileController::class)->except('destroy', 'index');
         Route::resource('feedbacks', AdminFeedbackController::class)->except(['store', 'create']);
         Route::resource('hero', HeroContentController::class);
-
     });
+
+
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {
 

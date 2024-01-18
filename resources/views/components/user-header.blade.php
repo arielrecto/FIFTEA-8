@@ -1,4 +1,4 @@
-<header class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
+<header class="w-full fixed z-40 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center max-w-[1300px] mx-auto px-4 ">
         <div class="flex items-center">
             <a href="/" class="flex items-center space-x-2">
@@ -17,6 +17,13 @@
         </div>
         @auth
             <div class="flex space-x-2">
+                {{-- <a>
+                    <i class='bx bx-envelope text-3xl'></i>
+                </a> --}}
+                <!-- Modal toggle -->
+                <button data-modal-target="default-modal" data-modal-toggle="default-modal"  type="button">
+                    <i class='bx bx-envelope text-3xl'></i>
+                </button>
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">

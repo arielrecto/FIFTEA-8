@@ -46,15 +46,21 @@
             <i class='bx bx-message-detail text-xl'></i>
             <p class="text-lg ">Feedbacks</p>
         </a>
+        <a href="{{ route('admin.messages.index') }}"
+            class="flex space-x-2 items-center rounded-md px-4 py-2 group
+            {{ Route::is('admin.messages.index') ? 'bg-gray-200' : '' }} hover:bg-gray-200 ">
+            <i class='bx bx-message-dots text-xl'></i>
+            <p class="text-lg ">Messages</p>
+        </a>
         <a href="{{ route('admin.gcash.index') }}"
             class="flex space-x-2 items-center rounded-md px-4 py-2 group
-        {{ Route::is('admin.feedbacks.index') ? 'bg-gray-200' : '' }} hover:bg-gray-200 ">
-            <i class='bx bx-message-detail text-xl'></i>
+        {{ Route::is('admin.gcash.index') ? 'bg-gray-200' : '' }} hover:bg-gray-200 ">
+            <i class='bx bx-credit-card-alt text-xl'></i>
             <p class="text-lg ">Gcash</p>
         </a>
         <a href="{{ route('admin.hero.index') }}"
             class="flex space-x-2 items-center rounded-md px-4 py-2 group
-            {{ Route::is('admin.feedbacks.index') ? 'bg-gray-200' : '' }} hover:bg-gray-200 ">
+            {{ Route::is('admin.hero.index') ? 'bg-gray-200' : '' }} hover:bg-gray-200 ">
             <i class='bx bx-credit-card-front text-xl'></i>
             <p class="text-lg ">Hero Content</p>
         </a>
