@@ -1,5 +1,5 @@
 <x-panel>
-    <div class="w-full md:p-4 text-gray-700 bg-white">
+    <div class="w-full md:p-4 text-gray-700 ">
 
         <section class="text-gray-600 body-font">
             <div class="container py-10 mx-auto">
@@ -37,7 +37,14 @@
         </section>
 
         <div class="w-full flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-            <div class="w-full md:w-2/3 bg-white rounded-lg h-96 p-6">
+            <div class="w-full md:w-2/3 bg-white rounded-lg h-fit min-h-96 p-6 flex flex-col space-y-4">
+                <div>
+                    <a href="{{ route('admin.sales.preview') }}"
+                        class="flex items-center rounded border border-gray-200 px-4 py-2 w-fit text-sm hover:bg-gray-200 hover:text-gray-900 group">
+                        <i class='bx bx-printer text-xl mr-2 group-hover:text-gray-900'></i>
+                        Print Sales Report
+                    </a>
+                </div>
                 <div id="bar">
 
                 </div>
@@ -75,9 +82,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
     </div>
 
 

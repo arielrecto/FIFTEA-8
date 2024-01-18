@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SalesController;
 use App\Models\Cart;
 use App\Models\Type;
 use App\Models\User;
@@ -136,6 +137,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/filter', [SupplyController::class, 'filter'])->name('filter.json');
         });
 
+        Route::get('/sales/print-preview', [SalesController::class, 'preview'])->name('sales.preview');
+
         Route::resource('gcash', GcashPaymentController::class)->only('store', 'show', 'edit', 'update', 'index', 'create');
         Route::resource('order', OrderController::class);
         Route::resource('transaction', TransactionController::class);
@@ -146,6 +149,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('profile', ProfileController::class)->except('destroy', 'index');
         Route::resource('feedbacks', AdminFeedbackController::class)->except(['store', 'create']);
         Route::resource('hero', HeroContentController::class);
+
     });
 
     Route::middleware('role:employee|admin')->prefix('employee')->as('employee.')->group(function () {

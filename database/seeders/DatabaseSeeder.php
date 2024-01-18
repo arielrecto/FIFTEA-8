@@ -23,13 +23,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CategoriesSeeder::class,
-            // ProductSeeder::class,
             AdminSeeder::class,
-            // OrderSeeder::class
+            HeroContentSeeder::class,
         ]);
 
 
-        collect(SupplyDefaultTypes::cases())->map(function ($type){
+        collect(SupplyDefaultTypes::cases())->map(function ($type) {
             Type::create([
                 'name' => $type->value
             ]);
