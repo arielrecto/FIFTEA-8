@@ -95,8 +95,6 @@ Route::get('/products', function () {
             $subtotal = $subtotal + $product->total;
         }
     }
-
-
     return view('products.index', compact(['cart', 'subtotal']));
 })->name('products');
 
@@ -110,6 +108,7 @@ Route::get('/product/data', function () {
         'categories' => $categories,
         'supplies' => $supplies
     ]);
+
 });
 
 Route::get('product/filter/{name}', function ($name) {

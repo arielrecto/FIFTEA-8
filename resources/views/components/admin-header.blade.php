@@ -1,4 +1,4 @@
-<div class="w-full fixed bg-base-100 z-50 border-b border-gray-200 bg-white">
+<div class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-10 lg:px-10 ">
         <div class="flex items-center">
             <a href="/" class="flex items-center space-x-2">
@@ -30,7 +30,20 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            <img src="{{ Auth::user()->profile !== null ? asset('storage/' . auth()->user()->profile->image) : asset('images/user-image.png') }}" class="w-10 h-10" />
+                            @if (Auth::user()->profile->image)
+                                <img src="{{ asset('storage/' . auth()->user()->profile->image) }}"
+                                    class="w-10 h-10" />
+                            @else
+                                @if (Auth::user()->profile->sex == 'Male')
+                                    <img id="db-cover-photo"
+                                    src="{{asset('images/male.png')}}" alt="Image"
+                                    class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                                @else
+                                    <img id="db-cover-photo"
+                                    src="{{asset('images/female.png')}}" alt="Image"
+                                    class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                                @endif
+                            @endif
                         </div>
                     </label>
                     <ul tabindex="0"
