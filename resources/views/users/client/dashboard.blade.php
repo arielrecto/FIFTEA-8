@@ -259,9 +259,22 @@
                                     bg-gray-200 bg-opacity-50 rounded cursor-pointer hover:bg-gray-700 hover:text-white'></i>
                             </a>
                             <div class="w-full h-32 rounded-t bg-green-200"></div>
-                            <img src="{{(auth()->user()->profile && auth()->user()->profile->image) ? asset('storage/' . auth()->user()->profile->image) : asset('images/user-image.png') }}" alt=""
-                                {{-- src="{{ $profile->image ? route('media.profile', ['name' => $profile->image]) : asset('images/user-image.png') }}" --}}
-                                class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2">
+
+
+                            @if (Auth::user()->profile->image)
+                                <img src="{{ asset('storage/' . auth()->user()->profile->image) }}"
+                                class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2" />
+                            @else
+                                @if (Auth::user()->profile->sex == 'Male')
+                                    <img id="db-cover-photo"
+                                    src="{{asset('images/male.png')}}" alt="Image"
+                                    class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2" />
+                                @else
+                                    <img id="db-cover-photo"
+                                    src="{{asset('images/female.png')}}" alt="Image"
+                                    class="w-36 h-36 rounded-full absolute border bg-white border-gray-200 top-12 left-1/2 transform -translate-x-1/2" />
+                                @endif
+                            @endif
                         </div>
                         <div class="pt-20 flex flex-col items-center justify-start">
                             <p class="text-xl font-bold">
