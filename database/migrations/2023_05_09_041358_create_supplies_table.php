@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('unit');
             $table->string('quantity');
             $table->string('size')->nullable();
+            $table->string('expiration_date');
             $table->timestamps();
         });
     }

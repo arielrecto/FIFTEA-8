@@ -62,6 +62,14 @@
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="flex flex-col space-y-1">
+                        <label for="quantity" class="text-sm">EXPIRATION DATE</label>
+                        <input type="date" name="expiration_date" class="rounded px-4 border border-gray-300"
+                            id="quantity">
+                        @error('expiration_date')
+                            <div class="error text-xs text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <template x-if="!hiddenInput">
                         <div class="flex flex-col space-y-1" x-cloak>
                             <label for="quantity" class="text-sm">Size</label>

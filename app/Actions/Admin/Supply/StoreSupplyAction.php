@@ -15,7 +15,8 @@ class StoreSupplyAction {
             'unit_value' => $request->unit_value,
             'unit' => $request->unit,
             'quantity' => $request->quantity,
-            'size' => $request->size
+            'size' => $request->size,
+            'expiration_date' => $request->expiration_date
         ]);
 
 
