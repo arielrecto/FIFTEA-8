@@ -34,7 +34,7 @@
         <div class="w-full md:w-3/5 h-full hidden md:block">
             <div class="w-full h-full flex items-center justify-end space-x-2">
 
-                {{-- @if ($content->leftImage && $content->centerImage && $content->rightImage)
+                {{-- @if ($content->leftImage && $content->centerImage && $content->rightImage) --}}
                     <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                         <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300"
                             class="w-[200px] h-[350px] object-contain object-center shadow-md bg-white rounded p-6"
@@ -52,8 +52,8 @@
                             class="w-[200px] h-[350px] object-contain object-center shadow-md bg-white rounded"
                             alt="hero" src="{{ asset('images/choco/BlueBerry.png') }}">
                     </div>
-                @else --}}
-                    <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
+                {{-- @else --}}
+                    {{-- <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                         <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300"
                             class="w-[200px] h-[350px] object-contain object-center shadow-md bg-white rounded p-6"
                             alt="hero" src="{{ asset('images/choco/Buko Pandan.png') }}">
@@ -69,7 +69,7 @@
                         <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
                             class="w-[200px] h-[350px] object-contain object-center shadow-md bg-white rounded"
                             alt="hero" src="{{ asset('images/choco/Choco Hazelnut.png') }}">
-                    </div>
+                    </div> --}}
                 {{-- @endif --}}
             </div>
         </div>
