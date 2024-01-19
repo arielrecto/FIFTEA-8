@@ -43,6 +43,9 @@
                             </th>
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">QUANTITY
                             </th>
+                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">EXPIRY
+                                DATE
+                            </th>
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">Action
                             </th>
                         </tr>
@@ -62,7 +65,12 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $supply->size }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        {{ $supply->quantity }}</td>
+                                        {{ $supply->quantity }}
+                                        <span class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock Now!</span>
+                                    </td>
+                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                        Jan. 23, 2024</td>
+
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
                                         <div class="flex items-center justify-center space-x-2">
