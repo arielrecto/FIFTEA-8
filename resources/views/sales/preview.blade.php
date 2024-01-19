@@ -31,10 +31,10 @@
                 </div>
                 <div class="flex justify-between mt-4 px-2">
                     <div>
-                        <h1 class="text-lg font-semibold">Total Sales: ₱ 45,000.00</h1>
+                        <h1 class="text-lg font-semibold">Total Sales: ₱ {{ $totalSum }}</h1>
                     </div>
                     <div>
-                        <h1 class="text-lg font-semibold">Total Transactions: 340</h1>
+                        <h1 class="text-lg font-semibold">Total Transactions: {{ count($orders) }}</h1>
                     </div>
                 </div>
             </div>
@@ -52,44 +52,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example data -->
-                        <tr class="text-sm">
-                            <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">ON123</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">TN456</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Online</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Product A</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">3</td>
-                            <td class="py-2 px-4 border-b">$50.00</td>
-                        </tr>
-                        <tr class="text-sm">
-                            <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">ON123</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">TN456</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Online</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Product A</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">3</td>
-                            <td class="py-2 px-4 border-b">$50.00</td>
-                        </tr>
-                        <tr class="text-sm">
-                            <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">ON123</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">TN456</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Online</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Product A</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">3</td>
-                            <td class="py-2 px-4 border-b">$50.00</td>
-                        </tr>
-                        <tr class="text-sm">
-                            <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">ON123</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">TN456</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Online</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">Product A</td>
-                            <td class="py-2 px-4 border-b border-r border-gray-300">3</td>
-                            <td class="py-2 px-4 border-b">$50.00</td>
-                        </tr>
-
+                        @foreach ($orders as $order)
+                            <tr class="text-sm">
+                                <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->num_ref}}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->transaction->transaction_ref}}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->type}}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">
+                                    @foreach ($order->cart->products as $c_product)
+                                        <h1>
+                                            {{$c_product->product->name}}
+                                        </h1>
+                                    @endforeach
+                                </td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{count($order->cart->products)}}</td>
+                                <td class="py-2 px-4 border-b">{{$order->total}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

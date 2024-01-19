@@ -24,6 +24,7 @@ use App\Http\Controllers\HeroContentController;
 use App\Http\Controllers\Admin\SupplyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\conversationController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\client\FeedbackController;
 use App\Http\Controllers\Client\DashboardController;
@@ -36,8 +37,10 @@ use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\Employee\OrderController as EmployeeOrderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GcashPaymentController;
+use App\Http\Controllers\Client\ConversationController as ClientConversationController;
 use App\Http\Controllers\Employee\SupplyController as EmployeeSupplyController;
 use App\Http\Controllers\Employee\TransactionController as EmployeeTransactionController;
+use App\Models\Conversation;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +73,6 @@ Route::get('/', function () {
     $content = HeroContent::first();
 
     return view('welcome', compact(['feedBacks', 'products', 'content']));
-
 });
 
 // Route::get('/dashboard', function () {
@@ -148,8 +150,15 @@ Route::middleware('auth')->group(function () {
         //================================================================
         // route for the messages index page in the admin
         //================================================================
-        Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-        Route::get('/messages/show', [MessageController::class, 'show'])->name('messages.show');
+
+        Route::prefix('messages')->as('messages.')->group(function () {
+            Route::get('/', [conversationController::class, 'index'])->name('index');
+            Route::get('/show/{conversation}', [conversationController::class, 'show'])->name('show');
+            Route::get('/conversation/json', [Conversation::class, 'conversationJson']);
+            Route::get('/conversation/{conversation}/json', [conversationController::class, 'getConversationJson']);
+            Route::post('/conversation/{conversation}/message/send', [conversationController::class, 'sendMessage']);
+        });
+
 
 
         Route::resource('gcash', GcashPaymentController::class)->only('store', 'show', 'edit', 'update', 'index', 'create');
@@ -201,7 +210,6 @@ Route::middleware('auth')->group(function () {
             'show',
             'destroy'
         ]);
-
     });
 
     Route::middleware('role:customer')->prefix('client')->as('client.')->group(function () {
@@ -218,8 +226,15 @@ Route::middleware('auth')->group(function () {
                 Route::put('/show/{id}', 'updateCartItem')->name('updateCartItem');
                 Route::delete('/show/{id}/delete', 'deleteCartItem')->name('deleteCartItem');
             });
-
         });
+
+
+        Route::prefix('conversation')->as('conversation.')->group(function () {
+            Route::get('/', [ClientConversationController::class, 'conversation'])->name('convo');
+            Route::post('/create', [ClientConversationController::class, 'create'])->name('create');
+            Route::post('/{conversation}/message/send', [ClientConversationController::class, 'sendMessage'])->name('message.send');
+        });
+
 
         Route::resource('order', ClientOrderController::class)->only([
             'index',
