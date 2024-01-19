@@ -50,7 +50,7 @@
                     <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
                         <img data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500"
                             class="w-[200px] h-[350px] object-contain object-center shadow-md bg-white rounded"
-                            alt="hero" src="{{ asset('images/choco/BlueBerry.png') }}">
+                            alt="hero" src="{{ asset('storage/' . $content->rightImage) }}">
                     </div>
                 {{-- @else --}}
                     {{-- <div class="hover:transform hover:scale-105 transition duration-300 ease-in-out">
