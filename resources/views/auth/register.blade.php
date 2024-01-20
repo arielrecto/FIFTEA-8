@@ -77,8 +77,8 @@
                                         <select name="sex" id="sex" x-model="profileData.sex"
                                             class="text-xm rounded-md border-gray-300">
                                             <option selected>Select Sex</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                         <span x-text="errors.sex" class="text-red-500 text-xs capitalize"></span>
                                     </div>
@@ -111,8 +111,9 @@
                                             <label for="last_name" class="">Lot/Block/House No.</label>
                                             <span class="text-red-500"> *</span>
                                         </div>
-                                        <input id="lot" name="lot" type="text" x-model="addressData.lot"
-                                            class="text-xm rounded-md border-gray-300" placeholder="lot number">
+                                        <input id="lot" name="lot" type="text"
+                                            x-model="addressData.lot" class="text-xm rounded-md border-gray-300"
+                                            placeholder="lot number">
                                         <span x-text="errors.lot" class="text-red-500 text-xs capitalize"></span>
                                     </div>
                                 </div>
@@ -441,7 +442,8 @@
                     if (!this.accountData.password) {
                         this.errors.password = 'Password is required.';
                     } else if (!isValidPassword(this.accountData.password)) {
-                        this.errors.password = 'Password must be at least 8 characters, with at least one uppercase letter, and at least one special character.';
+                        this.errors.password =
+                            'Password must be at least 8 characters, with at least one uppercase letter, and at least one special character.';
                     }
 
                     if (!this.accountData.confirmPassword) {
