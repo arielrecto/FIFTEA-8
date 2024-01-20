@@ -75,7 +75,11 @@
                                         @endif
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        {{ $supply->expiration_date }}</td>
+                                        @php
+                                            $formattedDate = date('M. j, Y', strtotime($supply->expiration_date));
+                                        @endphp
+                                        {{ $formattedDate }}
+                                    </td>
 
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
