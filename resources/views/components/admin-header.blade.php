@@ -30,11 +30,11 @@
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">
-                            @if (Auth::user()->profile->image)
+                            @if (Auth::user()->profile?->image)
                                 <img src="{{ asset('storage/' . auth()->user()->profile->image) }}"
                                     class="w-10 h-10" />
                             @else
-                                @if (Auth::user()->profile->sex == 'Male')
+                                @if (Auth::user()->profile?->sex == 'Male')
                                     <img id="db-cover-photo"
                                     src="{{asset('images/male.png')}}" alt="Image"
                                     class="w-10 h-10 rounded-full object-cover object-center bg-white" />

@@ -14,8 +14,10 @@
         <div class="w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
             <h1 class="font-medium text-white text-xl">SUPPLIES</h1>
             <div class="flex items-center space-x-4">
-                <form action="{{route('admin.supply.index')}}" class="flex items-center space-x-3" method="GET">
-                    <input type="text" class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" name="filter" placeholder="Search here..">
+                <form action="{{ route('admin.supply.index') }}" class="flex items-center space-x-3" method="GET">
+                    <input type="text"
+                        class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white"
+                        name="filter" placeholder="Search here..">
                     <button class="px-4 py-2 rounded text-sm bg-white text-sbgreen flex items-center">
                         <i class='bx bx-search-alt-2 text-base text-sbgreen mr-2'></i>
                         Search</button>
@@ -66,7 +68,11 @@
                                         {{ $supply->size }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $supply->quantity }}
-                                        <span class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock Now!</span>
+                                        @if ($supply->quantity < 10)
+                                            <span
+                                                class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
+                                                Now!</span>
+                                        @endif
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         Jan. 23, 2024</td>

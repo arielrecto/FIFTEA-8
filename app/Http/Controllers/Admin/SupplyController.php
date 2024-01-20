@@ -53,6 +53,7 @@ class SupplyController extends Controller
             'unit' => 'required',
             'quantity' => 'required',
             'type' => 'required',
+            'expiration_date' => 'required'
         ]);
         $supply = $storeSupplyAction->handle($request);
 

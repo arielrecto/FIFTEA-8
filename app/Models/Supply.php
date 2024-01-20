@@ -14,7 +14,8 @@ class Supply extends Model
         'unit',
         'quantity',
         'product_fields_id',
-        'size'
+        'size',
+        'expiration_date'
     ];
 
     public function field(){

@@ -58,4 +58,18 @@ class User extends Authenticatable
     public function feedbacks(){
         return $this->hasMany(Feedback::class);
     }
+    public function conversationOwner(){
+        return $this->hasMany(Conversation::class, 'owner_id');
+    }
+    public function conversationParticipant(){
+        return $this->hasMany(Conversation::class, 'participant_id');
+    }
+    public function sentMessage()
+    {
+        return $this->hasMany(ConversationMessage::class, 'sender_id');
+    }
+    public function receiveMessage()
+    {
+        return $this->hasMany(ConversationMessage::class, 'receiver_id');
+    }
 }
