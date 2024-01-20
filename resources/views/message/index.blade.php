@@ -14,7 +14,7 @@
                         {{-- <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
                             alt="" class="w-14 h-14 rounded-full"> --}}
                         <div>
-                            <h1 class="text-lg font-semibold">{{ $conversation->participant->name }}</h1>
+                            <h1 class="text-lg font-semibold">{{ $conversation->owner->name }}</h1>
 
                             @foreach ($conversation->messages as $message)
                                 <p class="text-sm {{$message->seen == false ? 'font-bold text-gray-800' : 'font-normal text-gray-500'}}">{{$message->content}}</p>
