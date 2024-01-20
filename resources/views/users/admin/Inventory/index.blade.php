@@ -75,7 +75,7 @@
                                         @endif
                                     </td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        Jan. 23, 2024</td>
+                                        {{ $supply->expiration_date }}</td>
 
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
