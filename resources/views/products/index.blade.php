@@ -45,6 +45,11 @@
                                     <template x-for="i in 5">
                                         <input type="radio" name="rating-5" :class="`mask mask-star-2 ${i <= product.cart_avg_rate ? 'bg-yellow-400' : '' }`" disabled/>
                                     </template>
+                                    <p>
+                                        <span x-text="product.cart_avg_rate"></span>
+                                        <span>out of 5</span>
+                                    </p>
+
 
                                     {{-- <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled />
                                     <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
