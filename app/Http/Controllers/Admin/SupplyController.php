@@ -109,9 +109,26 @@ class SupplyController extends Controller
     }
     public function filter(Request $request){
 
+        $search = $request->search;
+
+        $getAll = $request->getAll;
+
         $supplies = Supply::where('size', $request->size)->orWhereHas('types', function($q) use ($request){
             $q->where('name', $request->type);
         })->get();
+
+
+        if($search !== null){
+            $supplies = supply::where('size', $search)->orWhereHas('types', function($q) use ($search){
+                $q->where('name', $search);
+            })->orWhere('name', 'like', '%'.  $search . '%')->get();
+        }
+
+        if ($getAll !== null){
+            $supplies = Supply::get();
+        }
+
+
 
 
        return response(['supplies' => $supplies], 200);
