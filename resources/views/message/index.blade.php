@@ -22,7 +22,7 @@
 
                         </div>
                     </div>
-                    <span class="text-sm">{{date('h:i A' , strtotime($message->created_at))}}</span>
+                    {{-- <span class="text-sm">{{date('h:i A' , strtotime($message->created_at))}}</span> --}}
                 </a>
 
             @empty
