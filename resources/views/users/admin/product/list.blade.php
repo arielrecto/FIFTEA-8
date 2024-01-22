@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">NAME</th>
-                            <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DESCRIPTION</th>
+                            {{-- <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DESCRIPTION</th> --}}
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">SIZES</th>
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">PRICE</th>
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE ADDED</th>
@@ -33,9 +33,9 @@
                                 <tr>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $product->name }}</td>
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">
+                                    {{-- <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">
                                         {!! $product->description !!}
-                                    </td>
+                                    </td> --}}
                                     <td
                                         class="poppins text-sm border border-gray-400 px-4 py-2 text-center   ">
                                         @php

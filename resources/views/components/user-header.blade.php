@@ -21,9 +21,7 @@
                     <i class='bx bx-envelope text-3xl'></i>
                 </a> --}}
                 <!-- Modal toggle -->
-                <button data-modal-target="default-modal" data-modal-toggle="default-modal"  type="button">
-                    <i class='bx bx-envelope text-3xl'></i>
-                </button>
+                
                 <div class="dropdown dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                         <div class="w-10 rounded-full">

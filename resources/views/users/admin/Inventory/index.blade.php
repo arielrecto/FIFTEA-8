@@ -48,7 +48,9 @@
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">EXPIRY
                                 DATE
                             </th>
-                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">Action
+                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">STOCK STATUS
+                            </th>
+                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">ACTIONS
                             </th>
                         </tr>
                     </thead>
@@ -68,17 +70,22 @@
                                         {{ $supply->size }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $supply->quantity }}
-                                        @if ($supply->quantity < 10)
-                                            <span
-                                                class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
-                                                Now!</span>
-                                        @endif
+
                                     </td>
+
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         @php
                                             $formattedDate = date('M. j, Y', strtotime($supply->expiration_date));
                                         @endphp
                                         {{ $formattedDate }}
+                                    </td>
+
+                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                        @if ($supply->quantity < 10)
+                                            <span
+                                                class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
+                                                Now!</span>
+                                        @endif
                                     </td>
 
 

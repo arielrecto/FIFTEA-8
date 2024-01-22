@@ -53,6 +53,12 @@ use App\Models\Conversation;
 |
 */
 
+Route::prefix('conversation')->as('conversation.')->group(function () {
+    Route::get('/', [ClientConversationController::class, 'conversation'])->name('convo');
+    Route::post('/create', [ClientConversationController::class, 'create'])->name('create');
+    Route::post('/{conversation}/message/send', [ClientConversationController::class, 'sendMessage'])->name('message.send');
+});
+
 Route::get('/home', [HomeController::class, 'home']);
 
 Route::prefix('media')->as('media.')->group(function () {
@@ -226,14 +232,6 @@ Route::middleware('auth')->group(function () {
                 Route::delete('/show/{id}/delete', 'deleteCartItem')->name('deleteCartItem');
             });
         });
-
-
-        Route::prefix('conversation')->as('conversation.')->group(function () {
-            Route::get('/', [ClientConversationController::class, 'conversation'])->name('convo');
-            Route::post('/create', [ClientConversationController::class, 'create'])->name('create');
-            Route::post('/{conversation}/message/send', [ClientConversationController::class, 'sendMessage'])->name('message.send');
-        });
-
 
         Route::resource('order', ClientOrderController::class)->only([
             'index',

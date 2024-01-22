@@ -30,7 +30,8 @@
                 <section id="products-container" class="flex w-full flex-wrap gap-2 md:gap-4 relative">
                     <template x-for="product in productsFilter" :key="product.id">
 
-                        <div class="w-full md:w-1/4 flex items-center space-x-2 transition duration-500 ease-in-out border border-gray-200 rounded-md" x-show="!isLoading">
+                        <div class="w-full md:w-1/4 flex items-center space-x-2 transition duration-500 ease-in-out border border-gray-200 rounded-md"
+                            x-show="!isLoading">
                             <img class="min-w-32 h-28 object-cover object-center rounded" alt="blog"
                                 :src="`/media/product/${product.image}`">
 
@@ -43,7 +44,9 @@
                                 <div class="rating rating-xs mb-3">
 
                                     <template x-for="i in 5">
-                                        <input type="radio" name="rating-5" :class="`mask mask-star-2 ${i <= product.cart_avg_rate ? 'bg-yellow-400' : '' }`" disabled/>
+                                        <input type="radio" name="rating-5"
+                                            :class="`mask mask-star-2 ${i <= product.cart_avg_rate ? 'bg-yellow-400' : '' }`"
+                                            disabled />
                                     </template>
 
                                     {{-- <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled />
@@ -128,52 +131,6 @@
                 openModal(id) {
                     window.location.href = `/client/products/${id}`
                 },
-                // getExtras(e) {
-                //     if (e.target.value === ' ') return
-
-                //     const id = parseInt(e.target.value)
-                //     const data = this.supplies.find(item => item.id === id)
-
-                //     this.extras.data.push(data)
-                // },
-                // getTotal(price) {
-
-                //     if (this.quantity === 0 || this.extras.data === null) {
-
-                //         this.size = [{
-                //             name: 'regular',
-                //             price: price
-                //         }]
-                //         return this.total = price
-                //     }
-
-                //     const totalExtrasPrice = this.extras.data.reduce((acc, item) => acc + parseInt(item.types[0].pivot
-                //         .price), 0)
-
-                //     const total = (parseInt(this.size[0].price) + totalExtrasPrice) * this.quantity;
-
-                //     this.total = total;
-                // },
-                // getSize(e, product) {
-                //     if (e.target.value === 'regular') {
-                //         this.size = [{
-                //             name: 'regular',
-                //             price: product.price
-                //         }]
-                //         return
-                //     }
-
-                //     const size = JSON.parse(product.sizes).filter((item) => item.name === e.target.value);
-
-                //     console.log(size)
-
-                //     this.size = size;
-                // },
-                // costumizeDone(e, price) {
-                //     e.preventDefault();
-                //     const total = this.getTotal(price);
-                //     this.isDone = true;
-                // }
             }
         }
     </script>
