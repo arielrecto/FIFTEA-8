@@ -7,6 +7,18 @@
                     <i class='bx bx-arrow-back text-xl mr-2 group-hover:text-gray-900'></i>
                     Back
                 </a>
+                <form action="{{route('admin.sales.preview')}}" method="get" class="flex items-center">
+                    <input type="hidden" name="filter" value="range">
+                    <div class="flex items-center">
+                        <label for="">Start Date</label>
+                        <input type="date" name="start_date" class="input input-accent">
+                    </div>
+                    <div class="flex items-center">
+                        <label for="">Start Date</label>
+                        <input type="date" name="end_date" class="input input-accent">
+                    </div>
+                    <button>Filter</button>
+                </form>
                 <button onclick="printData()"
                     class="hide-in-print flex items-center rounded border border-gray-200 px-4 py-2 w-fit text-sm hover:bg-gray-200 hover:text-gray-900 group">
                     <i class='bx bx-printer text-xl group-hover:text-gray-900'></i>
@@ -55,18 +67,20 @@
                         @foreach ($orders as $order)
                             <tr class="text-sm">
                                 <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
-                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->num_ref}}</td>
-                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->transaction->transaction_ref}}</td>
-                                <td class="py-2 px-4 border-b border-r border-gray-300">{{$order->type}}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{ $order->num_ref }}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">
+                                    {{ $order->transaction->transaction_ref }}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">{{ $order->type }}</td>
                                 <td class="py-2 px-4 border-b border-r border-gray-300">
                                     @foreach ($order->cart->products as $c_product)
                                         <h1>
-                                            {{$c_product->product->name}}
+                                            {{ $c_product->product->name }}
                                         </h1>
                                     @endforeach
                                 </td>
-                                <td class="py-2 px-4 border-b border-r border-gray-300">{{count($order->cart->products)}}</td>
-                                <td class="py-2 px-4 border-b">{{$order->total}}</td>
+                                <td class="py-2 px-4 border-b border-r border-gray-300">
+                                    {{ count($order->cart->products) }}</td>
+                                <td class="py-2 px-4 border-b">{{ $order->total }}</td>
                             </tr>
                         @endforeach
                     </tbody>

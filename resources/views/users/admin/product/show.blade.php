@@ -70,15 +70,22 @@
                                         {{-- <h1>
                                             Inventory
                                         </h1> --}}
-                                        <p class="">Filter</p>
-                                        <div class="">
-                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('small', 'sizes')">Small</button>
-                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('medium', 'sizes')">Medium</button>
-                                            <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('large', 'sizes')">Large</button>
-                                            @foreach ($types as $type)
-                                                <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('{{$type->name}}', 'type')">{{$type->name}}</button>
-                                            @endforeach
+                                        <div>
+
                                         </div>
+                                        <p class="">Filter</p>
+                                        <div class="flex justify-between" x-init="$watch('search', value => searchSupply(value))">
+                                            <div class="">
+                                                <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('small', 'sizes')">Small</button>
+                                                <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('medium', 'sizes')">Medium</button>
+                                                <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('large', 'sizes')">Large</button>
+                                                @foreach ($types as $type)
+                                                    <button class="text-xs bg-teal-500 text-white font-semibold uppercase px-2 py-1 rounded" @click="filterSupplies('{{$type->name}}', 'type')">{{$type->name}}</button>
+                                                @endforeach
+                                            </div>
+                                            <input type="text" class="input input-accent bg-gray-100" placeholder="search" x-model.debounce.500ms="search">
+                                        </div>
+
                                         <div class="flex flex-wrap gap-2 w-full p-2 border border-gray-200 rounded">
                                             <template x-for="supply in blueprintSupplies" :key="supply.id">
                                                 <button
@@ -152,6 +159,7 @@
                 suppliesForm: null,
                 supplies: [],
                 formIndex: null,
+                search : '',
                 initSizes(data) {
                     this.sizes = [...data]
                 },
@@ -228,6 +236,25 @@
                     } catch (error) {
                         console.log(error.response.data);
                     }
+                },
+                async searchSupply(data){
+
+                    try {
+                        url = `/admin/supply/filter?search=${data}`
+
+                        if(data === '') {
+                            url = `/admin/supply/filter?getAll=''`
+                        }
+
+                        const response = await axios.get(url)
+
+                        this.blueprintSupplies = [...response.data.supplies]
+
+                    } catch (error) {
+                        console.log(error.response.data);
+                    }
+
+
                 }
             });
         </script>

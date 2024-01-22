@@ -27,7 +27,8 @@ class ProductController extends Controller
         $filter = $request->filter;
 
         if($filter !== null){
-            $products = Product::where('name', 'like', '%'.  $filter . '%')->paginate(10);
+            $products = Product::where('name', 'like', '%'.  $filter . '%')
+            ->orWhere('price', $filter)->paginate(10);
          }
 
         return view('users.admin.product.list', compact(['products']));
