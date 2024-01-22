@@ -79,8 +79,8 @@
                                 <div class="flex sm:items-center border-b-2 border-gray-200">
                                     <div class="relative flex items-center space-x-4">
                                         <div class="flex flex-col leading-tight">
-                                            <div class="text-2xl flex items-center">
-                                                {{-- <span class="text-gray-700 mr-3" x-text="convo.participant.name"></span> --}}
+                                            <div class="text-xl flex items-center space-x-2 py-2">
+                                                <img src="{{ asset('images/logo.png') }}" alt="" class="w-10 h-10">
                                                 <span class="text-gray-700 mr-3">Fif'Tea-8</span>
                                             </div>
                                         </div>

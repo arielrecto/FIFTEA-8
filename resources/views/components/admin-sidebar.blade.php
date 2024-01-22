@@ -1,4 +1,4 @@
-<div class="flex h-auto min-h-screen flex-col w-full py-8 border-r border-gray-300">
+<div class="print-hidden flex h-auto min-h-screen flex-col w-full py-8 border-r border-gray-300">
     <ul class="flex flex-col space-y-1 px-3">
         <a href="{{ route('admin.dashboard.index') }}"
             class="flex space-x-2 items-center rounded-md px-4 py-2 group hover:bg-gray-200">

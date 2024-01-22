@@ -15,11 +15,11 @@
                         <img :src="preview" alt="" srcset="" class="w-32 h-auto object object-center">
                     </template>
 
-                    <input type="file" class="file-input file-input-bordered file-input-secondary w-full" name="image" @change="imageHandler($event)" />
+                    <input type="file" class="bg-white px-4 py-2 text-sm rounded border border-gray-300" name="image" @change="imageHandler($event)" />
                     @if($errors->has('image'))
                         <p class="text-xs text-error">{{$errors->first('image')}}</p>
                     @endif
-                    <button class="btn btn-sm btn-accent">Update</button>
+                    <button class="px-4 py-2 text-base text-white bg-blue-700 rounded">Update</button>
                 </form>
                </div>
             </div>

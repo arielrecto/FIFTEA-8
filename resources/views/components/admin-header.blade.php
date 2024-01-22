@@ -1,4 +1,4 @@
-<div class="w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
+<div class="print-hidden w-full fixed z-50 border-b border-gray-200 bg-white text-gray-700">
     <div class="navbar flex justify-between items-center container mx-auto px-5 md:px-10 lg:px-10 ">
         <div class="flex items-center">
             <a href="/" class="flex items-center space-x-2">

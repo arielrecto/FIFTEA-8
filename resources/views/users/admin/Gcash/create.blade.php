@@ -8,19 +8,23 @@
                     </h1>
                 </div>
                <div class="w-full h-full flex items-center ">
-                <form action="{{route('admin.gcash.store')}}" method="post" x-data="showImage" enctype="multipart/form-data">
+                    <form action="{{route('admin.gcash.store')}}" method="post" x-data="showImage" enctype="multipart/form-data">
 
-                    @csrf
-                    <template x-if="preview !== null">
-                        <img :src="preview" alt="" srcset="" class="w-32 h-auto object object-center">
-                    </template>
+                        @csrf
+                        <template x-if="preview !== null">
+                            <img :src="preview" alt="" srcset="" class="w-32 h-auto object object-center">
+                        </template>
 
-                    <input type="file" class="" name="image" @change="imageHandler($event)" />
-                    @if($errors->has('image'))
-                        <p class="text-xs text-error">{{$errors->first('image')}}</p>
-                    @endif
-                    <button class="px-4 py-2 rounded bg-teal-600 text-white font-semibold">Upload</button>
-                </form>
+                        <input type="file" class="" name="image" @change="imageHandler($event)" />
+                        @if($errors->has('image'))
+                            <p class="text-xs text-error">{{$errors->first('image')}}</p>
+                        @endif
+                        <button class="px-4 py-2 rounded bg-teal-600 text-white font-semibold">Upload</button>
+                    </form>
+
+                    {{-- <div>
+                        <img src="{{ asset('storage/gcash/' . $gcash->image) }}" alt="" class="w-96 h-96">
+                   </div> --}}
                </div>
             </div>
         </div>

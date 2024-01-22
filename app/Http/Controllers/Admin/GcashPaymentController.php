@@ -27,7 +27,9 @@ class GcashPaymentController extends Controller
      */
     public function create()
     {
-        return view('users.admin.Gcash.create');
+        $gcash = GcashPayment::latest()->first();
+
+        return view('users.admin.Gcash.create', compact(['gcash']));
     }
 
     /**
@@ -35,7 +37,7 @@ class GcashPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['image' => 'required|mimes:png, jpg, jpeg']);
+        // $request->validate(['image' => 'required|mimes:png, jpg, jpeg']);
 
         $filename = 'gcash' . uniqid() . '.' . $request->image->extension();
 
@@ -85,6 +87,8 @@ class GcashPaymentController extends Controller
         $gcash->update([
             'image' => $filename
         ]);
+
+        $request->image->storeAs('public/gcash/' . $filename);
 
 
         return to_route('admin.gcash.index');

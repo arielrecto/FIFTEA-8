@@ -44,12 +44,12 @@
 </head>
 
 <body class="font-sans antialiased text-gray-700 bg-white">
-    <div class="h-auto min-h-screen bg-gray-50">
+    <div class="background h-auto min-h-screen bg-gray-50">
 
         <x-admin-header />
 
-        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 pt-16">
-            <div class="hidden md:block w-1/6 h-full sticky top-0">
+        <div class="print-padding w-full h-full flex container mx-auto px-5 md:px-10 pt-16">
+            <div class="print-hidden hidden md:block w-1/6 h-full sticky top-0">
                 <x-admin-sidebar />
             </div>
 
