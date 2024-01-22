@@ -70,7 +70,6 @@
                                         {{ $supply->size }}</td>
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         {{ $supply->quantity }}
-
                                     </td>
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
