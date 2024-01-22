@@ -111,7 +111,7 @@
         const background = document.querySelector(".background");
         const printHead = document.querySelector(".print-head");
         const actionHead = document.querySelector(".action-head");
-        const actionBody = document.querySelector(".action-body");
+        const actionBody = document.querySelectorAll(".action-body");
         const printLogo = document.querySelector(".print-logo");
 
         printBtn.addEventListener("click", () => {
@@ -121,7 +121,9 @@
             });
             printLogo.classList.replace("hidden", 'flex');
             actionHead.classList.add("hidden");
-            actionBody.classList.add("hidden");
+            actionBody.forEach((el) => {
+                el.classList.add("hidden");
+            });
             printHead.classList.remove("bg-sblight");
             printHead.classList.add("bg-gray-700");
             printPadding.classList.remove("pt-16");
@@ -136,7 +138,9 @@
             });
             printLogo.classList.replace("flex", 'hidden');
             actionHead.classList.remove("hidden");
-            actionBody.classList.remove("hidden");
+            actionBody.forEach((el) => {
+                el.classList.remove("hidden");
+            });
             printHead.classList.add("bg-sblight");
             printHead.classList.remove("bg-gray-700");
             printPadding.classList.add("pt-16");
