@@ -7,17 +7,17 @@
                     <i class='bx bx-arrow-back text-xl mr-2 group-hover:text-gray-900'></i>
                     Back
                 </a>
-                <form action="{{route('admin.sales.preview')}}" method="get" class="flex items-center">
+                <form action="{{route('admin.sales.preview')}}" method="get" class="flex items-end space-x-4">
                     <input type="hidden" name="filter" value="range">
-                    <div class="flex items-center">
-                        <label for="">Start Date</label>
-                        <input type="date" name="start_date" class="input input-accent">
+                    <div class="flex flex-col ">
+                        <label for="" class="text-xs font-semibold">Start Date</label>
+                        <input type="date" name="start_date" class="px-3 py-1 border border-gray-300 rounded text-sm">
                     </div>
-                    <div class="flex items-center">
-                        <label for="">Start Date</label>
-                        <input type="date" name="end_date" class="input input-accent">
+                    <div class="flex flex-col ">
+                        <label for="" class="text-xs font-semibold">Start Date</label>
+                        <input type="date" name="end_date" class="px-3 py-1 border border-gray-300 rounded text-sm">
                     </div>
-                    <button>Filter</button>
+                    <button class="py-1 px-3 text-sm bg-gray-700 rounded text-white">Filter</button>
                 </form>
                 <button onclick="printData()"
                     class="hide-in-print flex items-center rounded border border-gray-200 px-4 py-2 w-fit text-sm hover:bg-gray-200 hover:text-gray-900 group">

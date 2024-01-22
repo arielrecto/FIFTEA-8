@@ -85,6 +85,9 @@
                                             <span
                                                 class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
                                                 Now!</span>
+                                        @else
+                                            <span
+                                            class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal</span>
                                         @endif
                                     </td>
 
