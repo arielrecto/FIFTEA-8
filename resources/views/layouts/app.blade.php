@@ -49,25 +49,18 @@
     @auth
         @if (auth()->user()->hasRole('customer'))
 
-            <button data-modal-target="default-modal" data-modal-toggle="default-modal"  type="button" class="absolute bottom-20 right-28 p-2 px-3 rounded-full bg-white hover:bg-pink-400 border-2 border-pink-400 group">
+            <button id="openModal" data-modal-target="chat" data-modal-toggle="chat"  type="button" class="absolute bottom-20 right-28 p-2 px-3 rounded-full bg-white hover:bg-pink-400 border-2 border-pink-400 group">
                 <i class='bx bx-message-rounded-dots text-4xl text-pink-400 group-hover:text-white'></i>
             </button>
 
-            <!-- Main modal -->
-            <div id="default-modal" tabindex="-1" aria-hidden="true"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50  w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-opacity-90"
-                x-data="conversation" x-init="getConversation({{ Auth::user()->id }})">
-                <div class="relative p-4 w-full max-w-2xl max-h-full">
+                <div id="chat-modal" class="hidden fixed top-0 right-0 z-50 p-4 w-full h-full bg-black bg-opacity-10 " x-data="conversation" x-init="getConversation({{ Auth::user()->id }})">
                     <!-- Modal content -->
-                    <div class="relative bg-white rounded-lg shadow">
+                    <div class="absolute top-6 right-6 bg-white rounded-lg shadow-lg w-96">
                         <!-- Modal header -->
-                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Terms of Service
-                            </h3>
-                            <button type="button"
+                        <div class="flex items-center justify-between p-2 border-b rounded-t dark:border-gray-300">
+                            <button id="closeModal" type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="default-modal">
+                                data-modal-hide="d-modal">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -77,19 +70,15 @@
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <div class="p-4 md:p-5 space-y-4">
+                        <div class="p-4 space-y-4">
                             <!-- component -->
 
                             <template x-if="convo !== null">
                                 <div class="flex-1 p:2 justify-between flex flex-col h-[580px]">
-                                    <div class="flex sm:items-center py-3 border-b-2 border-gray-200">
+                                    <div class="flex sm:items-center border-b-2 border-gray-200">
                                         <div class="relative flex items-center space-x-4">
-                                            {{-- <div class="relative">
-                                                <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                                                    alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
-                                            </div> --}}
                                             <div class="flex flex-col leading-tight">
-                                                <div class="text-2xl mt-1 flex items-center">
+                                                <div class="text-2xl flex items-center">
                                                     <span class="text-gray-700 mr-3" x-text="convo.participant.name"></span>
                                                 </div>
                                             </div>
@@ -115,8 +104,6 @@
                                                                         </span>
                                                                     </template>
                                                             </div>
-                                                        {{-- <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
-                                                            alt="My profile" class="w-6 h-6 rounded-full order-1"> --}}
                                                     </div>
                                                 </div>
                                             </template>
@@ -148,13 +135,13 @@
                                     <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
                                         <div class="relative flex ">
                                             <input type="text" x-model="message" placeholder="Write your message!"
-                                                class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3">
+                                                class="w-full text-sm focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-md py-3">
                                             <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
                                                 <button type="button" @click="sendMessage"
                                                     class="inline-flex items-center justify-center rounded px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
-                                                    <span class="font-bold">Send</span>
+                                                    <span class="font-bold text-sm">Send</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                        fill="currentColor" class="h-6 w-6 ml-2 transform rotate-90">
+                                                        fill="currentColor" class="h-4 w-4 ml-2 transform rotate-90">
                                                         <path
                                                             d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
                                                         </path>
@@ -203,9 +190,23 @@
                         </div>
                     </div>
                 </div>
-            </div>
         @endif
     @endauth
+
+    <script>
+        const modal = document.getElementById('chat-modal')
+        const openModal = document.getElementById('openModal')
+        const closeModal = document.getElementById('closeModal')
+
+        openModal.addEventListener('click', () => {
+            modal.classList.remove('hidden')
+        })
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden')
+        })
+
+    </script>
 
     @push('js')
         <script>
