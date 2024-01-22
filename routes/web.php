@@ -53,7 +53,7 @@ use App\Models\Conversation;
 |
 */
 
-Route::prefix('conversation')->as('conversation.')->group(function () {
+Route::prefix('/conversation')->as('conversation.')->group(function () {
     Route::get('/', [ClientConversationController::class, 'conversation'])->name('convo');
     Route::post('/create', [ClientConversationController::class, 'create'])->name('create');
     Route::post('/{conversation}/message/send', [ClientConversationController::class, 'sendMessage'])->name('message.send');

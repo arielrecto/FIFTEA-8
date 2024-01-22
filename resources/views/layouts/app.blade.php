@@ -218,7 +218,7 @@
                 async getConversation() {
                     try {
 
-                        const response = await axios.get(`conversation`);
+                        const response = await axios.get(`/conversation`);
 
                         this.convo = {
                             ...response.data.conversation

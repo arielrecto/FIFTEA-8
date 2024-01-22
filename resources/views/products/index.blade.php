@@ -49,8 +49,8 @@
                                             disabled />
                                     </template>
                                     <p>
-                                        <span x-text="product.cart_avg_rate"></span>
-                                        <span>out of 5</span>
+                                        <span x-text="product.cart_avg_rate === null ? 0 : product.cart_avg_rate"></span>
+                                        <span>/5</span>
                                     </p>
 
 
