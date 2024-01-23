@@ -86,6 +86,12 @@
                     </tbody>
                 </table>
             </div>
+            <div class="w-fit pt-20">
+                <div class="flex flex-col space-y-8">
+                    <p class="text-sm">Prepared By:</p>
+                    <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                </div>
+            </div>
 
         </div>
     </div>

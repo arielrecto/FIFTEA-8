@@ -98,6 +98,12 @@
                         @endif
                     </tbody>
                 </table>
+                <div class="prepared-by hidden w-fit pt-20">
+                    <div class="flex flex-col space-y-8">
+                        <p class="text-sm">Prepared By:</p>
+                        <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                    </div>
+                </div>
                 <div class="w-full py-4">
                     {{ $products->links() }}
                 </div>
@@ -113,12 +119,14 @@
         const actionHead = document.querySelector(".action-head");
         const actionBody = document.querySelectorAll(".action-body");
         const printLogo = document.querySelector(".print-logo");
+        const preparedBy = document.querySelector(".prepared-by");
 
         printBtn.addEventListener("click", () => {
             elements.forEach((el) => {
                 el.classList.add("hidden");
                 el.classList.remove("container");
             });
+            preparedBy.classList.remove("hidden");
             printLogo.classList.replace("hidden", 'flex');
             actionHead.classList.add("hidden");
             actionBody.forEach((el) => {
@@ -132,10 +140,13 @@
             printPadding.classList.remove("md:px-10");
             background.classList.remove("bg-gray-50");
             printBtn.classList.add("hidden");
+
             window.print();
+
             elements.forEach((el) => {
                 el.classList.remove("hidden");
             });
+            preparedBy.classList.add("hidden");
             printLogo.classList.replace("flex", 'hidden');
             actionHead.classList.remove("hidden");
             actionBody.forEach((el) => {

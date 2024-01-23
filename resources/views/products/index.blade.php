@@ -41,23 +41,16 @@
                                 </h2>
                                 <h1 class="title-font text-xl font-bold text-gray-900" x-text="product.name">
                                 </h1>
-                                <div class="rating rating-xs mb-3">
-
+                                <div class="rating rating-xs mb-3 flex items-center space-x-2">
                                     <template x-for="i in 5">
                                         <input type="radio" name="rating-5"
                                             :class="`mask mask-star-2 ${i <= product.cart_avg_rate ? 'bg-yellow-400' : '' }`"
                                             disabled />
                                     </template>
-                                    <p>
+                                    <p class="text-sm text-blue-600">
                                         <span x-text="product.cart_avg_rate === null ? 0 : product.cart_avg_rate"></span>
                                         <span>/5</span>
                                     </p>
-
-
-                                    {{-- <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled />
-                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
-                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/>
-                                    <input type="radio" name="rating-5" class="mask mask-star-2 bg-yellow-400" disabled/> --}}
                                 </div>
                                 <div class="flex items-center justify-between flex-wrap ">
                                     <p class="font-sans font-bold">
