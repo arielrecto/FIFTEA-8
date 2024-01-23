@@ -12,7 +12,7 @@ AOS.init({
 });
 
 Alpine.data("starRating", () => ({
-    rating: 0,
+    rating: 1.0,
     hoverRating: 0,
     ratings: [
         { amount: 1, label: "Terrible" },

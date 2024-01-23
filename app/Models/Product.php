@@ -37,4 +37,7 @@ class Product extends Model
     public function cart(){
         return $this->hasMany(CartProduct::class);
     }
+    public function rating(){
+        return $this->hasMany(ProductFeedback::class);
+    }
 }

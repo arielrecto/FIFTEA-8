@@ -44,11 +44,11 @@
                                 <div class="rating rating-xs mb-3 flex items-center space-x-2">
                                     <template x-for="i in 5">
                                         <input type="radio" name="rating-5"
-                                            :class="`mask mask-star-2 ${i <= product.cart_avg_rate ? 'bg-yellow-400' : '' }`"
+                                            :class="`mask mask-star-2 ${i <= product.rating_avg_rate ? 'bg-yellow-400' : '' }`"
                                             disabled />
                                     </template>
                                     <p class="text-sm text-blue-600">
-                                        <span x-text="product.cart_avg_rate === null ? 0 : product.cart_avg_rate"></span>
+                                        <span x-text="product.rating_avg_rate === null ? 0 : product.rating_avg_rate.toFixed(1)"></span>
                                         <span>/5</span>
                                     </p>
                                 </div>

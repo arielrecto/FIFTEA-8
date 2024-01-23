@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Feedback;
+use App\Models\ProductFeedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,12 +43,6 @@ class FeedbackController extends Controller
 
         $cart = Cart::find($request->cart_id);
 
-        $products = $cart->products;
-        collect($products)->map(function ($product) use ($request){
-            $product->update([
-                'rate' => $request->rate
-            ]);
-        });
 
         $user = Auth::user();
 
@@ -56,13 +51,25 @@ class FeedbackController extends Controller
         ]);
 
 
-        Feedback::create([
+       $feedback = Feedback::create([
             'message' => $request->message,
             'user_id' => $user->id,
             'rate' => $request->rate,
             'is_display' => true
         ]);
 
+        $products = $cart->products;
+        collect($products)->map(function ($product) use ($request, $feedback){
+            $product->update([
+                'rate' => $request->rate
+            ]);
+
+            ProductFeedback::create([
+                'product_id' => $product->id,
+                'feedback_id' => $feedback->id,
+                'rate' => $request->rate
+            ]);
+        });
 
 
         return back()->with(['message' => 'Feedback is Submitted']);

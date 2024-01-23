@@ -22,4 +22,7 @@ class Feedback extends Model
 
         return $this->belongsTo(User::class);
     }
+    public function productFeedback(){
+        return $this->hasOne(ProductFeedback::class);
+    }
 }
