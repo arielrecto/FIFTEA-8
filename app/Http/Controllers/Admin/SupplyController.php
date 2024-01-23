@@ -10,6 +10,8 @@ use App\Actions\Admin\Supply\GetSupplyAction;
 use App\Actions\Admin\Supply\StoreSupplyAction;
 use App\Actions\Admin\Supply\UpdateSupplyAction;
 use App\Http\Requests\Admin\Supply\StoreSupplyRequest;
+use App\Models\SupplyHistory;
+use Illuminate\Support\Facades\Auth;
 
 class SupplyController extends Controller
 {
@@ -68,7 +70,9 @@ class SupplyController extends Controller
     {
         $supply = Supply::find($id);
 
-        return view('users.admin.Inventory.show', compact(['supply']));
+        $stocks = $supply->history;
+
+        return view('users.admin.Inventory.show', compact(['supply', 'stocks']));
     }
 
     /**
@@ -134,5 +138,31 @@ class SupplyController extends Controller
 
 
        return response(['supplies' => $supplies], 200);
+    }
+    public function addStock(Request $request, string $id){
+
+
+        $request->validate([
+            'expiration_date' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        $supply = Supply::find($id);
+
+        $user = Auth::user();
+
+        SupplyHistory::create([
+            'adjusted_by' => $user->name,
+            'adjustment_quantity' => $request->quantity,
+            'expiration_date' => $request->expiration_date,
+            'quantity' => $request->quantity + $supply->quantity,
+            'supply_id' => $supply->id
+        ]);
+
+        $supply->update([
+            'quantity' =>  $request->quantity + $supply->quantity,
+        ]);
+
+        return to_route('admin.supply.index');
     }
 }

@@ -27,4 +27,7 @@ class Supply extends Model
     public function types() {
         return $this->belongsToMany(Type::class)->withPivot(['price']);
     }
+    public function history(){
+        return $this->hasMany(SupplyHistory::class);
+    }
 }

@@ -1,9 +1,31 @@
 <x-panel>
-    <div class="pt-8 px-4">
-        <a href="{{ route('admin.supply.index') }}" class="rounded border border-gray-200 hover:bg-gray-200 px-4 py-1 mb-4 flex items-center w-fit text-gray-700 text-sm">
-            <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
-            back
-        </a>
+    <div class="pt-8 px-4" x-data="{toggle : false}">
+        <div class="flex justify-between">
+            <a href="{{ route('admin.supply.index') }}" class="rounded border border-gray-200 hover:bg-gray-200 px-4 py-1 mb-4 flex items-center w-fit text-gray-700 text-sm">
+                <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
+                back
+            </a>
+            <button class="btn btn-primary" @click="toggle = !toggle" x-text="!toggle ? 'Add' : 'X'"></button>
+        </div>
+        <form method="POST" action="{{route('admin.supply.add.stock', ['supply' => $supply->id])}}" class="flex flex-col gap-2" x-show="toggle" x-transition.duration.700ms x-cloak>
+            <h1 class="font-bold text-xl">Add Stocks {{$supply->name}}</h1>
+            @csrf
+            {{-- <div class="flex flex-col gap-2">
+                <label for="">Date Added</label>
+                <input type="date" name="date_added">
+            </div> --}}
+            <div class="flex flex-col gap-2">
+                <label for="">Expiration Date</label>
+                <input type="date" name="expiration_date">
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="">Quantity</label>
+                <input type="number" name="quantity">
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+
+
         <div class="mb-2">
             <h1 class="text-2xl font-semibold">History</h1>
         </div>
@@ -18,13 +40,21 @@
                 </tr>
             </thead>
             <tbody>
+
+                @forelse ($stocks as $stock)
                 <tr>
-                    <td class="py-2 px-4 border-b border-r">2024-01-23</td>
-                    <td class="py-2 px-4 border-b border-r">John Doe</td>
-                    <td class="py-2 px-4 border-b border-r">+10</td>
-                    <td class="py-2 px-4 border-b border-r">2024-02-23</td>
-                    <td class="py-2 px-4 border-b">100</td>
+                    <td class="py-2 px-4 border-b border-r">{{date('F d, Y', strtotime($stock->created_at))}}</td>
+                    <td class="py-2 px-4 border-b border-r">{{$stock->adjusted_by}}</td>
+                    <td class="py-2 px-4 border-b border-r">+{{$stock->adjustment_quantity}}</td>
+                    <td class="py-2 px-4 border-b border-r">{{$stock->expiration_date}}</td>
+                    <td class="py-2 px-4 border-b">{{$stock->quantity}}</td>
                 </tr>
+                @empty
+                <tr>
+                    <td>No Supply History</td>
+                </tr>
+                @endforelse
+
             </tbody>
         </table>
     </div>
