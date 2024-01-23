@@ -1,9 +1,12 @@
 <x-panel>
-    <div class="w-full flex flex-col pt-8 md:p-4 relative">
-        <div class="md:px-4">
+    <div class="w-full flex flex-col pt-8 md:px-4 relative">
+        <a href="{{ route('admin.products.index') }}" class="rounded border border-gray-200 hover:bg-gray-200 px-4 py-1 mb-4 flex items-center w-fit text-gray-700 text-sm">
+            <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
+            back
+        </a>
+        <div class="">
             <div class="flex flex-col border-b border-gray-400 pb-2">
                 <h1 class="text-2xl font-semibold text-sbgreen">Product </h1>
-                {{-- <p class="text-sm">You are about to add a new product</p> --}}
             </div>
         </div>
         <div class="flex flex-col gap-2">
@@ -127,7 +130,7 @@
 
                             @csrf
                             <input type="hidden" x-model="JSON.stringify(supplies)" name="supply">
-                            <button class="btn btn-sm btn-accent">Save</button>
+                            <button class="px-4 py-2 text-white text-sm bg-blue-700 rounded">Save</button>
                         </form>
                     </div>
                 </div>

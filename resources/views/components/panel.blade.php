@@ -48,7 +48,7 @@
 
         <x-admin-header />
 
-        <div class="print-padding w-full h-full flex container mx-auto px-5 md:px-10 pt-16">
+        <div class="print-padding w-full h-full flex container mx-auto px-5  pt-16">
             <div class="print-hidden hidden md:block w-1/6 h-full sticky top-0">
                 <x-admin-sidebar />
             </div>

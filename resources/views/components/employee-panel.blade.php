@@ -47,7 +47,7 @@
 
         <x-employee-header />
 
-        <div class="w-full h-full flex container mx-auto px-5 md:px-10 lg:px-10 relative">
+        <div class="w-full h-full flex container mx-auto px-5 relative">
             <div class="hidden md:block w-1/6 h-full sticky top-0">
                 <x-employee-siderbar/>
             </div>

@@ -108,6 +108,9 @@
                                                 <i class='bx bxs-edit-alt text-lg text-blue-600'></i>
                                             </a>
 
+                                            <a href="{{ route('admin.supply.show', ['supply' => $supply->id]) }}">
+                                                <i class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

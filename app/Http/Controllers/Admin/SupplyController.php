@@ -66,7 +66,9 @@ class SupplyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $supply = Supply::find($id);
+
+        return view('users.admin.Inventory.show', compact(['supply']));
     }
 
     /**
