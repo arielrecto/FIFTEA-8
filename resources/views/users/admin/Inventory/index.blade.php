@@ -1,19 +1,20 @@
 <x-panel>
     <section class="w-full flex flex-col items-start md:p-4 pt-6 space-y-2">
-        {{-- <div class="w-full flex items-center justify-between py-2">
-            <h1 class="font-medium text-2xl ">SUPPLIES</h1>
-            <div class="">
-                <a href="{{ route('admin.supply.create') }}"
-                    class="flex items-center px-4 py-2 rounded text-white bg-sbgreen text-sm">
-                    <i class='bx bx-plus text-lg mr-2 text-white'></i>
-                    Add Supply
-                </a>
-            </div>
-        </div> --}}
 
-        <div class="w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
+        <div class="print-logo hidden items-center justify-start space-x-6 mb-4">
+            <div class="flex items-center space-x-2">
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="w-28 h-28">
+            </div>
+            <div class="flex flex-col items-start justify-start">
+                <p class="text-2xl font-semibold">Fif'Tea-8</p>
+                <span class="text-sm">Brgy. San Nicolas III, Bacoor City</span>
+                <span class="text-sm">shop@fiftea8.com</span>
+                <span class="text-sm">09123456789</span>
+            </div>
+        </div>
+        <div class="print-head w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
             <h1 class="font-medium text-white text-xl">SUPPLIES</h1>
-            <div class="flex items-center space-x-4">
+            <div class="print-hidden flex items-center space-x-4">
                 <form action="{{ route('admin.supply.index') }}" class="flex items-center space-x-3" method="GET">
                     <input type="text"
                         class="text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white"
@@ -32,6 +33,10 @@
                     <i class='bx bxs-edit-alt text-base mr-2 text-sbgreen'></i>
                     Adjust Stock Staus
                 </a>
+                <a id="print-btn" class="flex items-center rounded border border-white px-4 py-2 text-sm text-white cursor-pointer">
+                    <i class='bx bx-printer text-white mr-2'></i>
+                    Print
+                </a>
             </div>
         </div>
 
@@ -39,7 +44,7 @@
             <div class="w-full overflow-x-auto">
                 <table class="w-full border-collapse border border-gray-400 ">
                     <thead>
-                        <tr class="bg-sblight ">
+                        <tr class="print-head bg-sblight ">
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">NAME
                             </th>
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">UNIT
@@ -56,7 +61,7 @@
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">STOCK
                                 STATUS
                             </th>
-                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">ACTIONS
+                            <th class="print-hidden poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">ACTIONS
                             </th>
                         </tr>
                     </thead>
@@ -105,7 +110,7 @@
                                     </td>
 
 
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 ">
+                                    <td class="print-hidden poppins text-sm border border-gray-400 px-4 py-2 ">
                                         <div class="flex items-center justify-center space-x-2">
                                             <form
                                                 action="{{ route('admin.supply.destroy', ['supply' => $supply->id]) }}"
@@ -137,10 +142,70 @@
                         @endif
                     </tbody>
                 </table>
+                <div class="prepared-by hidden w-fit pt-20">
+                    <div class="flex flex-col space-y-8">
+                        <p class="text-sm">Prepared By:</p>
+                        <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                    </div>
+                </div>
                 <div class="py-4">
                     {{-- {{ $products->links() }} --}}
                 </div>
             </div>
         </div>
     </section>
+    <script>
+        const elements = document.querySelectorAll(".print-hidden");
+        const printBtn = document.getElementById("print-btn");
+        const printPadding = document.querySelector(".print-padding");
+        const background = document.querySelector(".background");
+        const printHead = document.querySelectorAll(".print-head");
+        const actionHead = document.querySelector(".action-head");
+        const actionBody = document.querySelectorAll(".action-body");
+        const printLogo = document.querySelector(".print-logo");
+        const preparedBy = document.querySelector(".prepared-by");
+
+        printBtn.addEventListener("click", () => {
+            elements.forEach((el) => {
+                el.classList.add("hidden");
+                el.classList.remove("container");
+            });
+            preparedBy.classList.remove("hidden");
+            printLogo.classList.replace("hidden", 'flex');
+            actionBody.forEach((el) => {
+                el.classList.add("hidden");
+            });
+            printHead.forEach((el) => {
+                el.classList.remove("bg-sblight");
+                el.classList.add("bg-gray-700");
+            });
+
+            printPadding.classList.remove("pt-16");
+            printPadding.classList.remove("px-5");
+            printPadding.classList.remove("container");
+            printPadding.classList.remove("md:px-10");
+            background.classList.remove("bg-gray-50");
+
+            window.print();
+
+            elements.forEach((el) => {
+                el.classList.remove("hidden");
+            });
+            preparedBy.classList.add("hidden");
+            printLogo.classList.replace("flex", 'hidden');
+            actionBody.forEach((el) => {
+                el.classList.remove("hidden");
+            });
+            printHead.forEach((el) => {
+                el.classList.remove("bg-gray-700");
+                el.classList.add("bg-sblight");
+            });
+
+            printPadding.classList.add("pt-16");
+            printPadding.classList.add("px-5");
+            printPadding.classList.add("container");
+            printPadding.classList.add("md:px-10");
+            background.classList.add("bg-gray-50");
+        });
+    </script>
 </x-panel>
