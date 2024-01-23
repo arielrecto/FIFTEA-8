@@ -87,11 +87,13 @@
                                         <div class="flex flex-col space-y-1">
                                             <span
                                                 class="w-full border-b border-dashed border-gray-200 text-xs font-semibold">Extra</span>
-                                            <div class="w-full flex items-center justify-between ">
-                                                <span class="text-xs" x-text="`${item.addon.name}`"></span>
-                                                <span class="text-xs"
-                                                    x-text="`&#8369; ${item.addon.pivot.price}`"></span>
-                                            </div>
+                                            <template x-for="extra in item.addon">
+                                                <div class="w-full flex items-center justify-between ">
+                                                    <span class="text-xs" x-text="`${extra.name}`"></span>
+                                                    <span class="text-xs"
+                                                        x-text="`&#8369; ${extra.pivot.price}`"></span>
+                                                </div>
+                                            </template>
                                         </div>
                                     </template>
 
@@ -100,7 +102,7 @@
                                         <span class="text-xs">&#8369; <span x-text="item.total"></span></span>
                                     </div>
 
-                                    <template x-if="item.addon !== null">
+                                    {{-- <template x-if="item.addon !== null">
                                         <p class="text-sm">
                                             <span class="font-semibold">Extra : </span>
                                         <p href="">
@@ -109,7 +111,7 @@
                                                 class="text-xs"></span>
                                         </p>
                                         </p>
-                                    </template>
+                                    </template> --}}
 
                                 </div>
 
@@ -137,7 +139,8 @@
                     <!-- Modal content -->
                     <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
                         <!-- Modal header -->
-                        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                        <div
+                            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                             <h3 class="text-lg font-semibold text-gray-900">
                                 Customize Order
                             </h3>
@@ -198,20 +201,26 @@
                                                         </option>
                                                     </template>
                                                 </select>
-                                                <input type="hidden" name="size" x-model="size" >
+                                                <input type="hidden" name="size" x-model="size">
                                             </div>
                                         </div>
                                         <div class="w-full flex items-start space-x-8">
-                                            <div class="w-full flex flex-col space-y-2">
+                                            <div class="w-full flex flex-col space-y-2" x-init="initAddOns({{ $supplies }})">
                                                 <span class="text-base font-semibold">Extra</span>
 
                                                 <template x-for="addon in addons">
                                                     <div class="w-fit flex items-center space-x-2">
-                                                        <input type="checkbox" class="" @change="selectedAddons($event, addon)">
-                                                        <label class="text-sm cursor-pointer"><span x-text="addon.name"></span> <span class="text-xs text-blue-500">(&#8369;<span x-text="addon.pivot.price"></span>)</span></label>
+                                                        <input type="checkbox" class=""
+                                                            @change="selectedAddons($event, addon)">
+                                                        {{-- <input type="checkbox" class="" @change="selectedAddons($event, addon)"> --}}
+                                                        <label class="text-sm cursor-pointer"><span
+                                                                x-text="addon.name"></span> <span
+                                                                class="text-xs text-blue-500">(&#8369;<span
+                                                                    x-text="addon.pivot.price"></span>)</span></label>
                                                     </div>
                                                 </template>
-                                                <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
+                                                <input type="hidden" name="extras"
+                                                    x-model="JSON.stringify(selectedAddonsData)">
 
                                             </div>
                                             <div class="w-full flex flex-col space-y-1">
@@ -458,6 +467,7 @@
                     sugar_level: null,
                     addon: null,
                     size: null,
+                    selectedAddonsData: [],
                     initSetSizes(sizes) {
                         const data = JSON.parse(sizes);
                         console.log(data);
@@ -515,7 +525,7 @@
                         }
 
 
-                        if(this.addon !== addon && this.addon !== null){
+                        if (this.addon !== addon && this.addon !== null) {
                             this.price = this.price - parseInt(this.addon.pivot.price)
                         }
 
@@ -532,7 +542,7 @@
                             total: this.total,
                             price: this.price,
                             sugar_level: this.sugar_level,
-                            addon: this.addon,
+                            addon: this.selectedAddonsData,
                             size: this.size,
                             quantity: this.quantity
                         }
@@ -628,6 +638,24 @@
                             style: 'currency',
                             currency: 'PHP'
                         });;
+                    },
+                    selectedAddons(e, data) {
+                        const isChecked = e.target.checked;
+                        if (isChecked) {
+                            this.selectedAddonsData = [...this.selectedAddonsData, data]
+
+                            console.log(this.selectedAddonsData);
+
+                            this.price = this.price + parseInt(data.pivot.price);
+                            this.totalPrice()
+                            return;
+                        }
+
+
+                        this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+                        this.price = this.price - parseInt(data.pivot.price);
+                        console.log(this.selectedAddonsData);
+                        this.totalPrice()
                     },
                     async sendTransaction() {
                         try {
