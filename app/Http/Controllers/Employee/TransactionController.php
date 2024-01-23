@@ -43,6 +43,7 @@ class TransactionController extends Controller
     {
 
 
+
         $randomNumber = random_int(100000, 999999);
         $num_order = 'ORDER' . $randomNumber;
         $num_transaction = 'TRSCTN' . $randomNumber;
@@ -78,6 +79,19 @@ class TransactionController extends Controller
             $size = $product['size']['name'];
 
             $quantity = $product['quantity'];
+
+            $c_extras = $product['addon'];
+
+
+            if (!empty($c_extras)){
+                collect($c_extras)->map(function ($extra) {
+                    $addon = Supply::find($extra['id']);
+                    $addon->update([
+                        'quantity' => $addon->quantity - 1
+                    ]);
+                });
+            }
+
 
 
             $supplies->map(function($supply) use ($size, $quantity) {
