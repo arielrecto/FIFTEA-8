@@ -45,10 +45,11 @@
                             </th>
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">QUANTITY
                             </th>
-                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">EXPIRY
+                            {{-- <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">EXPIRY
                                 DATE
-                            </th>
-                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">STOCK STATUS
+                            </th> --}}
+                            <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">STOCK
+                                STATUS
                             </th>
                             <th class="poppins text-white text-sm border border-gray-400 px-4 py-2 text-center">ACTIONS
                             </th>
@@ -72,21 +73,33 @@
                                         {{ $supply->quantity }}
                                     </td>
 
-                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
+                                    {{-- <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         @php
                                             $formattedDate = date('M. j, Y', strtotime($supply->expiration_date));
                                         @endphp
                                         {{ $formattedDate }}
-                                    </td>
+                                    </td> --}}
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         @if ($supply->quantity < 10)
                                             <span
-                                                class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
-                                                Now!</span>
-                                        @else
+                                                class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Critical
+                                                Stock</span>
+                                        @elseif ($supply->quantity > 10 && $supply->quantity < 20)
                                             <span
-                                            class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal</span>
+                                                class="bg-orange-200 text-Orange-500 text-xs px-3 py-2 ml-2 rounded">Low
+                                                Stock</span>
+                                        @elseif ($supply->quantity > 20 && $supply->quantity <= 100)
+                                            <span
+                                                class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal
+                                                Stock</span>
+                                        @elseif ($supply->quantity > 100)
+                                            <span
+                                                class="bg-yellow-200 text-yellow-800 text-xs px-3 py-2 ml-2 rounded">Over
+                                                Stock</span>
+                                        @elseif ($supply->quantity == 0)
+                                            <span class="bg-gray-200 text-Gray-500 text-xs px-3 py-2 ml-2 rounded">No
+                                                Stock</span>
                                         @endif
                                     </td>
 
@@ -109,7 +122,8 @@
                                             </a>
 
                                             <a href="{{ route('admin.supply.show', ['supply' => $supply->id]) }}">
-                                                <i class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
+                                                <i
+                                                    class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
                                             </a>
                                         </div>
                                     </td>
