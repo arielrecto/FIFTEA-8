@@ -47,7 +47,7 @@
                     <tr>
                         <td class="py-2 px-4 border-b border-r">{{ date('F d, Y', strtotime($stock->created_at)) }}</td>
                         <td class="py-2 px-4 border-b border-r">{{ $stock->adjusted_by }}</td>
-                        <td class="py-2 px-4 border-b border-r">+{{ $stock->adjustment_quantity }} </td>
+                        <td class="py-2 px-4 border-b border-r">{{ $stock->adjustment_quantity }} </td>
                         <td class="py-2 px-4 border-b border-r">{{ date('F d, Y', strtotime($stock->expiration_date)) }}
                         </td>
                         <td class="py-2 px-4 border-b">{{ $stock->quantity }}</td>

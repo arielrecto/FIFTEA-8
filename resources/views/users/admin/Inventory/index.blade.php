@@ -31,7 +31,7 @@
                 <a href="{{ route('admin.stock-limit.index') }}"
                     class="flex items-center px-4 py-2 bg-white rounded text-sbgreen text-sm">
                     <i class='bx bxs-edit-alt text-base mr-2 text-sbgreen'></i>
-                    Adjust Stock Staus
+                    Adjust Stock Status
                 </a>
                 <a id="print-btn" class="flex items-center rounded border border-white px-4 py-2 text-sm text-white cursor-pointer">
                     <i class='bx bx-printer text-white mr-2'></i>
@@ -91,15 +91,15 @@
                                     </td> --}}
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        @if ($supply->quantity < $limit->low)
+                                        @if ($supply->quantity < $limit?->low)
                                             <span
                                                 class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Low
                                                 Stock</span>
-                                        @elseif ($supply->quantity > $limit->low && $supply->quantity <= $limit->high)
+                                        @elseif ($supply->quantity > $limit?->low && $supply->quantity <= $limit?->high)
                                             <span
                                                 class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal
                                                 Stock</span>
-                                        @elseif ($supply->quantity > $limit->high)
+                                        @elseif ($supply->quantity > $limit?->high)
                                             <span
                                                 class="bg-yellow-200 text-yellow-800 text-xs px-3 py-2 ml-2 rounded">Over
                                                 Stock</span>

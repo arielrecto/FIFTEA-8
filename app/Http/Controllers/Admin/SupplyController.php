@@ -71,7 +71,7 @@ class SupplyController extends Controller
     {
         $supply = Supply::find($id);
 
-        $stocks = $supply->history;
+        $stocks = $supply->history()->latest()->get();
 
         return view('users.admin.Inventory.show', compact(['supply', 'stocks']));
     }
@@ -154,9 +154,9 @@ class SupplyController extends Controller
 
         SupplyHistory::create([
             'adjusted_by' => $user->name,
-            'adjustment_quantity' => $request->quantity,
+            'adjustment_quantity' => $supply->quantity,
             'expiration_date' => $request->expiration_date,
-            'quantity' => $request->quantity + $supply->quantity,
+            'quantity' => $request->quantity,
             'supply_id' => $supply->id
         ]);
 
