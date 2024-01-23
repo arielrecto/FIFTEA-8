@@ -74,9 +74,10 @@
                                         <div x-data="starRating">
                                             <template x-for="i in 5">
                                                 <input type="radio" name="rating-5"
-                                                    :class="`mask mask-star-2 ${i <= {{ $product->cart_avg_rate ?? 1 }} ? 'bg-yellow-400' : '' }`"
+                                                    :class="`mask mask-star-2 ${i <= {{ $product->rating_avg_rate ?? 1 }} ? 'bg-yellow-400' : '' }`"
                                                     disabled />
                                             </template>
+                                            <span>{{number_format($product->rating_avg_rate, 1)}}/5</span>
                                         </div>
                                         <div class="flex space-x-3 items-center justify-end ">
                                             <p class="text-sm font-bold">&#8369; {{ $product->price }}</p>
