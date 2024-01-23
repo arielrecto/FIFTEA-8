@@ -91,11 +91,11 @@
                                                 Stock</span>
                                         @elseif ($supply->quantity > 20 && $supply->quantity <= 100)
                                             <span
-                                                class="bg-yellow-200 text-yellow-500 text-xs px-3 py-2 ml-2 rounded">Normal
+                                                class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal
                                                 Stock</span>
                                         @elseif ($supply->quantity > 100)
                                             <span
-                                                class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Over
+                                                class="bg-yellow-200 text-yellow-800 text-xs px-3 py-2 ml-2 rounded">Over
                                                 Stock</span>
                                         @elseif ($supply->quantity == 0)
                                             <span class="bg-gray-200 text-Gray-500 text-xs px-3 py-2 ml-2 rounded">No
