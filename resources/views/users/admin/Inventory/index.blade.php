@@ -82,11 +82,19 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
                                         @if ($supply->quantity < 10)
                                             <span
-                                                class="bg-orange-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Restock
-                                                Now!</span>
+                                                class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Critical Stock</span>
+                                        @elseif ($supply->quantity > 10 && $supply->quantity < 20)
+                                            <span
+                                            class="bg-orange-200 text-Orange-500 text-xs px-3 py-2 ml-2 rounded">Low Stock</span>
+                                        @elseif ($supply->quantity > 20 && $supply->quantity < 100)
+                                            <span
+                                            class="bg-yellow-200 text-yellow-500 text-xs px-3 py-2 ml-2 rounded">Normal Stock</span>
+                                        @elseif ($supply->quantity > 100)
+                                            <span
+                                            class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Over Stock</span>
                                         @else
                                             <span
-                                            class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal</span>
+                                            class="bg-gray-200 text-Gray-500 text-xs px-3 py-2 ml-2 rounded">No Stock</span>
                                         @endif
                                     </td>
 
