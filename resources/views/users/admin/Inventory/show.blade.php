@@ -6,7 +6,7 @@
                 <i class='bx bx-left-arrow-alt text-2xl mr-2'></i>
                 back
             </a>
-            <button class="h-fit px-4 py-2 text-white text-sm rounded bg-blue-700" @click="toggle = !toggle" x-text="!toggle ? 'Add' : 'X'"></button>
+            <button class="h-fit px-4 py-2 text-white text-sm rounded bg-green-700" @click="toggle = !toggle" x-text="!toggle ? 'Add' : 'X'"></button>
         </div>
         <form method="POST" action="{{ route('admin.supply.add.stock', ['supply' => $supply->id]) }}"
             class="flex flex-col gap-2" x-show="toggle" x-transition.duration.700ms x-cloak>
@@ -24,7 +24,7 @@
                 <label for="">Quantity</label>
                 <input type="number" name="quantity">
             </div>
-            <button class="px-4 py-2 text-white text-sm rounded bg-blue-700">Submit</button>
+            <button class="px-4 py-2 text-white text-sm rounded bg-green-700">Submit</button>
         </form>
 
 
