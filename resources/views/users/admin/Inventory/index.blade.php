@@ -89,7 +89,7 @@
                                             <span
                                                 class="bg-orange-200 text-Orange-500 text-xs px-3 py-2 ml-2 rounded">Low
                                                 Stock</span>
-                                        @elseif ($supply->quantity > 20 && $supply->quantity < 100)
+                                        @elseif ($supply->quantity > 20 && $supply->quantity <= 100)
                                             <span
                                                 class="bg-yellow-200 text-yellow-500 text-xs px-3 py-2 ml-2 rounded">Normal
                                                 Stock</span>
