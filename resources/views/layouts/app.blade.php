@@ -49,7 +49,7 @@
     @auth
         @if (auth()->user()->hasRole('customer'))
             <button id="openModal" data-modal-target="chat" data-modal-toggle="chat" type="button"
-                class="absolute bottom-20 right-20 p-2 px-3 rounded-full bg-white hover:bg-pink-400 border-2 border-pink-400 group">
+                class="absolute bottom-20 right-14 p-2 px-3 rounded-full bg-white hover:bg-pink-400 border-2 border-pink-400 group">
                 <i class='bx bx-message-rounded-dots text-4xl text-pink-400 group-hover:text-white'></i>
             </button>
 
