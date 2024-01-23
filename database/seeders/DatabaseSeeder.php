@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             AdminSeeder::class,
             HeroContentSeeder::class,
+            StockLimitSeeder::class,
         ]);
 
 

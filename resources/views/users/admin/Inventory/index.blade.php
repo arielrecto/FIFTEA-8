@@ -27,6 +27,11 @@
                     <i class='bx bx-plus text-base mr-2 text-sbgreen'></i>
                     Add Supply
                 </a>
+                <a href="{{ route('admin.stock-limit.index') }}"
+                    class="flex items-center px-4 py-2 bg-white rounded text-sbgreen text-sm">
+                    <i class='bx bxs-edit-alt text-base mr-2 text-sbgreen'></i>
+                    Adjust Stock Staus
+                </a>
             </div>
         </div>
 
@@ -81,19 +86,15 @@
                                     </td> --}}
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        @if ($supply->quantity < 10)
+                                        @if ($supply->quantity < $limit->low)
                                             <span
-                                                class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Critical
+                                                class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Low
                                                 Stock</span>
-                                        @elseif ($supply->quantity > 10 && $supply->quantity < 20)
-                                            <span
-                                                class="bg-orange-200 text-Orange-500 text-xs px-3 py-2 ml-2 rounded">Low
-                                                Stock</span>
-                                        @elseif ($supply->quantity > 20 && $supply->quantity <= 100)
+                                        @elseif ($supply->quantity > $limit->low && $supply->quantity <= $limit->high)
                                             <span
                                                 class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal
                                                 Stock</span>
-                                        @elseif ($supply->quantity > 100)
+                                        @elseif ($supply->quantity > $limit->high)
                                             <span
                                                 class="bg-yellow-200 text-yellow-800 text-xs px-3 py-2 ml-2 rounded">Over
                                                 Stock</span>

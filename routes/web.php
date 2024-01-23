@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\StockLimitController;
 use App\Models\Cart;
 use App\Models\Type;
 use App\Models\User;
@@ -163,6 +164,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/conversation/json', [Conversation::class, 'conversationJson']);
             Route::get('/conversation/{conversation}/json', [conversationController::class, 'getConversationJson']);
             Route::post('/conversation/{conversation}/message/send', [conversationController::class, 'sendMessage']);
+        });
+
+         //================================================================
+        // route for the stock limit
+        //================================================================
+        Route::prefix('stock-limit')->as('stock-limit.')->group(function () {
+            Route::get('/', [StockLimitController::class, 'index'])->name('index');
+            Route::post('/{limit}/update', [StockLimitController::class, 'update'])->name('update');
         });
 
 

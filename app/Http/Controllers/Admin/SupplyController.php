@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Type;
 use App\Models\Supply;
+use App\Models\StockLimit;
 use Illuminate\Http\Request;
+use App\Models\SupplyHistory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Actions\Admin\Supply\GetSupplyAction;
 use App\Actions\Admin\Supply\StoreSupplyAction;
 use App\Actions\Admin\Supply\UpdateSupplyAction;
 use App\Http\Requests\Admin\Supply\StoreSupplyRequest;
-use App\Models\SupplyHistory;
-use Illuminate\Support\Facades\Auth;
 
 class SupplyController extends Controller
 {
@@ -24,13 +25,13 @@ class SupplyController extends Controller
 
          $filter = $request->filter;
 
+         $limit = StockLimit::first();
+
          if($filter !== null){
             $supplies = Supply::where('name', 'like', '%'.  $filter . '%')->orWhere('size' , 'like', '%' .  $filter . '%')->get();
          }
 
-
-
-         return view('users.admin.Inventory.index', compact(['supplies']));
+         return view('users.admin.Inventory.index', compact(['supplies', 'limit']));
     }
 
     /**
@@ -163,6 +164,6 @@ class SupplyController extends Controller
             'quantity' =>  $request->quantity + $supply->quantity,
         ]);
 
-        return to_route('admin.supply.index');
+        return back()->with(['success' => 'Stock Added!']);
     }
 }
