@@ -212,7 +212,8 @@
                                 <div class="flex flex-col space-y-4 py-2" x-show="toggle" x-transition.duration.700ms>
                                     <div class="w-full flex justify-center">
                                         @if ($gcash !== null)
-                                            <img src="{{ asset('storage/gcash/' . $gcash->image) }}"
+                                            <img  src="{{route('media.gcash', ['name' => $gcash->image])}}"
+                                            {{-- src="{{ asset('storage/gcash/' . $gcash->image) }}" --}}
                                                 alt="" class="object object-center w-1/2 h-1/2">
                                         @else
                                             <img src="{{ asset('images/QRCODE.jpg') }}" alt=""
