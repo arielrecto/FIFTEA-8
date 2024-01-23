@@ -9,7 +9,7 @@
                 <p class="abril text-5xl ">What our <span class="text-sbgreen">Customers say</span> about us</p>
             </div>
 
-            <div class="flex flex-col md:flex-row items-start md:space-x-4 justify-between space-y-4 md:space-y-0">
+            <div class="flex flex-col md:flex-row items-start md:space-x-4 justify-start space-y-4 md:space-y-0">
                 @foreach ($feedBacks as $feedback)
                     <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
                         data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
