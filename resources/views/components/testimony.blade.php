@@ -14,20 +14,23 @@
                     <div class='flex flex-col space-y-6 w-full md:w-80 rounded-lg border border-gray-300 p-6 bg-white shadow-md hover:transform hover:scale-105 transition duration-300 ease-in-out'
                         data-aos="fade-up" data-aos-duration="2000" data-aos-delay="400">
                         <div class='flex items-center space-x-3'>
-                                @if ($feedback->user->profile?->image)
-                                    <img src="{{ asset('storage/' . $feedback->user->profile->image) }}"
-                                        class="w-10 h-10" />
-                                @else
-                                    @if ($feedback->user->profile?->sex == 'Male')
-                                        <img id="db-cover-photo"
-                                        src="{{asset('images/male.png')}}" alt="Image"
-                                        class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                            <div>
+                                <div>
+                                    @if ($feedback->user->profile?->image)
+                                        <img src="{{ asset('storage/' . $feedback->user->profile->image) }}"
+                                            class="w-10 h-10" />
                                     @else
-                                        <img id="db-cover-photo"
-                                        src="{{asset('images/female.png')}}" alt="Image"
-                                        class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                                        @if ($feedback->user->profile?->sex == 'Male')
+                                            <img id="db-cover-photo"
+                                            src="{{asset('images/male.png')}}" alt="Image"
+                                            class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                                        @else
+                                            <img id="db-cover-photo"
+                                            src="{{asset('images/female.png')}}" alt="Image"
+                                            class="w-10 h-10 rounded-full object-cover object-center bg-white" />
+                                        @endif
                                     @endif
-                                @endif
+                                </div>
                                 <p class='monument text-lg font-bold text-yellow-700'>{{ $feedback->user->name }}
                                 </p>
                                 {{-- <p class='font-medium text-[12px]'>Student</p> --}}
