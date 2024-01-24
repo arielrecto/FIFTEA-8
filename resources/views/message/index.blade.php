@@ -11,11 +11,11 @@
                 <a href="{{ route('admin.messages.show', ['conversation' => $conversation->id]) }}"
                     class="flex items-center justify-between p-2 rounded-md border border-gray-200">
                     <div class="flex items-center space-x-3">
-                        @if (Auth::user()->profile?->image)
-                            <img src="{{ asset('storage/' . auth()->user()->profile->image) }}"
+                        @if ($conversation->owner->profile->image)
+                            <img src="{{ asset('storage/' . $conversation->owner->profile->image) }}"
                                 class="w-14 h-14 rounded-full" />
                         @else
-                            @if (Auth::user()->profile?->sex == 'Male')
+                            @if ($conversation->owner->profile?->sex == 'Male')
                                 <img
                                 src="{{asset('images/male.png')}}" alt="Image"
                                 class="w-14 h-14 rounded-full" />
