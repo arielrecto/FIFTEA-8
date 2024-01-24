@@ -87,7 +87,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="prepared-by hidden w-fit pt-20">
+            <div class="prepared-by w-fit pt-20">
                 <div class="flex flex-col space-y-2">
                     <p class="text-sm">Prepared By:</p>
                     <p class="w-fullt text-center">Kier Rivero Cabero</p>
