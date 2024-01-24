@@ -7,11 +7,12 @@
                     <i class='bx bx-arrow-back text-xl mr-2 group-hover:text-gray-900'></i>
                     Back
                 </a>
-                <form action="{{route('admin.sales.preview')}}" method="get" class="flex items-end space-x-4">
+                <form action="{{ route('admin.sales.preview') }}" method="get" class="flex items-end space-x-4">
                     <input type="hidden" name="filter" value="range">
                     <div class="flex flex-col ">
                         <label for="" class="text-xs font-semibold">Start Date</label>
-                        <input type="date" name="start_date" class="px-3 py-1 border border-gray-300 rounded text-sm">
+                        <input type="date" name="start_date"
+                            class="px-3 py-1 border border-gray-300 rounded text-sm">
                     </div>
                     <div class="flex flex-col ">
                         <label for="" class="text-xs font-semibold">Start Date</label>
@@ -86,7 +87,7 @@
                     </tbody>
                 </table>
             </div>
-            <<div class="prepared-by hidden w-fit pt-20">
+            <div class="prepared-by hidden w-fit pt-20">
                 <div class="flex flex-col space-y-2">
                     <p class="text-sm">Prepared By:</p>
                     <p class="w-fullt text-center">Kier Rivero Cabero</p>
