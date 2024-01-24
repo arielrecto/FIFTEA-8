@@ -71,9 +71,12 @@ class SupplyController extends Controller
     {
         $supply = Supply::find($id);
 
-        $stocks = $supply->history()->latest()->get();
+        $first_stock = $supply->history()->first();
 
-        return view('users.admin.Inventory.show', compact(['supply', 'stocks']));
+        $stocks = $supply->history()->where('id', '!=', $first_stock->id)->latest()->get();
+
+
+        return view('users.admin.Inventory.show', compact(['supply', 'stocks', 'first_stock']));
     }
 
     /**

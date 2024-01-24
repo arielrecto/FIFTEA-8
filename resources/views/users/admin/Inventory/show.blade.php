@@ -42,8 +42,16 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td class="py-2 px-4 border-b border-r">{{ date('F d, Y', strtotime($first_stock->created_at)) }}</td>
+                    <td class="py-2 px-4 border-b border-r">{{ $first_stock->adjusted_by }}</td>
+                    <td class="py-2 px-4 border-b border-r">{{ $first_stock->adjustment_quantity }} </td>
+                    <td class="py-2 px-4 border-b border-r">{{ date('F d, Y', strtotime($first_stock->expiration_date)) }}
+                    </td>
+                    <td class="py-2 px-4 border-b">{{ $first_stock->quantity }}</td>
+                </tr>
 
-                @forelse ($stocks as $stock)
+                @foreach ($stocks as $stock)
                     <tr>
                         <td class="py-2 px-4 border-b border-r">{{ date('F d, Y', strtotime($stock->created_at)) }}</td>
                         <td class="py-2 px-4 border-b border-r">{{ $stock->adjusted_by }}</td>
@@ -52,11 +60,7 @@
                         </td>
                         <td class="py-2 px-4 border-b">{{ $stock->quantity }}</td>
                     </tr>
-                @empty
-                    <tr>
-                        <td>No Supply History</td>
-                    </tr>
-                @endforelse
+                @endforeach
 
             </tbody>
         </table>
