@@ -21,17 +21,17 @@ class SupplyController extends Controller
      */
     public function index(GetSupplyAction $getSupplyAction, Request $request)
     {
-         $supplies = $getSupplyAction->handle();
+        $supplies = $getSupplyAction->handle();
 
-         $filter = $request->filter;
+        $filter = $request->filter;
 
-         $limit = StockLimit::first();
+        $limit = StockLimit::first();
 
-         if($filter !== null){
-            $supplies = Supply::where('name', 'like', '%'.  $filter . '%')->orWhere('size' , 'like', '%' .  $filter . '%')->get();
-         }
+        if ($filter !== null) {
+            $supplies = Supply::where('name', 'like', '%' . $filter . '%')->orWhere('size', 'like', '%' . $filter . '%')->get();
+        }
 
-         return view('users.admin.Inventory.index', compact(['supplies', 'limit']));
+        return view('users.admin.Inventory.index', compact(['supplies', 'limit']));
     }
 
     /**
@@ -78,9 +78,12 @@ class SupplyController extends Controller
     {
         $supply = Supply::find($id);
 
-        $stocks = $supply->history()->latest()->get();
+        $first_stock = $supply->history()->first();
 
-        return view('users.admin.Inventory.show', compact(['supply', 'stocks']));
+        $stocks = $supply->history()->where('id', '!=', $first_stock->id)->latest()->get();
+
+
+        return view('users.admin.Inventory.show', compact(['supply', 'stocks', 'first_stock']));
     }
 
     /**
@@ -107,7 +110,7 @@ class SupplyController extends Controller
         if (!$supply) {
             return back()->with(['error' => 'Supply was not updated.']);
         }
-        return back()->with(['message' => 'Supply Data is Updated!']);
+        return back()->with(['success' => 'Supply Data is Updated!']);
 
     }
 
@@ -116,42 +119,44 @@ class SupplyController extends Controller
      */
     public function destroy(string $id)
     {
-       $supply = Supply::find($id);
+        $supply = Supply::find($id);
 
-       $supply->delete();
+        $supply->delete();
 
 
-       return back()->with([
-        'message' => 'supply Deleted'
-       ]);
+        return back()->with([
+            'message' => 'supply Deleted'
+        ]);
     }
-    public function filter(Request $request){
+    public function filter(Request $request)
+    {
 
         $search = $request->search;
 
         $getAll = $request->getAll;
 
-        $supplies = Supply::where('size', $request->size)->orWhereHas('types', function($q) use ($request){
+        $supplies = Supply::where('size', $request->size)->orWhereHas('types', function ($q) use ($request) {
             $q->where('name', $request->type);
         })->get();
 
 
-        if($search !== null){
-            $supplies = supply::where('size', $search)->orWhereHas('types', function($q) use ($search){
+        if ($search !== null) {
+            $supplies = supply::where('size', $search)->orWhereHas('types', function ($q) use ($search) {
                 $q->where('name', $search);
-            })->orWhere('name', 'like', '%'.  $search . '%')->get();
+            })->orWhere('name', 'like', '%' . $search . '%')->get();
         }
 
-        if ($getAll !== null){
+        if ($getAll !== null) {
             $supplies = Supply::get();
         }
 
 
 
 
-       return response(['supplies' => $supplies], 200);
+        return response(['supplies' => $supplies], 200);
     }
-    public function addStock(Request $request, string $id){
+    public function addStock(Request $request, string $id)
+    {
 
 
         $request->validate([
@@ -172,7 +177,7 @@ class SupplyController extends Controller
         ]);
 
         $supply->update([
-            'quantity' =>  $request->quantity + $supply->quantity,
+            'quantity' => $request->quantity + $supply->quantity,
         ]);
 
         return back()->with(['success' => 'Stock Added!']);

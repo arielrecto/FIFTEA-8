@@ -86,10 +86,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="w-fit pt-20">
-                <div class="flex flex-col space-y-8">
+            <<div class="prepared-by hidden w-fit pt-20">
+                <div class="flex flex-col space-y-2">
                     <p class="text-sm">Prepared By:</p>
-                    <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                    <p class="w-fullt text-center">Kier Rivero Cabero</p>
+                    <p class="px-12 text-sm  border-t border-gray-600">Name and Signature</p>
                 </div>
             </div>
 

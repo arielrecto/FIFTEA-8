@@ -13,10 +13,13 @@
         </div>
         <div class="print-head w-full flex items-center justify-between py-2 px-4  bg-sblight rounded">
             <h1 class="font-medium text-white text-xl">LIST OF PRODUCTS</h1>
-            <form action="{{route('admin.products.index')}}" method="GET" class="flex items-center space-x-3">
-                <input type="text" name="filter" class="print-hidden text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white" placeholder="Search here..">
+            <form action="{{ route('admin.products.index') }}" method="GET" class="flex items-center space-x-3">
+                <input type="text" name="filter"
+                    class="print-hidden text-sm px-4 py-2 rounded bg-inherit border border-gray-200 placeholder:text-white"
+                    placeholder="Search here..">
                 <button class="print-hidden px-4 py-2 rounded text-sm bg-white text-sbgreen">Search</button>
-                <a id="print-btn" class="flex items-center rounded border border-white px-4 py-2 text-sm text-white cursor-pointer">
+                <a id="print-btn"
+                    class="flex items-center rounded border border-white px-4 py-2 text-sm text-white cursor-pointer">
                     <i class='bx bx-printer text-white mr-2'></i>
                     Print
                 </a>
@@ -39,7 +42,8 @@
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">SIZES</th>
                             <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">PRICE</th>
                             {{-- <th class="poppins text-sm border border-gray-400 px-4 py-2 text-center">DATE ADDED</th> --}}
-                            <th class="action-head poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTION</th>
+                            <th class="action-head poppins text-sm border border-gray-400 px-4 py-2 text-center">ACTION
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,8 +55,7 @@
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-left">
                                         {!! $product->description !!}
                                     </td>
-                                    <td
-                                        class="poppins text-sm border border-gray-400 px-4 py-2 text-center   ">
+                                    <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center   ">
                                         @php
                                             $sizes = json_decode($product->sizes);
                                         @endphp
@@ -81,14 +84,17 @@
                                             </form>
 
                                             <div class="flex items-center space-x-2">
-                                                <a href="{{ route('admin.products.edit', ['product' => $product->id]) }}">
+                                                <a
+                                                    href="{{ route('admin.products.edit', ['product' => $product->id]) }}">
                                                     <label for="my-modal" class="p-0 m-0">
                                                         <i
                                                             class='bx bx-edit text-blue-500 text-xl cursor-pointer rounded hover:bg-blue-50 py-1 px-2'></i>
                                                     </label>
                                                 </a>
-                                                <a href="{{ route('admin.products.show', ['product' => $product->id]) }}">
-                                                    <i class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
+                                                <a
+                                                    href="{{ route('admin.products.show', ['product' => $product->id]) }}">
+                                                    <i
+                                                        class='bx bx-show text-xl text-green-600 rounded hover:bg-green-50 cursor-pointer py-1 px-2'></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -99,9 +105,10 @@
                     </tbody>
                 </table>
                 <div class="prepared-by hidden w-fit pt-20">
-                    <div class="flex flex-col space-y-8">
+                    <div class="flex flex-col space-y-2">
                         <p class="text-sm">Prepared By:</p>
-                        <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                        <p class="w-fullt text-center">Kier Rivero Cabero</p>
+                        <p class="px-12 text-sm  border-t border-gray-600">Name and Signature</p>
                     </div>
                 </div>
                 <div class="w-full py-4">

@@ -10,7 +10,7 @@ class GetSupplyAction {
 
     public function handle () {
 
-        $supplies = Supply::all();
+        $supplies = Supply::latest()->get();
 
         return $supplies;
     }

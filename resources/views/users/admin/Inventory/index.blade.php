@@ -28,11 +28,11 @@
                     <i class='bx bx-plus text-base mr-2 text-sbgreen'></i>
                     Add Supply
                 </a>
-                <a href="{{ route('admin.stock-limit.index') }}"
+                {{-- <a href="{{ route('admin.stock-limit.index') }}"
                     class="flex items-center px-4 py-2 bg-white rounded text-sbgreen text-sm">
                     <i class='bx bxs-edit-alt text-base mr-2 text-sbgreen'></i>
                     Adjust Stock Status
-                </a>
+                </a> --}}
                 <a id="print-btn" class="flex items-center rounded border border-white px-4 py-2 text-sm text-white cursor-pointer">
                     <i class='bx bx-printer text-white mr-2'></i>
                     Print
@@ -143,9 +143,10 @@
                     </tbody>
                 </table>
                 <div class="prepared-by hidden w-fit pt-20">
-                    <div class="flex flex-col space-y-8">
+                    <div class="flex flex-col space-y-2">
                         <p class="text-sm">Prepared By:</p>
-                        <p class="px-12 text-sm pt-1 border-t border-gray-600">Name and Signature</p>
+                        <p class="w-fullt text-center">Kier Rivero Cabero</p>
+                        <p class="px-12 text-sm  border-t border-gray-600">Name and Signature</p>
                     </div>
                 </div>
                 <div class="py-4">
