@@ -16,9 +16,12 @@ class StoreSupplyAction {
             'unit' => $request->unit,
             'quantity' => $request->quantity,
             'size' => $request->size,
-            'expiration_date' => $request->expiration_date
+            'expiration_date' => $request->expiration_date,
+            'low' => $request->low,
+            'high' => $request->high
         ]);
 
+        
 
         $type = Type::where('name', $request->type)->first();
 

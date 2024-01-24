@@ -70,6 +70,38 @@
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="pt-4">
+                        <div class="flex items-end space-x-1 h-8 w-full mt-2">
+                            <div class="h-full w-full bg-red-200 flex items-center justify-center rounded">
+                                <span class="text-red-600 text-sm">Low Stock</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-sm text-center font-semibold">Low</span>
+                                <input type="number" name="low" class="h-8 w-20 rounded border border-gray-200">
+                            </div>
+                            {{-- value="{{ $limit->low }}" --}}
+                            <div class="h-full w-full bg-green-200 flex items-center justify-center rounded">
+                                <span class="text-green-600 text-sm">Normal Stock</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-sm text-center font-semibold">High</span>
+                                <input type="number" name="high" class="h-8 w-20 rounded border border-gray-200">
+                            </div>
+                            {{-- value="{{ $limit->high }}" --}}
+                            <div class="h-full w-full bg-yellow-200  flex items-center justify-center rounded">
+                                <span class="text-yellow-600 text-sm">Over Stock</span>
+                            </div>
+                        </div>
+                            @error('low')
+                                <div class="error text-xs text-red-600">{{ $message }}</div>
+                            @enderror
+                            @error('high')
+                                <div class="error text-xs text-red-600">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+
+
                     <template x-if="!hiddenInput">
                         <div class="flex flex-col space-y-1" x-cloak>
                             <label for="quantity" class="text-sm">Size</label>
@@ -89,8 +121,8 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">Type</label>
-                        <select type="text" name="type" class="rounded px-4 border border-gray-300" id="quantity"
-                            @change="selectedType($event)">
+                        <select type="text" name="type" class="rounded px-4 border border-gray-300"
+                            id="quantity" @change="selectedType($event)">
                             <option value="">Select Type</option>
                             @forelse ($types as $type)
                                 <option value="{{ $type->name }}">{{ $type->name }}</option>

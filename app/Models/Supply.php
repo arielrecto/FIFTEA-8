@@ -15,19 +15,25 @@ class Supply extends Model
         'quantity',
         'product_fields_id',
         'size',
-        'expiration_date'
+        'expiration_date',
+        'low',
+        'high'
     ];
 
-    public function field(){
+    public function field()
+    {
         return $this->belongsTo(ProductField::class);
     }
-    public function transactions () {
+    public function transactions()
+    {
         return $this->belongsToMany(Transaction::class);
     }
-    public function types() {
+    public function types()
+    {
         return $this->belongsToMany(Type::class)->withPivot(['price']);
     }
-    public function history(){
+    public function history()
+    {
         return $this->hasMany(SupplyHistory::class);
     }
 }

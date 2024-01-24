@@ -49,6 +49,7 @@ class SupplyController extends Controller
     public function store(Request $request, StoreSupplyAction $storeSupplyAction)
     {
 
+        // dd($request->all());
 
         $request->validate([
             'name' => 'required',
@@ -56,12 +57,18 @@ class SupplyController extends Controller
             'unit' => 'required',
             'quantity' => 'required',
             'type' => 'required',
-            'expiration_date' => 'required'
+            'expiration_date' => 'nullable',
+            'low' => 'required',
+            'high' => 'required'
         ]);
+
         $supply = $storeSupplyAction->handle($request);
 
+        if (!$supply) {
+            return back()->with(['error' => 'Supply was not added.']);
+        }
 
-        return back()->with(['message' => 'supply added successfully']);
+        return back()->with(['success' => 'Supply added successfully']);
     }
 
     /**
@@ -93,9 +100,13 @@ class SupplyController extends Controller
      */
     public function update(Request $request, string $id, UpdateSupplyAction $updateSupplyAction)
     {
+        // dd($request->all());
 
         $supply = $updateSupplyAction->handle($request, $id);
 
+        if (!$supply) {
+            return back()->with(['error' => 'Supply was not updated.']);
+        }
         return back()->with(['message' => 'Supply Data is Updated!']);
 
     }

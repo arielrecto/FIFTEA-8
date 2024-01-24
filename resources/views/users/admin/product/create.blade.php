@@ -18,7 +18,6 @@
                         </template>
                     </div>
 
-
                     <div class="flex flex-col items-start justify-start w-full h-full space-y-1"
                         x-show="image === null">
                         <label for="dropzone-file"

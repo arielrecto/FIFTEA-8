@@ -31,7 +31,7 @@
                 <div class="flex flex-col space-y-2">
                     <div class="flex flex-col space-y-1">
                         <label for="name" class="text-sm">NAME <span class="text-red-500 text-base">*</span></label>
-                        <input type="text" name="name" id="name" class="rounded px-4 border border-gray-300" placeholder="{{$supply->name}}">
+                        <input type="text" name="name" id="name" class="rounded px-4 border border-gray-300" value="{{$supply->name}}">
                         @error('name')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
@@ -40,7 +40,7 @@
                     <div class="flex flex-col space-y-1">
                         <label for="unit_value" class="text-sm">UNIT VALUE</label>
                         <input type="text" name="unit_value" class="rounded px-4 border border-gray-300"
-                            id="unit_value" placeholder="{{$supply->unit_value}}">
+                            id="unit_value" value="{{$supply->unit_value}}">
                         @error('unit_value')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
@@ -48,7 +48,7 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="unit" class="text-sm">UNIT</label>
-                        <input type="text" name="unit" class="rounded px-4 border border-gray-300" id="unit">
+                        <input type="text" name="unit" value="{{ $supply->unit}}" class="rounded px-4 border border-gray-300" id="unit">
                         @error('unit')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
@@ -56,12 +56,53 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">QUANTITY</label>
-                        <input type="text" name="quantity" class="rounded px-4 border border-gray-300"
+                        <input type="text" name="quantity" value="{{ $supply->quantity}}" class="rounded px-4 border border-gray-300"
                             id="quantity">
                         @error('quantity')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="flex flex-col space-y-1">
+                        <label for="quantity" class="text-sm">EXPIRATION DATE</label>
+                        <input type="date" name="expiration_date" value="{{ $supply->expiration_date }}" class="rounded px-4 border border-gray-300"
+                            id="quantity">
+                        @error('expiration_date')
+                            <div class="error text-xs text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="pt-4">
+                        <div class="flex items-end space-x-1 h-8 w-full mt-2">
+                            <div class="h-full w-full bg-red-200 flex items-center justify-center rounded">
+                                <span class="text-red-600 text-sm">Low Stock</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-sm text-center font-semibold">Low</span>
+                                <input type="number" name="low" value="{{ $supply->low }}" class="h-8 w-20 rounded border border-gray-200">
+                            </div>
+                            {{-- value="{{ $limit->low }}" --}}
+                            <div class="h-full w-full bg-green-200 flex items-center justify-center rounded">
+                                <span class="text-green-600 text-sm">Normal Stock</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-sm text-center font-semibold">High</span>
+                                <input type="number" name="high" value="{{ $supply->high }}" class="h-8 w-20 rounded border border-gray-200">
+                            </div>
+                            {{-- value="{{ $limit->high }}" --}}
+                            <div class="h-full w-full bg-yellow-200  flex items-center justify-center rounded">
+                                <span class="text-yellow-600 text-sm">Over Stock</span>
+                            </div>
+                        </div>
+                            @error('low')
+                                <div class="error text-xs text-red-600">{{ $message }}</div>
+                            @enderror
+                            @error('high')
+                                <div class="error text-xs text-red-600">{{ $message }}</div>
+                            @enderror
+                    </div>
+
                     <template x-if="!hiddenInput">
                         <div class="flex flex-col space-y-1" x-cloak>
                             <label for="quantity" class="text-sm">Size</label>
@@ -95,6 +136,7 @@
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
+
                     <template x-if="hiddenInput">
                         <div class="flex flex-col space-y-1">
                             <label for="quantity" class="text-sm">Price</label>

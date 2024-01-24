@@ -17,7 +17,9 @@ class UpdateSupplyAction {
             'unit_value' => $request->unit_value,
             'unit' => $request->unit,
             'quantity' => $request->quantity,
-            'expiration_date' => $request->expiration_date
+            'expiration_date' => $request->expiration_date,
+            'low' => $request->low,
+            'high' => $request->high
         ]);
 
         return $supply;

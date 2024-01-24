@@ -91,15 +91,15 @@
                                     </td> --}}
 
                                     <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
-                                        @if ($supply->quantity < $limit?->low)
+                                        @if ($supply->quantity < $supply->low)
                                             <span
                                                 class="bg-red-200 text-red-500 text-xs px-3 py-2 ml-2 rounded">Low
                                                 Stock</span>
-                                        @elseif ($supply->quantity > $limit?->low && $supply->quantity <= $limit?->high)
+                                        @elseif ($supply->quantity >= $supply->low && $supply->quantity <= $supply->high)
                                             <span
                                                 class="bg-green-200 text-green-500 text-xs px-3 py-2 ml-2 rounded">Normal
                                                 Stock</span>
-                                        @elseif ($supply->quantity > $limit?->high)
+                                        @elseif ($supply->quantity > $supply->high)
                                             <span
                                                 class="bg-yellow-200 text-yellow-800 text-xs px-3 py-2 ml-2 rounded">Over
                                                 Stock</span>
