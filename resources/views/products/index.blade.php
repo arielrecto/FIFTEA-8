@@ -121,6 +121,7 @@
                         this.supplies = response.data.supplies;
 
                         console.log(response.data.supplies)
+                        console.log(response.data.products);
 
                     } catch (error) {
                         console.log(error);
