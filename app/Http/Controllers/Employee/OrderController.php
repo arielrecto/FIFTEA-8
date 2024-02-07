@@ -175,7 +175,7 @@ class OrderController extends Controller
             'order_id' => $order->id,
         ]);
 
-        $order->update(['status' => OrderStatus::PROCESSED->value]);
+        $order->update(['status' => OrderStatus::DONE->value]);
         return back()->with(['message' => 'Order Success']);
     }
 }
