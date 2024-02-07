@@ -55,7 +55,7 @@
                 <table class="min-w-full bg-white border border-gray-300">
                     <thead class="bg-gray-200">
                         <tr class="text-sm">
-                            <th class="py-2 px-4 border-b border-r border-gray-300">No.</th>
+                            {{-- <th class="py-2 px-4 border-b border-r border-gray-300">No.</th> --}}
                             <th class="py-2 px-4 border-b border-r border-gray-300">Order No</th>
                             <th class="py-2 px-4 border-b border-r border-gray-300">Transaction No</th>
                             <th class="py-2 px-4 border-b border-r border-gray-300">Mode</th>
@@ -67,7 +67,7 @@
                     <tbody>
                         @foreach ($orders as $order)
                             <tr class="text-sm">
-                                <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td>
+                                {{-- <td class="py-2 px-4 border-b border-r border-gray-300 text-center">1</td> --}}
                                 <td class="py-2 px-4 border-b border-r border-gray-300">{{ $order->num_ref }}</td>
                                 <td class="py-2 px-4 border-b border-r border-gray-300">
                                     {{ $order->transaction->transaction_ref }}</td>
