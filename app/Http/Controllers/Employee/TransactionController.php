@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Enums\OrderStatus;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Supply;
@@ -124,7 +125,7 @@ class TransactionController extends Controller
             'user_id' => $user->id,
             'cart_id' => $cart->id,
             'type' => 'walk_in',
-            'status' => 'processed',
+            'status' => OrderStatus::DONE->value,
             'total' => $request->total
         ]);
 
