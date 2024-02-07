@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\OrderStatus;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Supply;
@@ -14,12 +15,12 @@ class DashboardController extends Controller
     public function index()
     {
         $totalSupplies = Supply::get()->count();
-        $onlineOrder = Order::where('type', 'online')->where('status', 'processed')->count();
-        $walkinOrder = Order::where('type', 'walk_in')->where('status', 'processed')->count();
+        $onlineOrder = Order::where('type', 'online')->where('status', OrderStatus::PENDING->value)->count();
+        $walkinOrder = Order::where('type', 'walk_in')->where('status', OrderStatus::DONE->value)->count();
         $transactions = Transaction::get()->count();
 
-        $orders = Order::where('status', 'processed')->get();
-        $sales = Order::whereStatus('processed')->sum('total');
+        $orders = Order::where('status', OrderStatus::DONE->value)->get();
+        $sales = Order::whereStatus(OrderStatus::DONE->value)->sum('total');
         $totalSalesByMonth = $this->getAllSalesByMonths();
 
 
