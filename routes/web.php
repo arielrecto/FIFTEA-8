@@ -109,6 +109,9 @@ Route::get('/product/data', function () {
 
     $products = Product::with('categories')->withAvg('rating', 'rate')->get();
 
+
+    dd($products);
+
     $categories = Category::get();
     $supplies = Supply::with('types')->get();
     return response([
