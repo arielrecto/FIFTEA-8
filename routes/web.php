@@ -107,7 +107,7 @@ Route::get('/products', function () {
 
 Route::get('/product/data', function () {
 
-    $products = Product::with('categories')->withAvg('rating', 'rate')->get();
+    $products = Product::with('categories')->withAvg('cart', 'rate')->get();
 
 
     dd($products);
