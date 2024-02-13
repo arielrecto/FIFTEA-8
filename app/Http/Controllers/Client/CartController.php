@@ -66,7 +66,7 @@ class CartController extends Controller
         $c_product = CartProduct::find($id);
 
 
-        $sizes = Product::where('name', $c_product->product->name)->sizes;
+        $sizes = Product::where('name', $c_product->product->name)->first()->sizes;
 
 
         dd($sizes);
