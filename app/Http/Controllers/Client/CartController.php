@@ -78,12 +78,16 @@ class CartController extends Controller
 
     public function updateCartItem(Request $request, $itemId) {
 
-        dd($request->size);
-
         $extra = json_decode($request->extras);
 
 
         $c_product = CartProduct::find($itemId);
+
+
+        $sizes = Product::where('name', $c_product->product->name)->sizes;
+
+
+        dd($sizes);
 
 
         $updated = $c_product->update([

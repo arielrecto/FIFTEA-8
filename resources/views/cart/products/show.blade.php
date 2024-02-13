@@ -6,7 +6,7 @@
     @endif
     <section>
         <div class="w-full max-w-[1300px] mx-auto px-4 pt-24 text-gray-700">
-            <div class="w-full flex justify-center items-center" >
+            <div class="w-full flex justify-center items-center">
                 <div class="w-full md:w-fit flex flex-col space-y-4">
 
                     {{--
@@ -21,7 +21,8 @@
                         back
                     </a>
                     <p class="text-lg font-bold">Update your Order</p>
-                    <div class="w-full md:w-fit flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0 p-4 border bordergray-200 rounded">
+                    <div
+                        class="w-full md:w-fit flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0 p-4 border bordergray-200 rounded">
                         <img src="{{ route('media.product', ['name' => $c_product->product->image]) }}" alt=""
                             class="w-full h-auto md:w-48 md:h-48 rounded-md">
                         <form action="{{ route('client.cart.updateCartItem', $c_product->id) }}" method="POST"
@@ -33,11 +34,18 @@
                                     <label for="" class="text-sm">SIZE</label>
 
                                     @dd($c_product)
+
+
+                                    @php
+                                        $sizes = json_decode($c_product->size);
+                                    @endphp
+                                    {{-- <td class="px-4 py-3">{{ $size?->name }} <span
+                                            class="text-xs text-blue-500">(&#8369;
+                                            {{ $size?->price }})</span></td> --}}
                                     <select name="size" id=""
-                                        class="text-sm rounded border border-gray-300 px-3 w-[200px]"
-                                        value="{{ $c_product->size }}">
-                                        <option value="small" {{ $c_product->size === 'small' ? 'selected' : '' }}>
-                                            Small</option>
+                                        class="text-sm rounded border border-gray-300 px-3 w-[200px]">
+                                        <option value="{{json_encode($size)}}" >
+                                            {{$siz }}</option>
                                         <option value="medium" {{ $c_product->size === 'medium' ? 'selected' : '' }}>
                                             Medium</option>
                                         <option value="regular" {{ $c_product->size === 'regular' ? 'selected' : '' }}>
@@ -46,12 +54,13 @@
                                             Large</option>
                                     </select>
                                 </div>
-                                <div class="flex flex-col space-y-1" x-data="{supplies : {{$supplies}}}">
+                                <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
                                         <template x-for="supply in supplies" :key="supply.id">
-                                            <option :value="JSON.stringify(supply)"><span x-text="`${supply.name} (${supply.pivot.price})`"></span></option>
+                                            <option :value="JSON.stringify(supply)"><span
+                                                    x-text="`${supply.name} (${supply.pivot.price})`"></span></option>
                                         </template>
 
                                     </select>
