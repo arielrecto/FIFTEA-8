@@ -98,6 +98,8 @@ class CartController extends Controller
                 'total' => $size->price + $extra->pivot->price
             ]);
 
+        $this->updateCart($c_product->cart->id);
+
         if ($updated) {
             return redirect()->back()->with(['success' => 'Cart Item has been updated']);
         } else {
@@ -116,5 +118,21 @@ class CartController extends Controller
         } else {
             return redirect()->back()->with(['error' => 'Cart Item cannot been deleted']);
         }
+    }
+    public function updateCart(string $cart_id){
+        $cart = Cart::find($cart_id);
+
+        $c_products = $cart->products;
+
+        $total = 0;
+        foreach ($c_products as $c_product) {
+
+            $total += $c_product->total;
+        }
+
+
+        $cart->update([
+            'total' => $total
+        ]);
     }
 }
