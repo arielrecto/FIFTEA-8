@@ -83,6 +83,9 @@ class CartController extends Controller
 
     public function updateCartItem(Request $request, $itemId) {
 
+
+        dd($request->all());
+
         $extra = json_decode($request->extras);
 
 
