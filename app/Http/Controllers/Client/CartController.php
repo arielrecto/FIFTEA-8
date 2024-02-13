@@ -90,13 +90,12 @@ class CartController extends Controller
         $c_product = CartProduct::find($itemId);
 
 
-
-
+        $size = json_decode($request->size);
 
         $updated = $c_product->update([
                 'size' => $request->size,
                 'quantity' => $request->quantity,
-                'total' => ($request->quantity + $extra->pivot->price) * $c_product->price
+                'total' => $size->price + $extra->pivot->price
             ]);
 
         if ($updated) {
