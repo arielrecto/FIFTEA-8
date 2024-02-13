@@ -60,7 +60,28 @@
                                 </div>
 
 
-                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction"
+                                <div class="w-full flex flex-col space-y-2" x-data="{
+                                    addons: [],
+                                    init(data) {
+                                        this.extras = [...data]
+                                    },
+                                    selectedAddons(e, data) {
+                                        const isChecked = e.target.checked;
+                                        if (isChecked) {
+                                            this.selectedAddonsData = [...this.selectedAddonsData, data]
+
+                                            console.log(this.selectedAddonsData);
+
+
+                                            return;
+                                        }
+
+
+                                        this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+
+                                    }
+
+                                }"
                                     x-init="init({{ $supplies }})">
                                     <span class="text-base font-semibold">Extra</span>
 
@@ -107,7 +128,7 @@
     </section>
 </x-app-layout>
 
-@push('js')
+{{-- @push('js')
     <script>
         function extrasAction() {
             return {
@@ -136,7 +157,7 @@
             }
         };
     </script>
-@endpush
+@endpush --}}
 
 {{-- <div class="w-full  bg-white rounded-lg shadow-sm flex p-5">
     <div class="w-1/5">
