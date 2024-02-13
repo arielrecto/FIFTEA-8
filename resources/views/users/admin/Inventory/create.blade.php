@@ -190,6 +190,9 @@
                             const selectedDate = new Date(this.date)
                             const currentDate = new Date();
 
+
+                            console.log(this.date);
+
                             if (selectedDate < currentDate){
 
 
