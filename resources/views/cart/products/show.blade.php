@@ -37,21 +37,26 @@
 
 
                                     @php
-                                        $sizes = json_decode($c_product->size);
+                                        $sizes = json_decode($sizes);
                                     @endphp
                                     {{-- <td class="px-4 py-3">{{ $size?->name }} <span
                                             class="text-xs text-blue-500">(&#8369;
                                             {{ $size?->price }})</span></td> --}}
                                     <select name="size" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
+
+                                        @foreach ($sizes as $size)
                                         <option value="{{json_encode($size)}}" >
-                                            {{$siz }}</option>
+                                            {{$size->name }} (&#8369;
+                                            {{ $size->price }}) </option>
+                                        @endforeach
+{{--
                                         <option value="medium" {{ $c_product->size === 'medium' ? 'selected' : '' }}>
                                             Medium</option>
                                         <option value="regular" {{ $c_product->size === 'regular' ? 'selected' : '' }}>
                                             Regular</option>
                                         <option value="large" {{ $c_product->size === 'large' ? 'selected' : '' }}>
-                                            Large</option>
+                                            Large</option> --}}
                                     </select>
                                 </div>
                                 <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">

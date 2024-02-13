@@ -69,7 +69,7 @@ class CartController extends Controller
         $sizes = Product::where('name', $c_product->product->name)->first()->sizes;
 
 
-        dd($sizes);
+
 
         $subTotal = 0;
 
@@ -79,7 +79,7 @@ class CartController extends Controller
         $type = Type::where('name', SupplyDefaultTypes::ADDONS->value)->first();
         $supplies = $type->supplies()->get()->toJson();
 
-        return view('cart.products.show', compact(['cart', 'subTotal', 'c_product', 'supplies']));
+        return view('cart.products.show', compact(['cart', 'subTotal', 'c_product', 'supplies', 'sizes']));
     }
 
     public function updateCartItem(Request $request, $itemId) {
