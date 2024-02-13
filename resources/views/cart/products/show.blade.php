@@ -60,11 +60,11 @@
                                 </div>
 
 
-                                {{-- <div class="w-full flex flex-col space-y-2" x-data="extrasAction"
+                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction"
                                     x-init="init({{ $supplies }})">
                                     <span class="text-base font-semibold">Extra</span>
 
-                                    <template x-for="addon in addons">
+                                    {{-- <template x-for="addon in addons">
                                         <div class="w-fit flex items-center space-x-2">
                                             <input type="checkbox" class=""
                                                 @change="selectedAddons($event, addon)">
@@ -72,13 +72,13 @@
                                                 <span class="text-xs text-blue-500">(&#8369;<span
                                                         x-text="addon.pivot.price"></span>)</span></label>
                                         </div>
-                                    </template>
+                                    </template> --}}
                                     <input type="hidden" name="extras" x-model="JSON.stringify(selectedAddonsData)">
 
-                                </div> --}}
+                                </div>
 
 
-                                <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
+                                {{-- <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
@@ -88,7 +88,7 @@
                                         </template>
 
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
                                     <input type="number" name="quantity"
