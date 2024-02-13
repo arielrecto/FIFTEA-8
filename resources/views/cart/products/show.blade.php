@@ -107,7 +107,7 @@
     </section>
 </x-app-layout>
 
-@push('js')
+
     <script>
         function extrasAction() {
             return {
@@ -136,7 +136,7 @@
             }
         };
     </script>
-@endpush
+
 
 {{-- <div class="w-full  bg-white rounded-lg shadow-sm flex p-5">
     <div class="w-1/5">
