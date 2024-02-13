@@ -199,7 +199,7 @@
                                     'not_valid_date' : `The Date is not Valid ${this.date}`
                                 }
 
-                                console.log('not_valid_date' in this.date);
+                                console.log('not_valid_date' in this.error);
 
                                 this.is_valid = false
                             }
