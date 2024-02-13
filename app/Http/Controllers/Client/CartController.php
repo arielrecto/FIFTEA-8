@@ -101,9 +101,6 @@ class CartController extends Controller
 
 
 
-        dd(($size->price + $total_extras_price) * $request->quantity);
-
-
         $updated = $c_product->update([
                 'size' => $request->size,
                 'quantity' => $request->quantity,
