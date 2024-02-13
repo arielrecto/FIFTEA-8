@@ -33,7 +33,6 @@
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">SIZE</label>
 
-                                    @dd($c_product)
 
 
                                     @php
