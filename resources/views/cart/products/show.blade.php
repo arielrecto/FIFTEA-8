@@ -113,7 +113,9 @@
             return {
                 addons: [],
                 init(supplies) {
-                    this.extras = [...supplies]
+
+                    console.log(supplies);
+                    // this.extras = [...supplies]
                 },
                 selectedAddons(e, data) {
                     const isChecked = e.target.checked;
