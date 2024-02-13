@@ -39,7 +39,7 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="unit_value" class="text-sm">UNIT VALUE</label>
-                        <input type="text" name="unit_value" class="rounded px-4 border border-gray-300"
+                        <input type="number" step="any" name="unit_value" class="rounded px-4 border border-gray-300"
                             id="unit_value" value="{{$supply->unit_value}}">
                         @error('unit_value')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
@@ -65,11 +65,14 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">EXPIRATION DATE</label>
-                        <input type="date" name="expiration_date" value="{{ $supply->expiration_date }}" class="rounded px-4 border border-gray-300"
+                        <input type="date" name="expiration_date" value="{{ $supply->expiration_date }}" @change="checkIfExpirationDate"  x-model="date" class="rounded px-4 border border-gray-300"
                             id="quantity">
                         @error('expiration_date')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
+                        <template x-if="'not_valid_date' in error">
+                            <div class="error text-xs text-red-600"> <span x-text="error.not_valid_date"></span> </div>
+                        </template>
                     </div>
 
 
@@ -169,6 +172,11 @@
                     return {
                         hiddenInput: false,
                         type: '',
+                        is_valid: true,
+                        date : null,
+                        error : {
+
+                        },
                         selectedType(e) {
 
                             const selectType = e.target.value.toLowerCase();
@@ -178,6 +186,33 @@
                             } else {
                                 this.hiddenInput = false;
                             }
+                        },
+                        checkIfExpirationDate(){
+                            const selectedDate = new Date(this.date)
+                            const currentDate = new Date();
+
+
+
+                            if (selectedDate < currentDate){
+
+                                console.log(this.date, 'not valid date');
+                                this.error = {
+                                    'not_valid_date' : `The Date is not Valid ${this.date}`
+                                }
+
+
+
+                                this.is_valid = false
+
+                                return
+                            }
+
+
+                            this.is_valid = true
+                            this.error = {
+
+                            }
+
                         }
                     }
                 }
