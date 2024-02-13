@@ -56,7 +56,7 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">QUANTITY</label>
-                        <input type="text" name="quantity" value="{{ $supply->quantity}}" class="rounded px-4 border border-gray-300"
+                        <input type="number" name="quantity" value="{{ $supply->quantity}}" class="rounded px-4 border border-gray-300"
                             id="quantity">
                         @error('quantity')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
