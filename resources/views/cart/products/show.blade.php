@@ -109,30 +109,32 @@
 
 @push('js')
     <script>
-        const extrasAction = () => ({
-            addons: [],
-            init(data) {
-                this.extras = [...data]
-            },
-            selectedAddons(e, data) {
-                const isChecked = e.target.checked;
-                if (isChecked) {
-                    this.selectedAddonsData = [...this.selectedAddonsData, data]
+        function extrasAction() {
+            return {
+                addons: [],
+                init(data) {
+                    this.extras = [...data]
+                },
+                selectedAddons(e, data) {
+                    const isChecked = e.target.checked;
+                    if (isChecked) {
+                        this.selectedAddonsData = [...this.selectedAddonsData, data]
 
-                    console.log(this.selectedAddonsData);
+                        console.log(this.selectedAddonsData);
 
-                    // this.price = this.price + parseInt(data.pivot.price);
+                        // this.price = this.price + parseInt(data.pivot.price);
+                        // this.totalPrice()
+                        return;
+                    }
+
+
+                    this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+                    // this.price = this.price - parseInt(data.pivot.price);
+                    // console.log(this.selectedAddonsData);
                     // this.totalPrice()
-                    return;
                 }
-
-
-                this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
-                // this.price = this.price - parseInt(data.pivot.price);
-                // console.log(this.selectedAddonsData);
-                // this.totalPrice()
             }
-        });
+        };
     </script>
 @endpush
 
