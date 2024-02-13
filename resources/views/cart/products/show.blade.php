@@ -32,7 +32,7 @@
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">SIZE</label>
 
-                                    @dd($product)
+                                    @dd($c_product)
                                     <select name="size" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]"
                                         value="{{ $c_product->size }}">
