@@ -45,11 +45,11 @@
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
 
                                         @foreach ($sizes as $size)
-                                        <option value="{{json_encode($size)}}" >
-                                            {{$size->name }} (&#8369;
-                                            {{ $size->price }}) </option>
+                                            <option value="{{ json_encode($size) }}">
+                                                {{ $size->name }} (&#8369;
+                                                {{ $size->price }}) </option>
                                         @endforeach
-{{--
+                                        {{--
                                         <option value="medium" {{ $c_product->size === 'medium' ? 'selected' : '' }}>
                                             Medium</option>
                                         <option value="regular" {{ $c_product->size === 'regular' ? 'selected' : '' }}>
@@ -60,21 +60,25 @@
                                 </div>
 
 
-                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction" x-init="init({{$supplies }})">
+                                {{-- <div class="w-full flex flex-col space-y-2" x-data="extrasAction"
+                                    x-init="init({{ $supplies }})">
                                     <span class="text-base font-semibold">Extra</span>
 
                                     <template x-for="addon in addons">
                                         <div class="w-fit flex items-center space-x-2">
-                                            <input type="checkbox" class="" @change="selectedAddons($event, addon)">
-                                            <label class="text-sm cursor-pointer"><span x-text="addon.name"></span> <span class="text-xs text-blue-500">(&#8369;<span x-text="addon.pivot.price"></span>)</span></label>
+                                            <input type="checkbox" class=""
+                                                @change="selectedAddons($event, addon)">
+                                            <label class="text-sm cursor-pointer"><span x-text="addon.name"></span>
+                                                <span class="text-xs text-blue-500">(&#8369;<span
+                                                        x-text="addon.pivot.price"></span>)</span></label>
                                         </div>
                                     </template>
-                                    <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
+                                    <input type="hidden" name="extras" x-model="JSON.stringify(selectedAddonsData)">
 
-                                </div>
+                                </div> --}}
 
 
-                                {{-- <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
+                                <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
@@ -84,7 +88,7 @@
                                         </template>
 
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
                                     <input type="number" name="quantity"
@@ -106,28 +110,28 @@
 @push('js')
     <script>
         const extrasAction = () => ({
-            addons : [],
-            init(data){
+            addons: [],
+            init(data) {
                 this.extras = [...data]
             },
-            selectedAddons(e, data){
-                        const isChecked = e.target.checked;
-                        if(isChecked){
-                            this.selectedAddonsData = [...this.selectedAddonsData, data]
+            selectedAddons(e, data) {
+                const isChecked = e.target.checked;
+                if (isChecked) {
+                    this.selectedAddonsData = [...this.selectedAddonsData, data]
 
-                            console.log(this.selectedAddonsData);
+                    console.log(this.selectedAddonsData);
 
-                            this.price = this.price + parseInt(data.pivot.price);
-                            this.totalPrice()
-                            return;
-                        }
+                    this.price = this.price + parseInt(data.pivot.price);
+                    this.totalPrice()
+                    return;
+                }
 
 
-                        this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
-                        this.price = this.price - parseInt(data.pivot.price);
-                        console.log(this.selectedAddonsData);
-                        this.totalPrice()
-                    }
+                this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+                this.price = this.price - parseInt(data.pivot.price);
+                console.log(this.selectedAddonsData);
+                this.totalPrice()
+            }
         });
     </script>
 @endpush
