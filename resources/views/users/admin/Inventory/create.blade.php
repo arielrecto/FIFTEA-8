@@ -204,6 +204,9 @@
                                 this.is_valid = false
                             }
 
+
+                            this.is_valid = true
+
                         }
                     }
                 }
