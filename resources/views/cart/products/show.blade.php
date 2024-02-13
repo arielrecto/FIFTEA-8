@@ -64,7 +64,7 @@
                                     x-init="init({{ $supplies }})">
                                     <span class="text-base font-semibold">Extra</span>
 
-                                    {{-- <template x-for="addon in addons">
+                                    <template x-for="addon in addons">
                                         <div class="w-fit flex items-center space-x-2">
                                             <input type="checkbox" class=""
                                                 @change="selectedAddons($event, addon)">
@@ -72,7 +72,7 @@
                                                 <span class="text-xs text-blue-500">(&#8369;<span
                                                         x-text="addon.pivot.price"></span>)</span></label>
                                         </div>
-                                    </template> --}}
+                                    </template>
                                     <input type="hidden" name="extras" x-model="JSON.stringify(selectedAddonsData)">
 
                                 </div>
@@ -121,16 +121,16 @@
 
                     console.log(this.selectedAddonsData);
 
-                    this.price = this.price + parseInt(data.pivot.price);
-                    this.totalPrice()
+                    // this.price = this.price + parseInt(data.pivot.price);
+                    // this.totalPrice()
                     return;
                 }
 
 
                 this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
-                this.price = this.price - parseInt(data.pivot.price);
-                console.log(this.selectedAddonsData);
-                this.totalPrice()
+                // this.price = this.price - parseInt(data.pivot.price);
+                // console.log(this.selectedAddonsData);
+                // this.totalPrice()
             }
         });
     </script>
