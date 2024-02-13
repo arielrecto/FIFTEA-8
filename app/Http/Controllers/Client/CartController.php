@@ -65,6 +65,12 @@ class CartController extends Controller
         $cart = Cart::where('is_check_out', false)->first();
         $c_product = CartProduct::find($id);
 
+
+        $sizes = Product::where('name', $c_product->product->name)->sizes;
+
+
+        dd($sizes);
+
         $subTotal = 0;
 
         foreach($cart->products as $product) {
@@ -84,10 +90,7 @@ class CartController extends Controller
         $c_product = CartProduct::find($itemId);
 
 
-        $sizes = Product::where('name', $c_product->product->name)->sizes;
 
-
-        dd($sizes);
 
 
         $updated = $c_product->update([
