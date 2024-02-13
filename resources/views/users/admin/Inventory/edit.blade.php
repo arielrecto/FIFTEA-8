@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="flex justify-between">
-                    <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
+                    <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center" :disabled="!is_valid">
                         <i class='bx bx-save mr-2'></i>
                         Update
                     </button>
