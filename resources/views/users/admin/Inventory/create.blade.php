@@ -64,11 +64,15 @@
                     </div>
                     <div class="flex flex-col space-y-1">
                         <label for="quantity" class="text-sm">EXPIRATION DATE</label>
-                        <input type="date" name="expiration_date" class="rounded px-4 border border-gray-300"
+                        <input type="date" name="expiration_date" @change="checkIfExpirationDate"  class="rounded px-4 border border-gray-300"
                             id="quantity">
                         @error('expiration_date')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
+
+                        <template if="'not_valid_date' in error">
+                            <div class="error text-xs text-red-600"> <span x-text="error.not_valid_date"></span> </div>
+                        </template>
                     </div>
                     <div class="pt-4">
                         <div class="flex items-end space-x-1 h-8 w-full mt-2">
@@ -166,7 +170,12 @@
                 function supplyScript() {
                     return {
                         hiddenInput: false,
+                        is_valid: true,
                         type: '',
+                        date : null,
+                        error : {
+
+                        },
                         selectedType(e) {
 
                             const selectType = e.target.value.toLowerCase();
@@ -176,6 +185,21 @@
                             } else {
                                 this.hiddenInput = false;
                             }
+                        },
+                        checkIfExpirationDate(){
+                            const selectedDate = new Date(this.date)
+                            const currentDate = new Date();
+
+                            if (selectedDate < currentDate){
+
+
+                                this.error = {
+                                    'not_valid_date' : `The Date is not Valid ${this.date}`
+                                }
+
+                                this.is_valid = false
+                            }
+
                         }
                     }
                 }
