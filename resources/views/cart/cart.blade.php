@@ -46,9 +46,9 @@
                                                 @php
                                                     $size = json_decode($c_product->size);
                                                 @endphp
-                                                <td class="px-4 py-3">{{ $size->name }} <span
+                                                <td class="px-4 py-3">{{ $size?->name }} <span
                                                         class="text-xs text-blue-500">(&#8369;
-                                                        {{ $size->price }})</span></td>
+                                                        {{ $size?->price }})</span></td>
                                                 {{--  pabago ng pice dito tol --}}
 
                                                 @php
