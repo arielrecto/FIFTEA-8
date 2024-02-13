@@ -58,7 +58,23 @@
                                             Large</option> --}}
                                     </select>
                                 </div>
-                                <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
+
+
+                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction" x-init="init({{$supplies }})">
+                                    <span class="text-base font-semibold">Extra</span>
+
+                                    <template x-for="addon in addons">
+                                        <div class="w-fit flex items-center space-x-2">
+                                            <input type="checkbox" class="" @change="selectedAddons($event, addon)">
+                                            <label class="text-sm cursor-pointer"><span x-text="addon.name"></span> <span class="text-xs text-blue-500">(&#8369;<span x-text="addon.pivot.price"></span>)</span></label>
+                                        </div>
+                                    </template>
+                                    <input type="hidden" name="extras"  x-model="JSON.stringify(selectedAddonsData)">
+
+                                </div>
+
+
+                                {{-- <div class="flex flex-col space-y-1" x-data="{ supplies: {{ $supplies }} }">
                                     <label for="" class="text-sm">EXTRAS</label>
                                     <select name="extras" id=""
                                         class="text-sm rounded border border-gray-300 px-3 w-[200px]">
@@ -68,7 +84,7 @@
                                         </template>
 
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="flex flex-col space-y-1">
                                     <label for="" class="text-sm">QUANTITY</label>
                                     <input type="number" name="quantity"
@@ -86,6 +102,35 @@
         </div>
     </section>
 </x-app-layout>
+
+@push('js')
+    <script>
+        const extrasAction = () => ({
+            addons : [],
+            init(data){
+                this.extras = [...data]
+            },
+            selectedAddons(e, data){
+                        const isChecked = e.target.checked;
+                        if(isChecked){
+                            this.selectedAddonsData = [...this.selectedAddonsData, data]
+
+                            console.log(this.selectedAddonsData);
+
+                            this.price = this.price + parseInt(data.pivot.price);
+                            this.totalPrice()
+                            return;
+                        }
+
+
+                        this.selectedAddonsData = this.selectedAddonsData.filter((addon) => addon.id !== data.id);
+                        this.price = this.price - parseInt(data.pivot.price);
+                        console.log(this.selectedAddonsData);
+                        this.totalPrice()
+                    }
+        });
+    </script>
+@endpush
 
 {{-- <div class="w-full  bg-white rounded-lg shadow-sm flex p-5">
     <div class="w-1/5">

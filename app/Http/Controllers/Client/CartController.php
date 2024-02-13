@@ -70,7 +70,6 @@ class CartController extends Controller
 
 
 
-
         $subTotal = 0;
 
         foreach($cart->products as $product) {
