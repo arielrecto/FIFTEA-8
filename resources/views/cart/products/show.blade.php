@@ -60,8 +60,7 @@
                                 </div>
 
 
-                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction"
-                                    x-init="init({{ $supplies }})">
+                                <div class="w-full flex flex-col space-y-2" x-data="extrasAction({{$supplies}})">
                                     <span class="text-base font-semibold">Extra</span>
 
                                     <template x-for="addon in addons">
@@ -109,14 +108,10 @@
 
 
     <script>
-        function extrasAction() {
+        function extrasAction(data) {
             return {
-                addons: [],
-                init(supplies) {
-
-                    console.log(supplies);
-                    // this.extras = [...supplies]
-                },
+                addons: [...data],
+                selectedAddonsData : [],
                 selectedAddons(e, data) {
                     const isChecked = e.target.checked;
                     if (isChecked) {
