@@ -84,9 +84,7 @@ class CartController extends Controller
     public function updateCartItem(Request $request, $itemId) {
 
 
-        dd($request->all());
-
-        $extra = json_decode($request->extras);
+        $extras = json_decode($request->extras);
 
 
         $c_product = CartProduct::find($itemId);
@@ -94,10 +92,22 @@ class CartController extends Controller
 
         $size = json_decode($request->size);
 
+
+        $total_extras_price = 0;
+
+        foreach ($extras as $extra) {
+            $total_extras_price += $extra->pivot->price;
+        }
+
+
+
+        dd(($size->price + $total_extras_price) * $request->quantity);
+
+
         $updated = $c_product->update([
                 'size' => $request->size,
                 'quantity' => $request->quantity,
-                'total' => $size->price + $extra->pivot->price
+                'total' => ($size->price + $total_extras_price) * $request->quantity
             ]);
 
         $this->updateCart($c_product->cart->id);
