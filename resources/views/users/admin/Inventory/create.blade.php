@@ -39,7 +39,7 @@
 
                     <div class="flex flex-col space-y-1">
                         <label for="unit_value" class="text-sm">UNIT VALUE</label>
-                        <input type="number" name="unit_value" class="rounded px-4 border border-gray-300"
+                        <input type="number" step="any" name="unit_value" class="rounded px-4 border border-gray-300"
                             id="unit_value">
                         @error('unit_value')
                             <div class="error text-xs text-red-600">{{ $message }}</div>
