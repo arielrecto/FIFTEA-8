@@ -104,7 +104,8 @@ class CartController extends Controller
         $updated = $c_product->update([
                 'size' => $request->size,
                 'quantity' => $request->quantity,
-                'total' => ($size->price + $total_extras_price) * $request->quantity
+                'total' => ($size->price + $total_extras_price) * $request->quantity,
+                'extras' => $request->extras
             ]);
 
         $this->updateCart($c_product->cart->id);
