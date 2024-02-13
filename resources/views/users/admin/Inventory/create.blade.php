@@ -202,6 +202,8 @@
 
 
                                 this.is_valid = false
+
+                                return
                             }
 
 
