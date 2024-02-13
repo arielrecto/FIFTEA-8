@@ -70,7 +70,7 @@
                             <div class="error text-xs text-red-600">{{ $message }}</div>
                         @enderror
 
-                        <template if="'not_valid_date' in error">
+                        <template x-if="'not_valid_date' in error">
                             <div class="error text-xs text-red-600"> <span x-text="error.not_valid_date"></span> </div>
                         </template>
                     </div>
@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="flex justify-between">
-                    <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center">
+                    <button class="py-2 px-4 rounded text-white bg-sbgreen flex items-center" disabled="!is_valid">
                         <i class='bx bx-save mr-2'></i>
                         save
                     </button>
@@ -199,7 +199,7 @@
                                     'not_valid_date' : `The Date is not Valid ${this.date}`
                                 }
 
-                                console.log('not_valid_date' in this.error);
+
 
                                 this.is_valid = false
                             }
