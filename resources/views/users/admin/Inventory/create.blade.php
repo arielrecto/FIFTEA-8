@@ -191,11 +191,10 @@
                             const currentDate = new Date();
 
 
-                            console.log(this.date);
 
                             if (selectedDate < currentDate){
 
-
+                                console.log(this.date, 'not valid date');
                                 this.error = {
                                     'not_valid_date' : `The Date is not Valid ${this.date}`
                                 }
