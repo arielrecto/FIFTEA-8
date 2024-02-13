@@ -155,8 +155,8 @@
                                                             @php
                                                                 $size = json_decode($c_product->size);
                                                             @endphp
-                                                            <span class="text-xs">{{ $size?->name }}</span>
-                                                            <span class="text-xs">&#8369; {{ $size?->price }}</span>
+                                                            <span class="text-xs">{{  $size?->name }}</span>
+                                                            <span class="text-xs">&#8369; {{  $size?->price }}</span>
                                                         </div>
                                                     </div>
                                                     @php
