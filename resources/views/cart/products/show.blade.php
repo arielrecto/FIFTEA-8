@@ -112,8 +112,8 @@
         function extrasAction() {
             return {
                 addons: [],
-                init(data) {
-                    this.extras = [...data]
+                init(supplies) {
+                    this.extras = [...supplies]
                 },
                 selectedAddons(e, data) {
                     const isChecked = e.target.checked;
