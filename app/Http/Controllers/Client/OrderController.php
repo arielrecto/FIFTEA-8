@@ -34,7 +34,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+        // // dd($request->all());
         $request->validate([
             'image' => 'required:|mimes:jpg,jpeg',
             'qr_ref' => 'required',
@@ -62,7 +62,7 @@ class OrderController extends Controller
             'order_id' => $order->id,
             'amount' => $request->total,
             'payment_ref' => $request->qr_ref,
-            'image' => $filename 
+            'image' => $filename
         ]);
 
         $request->image->storeAs('public/payment/image/' . $filename);
@@ -70,7 +70,7 @@ class OrderController extends Controller
         $cart->update(['is_check_out' => true]);
 
 
-        return redirect(route('products'))->with(['message' => 'Order Success']);
+        return to_route('client.order.receipt', ['order' => $order->id])->with(['message'=> 'Order Success']);
     }
 
     /**
@@ -119,5 +119,13 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function receipt(string $id){
+        $order = Order::find($id);
+
+
+
+        return view('cart.receipt', compact(['order']));
     }
 }

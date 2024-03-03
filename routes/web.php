@@ -244,6 +244,8 @@ Route::middleware('auth')->group(function () {
             });
         });
 
+        Route::get('order/{order}/receipt', [ClientOrderController::class, 'receipt'])->name('order.receipt');
+
         Route::resource('order', ClientOrderController::class)->only([
             'index',
             'create',
